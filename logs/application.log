@@ -1,0 +1,20 @@
+2024-10-15 12:57:12,177 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-8 - ApplicationTimer demo: Starting application at 2024-10-15T15:57:12.177356200Z
+2024-10-15 12:57:12,194 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-8 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-10-15 12:57:12,255 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-8 - Application started (Dev) (no global state)
+2024-10-15 12:57:12,440 [WARN] from play.api.mvc.DefaultJWTCookieDataCodec in application-pekko.actor.default-dispatcher-5 - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2024-10-15 12:57:12,441 [INFO] from play.api.mvc.DefaultJWTCookieDataCodec in application-pekko.actor.default-dispatcher-5 - The JWT signature in the cookie does not match the locally computed signature with the server. This usually indicates the browser has a leftover cookie from another Play application, so clearing cookies may resolve this error message.
+2024-10-15 12:57:19,078 [WARN] from play.api.mvc.DefaultJWTCookieDataCodec in application-pekko.actor.default-dispatcher-5 - decode: cookie has invalid signature! message = JWT signature does not match locally computed signature. JWT validity cannot be asserted and should not be trusted.
+2024-10-15 12:57:19,078 [INFO] from play.api.mvc.DefaultJWTCookieDataCodec in application-pekko.actor.default-dispatcher-5 - The JWT signature in the cookie does not match the locally computed signature with the server. This usually indicates the browser has a leftover cookie from another Play application, so clearing cookies may resolve this error message.
+2024-10-15 12:57:19,081 [WARN] from play.filters.CSRF in application-pekko.actor.default-dispatcher-5 - [CSRF] Check failed because no token found in headers for /search
+2024-10-15 13:02:56,959 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-120-thread-8 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 40000 milliseconds timeout
+2024-10-15 13:02:56,960 [INFO] from play.core.server.PekkoHttpServer in pool-120-thread-8 - Stopping Pekko HTTP server...
+2024-10-15 13:02:56,965 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-12 - Unbinding /[0:0:0:0:0:0:0:0]:9000
+2024-10-15 13:02:56,969 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-12 - Terminating server binding for /[0:0:0:0:0:0:0:0]:9000
+2024-10-15 13:02:56,977 [INFO] from application in application-pekko.actor.internal-dispatcher-7 - ApplicationTimer demo: Stopping application at 2024-10-15T16:02:56.977930600Z after 344s.
+2024-10-15 13:02:57,007 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-12 - Running provided shutdown stop hooks
