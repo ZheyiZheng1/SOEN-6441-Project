@@ -1,5 +1,5 @@
 /**
- * Author: Zheyi Zheng - 40266266
+ * @author: Zheyi Zheng - 40266266
  * Created: 2024/10/24
  * This is the home controller.
  */
@@ -45,10 +45,11 @@ public class HomeController extends Controller {
         // Create a DynamicForm to bind the form data
         DynamicForm form = formFactory.form();
         // Extract the search term from the form
-        String searchQuery = form.bindFromRequest().get("search");
+        //String searchQuery = form.bindFromRequest().get("search");
 
         // Process the search query as needed, for now, let's just render it
-        return ok(searchResults.render(searchQuery));
+        //return ok(searchResults.render(searchQuery));
+        return ok();
     }
 
 }

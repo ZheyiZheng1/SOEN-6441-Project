@@ -10,6 +10,10 @@ lazy val root = (project in file("."))
       guice,
       // Test Database
       "com.h2database" % "h2" % "2.3.232",
+      // Google API client dependency
+      "com.google.apis" % "google-api-services-youtube" % "v3-rev222-1.25.0",
+      //JUnit
+      "org.junit.jupiter" % "junit-jupiter" % "5.8.2" % Test,
       // Testing libraries for dealing with CompletionStage...
       "org.assertj" % "assertj-core" % "3.26.3" % Test,
       "org.awaitility" % "awaitility" % "4.2.2" % Test,
