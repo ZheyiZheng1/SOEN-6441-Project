@@ -12,6 +12,8 @@ lazy val root = (project in file("."))
       "com.h2database" % "h2" % "2.3.232",
       // Google API client dependency
       "com.google.apis" % "google-api-services-youtube" % "v3-rev222-1.25.0",
+      //json unit
+      "org.json" % "json" % "20210307",
       //JUnit
       "org.junit.jupiter" % "junit-jupiter" % "5.8.2" % Test,
       // Testing libraries for dealing with CompletionStage...
