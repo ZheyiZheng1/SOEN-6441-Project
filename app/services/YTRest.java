@@ -19,7 +19,7 @@ import java.security.GeneralSecurityException;
 public class YTRest {
     // Parameter
     private static final String APPLICATION_NAME = "SOEN-6441";
-    private static final String API_KEY = "AIzaSyCIbzUHwQROFkWxDKq8bMaTzROhzPXyyU4";
+    private static final String API_KEY = "";
     private static long MAX_RESULTS = 10;
 
     private final YouTube youtube;
