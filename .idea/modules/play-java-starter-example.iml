@@ -30,6 +30,8 @@
     <orderEntry type="library" name="sbt: com.fasterxml.jackson.module:jackson-module-scala_2.13:2.14.3:jar" level="project" />
     <orderEntry type="library" name="sbt: com.fasterxml:classmate:1.5.1:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: com.github.sbt:junit-interface:0.13.3:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.google.api-client:google-api-client:1.25.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.google.apis:google-api-services-youtube:v3-rev222-1.25.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: com.google.auto.service:auto-service-annotations:1.1.1:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.code.findbugs:jsr305:3.0.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: com.google.code.gson:gson:2.10:jar" level="project" />
@@ -37,20 +39,23 @@
     <orderEntry type="library" name="sbt: com.google.guava:failureaccess:1.0.1:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.guava:guava:32.1.3-jre:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.google.http-client:google-http-client-jackson2:1.25.0:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.google.http-client:google-http-client:1.25.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.inject.extensions:guice-assistedinject:6.0.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.inject:guice:6.0.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.google.j2objc:j2objc-annotations:2.8:jar" level="project" />
+    <orderEntry type="library" name="sbt: com.google.oauth-client:google-oauth-client:1.25.0:jar" level="project" />
     <orderEntry type="library" name="sbt: com.h2database:h2:2.3.232:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: com.shapesecurity:salvation2:3.0.1:jar" level="project" />
     <orderEntry type="library" name="sbt: com.thoughtworks.paranamer:paranamer:2.8:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe:config:1.4.3:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe:ssl-config-core_2.13:0.6.1:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: commons-beanutils:commons-beanutils:1.9.4:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="sbt: commons-codec:commons-codec:1.15:jar" level="project" />
+    <orderEntry type="library" name="sbt: commons-codec:commons-codec:1.15:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: commons-collections:commons-collections:3.2.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: commons-digester:commons-digester:2.1:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: commons-io:commons-io:2.11.0:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="sbt: commons-logging:commons-logging:1.2:jar" level="project" />
+    <orderEntry type="library" name="sbt: commons-logging:commons-logging:1.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: commons-net:commons-net:3.9.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: commons-validator:commons-validator:1.7:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: dev.failsafe:failsafe:3.3.2:jar" level="project" />
@@ -86,8 +91,8 @@
     <orderEntry type="library" scope="TEST" name="sbt: org.apache.commons:commons-exec:1.3:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.apache.commons:commons-lang3:3.12.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.apache.commons:commons-text:1.10.0:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="sbt: org.apache.httpcomponents:httpclient:4.5.14:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="sbt: org.apache.httpcomponents:httpcore:4.4.16:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.apache.httpcomponents:httpclient:4.5.14:jar" level="project" />
+    <orderEntry type="library" name="sbt: org.apache.httpcomponents:httpcore:4.4.16:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.apache.httpcomponents:httpmime:4.5.14:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.apache.maven:maven-model:3.9.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.pekko:pekko-actor-typed_2.13:1.0.3:jar" level="project" />
@@ -98,6 +103,7 @@
     <orderEntry type="library" name="sbt: org.apache.pekko:pekko-serialization-jackson_2.13:1.0.3:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.pekko:pekko-slf4j_2.13:1.0.3:jar" level="project" />
     <orderEntry type="library" name="sbt: org.apache.pekko:pekko-stream_2.13:1.0.3:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.apiguardian:apiguardian-api:1.1.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.assertj:assertj-core:3.26.3:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.atteo.classindex:classindex:3.13:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.awaitility:awaitility:4.2.2:jar" level="project" />
@@ -115,7 +121,14 @@
     <orderEntry type="library" scope="TEST" name="sbt: org.hamcrest:hamcrest:2.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.hibernate.validator:hibernate-validator:6.2.5.Final:jar" level="project" />
     <orderEntry type="library" name="sbt: org.jboss.logging:jboss-logging:3.4.1.Final:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.jupiter:junit-jupiter-api:5.8.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.jupiter:junit-jupiter-engine:5.8.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.jupiter:junit-jupiter-params:5.8.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.jupiter:junit-jupiter:5.8.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.platform:junit-platform-commons:1.8.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.junit.platform:junit-platform-engine:1.8.2:jar" level="project" />
     <orderEntry type="library" name="sbt: org.lz4:lz4-java:1.8.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.opentest4j:opentest4j:1.2.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.ow2.asm:asm:7.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.parboiled:parboiled_2.13:2.5.0:jar" level="project" />
     <orderEntry type="library" name="sbt: org.playframework.twirl:twirl-api_2.13:2.0.7:jar" level="project" />
