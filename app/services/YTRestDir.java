@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class YTRestDir {
-    private static final String API_KEY = "AIzaSyCIbzUHwQROFkWxDKq8bMaTzROhzPXyyU4";
+    private static final String API_KEY = "";
     private static final String BASE_URL = "https://www.googleapis.com/youtube/v3/search";
     private static final String MAX_RESLUT = "10";
     /**
