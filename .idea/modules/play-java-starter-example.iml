@@ -81,6 +81,7 @@
     <orderEntry type="library" name="sbt: jakarta.validation:jakarta.validation-api:2.0.2:jar" level="project" />
     <orderEntry type="library" name="sbt: javax.inject:javax.inject:1:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: junit:junit:4.13.2:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: net.bytebuddy:byte-buddy-agent:1.14.4:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: net.bytebuddy:byte-buddy:1.14.18:jar" level="project" />
     <orderEntry type="library" name="sbt: net.jodah:typetools:0.6.3:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: net.sourceforge.htmlunit:htmlunit-core-js:2.70.0:jar" level="project" />
@@ -129,6 +130,8 @@
     <orderEntry type="library" scope="TEST" name="sbt: org.junit.platform:junit-platform-commons:1.8.2:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.junit.platform:junit-platform-engine:1.8.2:jar" level="project" />
     <orderEntry type="library" name="sbt: org.lz4:lz4-java:1.8.0:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.mockito:mockito-core:5.3.1:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: org.objenesis:objenesis:3.3:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.opentest4j:opentest4j:1.2.0:jar" level="project" />
     <orderEntry type="library" scope="TEST" name="sbt: org.ow2.asm:asm:7.1:jar" level="project" />
     <orderEntry type="library" name="sbt: org.parboiled:parboiled_2.13:2.5.0:jar" level="project" />

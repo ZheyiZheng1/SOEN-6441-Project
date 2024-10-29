@@ -16,25 +16,54 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class YTRestDir {
-    private static final String API_KEY = "AIzaSyCIbzUHwQROFkWxDKq8bMaTzROhzPXyyU4";
-    private static final String BASE_URL = "https://www.googleapis.com/youtube/v3/search";
-    private static final String MAX_RESLUT = "10";
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * Dependency injection method for HttpURLConnection. Without this method the mock test will not work, it will trigger actual network requests.
+     * Return an HttpURLConnection instance.
+     */
+    protected HttpURLConnection getHttpURLConnection(URI uri) throws IOException {
+        return (HttpURLConnection) uri.toURL().openConnection();
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * In order to allow fetch data asynchronously. I created this class to return CompletionStage<List<YTResponse>>.
+     * This class essentially is just calling the searchVideos method with supplyAsync, enable users to call it concurrently without interfering with each other's results.
+     */
+    public CompletionStage<List<YTResponse>> searchVideosAsynch(String keyword, String url, String maxResult) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                return searchVideos(keyword, url, maxResult);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * Request 10 search result from YouTube by making GET request.
      * Return a list of YTResponse (processed by mapResponse).
      */
-    public List<YTResponse> searchVideos(String keyword) throws IOException {
-        //Set up the url to use the API_KEY and retrieve 10 results.
-        String urlString = BASE_URL + "?part=snippet&q=" + keyword + "&key=" + API_KEY + "&maxResults=" + MAX_RESLUT;
+    public List<YTResponse> searchVideos(String keyword, String url, String maxResult) throws IOException {
+        String API_KEY = "AIzaSyCIbzUHwQROFkWxDKq8bMaTzROhzPXyyU4";
+        String BASE_URL = "https://www.googleapis.com/youtube/v3/search";
+        String MAX_RESULTS = (maxResult != null) ? url : "10";
+        String urlString = (url != null) ? url : BASE_URL + "?part=snippet&q=" + keyword + "&key=" + API_KEY + "&maxResults=" + MAX_RESULTS;
+
         try {
             URI uri = new URI(urlString);
-            HttpURLConnection conn = (HttpURLConnection) uri.toURL().openConnection();
+            HttpURLConnection conn = getHttpURLConnection(uri);
             conn.setRequestMethod("GET");
 
             // Handle response code
