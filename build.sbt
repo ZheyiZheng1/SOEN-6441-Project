@@ -14,6 +14,8 @@ lazy val root = (project in file("."))
       "com.google.apis" % "google-api-services-youtube" % "v3-rev222-1.25.0",
       //json unit
       "org.json" % "json" % "20210307",
+      // Mockito
+      "org.mockito" % "mockito-core" % "5.3.1" % Test,
       //JUnit
       "org.junit.jupiter" % "junit-jupiter" % "5.8.2" % Test,
       // Testing libraries for dealing with CompletionStage...
