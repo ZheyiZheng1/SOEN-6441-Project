@@ -17,7 +17,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -36,10 +35,10 @@ public class YTRestDir {
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
-     * In order to allow fetch data asynchronously. I created this class to return CompletionStage<List<YTResponse>>.
+     * In order to allow fetch data asynchronously. I created this class to return CompletionFuture<List<YTResponse>>.
      * This class essentially is just calling the searchVideos method with supplyAsync, enable users to call it concurrently without interfering with each other's results.
      */
-    public CompletionStage<List<YTResponse>> searchVideosAsynch(String keyword, String url, String maxResult) {
+    public CompletableFuture<List<YTResponse>> searchVideosAsynch(String keyword, String url, String maxResult) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 return searchVideos(keyword, url, maxResult);
