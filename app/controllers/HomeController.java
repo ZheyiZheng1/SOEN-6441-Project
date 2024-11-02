@@ -5,12 +5,15 @@
  */
 package controllers;
 
-import play.data.DynamicForm;
+import Model.SearchForm;
+import play.data.Form;
 import play.mvc.*;
+
 import views.html.Home.display;
-import views.html.Home.searchResults;
 import play.data.FormFactory;
+
 import javax.inject.Inject;
+
 
 public class HomeController extends Controller {
 
@@ -28,28 +31,18 @@ public class HomeController extends Controller {
     }
 
     /**
-     * Basic home page of this application. url:"/ytlytics"
+     * Basic home page of this application. url:"/"
      * Author: Zheyi Zheng - 40266266
      * Created: 2024/10/24
      */
-    public Result display(){
-        return ok(display.render());
+    public Result display() {
+        // Create form based on SearchForm and FormFactory.
+        Form<SearchForm> searchForm = formFactory.form(SearchForm.class);
+        // Pass the form to display view.
+        return ok(display.render(searchForm));
     }
 
-    /**
-     * Basic home page of this application. url:"/search"
-     * Author: Zheyi Zheng - 40266266
-     * Created: 2024/10/25
-     */
-    public Result search() {
-        // Create a DynamicForm to bind the form data
-        DynamicForm form = formFactory.form();
-        // Extract the search term from the form
-        //String searchQuery = form.bindFromRequest().get("search");
-
-        // Process the search query as needed, for now, let's just render it
-        //return ok(searchResults.render(searchQuery));
+    public Result search(){
         return ok();
     }
-
 }
