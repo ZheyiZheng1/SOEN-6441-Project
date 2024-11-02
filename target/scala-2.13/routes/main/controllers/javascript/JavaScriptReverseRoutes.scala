@@ -23,7 +23,7 @@ package controllers.javascript {
       "controllers.HomeController.display",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "ytlytics"})
+          return _wA({method:"GET", url:"""" + _prefix + """"})
         }
       """
     )
@@ -33,24 +33,14 @@ package controllers.javascript {
       "controllers.HomeController.search",
       """
         function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "search"})
-        }
-      """
-    )
-  
-    // @LINE:8
-    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.HomeController.index",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + """"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "search"})
         }
       """
     )
   
   }
 
-  // @LINE:9
+  // @LINE:8
   class ReverseCountController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -58,7 +48,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:9
+    // @LINE:8
     def count: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.CountController.count",
       """
@@ -70,7 +60,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:10
+  // @LINE:9
   class ReverseAsyncController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -78,7 +68,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:10
+    // @LINE:9
     def message: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.AsyncController.message",
       """
@@ -90,7 +80,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:13
+  // @LINE:12
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -98,7 +88,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:13
+    // @LINE:12
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """

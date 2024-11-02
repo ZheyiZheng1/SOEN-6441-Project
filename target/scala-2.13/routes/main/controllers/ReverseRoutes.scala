@@ -18,33 +18,27 @@ package controllers {
 
   
     // @LINE:6
-    def display: Call = {
+    def display(): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "ytlytics")
+      Call("GET", _prefix)
     }
   
     // @LINE:7
     def search(): Call = {
       
-      Call("POST", _prefix + { _defaultPrefix } + "search")
-    }
-  
-    // @LINE:8
-    def index: Call = {
-      
-      Call("GET", _prefix)
+      Call("GET", _prefix + { _defaultPrefix } + "search")
     }
   
   }
 
-  // @LINE:9
+  // @LINE:8
   class ReverseCountController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:9
+    // @LINE:8
     def count: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "count")
@@ -52,14 +46,14 @@ package controllers {
   
   }
 
-  // @LINE:10
+  // @LINE:9
   class ReverseAsyncController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:10
+    // @LINE:9
     def message: Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "message")
@@ -67,14 +61,14 @@ package controllers {
   
   }
 
-  // @LINE:13
+  // @LINE:12
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:13
+    // @LINE:12
     def versioned(file:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[String]].unbind("file", file))

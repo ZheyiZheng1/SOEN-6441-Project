@@ -3,9 +3,8 @@
 #
 
 # Displays homepage.
-GET     /ytlytics                   controllers.HomeController.display
-POST    /search                     controllers.HomeController.search()
-GET     /                           controllers.HomeController.index
+GET     /                           controllers.HomeController.display()
+GET     /search                     controllers.HomeController.search()
 GET     /count                      controllers.CountController.count
 GET     /message                    controllers.AsyncController.message
 
