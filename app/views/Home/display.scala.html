@@ -16,6 +16,8 @@
     <title>Welcome to YT Lytics</title>
 </head>
     <body>
+        <h1>Welcome to YT Lytics</h1>
+        <!-- Input form for keyword-->
         @helper.form(action = routes.HomeController.search()) {
             @helper.inputText(searchForm("keyword"))
             <input type="submit" value="submit">

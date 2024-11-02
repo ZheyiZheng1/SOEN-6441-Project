@@ -16,11 +16,13 @@ import services.ReadabilityService;
 import services.YTResponse;
 import services.YTRestDir;
 import views.html.Home.display;
+import views.html.Home.searchResults;
 import play.data.FormFactory;
 
 import javax.inject.Inject;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 
 public class HomeController extends Controller {
@@ -58,7 +60,7 @@ public class HomeController extends Controller {
      * Author: Zheyi Zheng - 40266266
      * Created: 2024/10/24
      */
-    public Result search(Request request){
+    public Result search(Request request) throws ExecutionException, InterruptedException {
         // Receive submitted keyword
         Form<SearchForm> searchForm = formFactory.form(SearchForm.class).bindFromRequest(request);
         String keyword = searchForm.get().getKeyword();
@@ -75,9 +77,10 @@ public class HomeController extends Controller {
         // Form search result and information from personal part into one. Store it somewhere(Keep at most 10 search results).
         // TODO
         // Create form just like display().
-        // TODO
+        searchForm = formFactory.form(SearchForm.class);
+        Messages messages = messagesApi.preferred(request);
         // Pass all information to the view (Including previous search history).
         // TODO
-        return ok();
+        return ok(searchResults.render(keyword, searchForm, messages));
     }
 }

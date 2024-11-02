@@ -20,43 +20,46 @@ import play.api.data.Field
 import play.data._
 import play.core.j.PlayFormsMagicForJava._
 import scala.jdk.CollectionConverters._
+/*1.2*/import Model.SearchForm
+/*2.2*/import play.api.i18n.Messages
+/*3.2*/import play.api.i18n.MessagesProvider
 
-object searchResults extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template1[String,play.twirl.api.HtmlFormat.Appendable] {
+object searchResults extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template3[String,Form[SearchForm],MessagesProvider,play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*1.2*/(searchQuery: String):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*4.2*/(keyword: String)(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
+/*6.2*/import helper._
 
 
-Seq[Any](format.raw/*1.23*/("""
+Seq[Any](format.raw/*4.94*/("""
 
-"""),format.raw/*3.1*/("""<html lang="en">
+"""),format.raw/*7.1*/("""
+"""),format.raw/*12.3*/("""
+
+"""),format.raw/*14.1*/("""<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Search Results</title>
+  <title>Welcome to YT Lytics</title>
 </head>
-<body>
-<h1>Search Results</h1>
-<form action="/search" method="post">
-  <p>Welcome to YT lytics</p>
-  <input type="text" id="search" name="search" placeholder="Enter search terms" value=""""),_display_(/*12.89*/searchQuery),format.raw/*12.100*/(""""><br>
-  <input type="submit" value="Go">
-</form>
-
-"""),format.raw/*16.49*/("""
-"""),_display_(if(searchQuery.nonEmpty)/*17.26*/ {_display_(Seq[Any](format.raw/*17.28*/("""
-"""),format.raw/*18.1*/("""<h2>You searched for: """),_display_(/*18.24*/searchQuery),format.raw/*18.35*/("""</h2>
-""")))} else {null} ),format.raw/*19.2*/("""
-"""),format.raw/*20.1*/("""</body>
+    <body>
+        <h1>Welcome to YT Lytics</h1>
+        <!-- Input form for keyword-->
+        """),_display_(/*21.10*/helper/*21.16*/.form(action = routes.HomeController.search())/*21.62*/ {_display_(Seq[Any](format.raw/*21.64*/("""
+            """),_display_(/*22.14*/helper/*22.20*/.inputText(searchForm("keyword"))),format.raw/*22.53*/("""
+            """),format.raw/*23.13*/("""<input type="submit" value="submit">
+        """)))}),format.raw/*24.10*/("""
+        """),format.raw/*25.9*/("""<!-- Display search results-->
+        <p>"""),_display_(/*26.13*/keyword),format.raw/*26.20*/(""" """),format.raw/*26.21*/("""</p>
+    </body>
 </html>"""))
       }
     }
   }
 
-  def render(searchQuery:String): play.twirl.api.HtmlFormat.Appendable = apply(searchQuery)
+  def render(keyword:String,searchForm:Form[SearchForm],messagesProvider:MessagesProvider): play.twirl.api.HtmlFormat.Appendable = apply(keyword)(searchForm)(messagesProvider)
 
-  def f:((String) => play.twirl.api.HtmlFormat.Appendable) = (searchQuery) => apply(searchQuery)
+  def f:((String) => (Form[SearchForm]) => (MessagesProvider) => play.twirl.api.HtmlFormat.Appendable) = (keyword) => (searchForm) => (messagesProvider) => apply(keyword)(searchForm)(messagesProvider)
 
   def ref: this.type = this
 
@@ -66,9 +69,9 @@ Seq[Any](format.raw/*1.23*/("""
               /*
                   -- GENERATED --
                   SOURCE: app/views/Home/searchResults.scala.html
-                  HASH: f260f6d1de193a7f5e7e989a0dd92d6ee974180c
-                  MATRIX: 920->1|1036->22|1066->26|1378->311|1411->322|1494->425|1548->452|1588->454|1617->456|1667->479|1699->490|1750->498|1779->500
-                  LINES: 27->1|32->1|34->3|43->12|43->12|47->16|48->17|48->17|49->18|49->18|49->18|50->19|51->20
+                  HASH: b13b35ca43cc5e2c8020125ddab5bb4ef57151fe
+                  MATRIX: 615->1|646->27|683->59|1067->99|1232->196|1277->191|1307->213|1336->380|1367->384|1568->558|1583->564|1638->610|1678->612|1720->627|1735->633|1789->666|1831->680|1909->727|1946->737|2017->781|2045->788|2074->789
+                  LINES: 23->1|24->2|25->3|30->4|33->6|36->4|38->7|39->12|41->14|48->21|48->21|48->21|48->21|49->22|49->22|49->22|50->23|51->24|52->25|53->26|53->26|53->26
                   -- GENERATED --
               */
           

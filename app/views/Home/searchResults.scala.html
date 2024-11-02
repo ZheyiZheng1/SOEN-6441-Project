@@ -1,21 +1,28 @@
-@(searchQuery: String)
+@import Model.SearchForm
+@import play.api.i18n.Messages
+@import play.api.i18n.MessagesProvider
+@(keyword: String)(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider)
+
+@import helper._
+
+@*
+* @author: Zheyi Zheng - 40266266
+* Created: 2024/11/2
+* This is the searchResults view. It contains the search bar and search results from history search.
+*@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Search Results</title>
+  <title>Welcome to YT Lytics</title>
 </head>
-<body>
-<h1>Search Results</h1>
-<form action="/search" method="post">
-  <p>Welcome to YT lytics</p>
-  <input type="text" id="search" name="search" placeholder="Enter search terms" value="@searchQuery"><br>
-  <input type="submit" value="Go">
-</form>
-
-@* Display the search query if it's not empty *@
-@if(searchQuery.nonEmpty) {
-<h2>You searched for: @searchQuery</h2>
-}
-</body>
+    <body>
+        <h1>Welcome to YT Lytics</h1>
+        <!-- Input form for keyword-->
+        @helper.form(action = routes.HomeController.search()) {
+            @helper.inputText(searchForm("keyword"))
+            <input type="submit" value="submit">
+        }
+        <!-- Display search results-->
+        <p>@keyword </p>
+    </body>
 </html>

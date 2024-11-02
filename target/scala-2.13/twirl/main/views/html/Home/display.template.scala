@@ -43,11 +43,13 @@ Seq[Any](format.raw/*4.77*/("""
     <title>Welcome to YT Lytics</title>
 </head>
     <body>
-        """),_display_(/*19.10*/helper/*19.16*/.form(action = routes.HomeController.search())/*19.62*/ {_display_(Seq[Any](format.raw/*19.64*/("""
-            """),_display_(/*20.14*/helper/*20.20*/.inputText(searchForm("keyword"))),format.raw/*20.53*/("""
-            """),format.raw/*21.13*/("""<input type="submit" value="submit">
-        """)))}),format.raw/*22.10*/("""
-    """),format.raw/*23.5*/("""</body>
+        <h1>Welcome to YT Lytics</h1>
+        <!-- Input form for keyword-->
+        """),_display_(/*21.10*/helper/*21.16*/.form(action = routes.HomeController.search())/*21.62*/ {_display_(Seq[Any](format.raw/*21.64*/("""
+            """),_display_(/*22.14*/helper/*22.20*/.inputText(searchForm("keyword"))),format.raw/*22.53*/("""
+            """),format.raw/*23.13*/("""<input type="submit" value="submit">
+        """)))}),format.raw/*24.10*/("""
+    """),format.raw/*25.5*/("""</body>
 </html>"""))
       }
     }
@@ -65,9 +67,9 @@ Seq[Any](format.raw/*4.77*/("""
               /*
                   -- GENERATED --
                   SOURCE: app/views/Home/display.scala.html
-                  HASH: 8a3f547b8ee6cc5f95c5b586bb8b6b16548a0633
-                  MATRIX: 615->1|646->27|683->59|1054->99|1202->179|1247->174|1277->196|1306->321|1337->325|1461->422|1476->428|1531->474|1571->476|1613->491|1628->497|1682->530|1724->544|1802->591|1835->597
-                  LINES: 23->1|24->2|25->3|30->4|33->6|36->4|38->7|39->12|41->14|46->19|46->19|46->19|46->19|47->20|47->20|47->20|48->21|49->22|50->23
+                  HASH: 01b59b4cd56d01456975820bc6f7124e69276e49
+                  MATRIX: 615->1|646->27|683->59|1054->99|1202->179|1247->174|1277->196|1306->321|1337->325|1540->501|1555->507|1610->553|1650->555|1692->570|1707->576|1761->609|1803->623|1881->670|1914->676
+                  LINES: 23->1|24->2|25->3|30->4|33->6|36->4|38->7|39->12|41->14|48->21|48->21|48->21|48->21|49->22|49->22|49->22|50->23|51->24|52->25
                   -- GENERATED --
               */
           
