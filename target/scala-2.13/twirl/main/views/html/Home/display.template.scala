@@ -21,39 +21,41 @@ import play.data._
 import play.core.j.PlayFormsMagicForJava._
 import scala.jdk.CollectionConverters._
 /*1.2*/import Model.SearchForm
+/*2.2*/import play.api.i18n.Messages
+/*3.2*/import play.api.i18n.MessagesProvider
 
-object display extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template1[Form[SearchForm],play.twirl.api.HtmlFormat.Appendable] {
+object display extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[Form[SearchForm],MessagesProvider,play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*2.2*/(searchForm: Form[SearchForm]):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*4.2*/(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
-/*4.2*/import helper._
+/*6.2*/import helper._
 
 
-Seq[Any](format.raw/*2.32*/("""
+Seq[Any](format.raw/*4.77*/("""
 
-"""),format.raw/*5.1*/("""
-"""),format.raw/*10.3*/("""
+"""),format.raw/*7.1*/("""
+"""),format.raw/*12.3*/("""
 
-"""),format.raw/*12.1*/("""<html lang="en">
+"""),format.raw/*14.1*/("""<html lang="en">
 <head>
     <title>Welcome to YT Lytics</title>
 </head>
     <body>
-        """),_display_(/*17.10*/helper/*17.16*/.form(action = routes.HomeController.search())/*17.62*/ {_display_(Seq[Any](format.raw/*17.64*/("""
-            """),_display_(/*18.14*/helper/*18.20*/.inputText(searchForm("keyword"))),format.raw/*18.53*/("""
-            """),format.raw/*19.13*/("""<input type="submit" value="submit">
-        """)))}),format.raw/*20.10*/("""
-    """),format.raw/*21.5*/("""</body>
+        """),_display_(/*19.10*/helper/*19.16*/.form(action = routes.HomeController.search())/*19.62*/ {_display_(Seq[Any](format.raw/*19.64*/("""
+            """),_display_(/*20.14*/helper/*20.20*/.inputText(searchForm("keyword"))),format.raw/*20.53*/("""
+            """),format.raw/*21.13*/("""<input type="submit" value="submit">
+        """)))}),format.raw/*22.10*/("""
+    """),format.raw/*23.5*/("""</body>
 </html>"""))
       }
     }
   }
 
-  def render(searchForm:Form[SearchForm]): play.twirl.api.HtmlFormat.Appendable = apply(searchForm)
+  def render(searchForm:Form[SearchForm],messagesProvider:MessagesProvider): play.twirl.api.HtmlFormat.Appendable = apply(searchForm)(messagesProvider)
 
-  def f:((Form[SearchForm]) => play.twirl.api.HtmlFormat.Appendable) = (searchForm) => apply(searchForm)
+  def f:((Form[SearchForm]) => (MessagesProvider) => play.twirl.api.HtmlFormat.Appendable) = (searchForm) => (messagesProvider) => apply(searchForm)(messagesProvider)
 
   def ref: this.type = this
 
@@ -63,9 +65,9 @@ Seq[Any](format.raw/*2.32*/("""
               /*
                   -- GENERATED --
                   SOURCE: app/views/Home/display.scala.html
-                  HASH: 6be217f35b00d5e8b71274bba2f2b3d22f7e1238
-                  MATRIX: 615->1|955->27|1058->62|1103->57|1133->79|1162->204|1193->208|1317->305|1332->311|1387->357|1427->359|1469->374|1484->380|1538->413|1580->427|1658->474|1691->480
-                  LINES: 23->1|28->2|31->4|34->2|36->5|37->10|39->12|44->17|44->17|44->17|44->17|45->18|45->18|45->18|46->19|47->20|48->21
+                  HASH: 8a3f547b8ee6cc5f95c5b586bb8b6b16548a0633
+                  MATRIX: 615->1|646->27|683->59|1054->99|1202->179|1247->174|1277->196|1306->321|1337->325|1461->422|1476->428|1531->474|1571->476|1613->491|1628->497|1682->530|1724->544|1802->591|1835->597
+                  LINES: 23->1|24->2|25->3|30->4|33->6|36->4|38->7|39->12|41->14|46->19|46->19|46->19|46->19|47->20|47->20|47->20|48->21|49->22|50->23
                   -- GENERATED --
               */
           

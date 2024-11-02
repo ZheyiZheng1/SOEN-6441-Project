@@ -1,5 +1,7 @@
 @import Model.SearchForm
-@(searchForm: Form[SearchForm])
+@import play.api.i18n.Messages
+@import play.api.i18n.MessagesProvider
+@(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider)
 
 @import helper._
 

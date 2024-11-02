@@ -47,8 +47,8 @@ class Routes(
   }
 
   def documentation = List(
-    ("""GET""", this.prefix, """controllers.HomeController.display()"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """search""", """controllers.HomeController.search()"""),
+    ("""GET""", this.prefix, """controllers.HomeController.display(request:Request)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """search""", """controllers.HomeController.search(request:Request)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """count""", """controllers.CountController.count"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """message""", """controllers.AsyncController.message"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(file:String)"""),
@@ -64,12 +64,14 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix)))
   )
   private lazy val controllers_HomeController_display0_invoker = createInvoker(
-    HomeController_0.display(),
+    
+    (req:play.mvc.Http.Request) =>
+      HomeController_0.display(fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
       "display",
-      Nil,
+      Seq(classOf[play.mvc.Http.Request]),
       "GET",
       this.prefix + """""",
       """ Displays homepage.""",
@@ -82,12 +84,14 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("search")))
   )
   private lazy val controllers_HomeController_search1_invoker = createInvoker(
-    HomeController_0.search(),
+    
+    (req:play.mvc.Http.Request) =>
+      HomeController_0.search(fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
       "search",
-      Nil,
+      Seq(classOf[play.mvc.Http.Request]),
       "GET",
       this.prefix + """search""",
       """""",
@@ -155,13 +159,15 @@ class Routes(
     // @LINE:6
     case controllers_HomeController_display0_route(params@_) =>
       call { 
-        controllers_HomeController_display0_invoker.call(HomeController_0.display())
+        controllers_HomeController_display0_invoker.call(
+          req => HomeController_0.display(req))
       }
   
     // @LINE:7
     case controllers_HomeController_search1_route(params@_) =>
       call { 
-        controllers_HomeController_search1_invoker.call(HomeController_0.search())
+        controllers_HomeController_search1_invoker.call(
+          req => HomeController_0.search(req))
       }
   
     // @LINE:8

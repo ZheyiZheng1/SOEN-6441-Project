@@ -8,6 +8,9 @@ package controllers;
 import Model.SearchForm;
 import play.data.Form;
 import play.mvc.*;
+import play.i18n.MessagesApi;
+import play.i18n.Messages;
+import play.mvc.Http.Request;
 
 import services.ReadabilityService;
 import services.YTResponse;
@@ -24,11 +27,13 @@ public class HomeController extends Controller {
 
     private final AssetsFinder assetsFinder;
     private final FormFactory formFactory;
+    private final MessagesApi messagesApi;
 
     @Inject
-    public HomeController(AssetsFinder assetsFinder, FormFactory formFactory) {
+    public HomeController(AssetsFinder assetsFinder, FormFactory formFactory, MessagesApi messagesApi) {
         this.assetsFinder = assetsFinder;
         this.formFactory = formFactory;
+        this.messagesApi = messagesApi;
     }
 
     public Result index(){
@@ -40,11 +45,12 @@ public class HomeController extends Controller {
      * Author: Zheyi Zheng - 40266266
      * Created: 2024/10/24
      */
-    public Result display() {
+    public Result display(Request request) {
         // Create form based on SearchForm and FormFactory.
         Form<SearchForm> searchForm = formFactory.form(SearchForm.class);
+        Messages messages = messagesApi.preferred(request);
         // Pass the form to display view.
-        return ok(display.render(searchForm));
+        return ok(display.render(searchForm, messages));
     }
 
     /**
@@ -52,13 +58,14 @@ public class HomeController extends Controller {
      * Author: Zheyi Zheng - 40266266
      * Created: 2024/10/24
      */
-    public Result search(){
+    public Result search(Request request){
         // Receive submitted keyword
-        // TODO
+        Form<SearchForm> searchForm = formFactory.form(SearchForm.class).bindFromRequest(request);
+        String keyword = searchForm.get().getKeyword();
         // Create YTRestDir
         YTRestDir ytRestDir = new YTRestDir();
         // Get search result. (Replace the following keyword to actual keyword String)
-        CompletableFuture<List<YTResponse>> result =  ytRestDir.searchVideosAsynch(keyword, null, 10);
+        CompletableFuture<List<YTResponse>> result =  ytRestDir.searchVideosAsynch(keyword, null, "10");
         // Create ReadabilityService and get calculation result.
         ReadabilityService rs = new ReadabilityService(result);
         List<Double> listOfFRE = rs.getFre();

@@ -1,4 +1,12 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\app\views\Home\display.scala.html:18:30: An implicit MessagesProvider instance was not found.  Please see https://www.playframework.com/documentation/latest/ScalaForms#Passing-MessagesProvider-to-Form-Helpers[0m
-[0m[[0m[31merror[0m] [0m[0m            @helper.inputText(searchForm("keyword"))[0m
-[0m[[0m[31merror[0m] [0m[0m                             ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\conf\routes:6:1: missing argument list for method display in class HomeController[0m
+[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
+[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `display _` or `display(_)` instead of `display`.[0m
+[0m[[0m[31merror[0m] [0m[0mGET     /                           controllers.HomeController.display[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\conf\routes:7:1: missing argument list for method search in class HomeController[0m
+[0m[[0m[31merror[0m] [0m[0mUnapplied methods are only converted to functions when a function type is expected.[0m
+[0m[[0m[31merror[0m] [0m[0mYou can make this conversion explicit by writing `search _` or `search(_)` instead of `search`.[0m
+[0m[[0m[31merror[0m] [0m[0mGET     /search                     controllers.HomeController.search[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\app\views\Home\display.scala.html:19:59: play.api.mvc.Call does not take parameters[0m
+[0m[[0m[31merror[0m] [0m[0m        @helper.form(action = routes.HomeController.search()) {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
