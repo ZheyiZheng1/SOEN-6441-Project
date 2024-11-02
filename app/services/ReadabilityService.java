@@ -21,7 +21,9 @@ public class ReadabilityService {
     List<Double> fre = new ArrayList<>();
     //Flesch-Kincaid Grade Level
     List<Double> fkgl = new ArrayList<>();
-    Double readabilityAverage;
+
+    Double avgFRE;
+    Double avgFKGL;
 
     /**
      * @author: Zheyi Zheng - 40266266
@@ -73,7 +75,8 @@ public class ReadabilityService {
             return 0;
         });
         // Calculate the average readability using stream. map to double, take average, orElse 0.0 in case of the list is empty.
-        readabilityAverage = fre.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
+        avgFRE = fre.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
+        avgFKGL = fkgl.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
 
     }
 
@@ -115,7 +118,7 @@ public class ReadabilityService {
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/30
-     * Following are simple getter methods for fre, fkgl and readabilityAverage
+     * Following are simple getter methods for fre, fkgl, avgFRE and avgFKGL
      *
      */
     public List<Double> getFre() {
@@ -124,7 +127,11 @@ public class ReadabilityService {
     public List<Double> getFkgl() {
         return fkgl;
     }
-    public Double getReadabilityAverage() {
-        return readabilityAverage;
+    public Double getAvgFRE() {
+        return avgFRE;
+    }
+
+    public Double getAvgFKGL() {
+        return avgFKGL;
     }
 }

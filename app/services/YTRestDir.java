@@ -37,6 +37,7 @@ public class YTRestDir {
      * Created: 2024/10/29
      * In order to allow fetch data asynchronously. I created this class to return CompletionFuture<List<YTResponse>>.
      * This class essentially is just calling the searchVideos method with supplyAsync, enable users to call it concurrently without interfering with each other's results.
+     * Returning the CompletableFuture so everyone calls it can access additional asynchronous methods like thenApply.
      */
     public CompletableFuture<List<YTResponse>> searchVideosAsynch(String keyword, String url, String maxResult) {
         return CompletableFuture.supplyAsync(() -> {
