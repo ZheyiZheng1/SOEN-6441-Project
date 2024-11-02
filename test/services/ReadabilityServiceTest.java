@@ -77,9 +77,19 @@ public class ReadabilityServiceTest {
      * Test getReadabilityAverage method. Make sure average value was calculated correctly.
      */
     @Test
-    public void testGetReadabilityAverage(){
-        double response = readabilityService.getReadabilityAverage();
+    public void testGetAvgFRE(){
+        double response = readabilityService.getAvgFRE();
         assertEquals((83.3+66.4+83.3)/3, response);
     }
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * Test getReadabilityAverage method. Make sure average value was calculated correctly.
+     */
+    @Test
+    public void testGetAvgFKGL(){
+        double response = readabilityService.getAvgFKGL();
+        assertEquals((2.9+5.2+2.9)/3, response);
+    }
 }
