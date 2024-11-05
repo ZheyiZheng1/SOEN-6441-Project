@@ -1,3 +1,4 @@
+
 package controllers;
 
 import play.mvc.Controller;
@@ -57,3 +58,4 @@ public class WordCountController extends Controller {
         return ok(videoStatistics.render(sortedWordFrequency));
     }
 }
+

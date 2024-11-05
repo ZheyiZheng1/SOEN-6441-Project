@@ -1,15 +1,12 @@
-2024-11-05 08:42:52,927 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-6 - ApplicationTimer demo: Starting application at 2024-11-05T12:42:52.926013100Z
-2024-11-05 08:42:52,972 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-6 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2024-11-05 09:25:49,454 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-4 - ApplicationTimer demo: Starting application at 2024-11-05T03:55:49.453365300Z
+2024-11-05 09:25:49,541 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-4 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     filters.ExampleFilter
 
-2024-11-05 08:42:53,174 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-6 - Application started (Dev) (no global state)
-2024-11-05 08:46:28,543 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-5-thread-10 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 40000 milliseconds timeout
-2024-11-05 08:46:28,544 [INFO] from play.core.server.PekkoHttpServer in pool-5-thread-10 - Stopping Pekko HTTP server...
-2024-11-05 08:46:28,548 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-4 - Unbinding /0:0:0:0:0:0:0:0:9000
-2024-11-05 08:46:28,553 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-4 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
-2024-11-05 08:46:28,559 [INFO] from application in application-pekko.actor.internal-dispatcher-4 - ApplicationTimer demo: Stopping application at 2024-11-05T12:46:28.559159200Z after 216s.
-2024-11-05 08:46:28,588 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-17 - Running provided shutdown stop hooks
+
+2024-11-05 09:25:49,695 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-4 - Application started (Dev) (no global state)
+
