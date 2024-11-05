@@ -1,0 +1,21 @@
+@(keyword: String, sortedWordFrequency: Map[String, Long])
+
+@main("Word Statistics for '@keyword'") {
+<h1>Word Frequency Statistics for "@keyword"</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Word</th>
+        <th>Frequency</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for((word, frequency) <- sortedWordFrequency) {
+    <tr>
+        <td>@word</td>
+        <td>@frequency</td>
+    </tr>
+    }
+    </tbody>
+</table>
+}
