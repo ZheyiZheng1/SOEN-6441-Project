@@ -35,11 +35,10 @@ public class ReadabilityService {
     public ReadabilityService(CompletableFuture<List<YTResponse>> target){
         super();
         // Process the input to get fre, fkgl and average readability
-        target.thenApply(list -> {
+        target.thenAccept(list -> {
             List<Double> totalWords;
             List<Double> totalSentences;
             List<Double> totalSyl;
-
 
             // Use steam to count each description's total word number and collect as list of Integer. Assuming all words are separated by at least one whitespace.
             totalWords = list.stream()
@@ -72,7 +71,6 @@ public class ReadabilityService {
                 // Calculate and round the fkgl to one decimal place.
                 this.fkgl.add(Double.parseDouble(df.format(0.39 * (totalWords.get(i)/totalSentences.get(i)) + 11.8*(totalSyl.get(i)/totalWords.get(i)) - 15.59)));
             });
-            return 0;
         });
         // Calculate the average readability using stream. map to double, take average, orElse 0.0 in case of the list is empty.
         avgFRE = fre.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);
