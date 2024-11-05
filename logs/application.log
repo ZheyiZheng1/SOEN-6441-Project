@@ -1,9 +1,9 @@
-2024-11-05 09:19:23,335 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-6 - ApplicationTimer demo: Starting application at 2024-11-05T03:49:23.334316500Z
-2024-11-05 09:19:23,369 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-6 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2024-11-05 09:25:49,454 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-4 - ApplicationTimer demo: Starting application at 2024-11-05T03:55:49.453365300Z
+2024-11-05 09:25:49,541 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-4 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     filters.ExampleFilter
 
-2024-11-05 09:19:23,590 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-6 - Application started (Dev) (no global state)
+2024-11-05 09:25:49,695 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-4 - Application started (Dev) (no global state)
