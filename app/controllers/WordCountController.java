@@ -48,6 +48,6 @@ public class WordCountController extends Controller {
 //        sortedWordFrequency.put("test3", 45L);
 //        sortedWordFrequency.put("test4", 45L);
 
-        return ok(videoStatistics.render(keyword, sortedWordFrequency));
+        return ok(videoStatistics.render(sortedWordFrequency));
     }
 }
