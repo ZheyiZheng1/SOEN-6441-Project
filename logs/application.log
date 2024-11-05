@@ -1,12 +1,81 @@
-2024-11-05 09:25:49,454 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-4 - ApplicationTimer demo: Starting application at 2024-11-05T03:55:49.453365300Z
-2024-11-05 09:25:49,541 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-4 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
-
+2024-11-05 11:45:08,006 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-7 - ApplicationTimer demo: Starting application at 2024-11-05T15:45:08.006870600Z
+2024-11-05 11:45:08,028 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-7 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     filters.ExampleFilter
 
+2024-11-05 11:45:08,192 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-7 - Application started (Dev) (no global state)
+2024-11-05 11:46:51,912 [INFO] from application in application-pekko.actor.internal-dispatcher-6 - ApplicationTimer demo: Stopping application at 2024-11-05T15:46:51.912886500Z after 103s.
+2024-11-05 11:46:51,958 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-13 - Registering exception handler: guice-provision-exception-handler
+2024-11-05 11:46:52,022 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-13 - ApplicationTimer demo: Starting application at 2024-11-05T15:46:52.022924800Z
+2024-11-05 11:46:52,026 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-13 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
-2024-11-05 09:25:49,695 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-4 - Application started (Dev) (no global state)
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
 
+2024-11-05 11:46:52,032 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-13 - Application started (Dev) (no global state)
+2024-11-05 11:47:48,830 [INFO] from application in application-pekko.actor.internal-dispatcher-5 - ApplicationTimer demo: Stopping application at 2024-11-05T15:47:48.830490600Z after 56s.
+2024-11-05 11:47:48,860 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-13 - Registering exception handler: guice-provision-exception-handler
+2024-11-05 11:47:48,927 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-13 - ApplicationTimer demo: Starting application at 2024-11-05T15:47:48.927489500Z
+2024-11-05 11:47:48,931 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-13 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-05 11:47:48,937 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-13 - Application started (Dev) (no global state)
+2024-11-05 11:49:20,219 [INFO] from application in application-pekko.actor.internal-dispatcher-7 - ApplicationTimer demo: Stopping application at 2024-11-05T15:49:20.219203400Z after 92s.
+2024-11-05 11:49:20,254 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-18 - Registering exception handler: guice-provision-exception-handler
+2024-11-05 11:49:20,314 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-18 - ApplicationTimer demo: Starting application at 2024-11-05T15:49:20.313205800Z
+2024-11-05 11:49:20,318 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-18 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-05 11:49:20,322 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-18 - Application started (Dev) (no global state)
+2024-11-05 11:50:16,893 [INFO] from application in application-pekko.actor.internal-dispatcher-5 - ApplicationTimer demo: Stopping application at 2024-11-05T15:50:16.893432500Z after 56s.
+2024-11-05 11:50:16,913 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-18 - Registering exception handler: guice-provision-exception-handler
+2024-11-05 11:50:16,989 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-18 - ApplicationTimer demo: Starting application at 2024-11-05T15:50:16.989426400Z
+2024-11-05 11:50:16,993 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-18 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-05 11:50:16,998 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-18 - Application started (Dev) (no global state)
+2024-11-05 11:51:47,986 [INFO] from application in application-pekko.actor.internal-dispatcher-3 - ApplicationTimer demo: Stopping application at 2024-11-05T15:51:47.986712300Z after 91s.
+2024-11-05 11:51:48,007 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-25 - Registering exception handler: guice-provision-exception-handler
+2024-11-05 11:51:48,050 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-25 - ApplicationTimer demo: Starting application at 2024-11-05T15:51:48.050710900Z
+2024-11-05 11:51:48,053 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-25 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-05 11:51:48,055 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-25 - Application started (Dev) (no global state)
+2024-11-05 11:52:31,877 [INFO] from application in application-pekko.actor.internal-dispatcher-3 - ApplicationTimer demo: Stopping application at 2024-11-05T15:52:31.877574Z after 43s.
+2024-11-05 11:52:31,895 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-26 - Registering exception handler: guice-provision-exception-handler
+2024-11-05 11:52:31,930 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-26 - ApplicationTimer demo: Starting application at 2024-11-05T15:52:31.930357800Z
+2024-11-05 11:52:31,933 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-26 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-05 11:52:31,935 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-26 - Application started (Dev) (no global state)
+2024-11-05 11:54:02,531 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-5-thread-7 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 40000 milliseconds timeout
+2024-11-05 11:54:02,531 [INFO] from play.core.server.PekkoHttpServer in pool-5-thread-7 - Stopping Pekko HTTP server...
+2024-11-05 11:54:02,532 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-3 - Unbinding /0:0:0:0:0:0:0:0:9000
+2024-11-05 11:54:02,535 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-3 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2024-11-05 11:54:02,538 [INFO] from application in application-pekko.actor.internal-dispatcher-4 - ApplicationTimer demo: Stopping application at 2024-11-05T15:54:02.538467Z after 91s.
+2024-11-05 11:54:02,546 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-3 - Running provided shutdown stop hooks

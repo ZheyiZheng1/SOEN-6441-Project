@@ -2,7 +2,7 @@
 @import play.api.i18n.Messages
 @import play.api.i18n.MessagesProvider
 @import Model.TextSegment
-@(keywords: ArrayList[String])(userList: ArrayList[ArrayList[ArrayList[TextSegment]]])(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider, request: play.mvc.Http.Request)
+@(keywords: ArrayList[String])(userList: ArrayList[ArrayList[ArrayList[TextSegment]]])(userReadability : ArrayList[ArrayList[String]])(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider, request: play.mvc.Http.Request)
 
 @import helper._
 
@@ -29,8 +29,9 @@
     <div class="response">
         <p>
             <!-- Print the keyword here then print search results for this keyword-->
-            @keywords.get(index)
+        <h3><b>Search term:</b> @keywords.get(index) Flesh-Kincaid Grade Level Avg.= @userReadability.get(index).get(0) , Flesch Reading Ease Score Avg.= @userReadability.get(index).get(1) .</h3>
             <a href="@routes.WordCountController.videoStatistics(keywords.get(index))">More stats</a>
+            <br/>
             @for(response <- responseList) {
                 @for(segment <- response) {
                     <!-- Print all parts of the video information-->
@@ -42,6 +43,7 @@
                         @segment.text
                     }
                 }
+                <br/>
             }
         </p>
 

@@ -25,16 +25,16 @@ import scala.jdk.CollectionConverters._
 /*3.2*/import play.api.i18n.MessagesProvider
 /*4.2*/import Model.TextSegment
 
-object searchResults extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template5[ArrayList[String],ArrayList[ArrayList[ArrayList[TextSegment]]],Form[SearchForm],MessagesProvider,play.mvc.Http.Request,play.twirl.api.HtmlFormat.Appendable] {
+object searchResults extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template6[ArrayList[String],ArrayList[ArrayList[ArrayList[TextSegment]]],ArrayList[ArrayList[String]],Form[SearchForm],MessagesProvider,play.mvc.Http.Request,play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*5.2*/(keywords: ArrayList[String])(userList: ArrayList[ArrayList[ArrayList[TextSegment]]])(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider, request: play.mvc.Http.Request):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*5.2*/(keywords: ArrayList[String])(userList: ArrayList[ArrayList[ArrayList[TextSegment]]])(userReadability : ArrayList[ArrayList[String]])(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider, request: play.mvc.Http.Request):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 /*7.2*/import helper._
 
 
-Seq[Any](format.raw/*5.194*/("""
+Seq[Any](format.raw/*5.242*/("""
 
 """),format.raw/*8.1*/("""
 """),format.raw/*13.3*/("""
@@ -56,33 +56,35 @@ Seq[Any](format.raw/*5.194*/("""
     """),format.raw/*29.5*/("""<div class="response">
         <p>
             <!-- Print the keyword here then print search results for this keyword-->
-            """),_display_(/*32.14*/keywords/*32.22*/.get(index)),format.raw/*32.33*/("""
-            """),format.raw/*33.13*/("""<a href=""""),_display_(/*33.23*/routes/*33.29*/.WordCountController.videoStatistics(keywords.get(index))),format.raw/*33.86*/("""">More stats</a>
-            """),_display_(/*34.14*/for(response <- responseList) yield /*34.43*/ {_display_(Seq[Any](format.raw/*34.45*/("""
-                """),_display_(/*35.18*/for(segment <- response) yield /*35.42*/ {_display_(Seq[Any](format.raw/*35.44*/("""
-                    """),format.raw/*36.21*/("""<!-- Print all parts of the video information-->
-                    """),_display_(if(segment.url != null)/*37.45*/ {_display_(Seq[Any](format.raw/*37.47*/("""
-                        """),format.raw/*38.25*/("""<!-- Set hyperlink along with the text-->
-                        <a href=""""),_display_(/*39.35*/segment/*39.42*/.url),format.raw/*39.46*/("""">"""),_display_(/*39.49*/segment/*39.56*/.text),format.raw/*39.61*/("""</a>
-                    """)))}else/*40.28*/{_display_(Seq[Any](format.raw/*40.29*/("""
-                        """),format.raw/*41.25*/("""<!-- Only print the text, no hyperlink-->
-                        """),_display_(/*42.26*/segment/*42.33*/.text),format.raw/*42.38*/("""
-                    """)))}),format.raw/*43.22*/("""
-                """)))}),format.raw/*44.18*/("""
-            """)))}),format.raw/*45.14*/("""
-        """),format.raw/*46.9*/("""</p>
+        <h3><b>Search term:</b> """),_display_(/*32.34*/keywords/*32.42*/.get(index)),format.raw/*32.53*/(""" """),format.raw/*32.54*/("""Flesh-Kincaid Grade Level Avg.= """),_display_(/*32.87*/userReadability/*32.102*/.get(index).get(0)),format.raw/*32.120*/(""" """),format.raw/*32.121*/(""", Flesch Reading Ease Score Avg.= """),_display_(/*32.156*/userReadability/*32.171*/.get(index).get(1)),format.raw/*32.189*/(""" """),format.raw/*32.190*/(""".</h3>
+            <a href=""""),_display_(/*33.23*/routes/*33.29*/.WordCountController.videoStatistics(keywords.get(index))),format.raw/*33.86*/("""">More stats</a>
+            <br/>
+            """),_display_(/*35.14*/for(response <- responseList) yield /*35.43*/ {_display_(Seq[Any](format.raw/*35.45*/("""
+                """),_display_(/*36.18*/for(segment <- response) yield /*36.42*/ {_display_(Seq[Any](format.raw/*36.44*/("""
+                    """),format.raw/*37.21*/("""<!-- Print all parts of the video information-->
+                    """),_display_(if(segment.url != null)/*38.45*/ {_display_(Seq[Any](format.raw/*38.47*/("""
+                        """),format.raw/*39.25*/("""<!-- Set hyperlink along with the text-->
+                        <a href=""""),_display_(/*40.35*/segment/*40.42*/.url),format.raw/*40.46*/("""">"""),_display_(/*40.49*/segment/*40.56*/.text),format.raw/*40.61*/("""</a>
+                    """)))}else/*41.28*/{_display_(Seq[Any](format.raw/*41.29*/("""
+                        """),format.raw/*42.25*/("""<!-- Only print the text, no hyperlink-->
+                        """),_display_(/*43.26*/segment/*43.33*/.text),format.raw/*43.38*/("""
+                    """)))}),format.raw/*44.22*/("""
+                """)))}),format.raw/*45.18*/("""
+                """),format.raw/*46.17*/("""<br/>
+            """)))}),format.raw/*47.14*/("""
+        """),format.raw/*48.9*/("""</p>
 
     </div>
-""")))}),format.raw/*49.2*/("""
-"""),format.raw/*50.1*/("""</body>
+""")))}),format.raw/*51.2*/("""
+"""),format.raw/*52.1*/("""</body>
 </html>"""))
       }
     }
   }
 
-  def render(keywords:ArrayList[String],userList:ArrayList[ArrayList[ArrayList[TextSegment]]],searchForm:Form[SearchForm],messagesProvider:MessagesProvider,request:play.mvc.Http.Request): play.twirl.api.HtmlFormat.Appendable = apply(keywords)(userList)(searchForm)(messagesProvider,request)
+  def render(keywords:ArrayList[String],userList:ArrayList[ArrayList[ArrayList[TextSegment]]],userReadability:ArrayList[ArrayList[String]],searchForm:Form[SearchForm],messagesProvider:MessagesProvider,request:play.mvc.Http.Request): play.twirl.api.HtmlFormat.Appendable = apply(keywords)(userList)(userReadability)(searchForm)(messagesProvider,request)
 
-  def f:((ArrayList[String]) => (ArrayList[ArrayList[ArrayList[TextSegment]]]) => (Form[SearchForm]) => (MessagesProvider,play.mvc.Http.Request) => play.twirl.api.HtmlFormat.Appendable) = (keywords) => (userList) => (searchForm) => (messagesProvider,request) => apply(keywords)(userList)(searchForm)(messagesProvider,request)
+  def f:((ArrayList[String]) => (ArrayList[ArrayList[ArrayList[TextSegment]]]) => (ArrayList[ArrayList[String]]) => (Form[SearchForm]) => (MessagesProvider,play.mvc.Http.Request) => play.twirl.api.HtmlFormat.Appendable) = (keywords) => (userList) => (userReadability) => (searchForm) => (messagesProvider,request) => apply(keywords)(userList)(userReadability)(searchForm)(messagesProvider,request)
 
   def ref: this.type = this
 
@@ -92,9 +94,9 @@ Seq[Any](format.raw/*5.194*/("""
               /*
                   -- GENERATED --
                   SOURCE: app/views/Home/searchResults.scala.html
-                  HASH: 93600c6eb35f052f94773813398507c93cd24a82
-                  MATRIX: 615->1|646->27|683->59|728->99|1177->126|1442->323|1488->318|1518->340|1547->507|1578->511|1764->671|1779->677|1834->723|1874->725|1907->732|1922->738|1976->771|2009->778|2024->784|2060->799|2093->805|2166->848|2195->850|2254->883|2321->934|2361->936|2394->942|2558->1079|2575->1087|2607->1098|2649->1112|2686->1122|2701->1128|2779->1185|2837->1216|2882->1245|2922->1247|2968->1266|3008->1290|3048->1292|3098->1314|3219->1408|3259->1410|3313->1436|3417->1513|3433->1520|3458->1524|3488->1527|3504->1534|3530->1539|3580->1572|3619->1573|3673->1599|3768->1667|3784->1674|3810->1679|3864->1702|3914->1721|3960->1736|3997->1746|4048->1767|4077->1769
-                  LINES: 23->1|24->2|25->3|26->4|31->5|34->7|37->5|39->8|40->13|42->15|49->22|49->22|49->22|49->22|50->23|50->23|50->23|51->24|51->24|51->24|52->25|53->26|54->27|55->28|55->28|55->28|56->29|59->32|59->32|59->32|60->33|60->33|60->33|60->33|61->34|61->34|61->34|62->35|62->35|62->35|63->36|64->37|64->37|65->38|66->39|66->39|66->39|66->39|66->39|66->39|67->40|67->40|68->41|69->42|69->42|69->42|70->43|71->44|72->45|73->46|76->49|77->50
+                  HASH: f117a34db1666b8558ed0f13deca239f443162b3
+                  MATRIX: 615->1|646->27|683->59|728->99|1206->126|1519->371|1565->366|1595->388|1624->555|1655->559|1841->719|1856->725|1911->771|1951->773|1984->780|1999->786|2053->819|2086->826|2101->832|2137->847|2170->853|2243->896|2272->898|2331->931|2398->982|2438->984|2471->990|2655->1147|2672->1155|2704->1166|2733->1167|2793->1200|2818->1215|2858->1233|2888->1234|2951->1269|2976->1284|3016->1302|3046->1303|3103->1333|3118->1339|3196->1396|3273->1446|3318->1475|3358->1477|3404->1496|3444->1520|3484->1522|3534->1544|3655->1638|3695->1640|3749->1666|3853->1743|3869->1750|3894->1754|3924->1757|3940->1764|3966->1769|4016->1802|4055->1803|4109->1829|4204->1897|4220->1904|4246->1909|4300->1932|4350->1951|4396->1969|4447->1989|4484->1999|4535->2020|4564->2022
+                  LINES: 23->1|24->2|25->3|26->4|31->5|34->7|37->5|39->8|40->13|42->15|49->22|49->22|49->22|49->22|50->23|50->23|50->23|51->24|51->24|51->24|52->25|53->26|54->27|55->28|55->28|55->28|56->29|59->32|59->32|59->32|59->32|59->32|59->32|59->32|59->32|59->32|59->32|59->32|59->32|60->33|60->33|60->33|62->35|62->35|62->35|63->36|63->36|63->36|64->37|65->38|65->38|66->39|67->40|67->40|67->40|67->40|67->40|67->40|68->41|68->41|69->42|70->43|70->43|70->43|71->44|72->45|73->46|74->47|75->48|78->51|79->52
                   -- GENERATED --
               */
           

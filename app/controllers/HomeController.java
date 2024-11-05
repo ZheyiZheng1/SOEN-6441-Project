@@ -5,7 +5,6 @@
  */
 package controllers;
 
-import play.libs.Json;
 import Model.SearchForm;
 import Model.TextSegment;
 import play.data.Form;
@@ -33,13 +32,13 @@ public class HomeController extends Controller {
     // basically, each session has corrsponding arraylist (hold up to 10 search history), each arraylist has another arraylist of string to store result.
     private final ConcurrentHashMap<String, ArrayList<ArrayList<ArrayList<TextSegment>>>> userSearchResults = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, ArrayList<String>> userKeywords = new ConcurrentHashMap<>();
-    private final AssetsFinder assetsFinder;
+    private final ConcurrentHashMap<String, ArrayList<ArrayList<String>>> userReadabilitys = new ConcurrentHashMap<>();
+
     private final FormFactory formFactory;
     private final MessagesApi messagesApi;
 
     @Inject
     public HomeController(AssetsFinder assetsFinder, FormFactory formFactory, MessagesApi messagesApi) {
-        this.assetsFinder = assetsFinder;
         this.formFactory = formFactory;
         this.messagesApi = messagesApi;
     }
@@ -118,9 +117,11 @@ public class HomeController extends Controller {
             // Create/find the current user's ArrayList
             ArrayList<ArrayList<ArrayList<TextSegment>>> userList = userSearchResults.computeIfAbsent(sessionId, k -> new ArrayList<>());
             ArrayList<String> userKeyword = userKeywords.computeIfAbsent(sessionId, k -> new ArrayList<>());
+            ArrayList<ArrayList<String>> userReadability = userReadabilitys.computeIfAbsent(sessionId, k -> new ArrayList<>());
             // Add the result to the top of the list.
             userList.add(0, currentResult);
             userKeyword.add(0, keyword);
+            userReadability.add(0, new ArrayList<>(Arrays.asList(rs.getAvgFKGL().toString(), rs.getAvgFRE().toString())));
             // Trim the list to make sure we only keep 10 most recent results
             if (userList.size() > 10) {
                 userList.remove(userList.size() - 1);
@@ -128,11 +129,14 @@ public class HomeController extends Controller {
             if (userKeyword.size() > 10) {
                 userKeyword.remove(userKeyword.size() - 1);
             }
+            if (userReadability.size() > 10) {
+                userReadability.remove(userReadability.size() - 1);
+            }
             // Create the search box
             Form<SearchForm> searchForm2 = formFactory.form(SearchForm.class);
             Messages messages = messagesApi.preferred(request);
             // pass everything to the view.
-            return ok(searchResults.render(userKeyword, userList, searchForm2, messages, request))
+            return ok(searchResults.render(userKeyword, userList, userReadability, searchForm2, messages, request))
                     .withSession(request.session().adding("sessionId", sessionId));
         });
 
