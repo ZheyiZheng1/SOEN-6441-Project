@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -59,7 +61,8 @@ public class YTRestDir {
         String API_KEY = "AIzaSyDauZHYK4DbMaQ5TUqU894bQF3LncD_TB0";
         String BASE_URL = "https://www.googleapis.com/youtube/v3/search";
         String MAX_RESULTS = (maxResult != null) ? maxResult : "10";
-        String urlString = (url != null) ? url : BASE_URL + "?part=snippet&q=" + keyword + "&key=" + API_KEY + "&maxResults=" + MAX_RESULTS;
+        String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString());
+        String urlString = (url != null) ? url : BASE_URL + "?part=snippet&q=" + encodedKeyword + "&key=" + API_KEY + "&maxResults=" + MAX_RESULTS;
 
         try {
             URI uri = new URI(urlString);
