@@ -15,6 +15,12 @@ import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+     * Added the new WordCount Controller for Word stat functionality.
+     * Author: Praneet Avhad - 40279347
+     * Created: 2024/11/05
+     */
+
 public class WordCountController extends Controller {
     public Map<String, Long> getWordFrequency(List<YTResponse> videos) {
         return videos.stream()
