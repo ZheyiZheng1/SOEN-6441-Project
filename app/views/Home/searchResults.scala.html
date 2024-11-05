@@ -30,6 +30,7 @@
         <p>
             <!-- Print the keyword here then print search results for this keyword-->
             @keywords.get(index)
+            <a href="@routes.WordCountController.videoStatistics(keywords.get(index))">More stats</a>
             @for(response <- responseList) {
                 @for(segment <- response) {
                     <!-- Print all parts of the video information-->
@@ -43,6 +44,7 @@
                 }
             }
         </p>
+
     </div>
 }
 </body>
