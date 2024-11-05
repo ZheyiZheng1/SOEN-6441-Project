@@ -9,11 +9,11 @@
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(onFailure loadFailed, None, None)[0m
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(loadp, None, None)[0m
 [0m[[0m[0minfo[0m] [0m[0mwelcome to sbt 1.10.1 (Oracle Corporation Java 11.0.25)[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.defaultLoad until apply took 58.3457ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: plugins took 57.1497ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: defsScala took 0.1646ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.defaultLoad until apply took 55.653ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: plugins took 48.0523ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: defsScala took 0.1454ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Scanning directory C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\project[0m
-[0m[[0m[0mdebug[0m] [0m[0m            Load.loadUnit: mkEval took 3.2891ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m            Load.loadUnit: mkEval took 3.0164ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Found non-root projects [0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\project, returning: ()[0m
 [0m[[0m[0mdebug[0m] [0m[0mdeducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))[0m
@@ -29,27 +29,27 @@
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))[0m
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))[0m
 [0m[[0m[0mdebug[0m] [0m[0m  :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)[0m
-[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 8.7752 ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 8.2025 ms[0m
 [0m[[0m[0minfo[0m] [0m[0mloading settings for project soen-6441-project-build from plugins.sbt ...[0m
-[0m[[0m[0mdebug[0m] [0m[0m              Load.resolveProject(soen-6441-project-build) took 24.8865ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m            Load.loadTransitive: finalizeProject(Project(id soen-6441-project-build, base: C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\project, plugins: List(<none>))) took 47.0458ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m              Load.resolveProject(soen-6441-project-build) took 26.5994ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m            Load.loadTransitive: finalizeProject(Project(id soen-6441-project-build, base: C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\project, plugins: List(<none>))) took 47.9996ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\project, returning: (soen-6441-project-build)[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: loadedProjectsRaw took 205.8485ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: cleanEvalClasses took 4.1624ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m        Load.loadUnit(file:/C:/Users/zheng/OneDrive/Desktop/CurrentSem/SOEN6441(AdvProgramPractice/SOEN-6441-Project/project/, ...) took 270.5215ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: load took 338.5048ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: resolveProjects took 2.5392ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: finalTransforms took 28.8262ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: config.delegates took 3.8161ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: Def.make(settings)... took 196.0268ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: structureIndex took 50.879ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: mkStreams took 1.5798ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: loadedProjectsRaw took 210.4198ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m          Load.loadUnit: cleanEvalClasses took 3.8225ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m        Load.loadUnit(file:/C:/Users/zheng/OneDrive/Desktop/CurrentSem/SOEN6441(AdvProgramPractice/SOEN-6441-Project/project/, ...) took 268.0204ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: load took 332.6322ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: resolveProjects took 2.8006ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: finalTransforms took 32.8442ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: config.delegates took 3.8238ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: Def.make(settings)... took 207.7109ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: structureIndex took 46.9551ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.apply: mkStreams took 1.3484ms[0m
 [0m[[0m[0minfo[0m] [0m[0mloading project definition from C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\project[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: plugins took 1336.7594ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: defsScala took 0.002ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: plugins took 1348.1311ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: defsScala took 0.0016ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Scanning directory C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: mkEval took 0.2157ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadUnit: mkEval took 0.1527ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Found root project root w/ remaining [0m
 [0m[[0m[0mdebug[0m] [0m[0mdeducing auto plugins based on known facts Set(Atom(play.sbt.PlayJava), Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))[0m
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))[0m
@@ -129,21 +129,21 @@
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(com.typesafe.sbt.web.SbtWeb),Set(Atom(com.typesafe.sbt.jse.SbtJsEngine)))[0m
 [0m[[0m[0mdebug[0m] [0m[0mClause(Atom(com.typesafe.sbt.jse.SbtJsEngine),Set(Atom(com.typesafe.sbt.jse.SbtJsTask))))[0m
 [0m[[0m[0mdebug[0m] [0m[0m  :: deduced result: Matched(sbt.plugins.CorePlugin,play.sbt.PlayJava,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,play.sbt.PlayWeb,play.twirl.sbt.SbtTwirl,sbt.plugins.JvmPlugin,play.sbt.PlayService,play.sbt.PlayFilters,play.sbt.PlayLayoutPlugin,play.sbt.routes.RoutesCompiler,com.typesafe.sbt.jse.SbtJsTask,com.typesafe.sbt.packager.archetypes.JavaServerAppPackaging,play.sbt.PlayPekkoHttpServer,sbt.plugins.SemanticdbPlugin,sbt.plugins.JUnitXmlReportPlugin,play.sbt.PlayLogback,sbt.plugins.MiniDependencyTreePlugin,com.typesafe.sbt.jse.SbtJsEngine,com.typesafe.sbt.web.SbtWeb,com.typesafe.sbt.packager.archetypes.JavaAppPackaging,com.typesafe.sbt.packager.rpm.RpmPlugin,com.typesafe.sbt.packager.archetypes.scripts.BashStartScriptPlugin,com.typesafe.sbt.packager.windows.WindowsPlugin,com.typesafe.sbt.packager.archetypes.scripts.BatStartScriptPlugin,com.typesafe.sbt.packager.docker.DockerPlugin,com.typesafe.sbt.packager.debian.DebianPlugin,com.typesafe.sbt.packager.universal.UniversalPlugin,com.typesafe.sbt.packager.linux.LinuxPlugin,com.typesafe.sbt.SbtNativePackager)[0m
-[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 8.0162 ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mPlugins.deducer#function took 5.7009 ms[0m
 [0m[[0m[0minfo[0m] [0m[0mloading settings for project root from build.sbt ...[0m
-[0m[[0m[0mdebug[0m] [0m[0m        Load.resolveProject(root) took 56.6603ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m      Load.loadTransitive: finalizeProject(Project(id root, base: C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project, plugins: List(play.sbt.PlayJava))) took 65.7983ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m        Load.resolveProject(root) took 50.465ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m      Load.loadTransitive: finalizeProject(Project(id root, base: C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project, plugins: List(play.sbt.PlayJava))) took 57.0785ms[0m
 [0m[[0m[0mdebug[0m] [0m[0m[Loading] Done in C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project, returning: (root)[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: loadedProjectsRaw took 103.0501ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: cleanEvalClasses took 0.9817ms[0m
-[0m[[0m[0mdebug[0m] [0m[0m  Load.loadUnit(file:/C:/Users/zheng/OneDrive/Desktop/CurrentSem/SOEN6441(AdvProgramPractice/SOEN-6441-Project/, ...) took 1441.4453ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: load took 1451.3971ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: resolveProjects took 0.1014ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: finalTransforms took 8.8684ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: config.delegates took 0.428ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: Def.make(settings)... took 81.9635ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: structureIndex took 27.9812ms[0m
-[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: mkStreams took 0.0029ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: loadedProjectsRaw took 93.702ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Load.loadUnit: cleanEvalClasses took 0.8965ms[0m
+[0m[[0m[0mdebug[0m] [0m[0m  Load.loadUnit(file:/C:/Users/zheng/OneDrive/Desktop/CurrentSem/SOEN6441(AdvProgramPractice/SOEN-6441-Project/, ...) took 1443.6241ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: load took 1459.2199ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: resolveProjects took 0.1151ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: finalTransforms took 8.5287ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: config.delegates took 0.4073ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: Def.make(settings)... took 67.6525ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: structureIndex took 16.6774ms[0m
+[0m[[0m[0mdebug[0m] [0m[0mLoad.apply: mkStreams took 0.0022ms[0m
 [0m[[0m[0minfo[0m] [0m[0m  __              __[0m
 [0m[[0m[0minfo[0m] [0m[0m  \ \     ____   / /____ _ __  __[0m
 [0m[[0m[0minfo[0m] [0m[0m   \ \   / __ \ / // __ `// / / /[0m
@@ -164,6 +164,5 @@
 [0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Java source to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
 [0m[[0m[0mdebug[0m] [0m[0mExporting web-assets:play-java-starter-example[0m

@@ -66,11 +66,11 @@ public class HomeController extends Controller {
      * Author: Zheyi Zheng - 40266266
      * Created: 2024/10/24
      */
-    public Result search(Request request) throws ExecutionException, InterruptedException {
+    public CompletableFuture<Result> search(Request request) throws ExecutionException, InterruptedException {
         Form<SearchForm> searchForm = formFactory.form(SearchForm.class).bindFromRequest(request);
         // In case of bad request, just return empty arraylist to the view.
         if (searchForm.hasErrors()) {
-            return badRequest(searchResults.render(new ArrayList<>(), new ArrayList<>(), searchForm, messagesApi.preferred(request), request));
+            //return badRequest(searchResults.render(new ArrayList<>(), new ArrayList<>(), searchForm, messagesApi.preferred(request), request));
         }
         // Get keyword
         String keyword = searchForm.get().getKeyword();
@@ -81,7 +81,7 @@ public class HomeController extends Controller {
         CompletableFuture<List<YTResponse>> result = ytRestDir.searchVideosAsynch(keyword, null, "10");
 
         ArrayList<ArrayList<TextSegment>> currentResult = new ArrayList<>();
-        result.thenAccept(list -> {
+        return result.thenApply(list -> {
             // Get readability data
             ReadabilityService rs = new ReadabilityService(result);
             List<Double> listOfFRE = rs.getFre();
@@ -115,26 +115,27 @@ public class HomeController extends Controller {
                 currentResult.add(temp);
                 index++;
             }
+            // Create/find the current user's ArrayList
+            ArrayList<ArrayList<ArrayList<TextSegment>>> userList = userSearchResults.computeIfAbsent(sessionId, k -> new ArrayList<>());
+            ArrayList<String> userKeyword = userKeywords.computeIfAbsent(sessionId, k -> new ArrayList<>());
+            // Add the result to the top of the list.
+            userList.add(0, currentResult);
+            userKeyword.add(0, keyword);
+            // Trim the list to make sure we only keep 10 most recent results
+            if (userList.size() > 10) {
+                userList.remove(userList.size() - 1);
+            }
+            if (userKeyword.size() > 10) {
+                userKeyword.remove(userKeyword.size() - 1);
+            }
+            // Create the search box
+            Form<SearchForm> searchForm2 = formFactory.form(SearchForm.class);
+            Messages messages = messagesApi.preferred(request);
+            // pass everything to the view.
+            return ok(searchResults.render(userKeyword, userList, searchForm2, messages, request))
+                    .withSession(request.session().adding("sessionId", sessionId));
         });
-        // Create/find the current user's ArrayList
-        ArrayList<ArrayList<ArrayList<TextSegment>>> userList = userSearchResults.computeIfAbsent(sessionId, k -> new ArrayList<>());
-        ArrayList<String> userKeyword = userKeywords.computeIfAbsent(sessionId, k -> new ArrayList<>());
-        // Add the result to the top of the list.
-        userList.add(0, currentResult);
-        userKeyword.add(0, keyword);
-        // Trim the list to make sure we only keep 10 most recent results
-        if (userList.size() > 10) {
-            userList.remove(userList.size() - 1);
-        }
-        if (userKeyword.size() > 10) {
-            userKeyword.remove(userKeyword.size() - 1);
-        }
-        // Create the search box
-        searchForm = formFactory.form(SearchForm.class);
-        Messages messages = messagesApi.preferred(request);
-        // pass everything to the view.
-        return ok(searchResults.render(userKeyword, userList, searchForm, messages, request))
-                .withSession(request.session().adding("sessionId", sessionId));
+
     }
 
     /**
