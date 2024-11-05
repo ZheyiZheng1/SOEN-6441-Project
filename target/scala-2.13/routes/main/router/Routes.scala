@@ -14,32 +14,36 @@ import _root_.play.libs.F
 class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:6
-  HomeController_0: controllers.HomeController,
+  HomeController_4: controllers.HomeController,
   // @LINE:8
-  CountController_1: controllers.CountController,
+  CountController_0: controllers.CountController,
   // @LINE:9
   AsyncController_2: controllers.AsyncController,
-  // @LINE:12
-  Assets_3: controllers.Assets,
+  // @LINE:10
+  WordCountController_3: controllers.WordCountController,
+  // @LINE:13
+  Assets_1: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
 
   @javax.inject.Inject()
   def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:6
-    HomeController_0: controllers.HomeController,
+    HomeController_4: controllers.HomeController,
     // @LINE:8
-    CountController_1: controllers.CountController,
+    CountController_0: controllers.CountController,
     // @LINE:9
     AsyncController_2: controllers.AsyncController,
-    // @LINE:12
-    Assets_3: controllers.Assets
-  ) = this(errorHandler, HomeController_0, CountController_1, AsyncController_2, Assets_3, "/")
+    // @LINE:10
+    WordCountController_3: controllers.WordCountController,
+    // @LINE:13
+    Assets_1: controllers.Assets
+  ) = this(errorHandler, HomeController_4, CountController_0, AsyncController_2, WordCountController_3, Assets_1, "/")
 
   def withPrefix(addPrefix: String): Routes = {
     val prefix = play.api.routing.Router.concatPrefix(addPrefix, this.prefix)
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, HomeController_0, CountController_1, AsyncController_2, Assets_3, prefix)
+    new Routes(errorHandler, HomeController_4, CountController_0, AsyncController_2, WordCountController_3, Assets_1, prefix)
   }
 
   private val defaultPrefix: String = {
@@ -51,6 +55,7 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """search""", """controllers.HomeController.search(request:Request)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """count""", """controllers.CountController.count"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """message""", """controllers.AsyncController.message"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """videoStatistics/""" + "$" + """keyword<[^/]+>""", """controllers.WordCountController.videoStatistics(keyword:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(file:String)"""),
     Nil
   ).foldLeft(Seq.empty[(String, String, String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -66,7 +71,7 @@ class Routes(
   private lazy val controllers_HomeController_display0_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
-      HomeController_0.display(fakeValue[play.mvc.Http.Request]),
+      HomeController_4.display(fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -86,7 +91,7 @@ class Routes(
   private lazy val controllers_HomeController_search1_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
-      HomeController_0.search(fakeValue[play.mvc.Http.Request]),
+      HomeController_4.search(fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -104,7 +109,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("count")))
   )
   private lazy val controllers_CountController_count2_invoker = createInvoker(
-    CountController_1.count,
+    CountController_0.count,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.CountController",
@@ -135,12 +140,30 @@ class Routes(
     )
   )
 
-  // @LINE:12
-  private lazy val controllers_Assets_versioned4_route = Route("GET",
+  // @LINE:10
+  private lazy val controllers_WordCountController_videoStatistics4_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("videoStatistics/"), DynamicPart("keyword", """[^/]+""", encodeable=true)))
+  )
+  private lazy val controllers_WordCountController_videoStatistics4_invoker = createInvoker(
+    WordCountController_3.videoStatistics(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.WordCountController",
+      "videoStatistics",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """videoStatistics/""" + "$" + """keyword<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:13
+  private lazy val controllers_Assets_versioned5_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""", encodeable=false)))
   )
-  private lazy val controllers_Assets_versioned4_invoker = createInvoker(
-    Assets_3.versioned(fakeValue[String]),
+  private lazy val controllers_Assets_versioned5_invoker = createInvoker(
+    Assets_1.versioned(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.Assets",
@@ -160,20 +183,20 @@ class Routes(
     case controllers_HomeController_display0_route(params@_) =>
       call { 
         controllers_HomeController_display0_invoker.call(
-          req => HomeController_0.display(req))
+          req => HomeController_4.display(req))
       }
   
     // @LINE:7
     case controllers_HomeController_search1_route(params@_) =>
       call { 
         controllers_HomeController_search1_invoker.call(
-          req => HomeController_0.search(req))
+          req => HomeController_4.search(req))
       }
   
     // @LINE:8
     case controllers_CountController_count2_route(params@_) =>
       call { 
-        controllers_CountController_count2_invoker.call(CountController_1.count)
+        controllers_CountController_count2_invoker.call(CountController_0.count)
       }
   
     // @LINE:9
@@ -182,10 +205,16 @@ class Routes(
         controllers_AsyncController_message3_invoker.call(AsyncController_2.message)
       }
   
-    // @LINE:12
-    case controllers_Assets_versioned4_route(params@_) =>
+    // @LINE:10
+    case controllers_WordCountController_videoStatistics4_route(params@_) =>
+      call(params.fromPath[String]("keyword", None)) { (keyword) =>
+        controllers_WordCountController_videoStatistics4_invoker.call(WordCountController_3.videoStatistics(keyword))
+      }
+  
+    // @LINE:13
+    case controllers_Assets_versioned5_route(params@_) =>
       call(params.fromPath[String]("file", None)) { (file) =>
-        controllers_Assets_versioned4_invoker.call(Assets_3.versioned(file))
+        controllers_Assets_versioned5_invoker.call(Assets_1.versioned(file))
       }
   }
 }

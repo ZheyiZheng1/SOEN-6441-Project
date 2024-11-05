@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Java_code\SOEN-6441-Project\app\views\Home\videoStatistics.scala.html:3:7: no arguments allowed for nullary method apply: (): play.twirl.api.HtmlFormat.Appendable in object main[0m
+[0m[[0m[31merror[0m] [0m[0m@main("Word Statistics for '@keyword'") {[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
