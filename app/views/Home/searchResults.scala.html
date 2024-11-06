@@ -30,7 +30,7 @@
         <p>
             <!-- Print the keyword here then print search results for this keyword-->
         <h3><b>Search term:</b> @keywords.get(index) Flesh-Kincaid Grade Level Avg.= @userReadability.get(index).get(0) , Flesch Reading Ease Score Avg.= @userReadability.get(index).get(1) .</h3>
-            <a href="@routes.WordCountController.videoStatistics(keywords.get(index))">More stats</a>
+            <a href="@routes.HomeController.videoStatistics(keywords.get(index))">More stats</a>
             <br/>
             @for(response <- responseList) {
                 @for(segment <- response) {
