@@ -1,3 +1,9 @@
+/**
+ * @author: Praneet Avhad - 40279347
+ * This is the word stat service.
+ */
+
+
 package services;
 
 import play.mvc.Controller;
