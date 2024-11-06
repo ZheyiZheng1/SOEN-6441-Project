@@ -36,8 +36,13 @@
                 @for(segment <- response) {
                     <!-- Print all parts of the video information-->
                     @if(segment.url != null) {
-                        <!-- Set hyperlink along with the text-->
-                        <a href="@segment.url">@segment.text</a>
+                        @if(segment.text == "thumbnail"){
+                            </br>
+                            <img src="@segment.url" alt="Video thumbnail" />
+                        } else {
+                            <!-- Set hyperlink along with the text-->
+                            <a href="@segment.url">@segment.text</a>
+                        }
                     } else {
                         <!-- Only print the text, no hyperlink-->
                         @segment.text

@@ -111,6 +111,8 @@ public class HomeController extends Controller {
                 TextSegment fkgl = new TextSegment(". Flesh-Kincaid Grade Level=" + fkglValue, null);
                 TextSegment fre = new TextSegment(", Flesch Reading Ease Score=" + freValue, null);
                 TextSegment tag = new TextSegment("Tags", null);
+                TextSegment thumbnail = new TextSegment("thumbnail", ytResponse.getThumbnailUrl());
+
                 // Form the search result.
                 temp.add(title1);
                 temp.add(title2);
@@ -120,6 +122,7 @@ public class HomeController extends Controller {
                 temp.add(fkgl);
                 temp.add(fre);
                 temp.add(tag);
+                temp.add(thumbnail);
                 currentResult.add(temp);
                 index++;
             }
