@@ -5,6 +5,8 @@
  */
 package services;
 
+import java.util.List;
+
 public class YTResponse {
     private String title;
     private String videoId;
@@ -14,6 +16,7 @@ public class YTResponse {
     private String channelProfileLink;
     private String description;
     private String thumbnailUrl;
+    private List<String> tags;
 
     public YTResponse() {
         super();
@@ -72,6 +75,15 @@ public class YTResponse {
     }
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
+    }
+
+    // Getter and Setter for tags
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
 

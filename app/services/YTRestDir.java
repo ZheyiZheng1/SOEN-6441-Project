@@ -91,6 +91,72 @@ public class YTRestDir {
         }
     }
 
+
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Created: 2024/10/29
+     * Fetch Details
+     */
+
+    public CompletableFuture<YTResponse> getVideoDetails(String videoId) {
+        String API_KEY = "AIzaSyDauZHYK4DbMaQ5TUqU894bQF3LncD_TB0";
+        String urlString = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoId + "&key=" + API_KEY;
+
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                URI uri = new URI(urlString);
+                HttpURLConnection conn = getHttpURLConnection(uri);
+                conn.setRequestMethod("GET");
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    throw new IOException("HTTP error code: " + responseCode);
+                }
+
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    StringBuilder response = new StringBuilder();
+                    String inputLine;
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+                    return parseVideoDetails(response.toString());
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Error fetching video details: " + e.getMessage(), e);
+            }
+        });
+    }
+
+    /**
+     * Helper method to parse JSON response and create a YTResponse object
+     */
+    public YTResponse parseVideoDetails(String jsonResponse) {
+        JSONObject jsonObject = new JSONObject(jsonResponse);
+        JSONArray items = jsonObject.getJSONArray("items");
+
+        if (items.length() == 0) {
+            return null; // No video found
+        }
+
+        JSONObject snippet = items.getJSONObject(0).getJSONObject("snippet");
+        YTResponse ytResponse = new YTResponse();
+        ytResponse.setTitle(snippet.getString("title"));
+        ytResponse.setDescription(snippet.getString("description"));
+        ytResponse.setChannelTitle(snippet.getString("channelTitle"));
+        ytResponse.setChannelId(snippet.getString("channelId"));
+
+        // Setting tags if they exist
+        if (snippet.has("tags")) {
+            List<String> tags = snippet.getJSONArray("tags").toList().stream()
+                    .map(Object::toString)
+                    .collect(Collectors.toList());
+            ytResponse.setTags(tags);
+        }
+        return ytResponse;
+    }
+
+
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
@@ -109,6 +175,7 @@ public class YTRestDir {
                     // For each json object, create a YTResponse instance and feed information into the instance.
                     JSONObject video = items.getJSONObject(n);
                     //System.out.println(video);
+                    JSONObject snippet = video.getJSONObject("snippet");
                     YTResponse ytResponse = new YTResponse();
                     ytResponse.setTitle(video.getJSONObject("snippet").getString("title"));
 
@@ -127,6 +194,15 @@ public class YTRestDir {
                     ytResponse.setDescription(video.getJSONObject("snippet").getString("description"));
                     ytResponse.setThumbnailUrl(video.getJSONObject("snippet").getJSONObject("thumbnails").getJSONObject("default").getString("url"));
                     //System.out.println(ytResponse.toString());
+
+                    if (snippet.has("tags")) {
+                        List<String> tags = snippet.getJSONArray("tags").toList().stream()
+                                .map(Object::toString)
+                                .collect(Collectors.toList());
+                        ytResponse.setTags(tags);
+                    }
+
+
                     return ytResponse;
                 })
                 // collect all ytResponse into list

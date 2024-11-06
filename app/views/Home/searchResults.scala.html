@@ -1,7 +1,9 @@
 @import Model.SearchForm
 @import play.api.i18n.Messages
+@import play.data.Form
 @import play.api.i18n.MessagesProvider
-@(keyword: String)(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider)
+@import Model.TextSegment
+@(keywords: ArrayList[String])(userList: ArrayList[ArrayList[ArrayList[TextSegment]]])(userReadability : ArrayList[ArrayList[String]])(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider, request: play.mvc.Http.Request)
 
 @import helper._
 
@@ -12,17 +14,49 @@
 *@
 
 <html lang="en">
-<head>
-  <title>Welcome to YT Lytics</title>
-</head>
+    <head>
+        <title>Welcome to YT Lytics</title>
+    </head>
     <body>
         <h1>Welcome to YT Lytics</h1>
-        <!-- Input form for keyword-->
+            <!-- Input form for keyword-->
         @helper.form(action = routes.HomeController.search()) {
             @helper.inputText(searchForm("keyword"))
+            @helper.CSRF.formField
             <input type="submit" value="submit">
         }
-        <!-- Display search results-->
-        <p>@keyword </p>
+            <!-- Display search results-->
+        @for((responseList, index) <- userList.zipWithIndex) {
+            <div class="response">
+                <p>
+                        <!-- Print the keyword here then print search results for this keyword-->
+            <h3><b>Search term:</b> @keywords.get(index) Flesh-Kincaid Grade Level Avg.= @userReadability.get(index).get(0) , Flesch Reading Ease Score Avg.= @userReadability.get(index).get(1) .</h3>
+                <a href="@routes.WordCountController.videoStatistics(keywords.get(index))">More stats</a>
+                <br/>
+                @for(response <- responseList) {
+                    @for(segment <- response) {
+                            <!-- Print all parts of the video information-->
+                        @if(segment.url != null) {
+                            <!-- Set hyperlink along with the text-->
+                        <a href="@segment.url">@segment.text</a>
+                    } else {
+                                <!-- Only print the text, no hyperlink-->
+                                @segment.text
+                        }
+                        <!-- Check if segment is a tag and has a videoId -->
+                        <!-- Conditional hyperlink only for Tags with videoId -->
+                        @if(segment.text == "Tags" && segment.getVideoId() != null) {
+                            <a href="@routes.TagsController.showTags(segment.getVideoId())">Tags</a>
+                        }
+                    }
+
+                    <br/>
+                }
+                </p>
+
+
+
+            </div>
+        }
     </body>
 </html>
