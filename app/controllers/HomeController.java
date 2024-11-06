@@ -157,6 +157,10 @@ public class HomeController extends Controller {
         return sessionId.orElseGet(() -> UUID.randomUUID().toString());
     }
 
+     /**
+     * Calling the word stat service .
+     * Author: Praneet Avhad - 40279347
+     */
     public Result videoStatistics(String keyword) throws ExecutionException, InterruptedException, IOException {
         CompletableFuture<List<YTResponse>> videosFuture = new YTRestDir().searchVideosAsynch(keyword,null, "50");
         //CompletableFuture<List<YTResponse>> videosFuture = getLatestVideos(keyword);
