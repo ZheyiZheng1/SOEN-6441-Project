@@ -1,7 +1,7 @@
 /**
  * @author: Zheyi Zheng - 40266266
  * Created: 2024/10/29
- * This is the YTRestDir class. It handles the API request.
+ * This is the YTRestDir class. It handles the API request to YouTube.
  */
 package services;
 
@@ -28,7 +28,8 @@ public class YTRestDir {
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * Dependency injection method for HttpURLConnection. Without this method the mock test will not work, it will trigger actual network requests.
-     * Return an HttpURLConnection instance.
+     * @param uri a target URI
+     * @return an HttpURLConnection instance connect to target uri.
      */
     protected HttpURLConnection getHttpURLConnection(URI uri) throws IOException {
         return (HttpURLConnection) uri.toURL().openConnection();
@@ -39,7 +40,7 @@ public class YTRestDir {
      * Created: 2024/10/29
      * In order to allow fetch data asynchronously. I created this class to return CompletionFuture<List<YTResponse>>.
      * This class essentially is just calling the searchVideos method with supplyAsync, enable users to call it concurrently without interfering with each other's results.
-     * Returning the CompletableFuture so everyone calls it can access additional asynchronous methods like thenApply.
+     * @return the CompletableFuture. Everyone calls it can access additional asynchronous methods like thenApply.
      */
     public CompletableFuture<List<YTResponse>> searchVideosAsynch(String keyword, String url, String maxResult) {
         return CompletableFuture.supplyAsync(() -> {
@@ -55,7 +56,8 @@ public class YTRestDir {
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * Request 10 search result from YouTube by making GET request.
-     * Return a list of YTResponse (processed by mapResponse).
+     * @param keyword keyword that user provided. Target uri that should be to YouTube. The number of the search result.
+     * @return a list of YTResponse (processed by mapResponse).
      */
     public List<YTResponse> searchVideos(String keyword, String url, String maxResult) throws IOException {
         String API_KEY = "AIzaSyDauZHYK4DbMaQ5TUqU894bQF3LncD_TB0";
@@ -98,7 +100,8 @@ public class YTRestDir {
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * Map json response into YTResponse.
-     * Return a list of YTResponse.
+     * @param jsonResponse a json response in String.
+     * @return a list of YTResponse.
      */
     private List<YTResponse> mapResponse(String jsonResponse) {
         // Use JSONObject to retrieve information from response string

@@ -1,7 +1,7 @@
 /**
  * @author: Zheyi Zheng - 40266266
  * Created: 2024/10/24
- * This is the home controller.
+ * This is the home controller. It is the only controller for this project.
  */
 package controllers;
 
@@ -52,8 +52,10 @@ public class HomeController extends Controller {
 
     /**
      * Basic home page of this application. url:"/"
-     * Author: Zheyi Zheng - 40266266
+     * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/24
+     * @param request take Request from user
+     * @return The Result.
      */
     public Result display(Request request) {
         // Create form based on SearchForm and FormFactory.
@@ -65,8 +67,12 @@ public class HomeController extends Controller {
 
     /**
      * Basic search page of this application. Use it to display search result. Still need to display search bar
-     * Author: Zheyi Zheng - 40266266
+     * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/24
+     * @param request take Request from user
+     * @throws ExecutionException if some of the results from helper class is not ready
+     * @throws InterruptedException if some of the threads got interrupt during processing.
+     * @return The CompletableFuture of Result.
      */
     public CompletableFuture<Result> search(Request request) throws ExecutionException, InterruptedException {
         Form<SearchForm> searchForm = formFactory.form(SearchForm.class).bindFromRequest(request);
@@ -147,8 +153,9 @@ public class HomeController extends Controller {
 
     /**
      * Simple getSessionId method. This method will get session id from user request. If no id exist, it will create it.
-     * Author: Zheyi Zheng - 40266266
+     * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/24
+     * @return The request
      */
     private String getSessionId(Request request){
         // Try to get session id from user request

@@ -30,7 +30,7 @@ public class ReadabilityService {
      * Created: 2024/10/30
      * This is the Constructors method. This class method take a CompletableFuture<List<YTResponse>> and use thenApply to perform calculation.
      * Calculation inside thenApply are for fre and fkgl. All calculation and data processing are done by stream.
-     *
+     * @param target should be the response of the YouTube
      */
     public ReadabilityService(CompletableFuture<List<YTResponse>> target){
         super();
@@ -83,7 +83,8 @@ public class ReadabilityService {
      * Created: 2024/10/30
      * This is the countSyllablesInDescription method.
      * This method use countSyllables to count all syllables in a description.
-     * It returns an integer.
+     * @param description, pass a description of a video.
+     * @return an integer, represents number of syllables in provided description.
      *
      */
     private int countSyllablesInDescription(String description){
@@ -96,9 +97,10 @@ public class ReadabilityService {
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/30
-     * This is the countSyllables method. This method just take a word string and count Syllables
+     * This is the countSyllables method. This method just take a word and count Syllables
      * It returns an integer.
-     *
+     * @param word in String.
+     * @return an int that represents number of syllables in the word.
      */
     private int countSyllables(String word){
         AtomicBoolean prevWasVowel = new AtomicBoolean(false);
@@ -116,19 +118,32 @@ public class ReadabilityService {
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/30
-     * Following are simple getter methods for fre, fkgl, avgFRE and avgFKGL
-     *
+     * @return list of fre value
      */
     public List<Double> getFre() {
         return fre;
     }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/30
+     * @return list of fkgl value
+     */
     public List<Double> getFkgl() {
         return fkgl;
     }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/30
+     * @return a double of average fre value
+     */
     public Double getAvgFRE() {
         return avgFRE;
     }
-
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/30
+     * @return a double of average fkgl value
+     */
     public Double getAvgFKGL() {
         return avgFKGL;
     }
