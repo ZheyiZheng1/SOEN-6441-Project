@@ -14,11 +14,13 @@ import play.i18n.Messages;
 import play.mvc.Http.Request;
 
 import services.ReadabilityService;
+import services.WordStatService;
 import services.YTResponse;
 import services.YTRestDir;
 import views.html.Home.display;
 import views.html.Home.searchResults;
 import play.data.FormFactory;
+import views.html.Home.videoStatistics;
 
 import javax.inject.Inject;
 import java.util.*;
@@ -152,5 +154,21 @@ public class HomeController extends Controller {
         Optional<String> sessionId = request.session().get("sessionId");
         // If there is a session id, return it. If not, create is randomly.
         return sessionId.orElseGet(() -> UUID.randomUUID().toString());
+    }
+
+    public Result videoStatistics(String keyword) throws ExecutionException, InterruptedException, IOException {
+        CompletableFuture<List<YTResponse>> videosFuture = new YTRestDir().searchVideosAsynch(keyword,null, "50");
+        //CompletableFuture<List<YTResponse>> videosFuture = getLatestVideos(keyword);
+        List<YTResponse> videos = videosFuture.get();
+        System.out.println(videos.get(0));
+        Map<String, Long> wordFrequency = new WordStatService().getWordFrequency(videos);
+        Map<String, Long> sortedWordFrequency = new WordStatService().sortWordsByFrequency(wordFrequency);
+//        Map<String, Long> sortedWordFrequency = new LinkedHashMap<>();
+//        sortedWordFrequency.put("test1", 45L);
+//        sortedWordFrequency.put("test2", 45L);
+//        sortedWordFrequency.put("test3", 45L);
+//        sortedWordFrequency.put("test4", 45L);
+
+        return ok(videoStatistics.render(sortedWordFrequency));
     }
 }
