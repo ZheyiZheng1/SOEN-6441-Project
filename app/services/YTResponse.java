@@ -5,6 +5,8 @@
  */
 package services;
 
+import java.util.List;
+
 public class YTResponse {
     private String title;
     private String videoId;
@@ -14,6 +16,7 @@ public class YTResponse {
     private String channelProfileLink;
     private String description;
     private String thumbnailUrl;
+    private List<String> tags;  // Added tags field
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
@@ -29,7 +32,7 @@ public class YTResponse {
      * @return a string that combine all information of the class.
      */
     public String toString(){
-        return title+","+videoId+","+videoLink+","+channelTitle+","+channelId+","+channelProfileLink+","+description+","+thumbnailUrl;
+        return title+","+videoId+","+videoLink+","+channelTitle+","+channelId+","+channelProfileLink+","+description+","+thumbnailUrl+","+tags;
     }
 
     /**
@@ -159,6 +162,26 @@ public class YTResponse {
      */
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
+    }
+
+
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Created: 2024/10/29
+     * returns the tags.
+     */
+    public List<String> getTags() {
+        return tags;
+    }
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Created: 2024/10/29
+     * @param tags set the video tags.
+     */
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
 
