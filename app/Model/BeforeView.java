@@ -10,14 +10,11 @@ import play.mvc.Http.Request;
 import services.ReadabilityService;
 import services.WordStatService;
 import services.YTResponse;
-import services.YTRestDir;
 import views.html.Home.display;
 import views.html.Home.searchResults;
 import play.data.FormFactory;
 import views.html.Home.videoStatistics;
 
-import javax.inject.Inject;
-import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,12 +22,23 @@ import java.util.concurrent.ExecutionException;
 
 import static play.mvc.Results.ok;
 
+/**
+ * @author: Zheyi Zheng - 40266266
+ * Created: 2024/11/7
+ * This is the BeforeView class. This class response for keep all search records and process the search result out.
+ */
 public class BeforeView {
     // This ConcurrentHashMap will store search results regarding session
     // basically, each session has corrsponding arraylist (hold up to 10 search history), each arraylist has another arraylist of string to store result.
     private final ConcurrentHashMap<String, ArrayList<ArrayList<ArrayList<TextSegment>>>> userSearchResults;
     private final ConcurrentHashMap<String, ArrayList<String>> userKeywords;
     private final ConcurrentHashMap<String, ArrayList<ArrayList<String>>> userReadabilitys;
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/24
+     * This is the constructor method. It initializes all three ConcurrentHashMap which will be used to store all information.
+     */
     public BeforeView(){
         super();
         userSearchResults = new ConcurrentHashMap<>();
@@ -38,8 +46,21 @@ public class BeforeView {
         userReadabilitys = new ConcurrentHashMap<>();
     }
 
-    public CompletableFuture<Result> process(Request request, String sessionId, String keyword, CompletableFuture<List<YTResponse>> result, FormFactory formFactory, MessagesApi messagesApi) throws ExecutionException, InterruptedException {
-
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/24
+     * This is the process method. This method will take all information needed and provide the result view with needed information.
+     * @param request request from user.
+     * @param keyword the keyword that user searched for.
+     * @param result the search result directly from YTRestDir.
+     * @param formFactory formFactory
+     * @param messagesApi messagesApi
+     * @throws ExecutionException if some of the results from helper class is not ready
+     * @throws InterruptedException if some of the threads got interrupt during processing.
+     * @return The CompletableFuture of Result, can be directly use to pass to view.
+     */
+    public CompletableFuture<Result> process(Request request, String keyword, CompletableFuture<List<YTResponse>> result, FormFactory formFactory, MessagesApi messagesApi) throws ExecutionException, InterruptedException {
+        String sessionId = getSessionId(request);
         ArrayList<ArrayList<TextSegment>> currentResult = new ArrayList<>();
         return result.thenApply(list -> {
             // Get readability data
@@ -103,5 +124,18 @@ public class BeforeView {
             return ok(searchResults.render(userKeyword, userList, userReadability, searchForm2, messages, request))
                     .withSession(request.session().adding("sessionId", sessionId));
         });
+    }
+
+    /**
+     * Simple getSessionId method. This method will get session id from user request. If no id exist, it will create it.
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/24
+     * @return The request
+     */
+    private String getSessionId(Request request){
+        // Try to get session id from user request
+        Optional<String> sessionId = request.session().get("sessionId");
+        // If there is a session id, return it. If not, create is randomly.
+        return sessionId.orElseGet(() -> UUID.randomUUID().toString());
     }
 }

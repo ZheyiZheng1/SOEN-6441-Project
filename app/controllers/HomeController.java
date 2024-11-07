@@ -7,7 +7,6 @@ package controllers;
 
 import Model.BeforeView;
 import Model.SearchForm;
-import Model.TextSegment;
 import play.data.Form;
 import play.mvc.*;
 import play.i18n.MessagesApi;
@@ -25,7 +24,6 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 
 
@@ -35,15 +33,17 @@ public class HomeController extends Controller {
     private final MessagesApi messagesApi;
     private final BeforeView beforeView;
 
+    /**
+     * Constructor method. This method creates a BeforeView model and inject the dependency of FormFactory and MessageApi.
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/24
+     * @param formFactory just the form factory, use to future form generate. messageApi is also required for form generate.
+     */
     @Inject
-    public HomeController(AssetsFinder assetsFinder, FormFactory formFactory, MessagesApi messagesApi) {
+    public HomeController(FormFactory formFactory, MessagesApi messagesApi) {
         this.formFactory = formFactory;
         this.messagesApi = messagesApi;
         this.beforeView = new BeforeView();
-    }
-
-    public Result index(){
-        return ok("Hello world");
     }
 
     /**
@@ -75,13 +75,11 @@ public class HomeController extends Controller {
 
         // Get keyword
         String keyword = searchForm.get().getKeyword();
-        // Get session id
-        String sessionId = getSessionId(request);
         YTRestDir ytRestDir = new YTRestDir();
         // Get search result
         CompletableFuture<List<YTResponse>> result = ytRestDir.searchVideosAsynch(keyword, null, "10");
-        // Call BeforeView
-        return beforeView.process(request, sessionId, keyword, result, formFactory, messagesApi);
+        // Call BeforeView to get and return the information to view.
+        return beforeView.process(request, keyword, result, formFactory, messagesApi);
 
     }
 
