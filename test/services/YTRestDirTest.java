@@ -17,6 +17,8 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.util.List;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -82,5 +84,67 @@ class YTRestDirTest {
         assertEquals("https://example.com/image.jpg", response.getThumbnailUrl());
     }
 
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Test for getVideoDetails when video exists
+     */
+    @Test
+    void testGetVideoDetailsWithValidResponse() throws Exception {
+        String videoId = "test123";
+        String mockJsonResponse = "{ \"items\": [{ \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\", \"tags\": [\"tag1\", \"tag2\"] } }] }";
+        String mockUrl = "https://mocked_url_for_testing";
+
+        doReturn(mockConnection).when(ytRestDir).getHttpURLConnection(new URI(mockUrl));
+        when(mockConnection.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
+        InputStream stream = new ByteArrayInputStream(mockJsonResponse.getBytes());
+        when(mockConnection.getInputStream()).thenReturn(stream);
+
+        YTResponse videoDetails = ytRestDir.getVideoDetails(videoId).toCompletableFuture().join();
+
+        assertNotNull(videoDetails);
+        assertEquals("Test Video", videoDetails.getTitle());
+        assertEquals("Test Channel", videoDetails.getChannelTitle());
+        assertEquals("12345", videoDetails.getChannelId());
+        assertEquals("Test Description", videoDetails.getDescription());
+        assertEquals(List.of("tag1", "tag2"), videoDetails.getTags());
+    }
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Test for getVideoDetails with an invalid videoId (no items in response)
+     */
+    @Test
+    void testGetVideoDetailsWithInvalidVideoId() throws Exception {
+        String videoId = "invalid_id";
+        String mockJsonResponse = "{ \"items\": [] }"; // Empty items array
+        String mockUrl = "https://mocked_url_for_testing";
+
+        doReturn(mockConnection).when(ytRestDir).getHttpURLConnection(new URI(mockUrl));
+        when(mockConnection.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
+        InputStream stream = new ByteArrayInputStream(mockJsonResponse.getBytes());
+        when(mockConnection.getInputStream()).thenReturn(stream);
+
+        YTResponse videoDetails = ytRestDir.getVideoDetails(videoId).toCompletableFuture().join();
+
+        assertNull(videoDetails); // No video found, should return null
+    }
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Test for parseVideoDetails with a valid JSON response
+     */
+    @Test
+    void testParseVideoDetails() {
+        String mockJsonResponse = "{ \"items\": [{ \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\", \"tags\": [\"tag1\", \"tag2\"] } }] }";
+        YTResponse response = ytRestDir.parseVideoDetails(mockJsonResponse);
+
+        assertNotNull(response);
+        assertEquals("Test Video", response.getTitle());
+        assertEquals("Test Channel", response.getChannelTitle());
+        assertEquals("12345", response.getChannelId());
+        assertEquals("Test Description", response.getDescription());
+        assertEquals(List.of("tag1", "tag2"), response.getTags());
+    }
 
 }
