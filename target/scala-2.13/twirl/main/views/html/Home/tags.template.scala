@@ -32,31 +32,34 @@ object tags extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlF
 
 Seq[Any](format.raw/*2.28*/("""
 
-"""),format.raw/*4.1*/("""<html lang="en">
+
+"""),format.raw/*9.3*/("""
+
+"""),format.raw/*11.1*/("""<html lang="en">
     <head>
-        <title>"""),_display_(/*6.17*/videoDetails/*6.29*/.getTitle()),format.raw/*6.40*/("""</title>
+        <title>"""),_display_(/*13.17*/videoDetails/*13.29*/.getTitle()),format.raw/*13.40*/("""</title>
     </head>
     <body>
         <h1>Video Details / Tags Page</h1>
 
             <!-- Video Title as link -->
-        <h2><a href="https://www.youtube.com/watch?v="""),_display_(/*12.55*/videoDetails/*12.67*/.getVideoId()),format.raw/*12.80*/("""" target="_blank">
-        """),_display_(/*13.10*/videoDetails/*13.22*/.getTitle()),format.raw/*13.33*/("""
-        """),format.raw/*14.9*/("""</a></h2>
+        <h2><a href="https://www.youtube.com/watch?v="""),_display_(/*19.55*/videoDetails/*19.67*/.getVideoId()),format.raw/*19.80*/("""" target="_blank">
+        """),_display_(/*20.10*/videoDetails/*20.22*/.getTitle()),format.raw/*20.33*/("""
+        """),format.raw/*21.9*/("""</a></h2>
 
             <!-- Display channel title as a hyperlink to the channel page -->
-        <p>Channel: <a href="https://www.youtube.com/channel/"""),_display_(/*17.63*/videoDetails/*17.75*/.getChannelId()),format.raw/*17.90*/("""" target="_blank">"""),_display_(/*17.109*/videoDetails/*17.121*/.getChannelTitle()),format.raw/*17.139*/("""</a></p>
+        <p>Channel: <a href="https://www.youtube.com/channel/"""),_display_(/*24.63*/videoDetails/*24.75*/.getChannelId()),format.raw/*24.90*/("""" target="_blank">"""),_display_(/*24.109*/videoDetails/*24.121*/.getChannelTitle()),format.raw/*24.139*/("""</a></p>
 
             <!-- Display video description -->
-        <p>"""),_display_(/*20.13*/videoDetails/*20.25*/.getDescription()),format.raw/*20.42*/("""</p>
+        <p>"""),_display_(/*27.13*/videoDetails/*27.25*/.getDescription()),format.raw/*27.42*/("""</p>
 
             <!-- Tags with Links to Search by Tag -->
         <h2>Tags</h2>
         <ul>
-        """),_display_(/*25.10*/for(tag <- videoDetails.getTags()) yield /*25.44*/ {_display_(Seq[Any](format.raw/*25.46*/("""
-            """),format.raw/*26.13*/("""<li><a href=""""),_display_(/*26.27*/routes/*26.33*/.TagsController.searchByTag(tag)),format.raw/*26.65*/("""">"""),_display_(/*26.68*/tag),format.raw/*26.71*/("""</a></li>
-        """)))}),format.raw/*27.10*/("""
-        """),format.raw/*28.9*/("""</ul>
+        """),_display_(/*32.10*/for(tag <- videoDetails.getTags()) yield /*32.44*/ {_display_(Seq[Any](format.raw/*32.46*/("""
+            """),format.raw/*33.13*/("""<li><a href=""""),_display_(/*33.27*/routes/*33.33*/.TagsController.searchByTag(tag)),format.raw/*33.65*/("""">"""),_display_(/*33.68*/tag),format.raw/*33.71*/("""</a></li>
+        """)))}),format.raw/*34.10*/("""
+        """),format.raw/*35.9*/("""</ul>
 
     </body>
 </html>
@@ -77,9 +80,9 @@ Seq[Any](format.raw/*2.28*/("""
               /*
                   -- GENERATED --
                   SOURCE: app/views/Home/tags.scala.html
-                  HASH: c8e79272d2608df36520e0f6fb0c8086f4060e30
-                  MATRIX: 615->1|949->30|1070->56|1100->60|1172->106|1192->118|1223->129|1427->306|1448->318|1482->331|1538->360|1559->372|1591->383|1628->393|1809->547|1830->559|1866->574|1913->593|1935->605|1975->623|2074->695|2095->707|2133->724|2269->833|2319->867|2359->869|2401->883|2442->897|2457->903|2510->935|2540->938|2564->941|2615->961|2652->971
-                  LINES: 23->1|28->2|33->2|35->4|37->6|37->6|37->6|43->12|43->12|43->12|44->13|44->13|44->13|45->14|48->17|48->17|48->17|48->17|48->17|48->17|51->20|51->20|51->20|56->25|56->25|56->25|57->26|57->26|57->26|57->26|57->26|57->26|58->27|59->28
+                  HASH: e606d97090c8ac968c83b5926d49ad46d475368c
+                  MATRIX: 615->1|949->30|1070->56|1102->207|1133->211|1206->257|1227->269|1259->280|1463->457|1484->469|1518->482|1574->511|1595->523|1627->534|1664->544|1845->698|1866->710|1902->725|1949->744|1971->756|2011->774|2110->846|2131->858|2169->875|2305->984|2355->1018|2395->1020|2437->1034|2478->1048|2493->1054|2546->1086|2576->1089|2600->1092|2651->1112|2688->1122
+                  LINES: 23->1|28->2|33->2|36->9|38->11|40->13|40->13|40->13|46->19|46->19|46->19|47->20|47->20|47->20|48->21|51->24|51->24|51->24|51->24|51->24|51->24|54->27|54->27|54->27|59->32|59->32|59->32|60->33|60->33|60->33|60->33|60->33|60->33|61->34|62->35
                   -- GENERATED --
               */
           

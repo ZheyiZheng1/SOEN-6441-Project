@@ -1,0 +1,33 @@
+[debug] > Exec(compile, None, None)
+[debug] Evaluating tasks: Compile / compile
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 10 Scala sources and 16 Java sources to C:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\target\scala-2.13\classes ...
+[error] C:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\app\controllers\WordCountController.java:6:16: cannot find symbol
+[error]   symbol:   class WordCountService
+[error]   location: package services
+[error] services.WordCountService
+[error]                ^
+[error] C:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\app\controllers\WordCountController.java:8:23: cannot find symbol
+[error]   symbol:   class videoStatistics
+[error]   location: package views.html.Home
+[error] views.html.Home.videoStatistics
+[error]                       ^
+[error] C:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\app\controllers\HomeController.java:84:32: method render in class views.html.Home.searchResults cannot be applied to given types;
+[error]   required: java.util.ArrayList<java.lang.String>,java.util.ArrayList<java.util.ArrayList<java.util.ArrayList<Model.TextSegment>>>,java.util.ArrayList<java.util.ArrayList<java.lang.String>>,play.data.Form<Model.SearchForm>,play.api.i18n.MessagesProvider,play.mvc.Http.Request
+[error]   found: java.lang.String,play.data.Form<Model.SearchForm>,play.i18n.Messages
+[error]   reason: actual and formal argument lists differ in length
+[error] searchResults.render
+[error]                     ^
+[error] C:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\app\controllers\WordCountController.java:56:64: cannot find symbol
+[error]   symbol:   class WordCountService
+[error]   location: class controllers.WordCountController
+[error] WordCountService
+[error]                 ^
+[error] C:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\app\controllers\WordCountController.java:68:19: cannot find symbol
+[error]   symbol:   variable videoStatistics
+[error]   location: class controllers.WordCountController
+[error] videoStatistics
+[error]                ^
+[error] (Compile / compileIncremental) javac returned non-zero exit code
+[error] Total time: 21 s, completed Nov 7, 2024, 12:06:51 PM
+[debug] > Exec(idea-shell, None, None)

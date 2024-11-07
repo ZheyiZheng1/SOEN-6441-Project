@@ -1,0 +1,12 @@
+[debug] > Exec(compile, None, None)
+[debug] Evaluating tasks: Compile / compile
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 10 Scala sources and 15 Java sources to C:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\target\scala-2.13\classes ...
+[error] C:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\conf\routes:10:1: type WordCountController is not a member of package controllers
+[error] GET     /videoStatistics/:keyword   controllers.WordCountController.videoStatistics(keyword: String)
+[error] C:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\conf\routes:10:1: type WordCountController is not a member of package controllers
+[error] GET     /videoStatistics/:keyword   controllers.WordCountController.videoStatistics(keyword: String)
+[error] two errors found
+[error] (Compile / compileIncremental) Compilation failed
+[error] Total time: 12 s, completed Nov 7, 2024, 12:03:53 PM
+[debug] > Exec(idea-shell, None, None)

@@ -1,3 +1,6 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\app\controllers\HomeController.java:86:9: unreachable statement[0m
-[0m[[0m[31merror[0m] [0m[0mreturn ok(searchResults.render(keyword, searchForm, messages));[0m
-[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\app\controllers\HomeController.java:84:32: method render in class views.html.Home.searchResults cannot be applied to given types;[0m
+[0m[[0m[31merror[0m] [0m[0m  required: java.util.ArrayList<java.lang.String>,java.util.ArrayList<java.util.ArrayList<java.util.ArrayList<Model.TextSegment>>>,java.util.ArrayList<java.util.ArrayList<java.lang.String>>,play.data.Form<Model.SearchForm>,play.api.i18n.MessagesProvider,play.mvc.Http.Request[0m
+[0m[[0m[31merror[0m] [0m[0m  found: java.lang.String,play.data.Form<Model.SearchForm>,play.i18n.Messages[0m
+[0m[[0m[31merror[0m] [0m[0m  reason: actual and formal argument lists differ in length[0m
+[0m[[0m[31merror[0m] [0m[0msearchResults.render[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
