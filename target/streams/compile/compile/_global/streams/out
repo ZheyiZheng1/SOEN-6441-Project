@@ -1,4 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\app\controllers\HomeController.java:139:67: incompatible types: java.util.ArrayList<java.util.ArrayList<java.lang.String>> cannot be converted to java.util.ArrayList<java.util.ArrayList<Model.TextSegment>>[0m
-[0m[[0m[31merror[0m] [0m[0muserReadability[0m
-[0m[[0m[31merror[0m] [0m[0m               ^[0m
-[0m[[0m[0minfo[0m] [0m[0mSome messages have been simplified; recompile with -Xdiags:verbose to get full output[0m
