@@ -6,7 +6,7 @@
 package services;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -22,7 +22,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-class YTRestDirTest {
+public class YTRestDirTest {
 
     @Mock
     HttpURLConnection mockConnection;
@@ -37,7 +37,7 @@ class YTRestDirTest {
      * spy allows us to use both YTRestDir methods and mock methods.
      */
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         mocks = MockitoAnnotations.openMocks(this);
         ytRestDir = spy(new YTRestDir());
     }
@@ -48,7 +48,7 @@ class YTRestDirTest {
      * After each test, close mock.
      */
     @AfterEach
-    void tearDown() throws Exception {
+    public void tearDown() throws Exception {
         mocks.close();
     }
 
@@ -59,7 +59,7 @@ class YTRestDirTest {
      * then compare the YTResponse instance with the mock response to see if they have same information.
      */
     @Test
-    void testSearchVideosWithMockResponse() throws Exception {
+    public void testSearchVideosWithMockResponse() throws Exception {
         String mockUrl = "https://mocked_url_for_testing";
         String mockJsonResponse = "{ \"items\": [{ \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\", \"thumbnails\": { \"default\": { \"url\": \"https://example.com/image.jpg\" } } }, \"id\": { \"videoId\": \"test123\" } }] }";
 
@@ -90,7 +90,7 @@ class YTRestDirTest {
      * Test for getVideoDetails when video exists
      */
     @Test
-    void testGetVideoDetailsWithValidResponse() throws Exception {
+    public void testGetVideoDetailsWithValidResponse() throws Exception {
         String videoId = "test123";
         String mockJsonResponse = "{ \"items\": [{ \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\", \"tags\": [\"tag1\", \"tag2\"] } }] }";
         String mockUrl = "https://mocked_url_for_testing";
@@ -115,7 +115,7 @@ class YTRestDirTest {
      * Test for getVideoDetails with an invalid videoId (no items in response)
      */
     @Test
-    void testGetVideoDetailsWithInvalidVideoId() throws Exception {
+    public void testGetVideoDetailsWithInvalidVideoId() throws Exception {
         String videoId = "invalid_id";
         String mockJsonResponse = "{ \"items\": [] }"; // Empty items array
         String mockUrl = "https://mocked_url_for_testing";
@@ -135,7 +135,7 @@ class YTRestDirTest {
      * Test for parseVideoDetails with a valid JSON response
      */
     @Test
-    void testParseVideoDetails() {
+    public void testParseVideoDetails() {
         String mockJsonResponse = "{ \"items\": [{ \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\", \"tags\": [\"tag1\", \"tag2\"] } }] }";
         YTResponse response = ytRestDir.parseVideoDetails(mockJsonResponse);
 

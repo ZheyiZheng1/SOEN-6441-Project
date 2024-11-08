@@ -1,4 +1,4 @@
-[0m[[0m[0minfo[0m] [0m[0mInstrumenting 47 classes to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\jacoco\instrumented-classes[0m
+[0m[[0m[0minfo[0m] [0m[0mInstrumenting 45 classes to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\jacoco\instrumented-classes[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting products: C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes[0m
 [0m[[0m[0mdebug[0m] [0m[0mFound jacoco agent: Vector()[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\AsyncController.class[0m
@@ -8,12 +8,10 @@
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\javascript\ReverseAsyncController.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\javascript\ReverseCountController.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\javascript\ReverseHomeController.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\javascript\ReverseWordCountController.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\ReverseAssets.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\ReverseAsyncController.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\ReverseCountController.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\ReverseHomeController.class[0m
-[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\ReverseWordCountController.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\routes$javascript.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\routes.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\filters\ExampleFilter.class[0m

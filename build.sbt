@@ -17,8 +17,9 @@ lazy val root = (project in file("."))
       // Mockito
       "org.mockito" % "mockito-core" % "5.3.1" % Test,
       //JUnit
-      "org.junit.jupiter" % "junit-jupiter" % "5.8.2" % Test,
-      // Testing libraries for dealing with CompletionStage...
+      "org.junit.jupiter" % "junit-jupiter-api" % "5.8.2" % Test,
+      "org.junit.jupiter" % "junit-jupiter-engine" % "5.8.2" % Test,
+// Testing libraries for dealing with CompletionStage...
       "org.assertj" % "assertj-core" % "3.26.3" % Test,
       "org.awaitility" % "awaitility" % "4.2.2" % Test,
     ),
