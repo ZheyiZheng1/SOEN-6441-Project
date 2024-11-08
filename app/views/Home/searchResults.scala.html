@@ -2,8 +2,7 @@
 @import play.api.i18n.Messages
 @import play.api.i18n.MessagesProvider
 @import Model.TextSegment
-@import java.util
-@(keywords: util.ArrayList[String])(userList: ArrayList[ArrayList[ArrayList[TextSegment]]])(userReadability : ArrayList[ArrayList[String]])(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider, request: play.mvc.Http.Request)
+@(keywords: ArrayList[String])(userList: ArrayList[ArrayList[ArrayList[TextSegment]]])(userReadability : ArrayList[ArrayList[String]])(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider, request: play.mvc.Http.Request)
 
 @import helper._
 
@@ -16,44 +15,123 @@
 <html lang="en">
 <head>
     <title>Welcome to YT Lytics</title>
+    <style>
+        /* General body styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        /* Heading styling */
+        h1 {
+            color: #007bff;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Form container styling */
+        .form-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        /* Form styling to align input and button */
+        .form-container form {
+            display: flex;
+            flex-direction: column; /* Stack input and button vertically */
+            align-items: center;
+        }
+
+        /* Styling for input text field */
+        .form-container input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1.1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        /* Focus effect on the input text */
+        .form-container input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        /* Styling for submit button */
+        .form-container input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        /* Hover effect on the submit button */
+        .form-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+         label[for="keyword"] {
+            display: none;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Welcome to YT Lytics</h1>
-    <!-- Input form for keyword-->
+<h1>Welcome to YT Lytics</h1>
+
+<!-- Input form for keyword -->
+<div class="form-container">
     @helper.form(action = routes.HomeController.search()) {
     @helper.inputText(searchForm("keyword"))
-    @helper.CSRF.formField
-    <input type="submit" value="submit">
+    <input type="submit" value="Submit">
     }
+</div>
+</body>
+</html>
+
 <!-- Display search results-->
 @for((responseList, index) <- userList.zipWithIndex) {
     <div class="response">
         <p>
             <!-- Print the keyword here then print search results for this keyword-->
         <h3><b>Search term:</b> @keywords.get(index) Flesh-Kincaid Grade Level Avg.= @userReadability.get(index).get(0) , Flesch Reading Ease Score Avg.= @userReadability.get(index).get(1) .</h3>
-            <a href="@routes.HomeController.videoStatistics(keywords.get(index))">More stats</a>
-            <br/>
+        <a href="@routes.HomeController.videoStatistics(keywords.get(index))" style="font-weight: bold; color: green;">More stats</a>
+        <br/>
             @for(response <- responseList) {
                 @for(segment <- response) {
-                        <!-- Print All Parts of Video Information -->
-                        <!-- Display thumbnail image if segment.text is "thumbnail" -->
-                    @if(segment.url != null && segment.text == "thumbnail") {
-                        <br/>
-                        <img src="@segment.url" alt="Video thumbnail" />
-                    }
-
-                        <!-- Display "Tags" as a hyperlink if segment.text is "Tags" -->
-                    @if(segment.text == "Tags"  && segment.videoId != null) {
-                        <a href="@routes.TagsController.showTags(segment.videoId)">Tags</a>
-                    }
-
-                        <!-- Display other segments as hyperlinks if URL is present -->
-                    @if(segment.url != null && segment.text != "thumbnail" && segment.text != "Tags") {
-                        <a href="@segment.url">@segment.text</a>
-                    }
-
-                        <!-- Display plain text if no URL is provided and it’s not "thumbnail" or "Tags" -->
-                    @if(segment.url == null && segment.text != "thumbnail" && segment.text != "Tags") {
+                    <!-- Print all parts of the video information-->
+                    @if(segment.url != null) {
+                        @if(segment.text == "thumbnail"){
+                            </br>
+                            <img src="@segment.url" alt="Video thumbnail" />
+                        } else {
+                            <!-- Set hyperlink along with the text-->
+                            <a href="@segment.url">@segment.text</a>
+                        }
+                    } else {
+                        <!-- Only print the text, no hyperlink-->
                         @segment.text
                     }
                 }
