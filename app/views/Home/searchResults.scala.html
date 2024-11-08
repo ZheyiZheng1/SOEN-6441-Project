@@ -35,17 +35,25 @@
             <br/>
             @for(response <- responseList) {
                 @for(segment <- response) {
-                    <!-- Print all parts of the video information-->
-                    @if(segment.url != null) {
-                        @if(segment.text == "thumbnail"){
-                            </br>
-                            <img src="@segment.url" alt="Video thumbnail" />
-                        } else {
-                            <!-- Set hyperlink along with the text-->
-                            <a href="@segment.url">@segment.text</a>
-                        }
-                    } else {
-                        <!-- Only print the text, no hyperlink-->
+                        <!-- Print All Parts of Video Information -->
+                        <!-- Display thumbnail image if segment.text is "thumbnail" -->
+                    @if(segment.url != null && segment.text == "thumbnail") {
+                        <br/>
+                        <img src="@segment.url" alt="Video thumbnail" />
+                    }
+
+                        <!-- Display "Tags" as a hyperlink if segment.text is "Tags" -->
+                    @if(segment.text == "Tags"  && segment.videoId != null) {
+                        <a href="@routes.TagsController.showTags(segment.videoId)">Tags</a>
+                    }
+
+                        <!-- Display other segments as hyperlinks if URL is present -->
+                    @if(segment.url != null && segment.text != "thumbnail" && segment.text != "Tags") {
+                        <a href="@segment.url">@segment.text</a>
+                    }
+
+                        <!-- Display plain text if no URL is provided and it’s not "thumbnail" or "Tags" -->
+                    @if(segment.url == null && segment.text != "thumbnail" && segment.text != "Tags") {
                         @segment.text
                     }
                 }
