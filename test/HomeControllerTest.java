@@ -43,7 +43,7 @@ public class HomeControllerTest {
      */
     @Test
     public void testDisplay() {
-        // Initialize the application context using Guice
+        // Initialize the application context
         Application app = new GuiceApplicationBuilder().build();
         HomeController homeController = app.injector().instanceOf(HomeController.class);
 
@@ -53,12 +53,12 @@ public class HomeControllerTest {
         // Call the display method
         Result result = homeController.display(request.build());
 
-        // Assertions to check the content type and output
+        // Check the content type and output
         assertEquals("text/html", result.contentType().orElse(""));
         String content = contentAsString(result);
-        System.out.println(content);  // Print the content of the rendered view
+        System.out.println(content);
 
-        // Check that the rendered content contains certain expected elements
+        // Check that the rendered correctly
         assertTrue(content.contains("Welcome to YT Lytics"));
         assertTrue(content.contains("<input type=\"submit\" value=\"submit\">"));
         assertTrue(content.contains("<input type=\"text\" id=\"keyword\" name=\"keyword\""));
@@ -71,7 +71,7 @@ public class HomeControllerTest {
      */
     @Test
     public void testSearch() throws ExecutionException, InterruptedException {
-        // Initialize the application context using Guice
+        // Initialize the application context
         Application app = new GuiceApplicationBuilder().build();
         HomeController homeController = app.injector().instanceOf(HomeController.class);
 
@@ -79,19 +79,20 @@ public class HomeControllerTest {
         Http.RequestBuilder request = fakeRequest()
                 .method("POST")
                 .uri("/search")
-                .bodyForm(ImmutableMap.of("keyword", "test"));
+                .bodyForm(ImmutableMap.of("keyword", "java"));
 
         // Call the search method and get the CompletableFuture result
         CompletableFuture<Result> futureResult = homeController.search(request.build());
+        // Get the result directly
         Result result = futureResult.get();
 
-        // Assertions to check the content type and output
+        // Check the content type and output
         assertEquals("text/html", result.contentType().orElse(""));
         String content = contentAsString(result);
         System.out.println(content);
 
-        // Check that the rendered content contains certain expected elements
-        assertTrue(content.contains("Search results for"));
+        // Check that the rendered content contains java
+        assertTrue(content.contains("Search term: java"));
     }
 
 }
