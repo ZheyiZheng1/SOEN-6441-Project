@@ -8,6 +8,7 @@ package Model;
 public class TextSegment {
     public String text;
     public String url;
+    public String videoId;
 
     /**
      * @author: Zheyi Zheng - 40266266
@@ -18,5 +19,11 @@ public class TextSegment {
     public TextSegment(String text, String url) {
         this.text = text;
         this.url = url;
+    }
+
+    public TextSegment(String text, String url, String videoId) {
+        this.text = text;
+        this.url = url;
+        this.videoId = videoId;
     }
 }

@@ -2,7 +2,8 @@
 @import play.api.i18n.Messages
 @import play.api.i18n.MessagesProvider
 @import Model.TextSegment
-@(keywords: ArrayList[String])(userList: ArrayList[ArrayList[ArrayList[TextSegment]]])(userReadability : ArrayList[ArrayList[String]])(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider, request: play.mvc.Http.Request)
+@import java.util
+@(keywords: util.ArrayList[String])(userList: ArrayList[ArrayList[ArrayList[TextSegment]]])(userReadability : ArrayList[ArrayList[String]])(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider, request: play.mvc.Http.Request)
 
 @import helper._
 
