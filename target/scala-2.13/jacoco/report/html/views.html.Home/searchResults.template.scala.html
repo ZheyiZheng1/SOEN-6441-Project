@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>searchResults.template.scala</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">views.html.Home</a> &gt; <span class="el_source">searchResults.template.scala</span></div><h1>searchResults.template.scala</h1><pre class="source lang-java linenums">
+package views.html.Home
+
+import _root_.play.twirl.api.TwirlFeatureImports._
+import _root_.play.twirl.api.TwirlHelperImports._
+import _root_.play.twirl.api.Html
+import _root_.play.twirl.api.JavaScript
+import _root_.play.twirl.api.Txt
+import _root_.play.twirl.api.Xml
+import models._
+import controllers._
+import play.api.i18n._
+import views.html._
+import play.api.templates.PlayMagic._
+import java.lang._
+import java.util._
+import play.core.j.PlayMagicForJava._
+import play.mvc._
+import play.api.data.Field
+import play.data._
+import play.core.j.PlayFormsMagicForJava._
+import scala.jdk.CollectionConverters._
+/*1.2*/import Model.SearchForm
+/*2.2*/import play.api.i18n.Messages
+/*3.2*/import play.api.i18n.MessagesProvider
+/*4.2*/import Model.TextSegment
+
+<span class="nc" id="L28">object searchResults extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template6[ArrayList[String],ArrayList[ArrayList[ArrayList[TextSegment]]],ArrayList[ArrayList[String]],Form[SearchForm],MessagesProvider,play.mvc.Http.Request,play.twirl.api.HtmlFormat.Appendable] {</span>
+
+  /**/
+  def apply/*5.2*/(keywords: ArrayList[String])(userList: ArrayList[ArrayList[ArrayList[TextSegment]]])(userReadability : ArrayList[ArrayList[String]])(searchForm: Form[SearchForm])(implicit messagesProvider: MessagesProvider, request: play.mvc.Http.Request):play.twirl.api.HtmlFormat.Appendable = {
+<span class="nc" id="L32">    _display_ {</span>
+      {
+/*7.2*/import helper._
+
+
+<span class="nc" id="L37">Seq[Any](format.raw/*5.242*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L39">&quot;&quot;&quot;),format.raw/*8.1*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L40">&quot;&quot;&quot;),format.raw/*13.3*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L42">&quot;&quot;&quot;),format.raw/*15.1*/(&quot;&quot;&quot;&lt;html lang=&quot;en&quot;&gt;</span>
+&lt;head&gt;
+    &lt;title&gt;Welcome to YT Lytics&lt;/title&gt;
+    &lt;style&gt;
+        /* General body styling */
+<span class="nc" id="L47">        body &quot;&quot;&quot;),format.raw/*20.14*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*20.15*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L48">            &quot;&quot;&quot;),format.raw/*21.13*/(&quot;&quot;&quot;font-family: 'Arial', sans-serif;</span>
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+<span class="nc" id="L58">        &quot;&quot;&quot;),format.raw/*31.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*31.10*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L60">        &quot;&quot;&quot;),format.raw/*33.9*/(&quot;&quot;&quot;/* Heading styling */</span>
+<span class="nc" id="L61">        h1 &quot;&quot;&quot;),format.raw/*34.12*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*34.13*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L62">            &quot;&quot;&quot;),format.raw/*35.13*/(&quot;&quot;&quot;color: #007bff;</span>
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+<span class="nc" id="L66">        &quot;&quot;&quot;),format.raw/*39.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*39.10*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L68">        &quot;&quot;&quot;),format.raw/*41.9*/(&quot;&quot;&quot;/* Form container styling */</span>
+<span class="nc" id="L69">        .form-container &quot;&quot;&quot;),format.raw/*42.25*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*42.26*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L70">            &quot;&quot;&quot;),format.raw/*43.13*/(&quot;&quot;&quot;background-color: white;</span>
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+<span class="nc" id="L77">        &quot;&quot;&quot;),format.raw/*50.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*50.10*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L79">        &quot;&quot;&quot;),format.raw/*52.9*/(&quot;&quot;&quot;/* Form styling to align input and button */</span>
+<span class="nc" id="L80">        .form-container form &quot;&quot;&quot;),format.raw/*53.30*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*53.31*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L81">            &quot;&quot;&quot;),format.raw/*54.13*/(&quot;&quot;&quot;display: flex;</span>
+            flex-direction: column; /* Stack input and button vertically */
+            align-items: center;
+<span class="nc" id="L84">        &quot;&quot;&quot;),format.raw/*57.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*57.10*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L86">        &quot;&quot;&quot;),format.raw/*59.9*/(&quot;&quot;&quot;/* Styling for input text field */</span>
+<span class="nc" id="L87">        .form-container input[type=&quot;text&quot;] &quot;&quot;&quot;),format.raw/*60.44*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*60.45*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L88">            &quot;&quot;&quot;),format.raw/*61.13*/(&quot;&quot;&quot;width: 80%;</span>
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1.1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+<span class="nc" id="L96">        &quot;&quot;&quot;),format.raw/*69.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*69.10*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L98">        &quot;&quot;&quot;),format.raw/*71.9*/(&quot;&quot;&quot;/* Focus effect on the input text */</span>
+<span class="nc" id="L99">        .form-container input[type=&quot;text&quot;]:focus &quot;&quot;&quot;),format.raw/*72.50*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*72.51*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L100">            &quot;&quot;&quot;),format.raw/*73.13*/(&quot;&quot;&quot;border-color: #007bff;</span>
+            outline: none;
+<span class="nc" id="L102">        &quot;&quot;&quot;),format.raw/*75.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*75.10*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L104">        &quot;&quot;&quot;),format.raw/*77.9*/(&quot;&quot;&quot;/* Styling for submit button */</span>
+<span class="nc" id="L105">        .form-container input[type=&quot;submit&quot;] &quot;&quot;&quot;),format.raw/*78.46*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*78.47*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L106">            &quot;&quot;&quot;),format.raw/*79.13*/(&quot;&quot;&quot;background-color: #007bff;</span>
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+<span class="nc" id="L115">        &quot;&quot;&quot;),format.raw/*88.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*88.10*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L117">        &quot;&quot;&quot;),format.raw/*90.9*/(&quot;&quot;&quot;/* Hover effect on the submit button */</span>
+<span class="nc" id="L118">        .form-container input[type=&quot;submit&quot;]:hover &quot;&quot;&quot;),format.raw/*91.52*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*91.53*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L119">            &quot;&quot;&quot;),format.raw/*92.13*/(&quot;&quot;&quot;background-color: #0056b3;</span>
+<span class="nc" id="L120">        &quot;&quot;&quot;),format.raw/*93.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*93.10*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L122">         &quot;&quot;&quot;),format.raw/*95.10*/(&quot;&quot;&quot;label[for=&quot;keyword&quot;] &quot;&quot;&quot;),format.raw/*95.31*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*95.32*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L123">            &quot;&quot;&quot;),format.raw/*96.13*/(&quot;&quot;&quot;display: none;</span>
+<span class="nc" id="L124">        &quot;&quot;&quot;),format.raw/*97.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*97.10*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L126">    &quot;&quot;&quot;),format.raw/*99.5*/(&quot;&quot;&quot;&lt;/style&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to YT Lytics&lt;/h1&gt;
+
+&lt;!-- Input form for keyword --&gt;
+&lt;div class=&quot;form-container&quot;&gt;
+<span class="nc" id="L133">    &quot;&quot;&quot;),_display_(/*106.6*/helper/*106.12*/.form(action = routes.HomeController.search())/*106.58*/ {_display_(Seq[Any](format.raw/*106.60*/(&quot;&quot;&quot;</span>
+    &quot;&quot;&quot;),_display_(/*107.6*/helper/*107.12*/.inputText(searchForm(&quot;keyword&quot;))),format.raw/*107.45*/(&quot;&quot;&quot;
+    &quot;&quot;&quot;),format.raw/*108.5*/(&quot;&quot;&quot;&lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+<span class="nc" id="L136">    &quot;&quot;&quot;)))}),format.raw/*109.6*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L137">&quot;&quot;&quot;),format.raw/*110.1*/(&quot;&quot;&quot;&lt;/div&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;
+
+&lt;!-- Display search results--&gt;
+<span class="nc" id="L142">&quot;&quot;&quot;),_display_(/*115.2*/for((responseList, index) &lt;- userList.zipWithIndex) yield /*115.53*/ {_display_(Seq[Any](format.raw/*115.55*/(&quot;&quot;&quot;</span>
+    &quot;&quot;&quot;),format.raw/*116.5*/(&quot;&quot;&quot;&lt;div class=&quot;response&quot;&gt;
+        &lt;p&gt;
+            &lt;!-- Print the keyword here then print search results for this keyword--&gt;
+        &lt;h3&gt;&lt;b&gt;Search term:&lt;/b&gt; &quot;&quot;&quot;),_display_(/*119.34*/keywords/*119.42*/.get(index)),format.raw/*119.53*/(&quot;&quot;&quot; &quot;&quot;&quot;),_display_(/*119.55*/userReadability/*119.70*/.get(index).get(2)),format.raw/*119.88*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*119.89*/(&quot;&quot;&quot;, Flesh-Kincaid Grade Level Avg.= &quot;&quot;&quot;),_display_(/*119.124*/userReadability/*119.139*/.get(index).get(0)),format.raw/*119.157*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*119.158*/(&quot;&quot;&quot;, Flesch Reading Ease Score Avg.= &quot;&quot;&quot;),_display_(/*119.193*/userReadability/*119.208*/.get(index).get(1)),format.raw/*119.226*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*119.227*/(&quot;&quot;&quot;.&lt;/h3&gt;
+        &lt;a href=&quot;&quot;&quot;&quot;),_display_(/*120.19*/routes/*120.25*/.HomeController.videoStatistics(keywords.get(index))),format.raw/*120.77*/(&quot;&quot;&quot;&quot; style=&quot;font-weight: bold; color: green;&quot;&gt;More stats&lt;/a&gt;
+        &lt;br/&gt;
+            &quot;&quot;&quot;),_display_(/*122.14*/for(response &lt;- responseList) yield /*122.43*/ {_display_(Seq[Any](format.raw/*122.45*/(&quot;&quot;&quot;
+                &quot;&quot;&quot;),_display_(/*123.18*/for(segment &lt;- response) yield /*123.42*/ {_display_(Seq[Any](format.raw/*123.44*/(&quot;&quot;&quot;
+                        &quot;&quot;&quot;),format.raw/*124.25*/(&quot;&quot;&quot;&lt;!-- Print All Parts of Video Information --&gt;
+                        &lt;!-- Display thumbnail image if segment.text is &quot;thumbnail&quot; --&gt;
+                    &quot;&quot;&quot;),_display_(if(segment.url != null &amp;&amp; segment.text == &quot;thumbnail&quot;)/*126.76*/ {_display_(Seq[Any](format.raw/*126.78*/(&quot;&quot;&quot;
+                        &quot;&quot;&quot;),format.raw/*127.25*/(&quot;&quot;&quot;&lt;br/&gt;
+                        &lt;img src=&quot;&quot;&quot;&quot;),_display_(/*128.36*/segment/*128.43*/.url),format.raw/*128.47*/(&quot;&quot;&quot;&quot; alt=&quot;Video thumbnail&quot; /&gt;
+                    &quot;&quot;&quot;)))} else {null} ),format.raw/*129.22*/(&quot;&quot;&quot;
+
+                        &quot;&quot;&quot;),format.raw/*131.25*/(&quot;&quot;&quot;&lt;!-- Display &quot;Tags&quot; as a hyperlink if segment.text is &quot;Tags&quot; --&gt;
+                    &quot;&quot;&quot;),_display_(if(segment.text == &quot;Tags&quot;  &amp;&amp; segment.videoId != null)/*132.76*/ {_display_(Seq[Any](format.raw/*132.78*/(&quot;&quot;&quot;
+                        &quot;&quot;&quot;),format.raw/*133.25*/(&quot;&quot;&quot;&lt;a href=&quot;&quot;&quot;&quot;),_display_(/*133.35*/routes/*133.41*/.HomeController.showTags(segment.videoId)),format.raw/*133.82*/(&quot;&quot;&quot;&quot;&gt;Tags&lt;/a&gt;
+                    &quot;&quot;&quot;)))} else {null} ),format.raw/*134.22*/(&quot;&quot;&quot;
+
+                        &quot;&quot;&quot;),format.raw/*136.25*/(&quot;&quot;&quot;&lt;!-- Display other segments as hyperlinks if URL is present --&gt;
+                    &quot;&quot;&quot;),_display_(if(segment.url != null &amp;&amp; segment.text != &quot;thumbnail&quot; &amp;&amp; segment.text != &quot;Tags&quot;)/*137.102*/ {_display_(Seq[Any](format.raw/*137.104*/(&quot;&quot;&quot;
+                        &quot;&quot;&quot;),format.raw/*138.25*/(&quot;&quot;&quot;&lt;a href=&quot;&quot;&quot;&quot;),_display_(/*138.35*/segment/*138.42*/.url),format.raw/*138.46*/(&quot;&quot;&quot;&quot;&gt;&quot;&quot;&quot;),_display_(/*138.49*/segment/*138.56*/.text),format.raw/*138.61*/(&quot;&quot;&quot;&lt;/a&gt;
+                    &quot;&quot;&quot;)))} else {null} ),format.raw/*139.22*/(&quot;&quot;&quot;
+
+                        &quot;&quot;&quot;),format.raw/*141.25*/(&quot;&quot;&quot;&lt;!-- Display plain text if no URL is provided and it’s not &quot;thumbnail&quot; or &quot;Tags&quot; --&gt;
+                    &quot;&quot;&quot;),_display_(if(segment.url == null &amp;&amp; segment.text != &quot;thumbnail&quot; &amp;&amp; segment.text != &quot;Tags&quot;)/*142.102*/ {_display_(Seq[Any](format.raw/*142.104*/(&quot;&quot;&quot;
+                        &quot;&quot;&quot;),_display_(/*143.26*/segment/*143.33*/.text),format.raw/*143.38*/(&quot;&quot;&quot;
+                    &quot;&quot;&quot;)))} else {null} ),format.raw/*144.22*/(&quot;&quot;&quot;
+                &quot;&quot;&quot;)))}),format.raw/*145.18*/(&quot;&quot;&quot;
+                &quot;&quot;&quot;),format.raw/*146.17*/(&quot;&quot;&quot;&lt;br/&gt;
+            &quot;&quot;&quot;)))}),format.raw/*147.14*/(&quot;&quot;&quot;
+        &quot;&quot;&quot;),format.raw/*148.9*/(&quot;&quot;&quot;&lt;/p&gt;
+
+    &lt;/div&gt;
+<span class="nc" id="L178">&quot;&quot;&quot;)))}),format.raw/*151.2*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L179">&quot;&quot;&quot;),format.raw/*152.1*/(&quot;&quot;&quot;&lt;/body&gt;</span>
+&lt;/html&gt;
+&quot;&quot;&quot;))
+      }
+    }
+  }
+
+<span class="nc" id="L186">  def render(keywords:ArrayList[String],userList:ArrayList[ArrayList[ArrayList[TextSegment]]],userReadability:ArrayList[ArrayList[String]],searchForm:Form[SearchForm],messagesProvider:MessagesProvider,request:play.mvc.Http.Request): play.twirl.api.HtmlFormat.Appendable = apply(keywords)(userList)(userReadability)(searchForm)(messagesProvider,request)</span>
+
+<span class="nc" id="L188">  def f:((ArrayList[String]) =&gt; (ArrayList[ArrayList[ArrayList[TextSegment]]]) =&gt; (ArrayList[ArrayList[String]]) =&gt; (Form[SearchForm]) =&gt; (MessagesProvider,play.mvc.Http.Request) =&gt; play.twirl.api.HtmlFormat.Appendable) = (keywords) =&gt; (userList) =&gt; (userReadability) =&gt; (searchForm) =&gt; (messagesProvider,request) =&gt; apply(keywords)(userList)(userReadability)(searchForm)(messagesProvider,request)</span>
+
+<span class="nc" id="L190">  def ref: this.type = this</span>
+
+}
+
+
+              /*
+                  -- GENERATED --
+                  SOURCE: app/views/Home/searchResults.scala.html
+                  HASH: bb5eb41e48c6b5619a03ee414ebe3036bdcf0193
+                  MATRIX: 615-&gt;1|646-&gt;27|683-&gt;59|728-&gt;99|1206-&gt;126|1519-&gt;371|1565-&gt;366|1595-&gt;388|1624-&gt;555|1655-&gt;559|1812-&gt;688|1841-&gt;689|1883-&gt;703|2237-&gt;1030|2266-&gt;1031|2305-&gt;1043|2367-&gt;1077|2396-&gt;1078|2438-&gt;1092|2588-&gt;1215|2617-&gt;1216|2656-&gt;1228|2738-&gt;1282|2767-&gt;1283|2809-&gt;1297|3076-&gt;1537|3105-&gt;1538|3144-&gt;1550|3247-&gt;1625|3276-&gt;1626|3318-&gt;1640|3480-&gt;1775|3509-&gt;1776|3548-&gt;1788|3655-&gt;1867|3684-&gt;1868|3726-&gt;1882|4015-&gt;2144|4044-&gt;2145|4083-&gt;2157|4198-&gt;2244|4227-&gt;2245|4269-&gt;2259|4356-&gt;2319|4385-&gt;2320|4424-&gt;2332|4530-&gt;2410|4559-&gt;2411|4601-&gt;2425|4924-&gt;2721|4953-&gt;2722|4992-&gt;2734|5112-&gt;2826|5141-&gt;2827|5183-&gt;2841|5246-&gt;2877|5275-&gt;2878|5316-&gt;2891|5365-&gt;2912|5394-&gt;2913|5436-&gt;2927|5487-&gt;2951|5516-&gt;2952|5551-&gt;2960|5706-&gt;3088|5722-&gt;3094|5778-&gt;3140|5819-&gt;3142|5853-&gt;3149|5869-&gt;3155|5924-&gt;3188|5958-&gt;3194|6032-&gt;3237|6062-&gt;3239|6150-&gt;3300|6218-&gt;3351|6259-&gt;3353|6293-&gt;3359|6478-&gt;3516|6496-&gt;3524|6529-&gt;3535|6559-&gt;3537|6584-&gt;3552|6624-&gt;3570|6654-&gt;3571|6718-&gt;3606|6744-&gt;3621|6785-&gt;3639|6816-&gt;3640|6880-&gt;3675|6906-&gt;3690|6947-&gt;3708|6978-&gt;3709|7032-&gt;3735|7048-&gt;3741|7122-&gt;3793|7237-&gt;3880|7283-&gt;3909|7324-&gt;3911|7371-&gt;3930|7412-&gt;3954|7453-&gt;3956|7508-&gt;3982|7747-&gt;4193|7788-&gt;4195|7843-&gt;4221|7913-&gt;4263|7930-&gt;4270|7956-&gt;4274|8050-&gt;4323|8107-&gt;4351|8276-&gt;4492|8317-&gt;4494|8372-&gt;4520|8410-&gt;4530|8426-&gt;4536|8489-&gt;4577|8567-&gt;4610|8624-&gt;4638|8819-&gt;4804|8861-&gt;4806|8916-&gt;4832|8954-&gt;4842|8971-&gt;4849|8997-&gt;4853|9028-&gt;4856|9045-&gt;4863|9072-&gt;4868|9144-&gt;4895|9201-&gt;4923|9417-&gt;5110|9459-&gt;5112|9514-&gt;5139|9531-&gt;5146|9558-&gt;5151|9626-&gt;5174|9677-&gt;5193|9724-&gt;5211|9776-&gt;5231|9814-&gt;5241|9866-&gt;5262|9896-&gt;5264
+                  LINES: 23-&gt;1|24-&gt;2|25-&gt;3|26-&gt;4|31-&gt;5|34-&gt;7|37-&gt;5|39-&gt;8|40-&gt;13|42-&gt;15|47-&gt;20|47-&gt;20|48-&gt;21|58-&gt;31|58-&gt;31|60-&gt;33|61-&gt;34|61-&gt;34|62-&gt;35|66-&gt;39|66-&gt;39|68-&gt;41|69-&gt;42|69-&gt;42|70-&gt;43|77-&gt;50|77-&gt;50|79-&gt;52|80-&gt;53|80-&gt;53|81-&gt;54|84-&gt;57|84-&gt;57|86-&gt;59|87-&gt;60|87-&gt;60|88-&gt;61|96-&gt;69|96-&gt;69|98-&gt;71|99-&gt;72|99-&gt;72|100-&gt;73|102-&gt;75|102-&gt;75|104-&gt;77|105-&gt;78|105-&gt;78|106-&gt;79|115-&gt;88|115-&gt;88|117-&gt;90|118-&gt;91|118-&gt;91|119-&gt;92|120-&gt;93|120-&gt;93|122-&gt;95|122-&gt;95|122-&gt;95|123-&gt;96|124-&gt;97|124-&gt;97|126-&gt;99|133-&gt;106|133-&gt;106|133-&gt;106|133-&gt;106|134-&gt;107|134-&gt;107|134-&gt;107|135-&gt;108|136-&gt;109|137-&gt;110|142-&gt;115|142-&gt;115|142-&gt;115|143-&gt;116|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|146-&gt;119|147-&gt;120|147-&gt;120|147-&gt;120|149-&gt;122|149-&gt;122|149-&gt;122|150-&gt;123|150-&gt;123|150-&gt;123|151-&gt;124|153-&gt;126|153-&gt;126|154-&gt;127|155-&gt;128|155-&gt;128|155-&gt;128|156-&gt;129|158-&gt;131|159-&gt;132|159-&gt;132|160-&gt;133|160-&gt;133|160-&gt;133|160-&gt;133|161-&gt;134|163-&gt;136|164-&gt;137|164-&gt;137|165-&gt;138|165-&gt;138|165-&gt;138|165-&gt;138|165-&gt;138|165-&gt;138|165-&gt;138|166-&gt;139|168-&gt;141|169-&gt;142|169-&gt;142|170-&gt;143|170-&gt;143|170-&gt;143|171-&gt;144|172-&gt;145|173-&gt;146|174-&gt;147|175-&gt;148|178-&gt;151|179-&gt;152
+                  -- GENERATED --
+              */
+          
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

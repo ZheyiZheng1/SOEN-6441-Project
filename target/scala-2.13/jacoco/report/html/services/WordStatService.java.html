@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WordStatService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">services</a> &gt; <span class="el_source">WordStatService.java</span></div><h1>WordStatService.java</h1><pre class="source lang-java linenums">/**
+ * @author: Praneet Avhad - 40279347
+ * This is the word stat service.
+ */
+
+
+package services;
+
+import play.mvc.Controller;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+<span class="nc" id="L18">public class WordStatService extends Controller {</span>
+<span class="nc" id="L19">    private static final List&lt;String&gt; SKIPWORDS = Arrays.asList(</span>
+            &quot;a&quot;, &quot;an&quot;, &quot;and&quot;, &quot;are&quot;, &quot;as&quot;, &quot;at&quot;, &quot;be&quot;, &quot;by&quot;, &quot;for&quot;, &quot;from&quot;, &quot;has&quot;, &quot;he&quot;,
+            &quot;in&quot;, &quot;is&quot;, &quot;it&quot;, &quot;its&quot;, &quot;of&quot;, &quot;on&quot;, &quot;that&quot;, &quot;the&quot;, &quot;to&quot;, &quot;was&quot;, &quot;were&quot;, &quot;will&quot;,
+            &quot;with&quot;, &quot;i&quot;, &quot;you&quot;, &quot;she&quot;, &quot;we&quot;, &quot;they&quot;, &quot;my&quot;, &quot;your&quot;, &quot;this&quot;, &quot;these&quot;, &quot;those&quot;,
+            &quot;or&quot;, &quot;but&quot;, &quot;if&quot;, &quot;because&quot;, &quot;just&quot;,&quot;s&quot;,&quot;t&quot;
+    );
+
+    public Map&lt;String, Long&gt; getWordFrequency(List&lt;YTResponse&gt; videos) {
+<span class="nc" id="L27">        return videos.stream()</span>
+                // Extract words from each video's title or description
+<span class="nc" id="L29">                .flatMap(video -&gt; Stream.of((video.getTitle() + &quot; &quot; + video.getDescription()).split(&quot;\\W+&quot;))) // Split by non-word characters</span>
+<span class="nc" id="L30">                .map(String::toLowerCase) // Convert to lowercase for case-insensitive counting</span>
+<span class="nc" id="L31">                .filter(word -&gt; !word.isEmpty()) // Remove any empty words</span>
+<span class="nc" id="L32">                .filter(word -&gt; word.length() &gt; 1)           // Remove single-character words</span>
+<span class="nc" id="L33">                .filter(word -&gt; !SKIPWORDS.contains(word))   // Remove unneccasary words</span>
+<span class="nc" id="L34">                .filter(word -&gt; !word.matches(&quot;\\d+&quot;))       // Remove numbers</span>
+<span class="nc" id="L35">                .collect(Collectors.groupingBy(word -&gt; word, Collectors.counting())); // Count each word</span>
+    }
+
+    public Map&lt;String, Long&gt; sortWordsByFrequency(Map&lt;String, Long&gt; wordFrequency) {
+<span class="nc" id="L39">        return wordFrequency.entrySet().stream()</span>
+<span class="nc" id="L40">                .sorted(Map.Entry.&lt;String, Long&gt;comparingByValue().reversed())</span>
+<span class="nc" id="L41">                .collect(Collectors.toMap(</span>
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -&gt; e1,
+                        LinkedHashMap::new // Maintain descending order
+                ));
+    }
+
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

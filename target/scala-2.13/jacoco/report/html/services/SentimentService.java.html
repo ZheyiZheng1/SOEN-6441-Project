@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SentimentService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">services</a> &gt; <span class="el_source">SentimentService.java</span></div><h1>SentimentService.java</h1><pre class="source lang-java linenums">package services;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+public class SentimentService {
+
+    String FinalOutput;
+
+    /**
+     * @author: Jiaxi Liu - 40278106
+     * Created: 2024/11/6
+     * The method is used to get the final output(a symbol of sentiment).
+     * @return  FinalOutput.
+     */
+    public String getFinalOutput() {
+<span class="nc" id="L18">        return FinalOutput;</span>
+    }
+
+    /**
+     * @author: Jiaxi Liu - 40278106
+     * Created: 2024/11/6
+     * This is a Constructor method.
+     * The method calculates the rate of positive words and negative words, then generates the sentiment string(&quot;:-)&quot;,&quot;:-(&quot;,&quot;:-|&quot;)
+     * @param Input  is the information of videos
+     */
+<span class="nc" id="L28">    public SentimentService(CompletableFuture&lt;List&lt;YTResponse&gt;&gt; Input){</span>
+<span class="nc" id="L29">        Input.thenApply(list -&gt;{</span>
+            Long tempTotalWords;
+            Double totalWords;
+            Double happyWords;
+            Double sadWords;
+
+            //calculate the number of all words in all descriptions by stream
+            tempTotalWords = list.stream()
+                    .map(YTResponse::getDescription)
+                    .map(Description -&gt;  Description.trim().split(&quot; &quot;))
+                    .flatMap(Arrays::stream)
+                    .count();
+            totalWords = (double)tempTotalWords;
+
+            //calculate the number of positive words in all descriptions by stream
+            //First calculate the number of positive words in each video then add them together
+            happyWords = list.stream()
+                    .map(YTResponse::getDescription)
+                    .map(Description -&gt; Description.trim().split(&quot; &quot;))
+                    .map(words -&gt; (double)countHappyWords(words))
+                    .reduce(0.0, Double::sum);
+
+            //calculate the number of negative words in all descriptions by stream
+            //First calculate the number of negative words in each video then add them together
+            sadWords = list.stream()
+                    .map(YTResponse::getDescription)
+                    .map(Description -&gt; Description.trim().split(&quot; &quot;))
+                    .map(words -&gt; (double)countSadWords(words))
+                    .reduce(0.0, Double::sum);
+
+            setFinalOutput(totalWords, happyWords,sadWords);
+
+            return null;
+        });
+
+
+<span class="nc" id="L65">    }</span>
+
+    /**
+     * @author: Jiaxi Liu - 40278106
+     * Created: 2024/11/6
+     * The method is used to count the number of positive words in a single video description.
+     * The method contains a list of positive words.
+     * @param words is an array of words split from a video description.
+     * @return NumOfHappyWord is the number of positive words.
+     */
+    public int countHappyWords(String[] words){
+<span class="nc" id="L76">        List&lt;String&gt; listOfWords = Arrays.asList(words);</span>
+<span class="nc" id="L77">        String[] happyWords = {&quot;happy&quot;, &quot;joyful&quot;, &quot;blissful&quot;, &quot;cheerful&quot;, &quot;satisfied&quot;, &quot;delighted&quot;, &quot;joy&quot;,&quot;affection&quot;, &quot;fondness&quot;, &quot;cherish&quot;, &quot;touched&quot;, &quot;attachment&quot;, &quot;warmth&quot;, &quot;deep affection&quot;,</span>
+                &quot;motivated&quot;, &quot;encouraged&quot;, &quot;uplifted&quot;, &quot;energized&quot;, &quot;confident&quot;, &quot;brave&quot;, &quot;enthusiastic&quot;, &quot;admiration&quot;, &quot;respect&quot;, &quot;praise&quot;, &quot;appreciation&quot;, &quot;reverence&quot;, &quot;affirmation&quot;,
+                &quot;thankful&quot;, &quot;grateful&quot;, &quot;appreciative&quot;, &quot;blessed&quot;, &quot;content&quot;, &quot;forgiving&quot;, &quot;understanding&quot;, &quot;comfortable&quot;, &quot;relaxed&quot;, &quot;ease&quot;, &quot;carefree&quot;, &quot;peaceful&quot;, &quot;calm&quot;, &quot;safe&quot;,
+                &quot;success&quot;, &quot;achievement&quot;, &quot;fulfilled&quot;, &quot;pride&quot;, &quot;pleased&quot;, &quot;proud&quot;, &quot;progress&quot;, &quot;excitement&quot;, &quot;thrilled&quot;, &quot;eager&quot;, &quot;surprised&quot;, &quot;cheerful&quot;, &quot;lively&quot;, &quot;exhilarated&quot;,
+                &quot;optimistic&quot;, &quot;hopeful&quot;, &quot;confident&quot;, &quot;positive&quot;, &quot;reassured&quot;, &quot;radiant&quot;, &quot;gleeful&quot;, &quot;buoyant&quot;, &quot;jubilant&quot;, &quot;elated&quot;, &quot;inspired&quot;, &quot;driven&quot;, &quot;focused&quot;, &quot;determined&quot;, &quot;empowered&quot;,
+                &quot;fulfilled&quot;, &quot;accomplished&quot;, &quot;satisfied&quot;, &quot;rewarded&quot;, &quot;valued&quot;, &quot;vibrant&quot;, &quot;spirited&quot;, &quot;dynamic&quot;, &quot;animated&quot;, &quot;energetic&quot;, &quot;playful&quot;, &quot;lighthearted&quot;, &quot;amused&quot;, &quot;entertained&quot;, &quot;fun-loving&quot;,
+                &quot;compassionate&quot;, &quot;empathetic&quot;, &quot;caring&quot;, &quot;kind-hearted&quot;, &quot;supportive&quot;, &quot;serene&quot;, &quot;tranquil&quot;, &quot;untroubled&quot;, &quot;harmonious&quot;, &quot;balanced&quot;, &quot;grounded&quot;, &quot;centered&quot;, &quot;mindful&quot;, &quot;aware&quot;, &quot;present&quot;,
+                &quot;secure&quot;, &quot;protected&quot;, &quot;comforted&quot;, &quot;assured&quot;, &quot;safe&quot;, &quot;open-minded&quot;, &quot;accepting&quot;, &quot;tolerant&quot;, &quot;inclusive&quot;, &quot;flexible&quot;, &quot;curious&quot;, &quot;inquisitive&quot;, &quot;explorative&quot;, &quot;adventurous&quot;, &quot;engaged&quot;,
+                &quot;hopeful&quot;, &quot;expectant&quot;, &quot;looking forward&quot;, &quot;anticipating&quot;, &quot;excited&quot;, &quot;charitable&quot;, &quot;generous&quot;, &quot;giving&quot;, &quot;selfless&quot;, &quot;thoughtful&quot;, &quot;appreciated&quot;, &quot;cherished&quot;, &quot;loved&quot;, &quot;adored&quot;, &quot;treasured&quot;,
+                &quot;successful&quot;, &quot;victorious&quot;, &quot;celebrated&quot;, &quot;honored&quot;, &quot;noteworthy&quot;, &quot;enlightened&quot;, &quot;wise&quot;, &quot;perceptive&quot;, &quot;insightful&quot;, &quot;knowledgeable&quot;, &quot;whole&quot;, &quot;complete&quot;, &quot;unified&quot;, &quot;aligned&quot;, &quot;integrated&quot;,
+                &quot;playful&quot;, &quot;youthful&quot;, &quot;joyous&quot;, &quot;sunny&quot;, &quot;radiant&quot;
+        };
+
+<span class="nc" id="L90">        long NumOfHappyWord = listOfWords.stream()</span>
+<span class="nc" id="L91">                .filter(word -&gt; IfContain(word,happyWords))</span>
+<span class="nc" id="L92">                .count();</span>
+
+<span class="nc" id="L94">        return (int)NumOfHappyWord;</span>
+    }
+
+
+    /**
+     * @author: Jiaxi Liu - 40278106
+     * Created: 2024/11/6
+     * The method is used to count the number of negative words in a single video description.
+     * The method contains a list of negative words.
+     * @param words is an array of words split from a video description.
+     * @return NumOfSadWord is the number of negative words.
+     */
+    public int countSadWords(String[] words){
+<span class="nc" id="L107">        List&lt;String&gt; listOfWords = Arrays.asList(words);</span>
+<span class="nc" id="L108">        String[] sadWords = { &quot;sad&quot;, &quot;down&quot;, &quot;depressed&quot;, &quot;heartbroken&quot;, &quot;lonely&quot;, &quot;disappointed&quot;, &quot;unhappy&quot;, &quot;angry&quot;, &quot;furious&quot;, &quot;annoyed&quot;, &quot;frustrated&quot;, &quot;irritated&quot;, &quot;resentful&quot;, &quot;outraged&quot;,</span>
+                &quot;afraid&quot;, &quot;scared&quot;, &quot;anxious&quot;, &quot;worried&quot;, &quot;nervous&quot;, &quot;alarmed&quot;, &quot;panicked&quot;, &quot;disgusted&quot;, &quot;revolted&quot;, &quot;repulsed&quot;, &quot;nauseated&quot;, &quot;sickened&quot;, &quot;offended&quot;, &quot;appalled&quot;,
+                &quot;guilty&quot;, &quot;ashamed&quot;, &quot;remorseful&quot;, &quot;regretful&quot;, &quot;sorry&quot;, &quot;blameworthy&quot;, &quot;fault&quot;, &quot;ashamed&quot;, &quot;humiliated&quot;, &quot;embarrassed&quot;, &quot;disgraced&quot;, &quot;self-conscious&quot;, &quot;mortified&quot;,
+                &quot;disappointed&quot;, &quot;discouraged&quot;, &quot;let down&quot;, &quot;disheartened&quot;, &quot;dissatisfied&quot;, &quot;regretful&quot;, &quot;frustrated&quot;, &quot;exasperated&quot;, &quot;irritated&quot;, &quot;stuck&quot;, &quot;defeated&quot;, &quot;helpless&quot;,
+                &quot;exhausted&quot;, &quot;weary&quot;, &quot;drained&quot;, &quot;worn-out&quot;, &quot;fatigued&quot;, &quot;uneasy&quot;, &quot;tense&quot;, &quot;apprehensive&quot;, &quot;restless&quot;, &quot;agitated&quot;, &quot;confused&quot;, &quot;bewildered&quot;, &quot;lost&quot;, &quot;unsure&quot;,
+                &quot;uncertain&quot;, &quot;hopeless&quot;, &quot;despairing&quot;, &quot;despondent&quot;, &quot;discouraged&quot;, &quot;downcast&quot;, &quot;disheartened&quot;, &quot;crestfallen&quot;, &quot;low-spirited&quot;, &quot;indifferent&quot;, &quot;apathetic&quot;, &quot;disinterested&quot;,
+                &quot;unenthusiastic&quot;, &quot;ignored&quot;, &quot;neglected&quot;, &quot;unappreciated&quot;, &quot;overlooked&quot;, &quot;powerless&quot;, &quot;vulnerable&quot;, &quot;unsupported&quot;, &quot;defenseless&quot;, &quot;envious&quot;, &quot;jealous&quot;, &quot;resentful&quot;, &quot;covetous&quot;,
+                &quot;bored&quot;, &quot;disinterested&quot;, &quot;unmotivated&quot;, &quot;uninspired&quot;, &quot;bitter&quot;, &quot;spiteful&quot;, &quot;grudging&quot;, &quot;resentful&quot;, &quot;isolated&quot;, &quot;alienated&quot;, &quot;excluded&quot;, &quot;ostracized&quot;, &quot;suppressed&quot;, &quot;repressed&quot;,
+                &quot;restrained&quot;, &quot;stifled&quot;, &quot;empty&quot;, &quot;hollow&quot;, &quot;unfulfilled&quot;, &quot;meaningless&quot;, &quot;insecure&quot;, &quot;inadequate&quot;, &quot;inferior&quot;, &quot;unworthy&quot;, &quot;uneasy&quot;, &quot;perturbed&quot;, &quot;unsettled&quot;, &quot;jittery&quot;, &quot;fed up&quot;,
+                &quot;sick&quot;, &quot;tired&quot;, &quot;disenchanted&quot;, &quot;controlled&quot;, &quot;manipulated&quot;, &quot;oppressed&quot;, &quot;exploited&quot;, &quot;agonized&quot;, &quot;tortured&quot;, &quot;tormented&quot;, &quot;distressed&quot;, &quot;shamed&quot;, &quot;disgraced&quot;, &quot;humiliated&quot;, &quot;mortified&quot;
+        };
+
+<span class="nc" id="L120">        long NumOfSadWord = listOfWords.stream()</span>
+<span class="nc" id="L121">                .filter(word -&gt; IfContain(word,sadWords))</span>
+<span class="nc" id="L122">                .count();</span>
+
+<span class="nc" id="L124">        return (int)NumOfSadWord;</span>
+    }
+
+    /**
+     * @author: Jiaxi Liu - 40278106
+     * Created: 2024/11/6
+     * The method is used to estimate if a word is in the word list.
+     * @param word is a word in description.
+     * @param keywords is the word list of positive words or negative words.
+     * @return IfContain is a boolean value that means if the word is in the word list.
+     */
+    boolean IfContain(String word,String[] keywords){
+<span class="nc" id="L136">        boolean IfContain = false;</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            for(String keyword: keywords)</span>
+            {
+<span class="nc bnc" id="L139" title="All 2 branches missed.">                if(word.contains(keyword)){</span>
+<span class="nc" id="L140">                    IfContain = true;</span>
+<span class="nc" id="L141">                    break;</span>
+                }
+            }
+<span class="nc" id="L144">        return IfContain;</span>
+    }
+
+    /**
+     * @author: Jiaxi Liu - 40278106
+     * Created: 2024/11/6
+     * The method is used to generate the symbol of sentiment according to number of different words.
+     * @param totalWords is the number of words in all descriptions.
+     * @param happyWords is the number of positive words in all descriptions.
+     * @param sadWords is the number of negative words in all descriptions.
+     */
+    public void setFinalOutput(Double totalWords,Double happyWords,Double sadWords)
+    {
+        //if the rate of positive words is bigger than 0.7(70%),set the FinalOutput as &quot;:-)&quot;
+<span class="nc bnc" id="L158" title="All 2 branches missed.">        if(happyWords/totalWords &gt;= 0.70)</span>
+<span class="nc" id="L159">            FinalOutput = &quot;:-)&quot;;</span>
+        //if the rate of negative words is bigger than 0.7(70%),set the FinalOutput as &quot;:-(&quot;
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        else if (sadWords/totalWords &gt;= 0.70)</span>
+<span class="nc" id="L162">            FinalOutput = &quot;:-(&quot;;</span>
+        //If both of them are less than 0.7,set the FinalOutput as &quot;:-|&quot;
+<span class="nc" id="L164">            else FinalOutput = &quot;:-|&quot;;</span>
+
+<span class="nc" id="L166">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
