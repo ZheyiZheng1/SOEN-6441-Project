@@ -1,65 +1,591 @@
-2024-11-08 09:52:46,289 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-4 - ApplicationTimer demo: Starting application at 2024-11-08T14:52:46.288938700Z
-2024-11-08 09:52:46,314 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-4 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2024-11-08 10:03:43,220 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-12 - ApplicationTimer demo: Starting application at 2024-11-08T15:03:43.219639900Z
+2024-11-08 10:03:43,253 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-12 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     filters.ExampleFilter
 
-2024-11-08 09:52:46,459 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-4 - Application started (Dev) (no global state)
-2024-11-08 09:52:52,594 [ERROR] from play.api.http.DefaultHttpErrorHandler in application-pekko.actor.default-dispatcher-9 - 
+2024-11-08 10:03:43,399 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-12 - Application started (Dev) (no global state)
+2024-11-08 10:05:32,004 [INFO] from application in application-pekko.actor.internal-dispatcher-3 - ApplicationTimer demo: Stopping application at 2024-11-08T15:05:32.003907800Z after 109s.
+2024-11-08 10:05:32,156 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-10 - Registering exception handler: guice-provision-exception-handler
+2024-11-08 10:05:32,329 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-10 - ApplicationTimer demo: Starting application at 2024-11-08T15:05:32.328467Z
+2024-11-08 10:05:32,337 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-10 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
-! @87diim3o5 - Internal server error, for (GET) [/search?keyword=weekend] ->
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-08 10:05:32,349 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-10 - Application started (Dev) (no global state)
+2024-11-08 10:06:26,555 [INFO] from application in application-pekko.actor.internal-dispatcher-4 - ApplicationTimer demo: Stopping application at 2024-11-08T15:06:26.555027600Z after 54s.
+2024-11-08 10:06:26,628 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-11 - Registering exception handler: guice-provision-exception-handler
+2024-11-08 10:06:26,781 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-11 - ApplicationTimer demo: Starting application at 2024-11-08T15:06:26.780816400Z
+2024-11-08 10:06:26,787 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-11 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-08 10:06:26,801 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-11 - Application started (Dev) (no global state)
+2024-11-08 10:07:51,348 [INFO] from application in application-pekko.actor.internal-dispatcher-2 - ApplicationTimer demo: Stopping application at 2024-11-08T15:07:51.348698900Z after 85s.
+2024-11-08 10:07:51,405 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-13 - Registering exception handler: guice-provision-exception-handler
+2024-11-08 10:07:51,558 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-13 - ApplicationTimer demo: Starting application at 2024-11-08T15:07:51.557891800Z
+2024-11-08 10:07:51,563 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-13 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-08 10:07:51,573 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-13 - Application started (Dev) (no global state)
+2024-11-08 10:08:01,288 [INFO] from application in application-pekko.actor.internal-dispatcher-2 - ApplicationTimer demo: Stopping application at 2024-11-08T15:08:01.288107200Z after 10s.
+2024-11-08 10:08:01,346 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-7 - Registering exception handler: guice-provision-exception-handler
+2024-11-08 10:08:01,534 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-7 - ApplicationTimer demo: Starting application at 2024-11-08T15:08:01.534031900Z
+2024-11-08 10:08:01,545 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-7 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-08 10:08:01,559 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-7 - Application started (Dev) (no global state)
+2024-11-08 10:08:14,125 [INFO] from application in application-pekko.actor.internal-dispatcher-4 - ApplicationTimer demo: Stopping application at 2024-11-08T15:08:14.125208800Z after 13s.
+2024-11-08 10:08:14,170 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-7 - Registering exception handler: guice-provision-exception-handler
+2024-11-08 10:08:14,297 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-7 - ApplicationTimer demo: Starting application at 2024-11-08T15:08:14.296360600Z
+2024-11-08 10:08:14,303 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-7 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-08 10:08:14,309 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-7 - Application started (Dev) (no global state)
+2024-11-08 10:08:35,231 [INFO] from application in application-pekko.actor.internal-dispatcher-2 - ApplicationTimer demo: Stopping application at 2024-11-08T15:08:35.230643500Z after 21s.
+2024-11-08 10:08:35,285 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-5 - Registering exception handler: guice-provision-exception-handler
+2024-11-08 10:08:35,426 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-5 - ApplicationTimer demo: Starting application at 2024-11-08T15:08:35.425508200Z
+2024-11-08 10:08:35,435 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-5 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-08 10:08:35,445 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-5 - Application started (Dev) (no global state)
+2024-11-08 10:10:46,107 [INFO] from application in application-pekko.actor.internal-dispatcher-3 - ApplicationTimer demo: Stopping application at 2024-11-08T15:10:46.107763900Z after 131s.
+2024-11-08 10:10:46,160 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-11 - Registering exception handler: guice-provision-exception-handler
+2024-11-08 10:10:46,273 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-11 - ApplicationTimer demo: Starting application at 2024-11-08T15:10:46.273560800Z
+2024-11-08 10:10:46,279 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-11 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-08 10:10:46,285 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-11 - Application started (Dev) (no global state)
+2024-11-08 10:12:52,964 [INFO] from application in application-pekko.actor.internal-dispatcher-8 - ApplicationTimer demo: Stopping application at 2024-11-08T15:12:52.964001700Z after 126s.
+2024-11-08 10:12:53,016 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-11 - Registering exception handler: guice-provision-exception-handler
+2024-11-08 10:12:53,155 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-11 - ApplicationTimer demo: Starting application at 2024-11-08T15:12:53.154738300Z
+2024-11-08 10:12:53,162 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-11 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-08 10:12:53,171 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-11 - Application started (Dev) (no global state)
+2024-11-08 10:17:11,569 [INFO] from application in application-pekko.actor.internal-dispatcher-2 - ApplicationTimer demo: Stopping application at 2024-11-08T15:17:11.569655700Z after 258s.
+2024-11-08 10:17:11,604 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-9 - Registering exception handler: guice-provision-exception-handler
+2024-11-08 10:17:11,702 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-9 - ApplicationTimer demo: Starting application at 2024-11-08T15:17:11.702261500Z
+2024-11-08 10:17:11,707 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-9 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-08 10:17:11,712 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-9 - Application started (Dev) (no global state)
+2024-11-08 10:28:43,870 [ERROR] from play.api.http.DevHttpErrorHandler in play-dev-mode-pekko.actor.default-dispatcher-25 - 
+
+! @87dinee6b - Internal server error, for (GET) [/tags/XXYlFuWEuKI] ->
  
-play.api.PlayException: Execution exception[[CompletionException: java.lang.RuntimeException: java.io.IOException: HTTP error code: 403]]
-	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$3(HttpErrorHandler.scala:407)
-	at scala.Option.getOrElse(Option.scala:201)
-	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:407)
-	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:390)
-	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:267)
-	at play.core.server.PekkoHttpServer$$anonfun$invokeAction$1$1.applyOrElse(PekkoHttpServer.scala:482)
-	at play.core.server.PekkoHttpServer$$anonfun$invokeAction$1$1.applyOrElse(PekkoHttpServer.scala:474)
-	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
-	at org.apache.pekko.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:73)
-	at org.apache.pekko.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:110)
-	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
-	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
-	at org.apache.pekko.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:110)
-	at org.apache.pekko.dispatch.TaskInvocation.run(AbstractDispatcher.scala:59)
-	at org.apache.pekko.dispatch.ForkJoinExecutorConfigurator$PekkoForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:57)
+play.sbt.PlayExceptions$CompilationException: Compilation error[too many arguments (found 2, expected 1) for method searchByTag: (tag: String): play.api.mvc.Call]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.$anonfun$taskFailureHandler$8(PlayReload.scala:119)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:92)
+	at play.sbt.run.PlayReload$.$anonfun$compile$3(PlayReload.scala:144)
+	at scala.util.Either$LeftProjection.map(Either.scala:573)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:144)
+	at sbt.PlayRun$.$anonfun$playRunTask$5(PlayRun.scala:99)
+	at play.runsupport.Reloader.$anonfun$reload$1(Reloader.scala:495)
+	at play.runsupport.Reloader$$anon$1.run(Reloader.scala:58)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:389)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:64)
+	at play.runsupport.Reloader.reload(Reloader.scala:495)
+	at play.core.server.DevServerStart$DevServerApplicationProvider$1.get(DevServerStart.scala:189)
+	at play.core.server.PekkoHttpServer.handleRequest(PekkoHttpServer.scala:320)
+	at play.core.server.PekkoHttpServer.$anonfun$createServerBinding$1(PekkoHttpServer.scala:224)
+	at org.apache.pekko.stream.impl.fusing.MapAsyncUnordered$$anon$31.onPush(Ops.scala:1443)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:555)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:506)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:400)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:662)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:532)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:637)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.org$apache$pekko$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:813)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:831)
+	at org.apache.pekko.actor.Actor.aroundReceive(Actor.scala:547)
+	at org.apache.pekko.actor.Actor.aroundReceive$(Actor.scala:545)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:729)
+	at org.apache.pekko.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at org.apache.pekko.actor.ActorCell.invoke(ActorCell.scala:557)
+	at org.apache.pekko.dispatch.Mailbox.processMailbox(Mailbox.scala:280)
+	at org.apache.pekko.dispatch.Mailbox.run(Mailbox.scala:241)
+	at org.apache.pekko.dispatch.Mailbox.exec(Mailbox.scala:253)
 	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
 	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
-Caused by: java.util.concurrent.CompletionException: java.lang.RuntimeException: java.io.IOException: HTTP error code: 403
-	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:314)
-	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:319)
-	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1702)
-	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1692)
-	... 5 common frames omitted
-Caused by: java.lang.RuntimeException: java.io.IOException: HTTP error code: 403
-	at services.YTRestDir.lambda$searchVideosAsynch$0(YTRestDir.java:50)
-	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1700)
-	... 6 common frames omitted
-Caused by: java.io.IOException: HTTP error code: 403
-	at services.YTRestDir.searchVideos(YTRestDir.java:78)
-	at services.YTRestDir.lambda$searchVideosAsynch$0(YTRestDir.java:48)
-	... 7 common frames omitted
-2024-11-08 09:53:32,784 [INFO] from application in application-pekko.actor.internal-dispatcher-5 - ApplicationTimer demo: Stopping application at 2024-11-08T14:53:32.784875700Z after 46s.
-2024-11-08 09:53:32,873 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-10 - Registering exception handler: guice-provision-exception-handler
-2024-11-08 09:53:33,024 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-10 - ApplicationTimer demo: Starting application at 2024-11-08T14:53:33.024119Z
-2024-11-08 09:53:33,029 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-10 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2024-11-08 10:30:55,505 [INFO] from application in application-pekko.actor.internal-dispatcher-2 - ApplicationTimer demo: Stopping application at 2024-11-08T15:30:55.501888300Z after 824s.
+2024-11-08 10:30:55,548 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-26 - Registering exception handler: guice-provision-exception-handler
+2024-11-08 10:30:55,649 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-26 - ApplicationTimer demo: Starting application at 2024-11-08T15:30:55.647396100Z
+2024-11-08 10:30:55,653 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-26 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     filters.ExampleFilter
 
-2024-11-08 09:53:33,036 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-10 - Application started (Dev) (no global state)
-2024-11-08 09:54:14,633 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-5-thread-8 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 40000 milliseconds timeout
-2024-11-08 09:54:14,634 [INFO] from play.core.server.PekkoHttpServer in pool-5-thread-8 - Stopping Pekko HTTP server...
-2024-11-08 09:54:14,635 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-2 - Unbinding /0:0:0:0:0:0:0:0:9000
-2024-11-08 09:54:14,640 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-2 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
-2024-11-08 09:54:14,656 [INFO] from application in application-pekko.actor.internal-dispatcher-2 - ApplicationTimer demo: Stopping application at 2024-11-08T14:54:14.655434400Z after 41s.
-2024-11-08 09:54:14,667 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-5 - Running provided shutdown stop hooks
+2024-11-08 10:30:55,660 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-26 - Application started (Dev) (no global state)
+2024-11-08 10:44:21,297 [ERROR] from play.api.http.DevHttpErrorHandler in play-dev-mode-pekko.actor.default-dispatcher-28 - 
+
+! @87dipfmpd - Internal server error, for (GET) [/tags/XXYlFuWEuKI] ->
+ 
+play.sbt.PlayExceptions$CompilationException: Compilation error[type TagsController is not a member of package services]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.$anonfun$taskFailureHandler$8(PlayReload.scala:119)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:92)
+	at play.sbt.run.PlayReload$.$anonfun$compile$3(PlayReload.scala:144)
+	at scala.util.Either$LeftProjection.map(Either.scala:573)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:144)
+	at sbt.PlayRun$.$anonfun$playRunTask$5(PlayRun.scala:99)
+	at play.runsupport.Reloader.$anonfun$reload$1(Reloader.scala:495)
+	at play.runsupport.Reloader$$anon$1.run(Reloader.scala:58)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:389)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:64)
+	at play.runsupport.Reloader.reload(Reloader.scala:495)
+	at play.core.server.DevServerStart$DevServerApplicationProvider$1.get(DevServerStart.scala:189)
+	at play.core.server.PekkoHttpServer.handleRequest(PekkoHttpServer.scala:320)
+	at play.core.server.PekkoHttpServer.$anonfun$createServerBinding$1(PekkoHttpServer.scala:224)
+	at org.apache.pekko.stream.impl.fusing.MapAsyncUnordered$$anon$31.onPush(Ops.scala:1443)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:555)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:506)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:400)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:662)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:532)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:637)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.org$apache$pekko$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:813)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:831)
+	at org.apache.pekko.actor.Actor.aroundReceive(Actor.scala:547)
+	at org.apache.pekko.actor.Actor.aroundReceive$(Actor.scala:545)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:729)
+	at org.apache.pekko.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at org.apache.pekko.actor.ActorCell.invoke(ActorCell.scala:557)
+	at org.apache.pekko.dispatch.Mailbox.processMailbox(Mailbox.scala:280)
+	at org.apache.pekko.dispatch.Mailbox.run(Mailbox.scala:241)
+	at org.apache.pekko.dispatch.Mailbox.exec(Mailbox.scala:253)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2024-11-08 10:45:30,993 [ERROR] from play.api.http.DevHttpErrorHandler in play-dev-mode-pekko.actor.default-dispatcher-35 - 
+
+! @87dipjm33 - Internal server error, for (GET) [/tags/XXYlFuWEuKI] ->
+ 
+play.sbt.PlayExceptions$CompilationException: Compilation error[value showTags is not a member of controllers.HomeController]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.$anonfun$taskFailureHandler$8(PlayReload.scala:119)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:92)
+	at play.sbt.run.PlayReload$.$anonfun$compile$3(PlayReload.scala:144)
+	at scala.util.Either$LeftProjection.map(Either.scala:573)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:144)
+	at sbt.PlayRun$.$anonfun$playRunTask$5(PlayRun.scala:99)
+	at play.runsupport.Reloader.$anonfun$reload$1(Reloader.scala:495)
+	at play.runsupport.Reloader$$anon$1.run(Reloader.scala:58)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:389)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:64)
+	at play.runsupport.Reloader.reload(Reloader.scala:495)
+	at play.core.server.DevServerStart$DevServerApplicationProvider$1.get(DevServerStart.scala:189)
+	at play.core.server.PekkoHttpServer.handleRequest(PekkoHttpServer.scala:320)
+	at play.core.server.PekkoHttpServer.$anonfun$createServerBinding$1(PekkoHttpServer.scala:224)
+	at org.apache.pekko.stream.impl.fusing.MapAsyncUnordered$$anon$31.onPush(Ops.scala:1443)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:555)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:506)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:400)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:662)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:532)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:637)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.org$apache$pekko$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:813)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:831)
+	at org.apache.pekko.actor.Actor.aroundReceive(Actor.scala:547)
+	at org.apache.pekko.actor.Actor.aroundReceive$(Actor.scala:545)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:729)
+	at org.apache.pekko.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at org.apache.pekko.actor.ActorCell.invoke(ActorCell.scala:557)
+	at org.apache.pekko.dispatch.Mailbox.processMailbox(Mailbox.scala:280)
+	at org.apache.pekko.dispatch.Mailbox.run(Mailbox.scala:241)
+	at org.apache.pekko.dispatch.Mailbox.exec(Mailbox.scala:253)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2024-11-08 10:49:10,025 [ERROR] from play.api.http.DevHttpErrorHandler in play-dev-mode-pekko.actor.default-dispatcher-36 - 
+
+! @87dj0683b - Internal server error, for (GET) [/tags/XXYlFuWEuKI] ->
+ 
+play.sbt.PlayExceptions$CompilationException: Compilation error[not enough arguments for method showTags: (videoId: String, request: play.mvc.Http.Request): java.util.concurrent.CompletableFuture[play.mvc.Result].
+Unspecified value parameter request.]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.$anonfun$taskFailureHandler$8(PlayReload.scala:119)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:92)
+	at play.sbt.run.PlayReload$.$anonfun$compile$3(PlayReload.scala:144)
+	at scala.util.Either$LeftProjection.map(Either.scala:573)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:144)
+	at sbt.PlayRun$.$anonfun$playRunTask$5(PlayRun.scala:99)
+	at play.runsupport.Reloader.$anonfun$reload$1(Reloader.scala:495)
+	at play.runsupport.Reloader$$anon$1.run(Reloader.scala:58)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:389)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:64)
+	at play.runsupport.Reloader.reload(Reloader.scala:495)
+	at play.core.server.DevServerStart$DevServerApplicationProvider$1.get(DevServerStart.scala:189)
+	at play.core.server.PekkoHttpServer.handleRequest(PekkoHttpServer.scala:320)
+	at play.core.server.PekkoHttpServer.$anonfun$createServerBinding$1(PekkoHttpServer.scala:224)
+	at org.apache.pekko.stream.impl.fusing.MapAsyncUnordered$$anon$31.onPush(Ops.scala:1443)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:555)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:506)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:400)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:662)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:532)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:637)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.org$apache$pekko$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:813)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:831)
+	at org.apache.pekko.actor.Actor.aroundReceive(Actor.scala:547)
+	at org.apache.pekko.actor.Actor.aroundReceive$(Actor.scala:545)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:729)
+	at org.apache.pekko.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at org.apache.pekko.actor.ActorCell.invoke(ActorCell.scala:557)
+	at org.apache.pekko.dispatch.Mailbox.processMailbox(Mailbox.scala:280)
+	at org.apache.pekko.dispatch.Mailbox.run(Mailbox.scala:241)
+	at org.apache.pekko.dispatch.Mailbox.exec(Mailbox.scala:253)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2024-11-08 10:49:35,328 [ERROR] from play.api.http.DevHttpErrorHandler in play-dev-mode-pekko.actor.default-dispatcher-36 - 
+
+! @87dj07jeg - Internal server error, for (GET) [/tags/XXYlFuWEuKI] ->
+ 
+play.sbt.PlayExceptions$CompilationException: Compilation error[not enough arguments for method showTags: (videoId: String, request: play.mvc.Http.Request): java.util.concurrent.CompletableFuture[play.mvc.Result].
+Unspecified value parameter request.]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.$anonfun$taskFailureHandler$8(PlayReload.scala:119)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:92)
+	at play.sbt.run.PlayReload$.$anonfun$compile$3(PlayReload.scala:144)
+	at scala.util.Either$LeftProjection.map(Either.scala:573)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:144)
+	at sbt.PlayRun$.$anonfun$playRunTask$5(PlayRun.scala:99)
+	at play.runsupport.Reloader.$anonfun$reload$1(Reloader.scala:495)
+	at play.runsupport.Reloader$$anon$1.run(Reloader.scala:58)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:389)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:64)
+	at play.runsupport.Reloader.reload(Reloader.scala:495)
+	at play.core.server.DevServerStart$DevServerApplicationProvider$1.get(DevServerStart.scala:189)
+	at play.core.server.PekkoHttpServer.handleRequest(PekkoHttpServer.scala:320)
+	at play.core.server.PekkoHttpServer.$anonfun$createServerBinding$1(PekkoHttpServer.scala:224)
+	at org.apache.pekko.stream.impl.fusing.MapAsyncUnordered$$anon$31.onPush(Ops.scala:1443)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:555)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:506)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:400)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:662)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:532)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:637)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.org$apache$pekko$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:813)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:831)
+	at org.apache.pekko.actor.Actor.aroundReceive(Actor.scala:547)
+	at org.apache.pekko.actor.Actor.aroundReceive$(Actor.scala:545)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:729)
+	at org.apache.pekko.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at org.apache.pekko.actor.ActorCell.invoke(ActorCell.scala:557)
+	at org.apache.pekko.dispatch.Mailbox.processMailbox(Mailbox.scala:280)
+	at org.apache.pekko.dispatch.Mailbox.run(Mailbox.scala:241)
+	at org.apache.pekko.dispatch.Mailbox.exec(Mailbox.scala:253)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2024-11-08 10:52:40,830 [ERROR] from play.api.http.DevHttpErrorHandler in play-dev-mode-pekko.actor.default-dispatcher-48 - 
+
+! @87dj0i7p8 - Internal server error, for (GET) [/tags/XXYlFuWEuKI] ->
+ 
+play.sbt.PlayExceptions$CompilationException: Compilation error[not enough arguments for method showTags: (videoId: String, request: play.mvc.Http.Request): java.util.concurrent.CompletableFuture[play.mvc.Result].
+Unspecified value parameter request.]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.$anonfun$taskFailureHandler$8(PlayReload.scala:119)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:92)
+	at play.sbt.run.PlayReload$.$anonfun$compile$3(PlayReload.scala:144)
+	at scala.util.Either$LeftProjection.map(Either.scala:573)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:144)
+	at sbt.PlayRun$.$anonfun$playRunTask$5(PlayRun.scala:99)
+	at play.runsupport.Reloader.$anonfun$reload$1(Reloader.scala:495)
+	at play.runsupport.Reloader$$anon$1.run(Reloader.scala:58)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:389)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:64)
+	at play.runsupport.Reloader.reload(Reloader.scala:495)
+	at play.core.server.DevServerStart$DevServerApplicationProvider$1.get(DevServerStart.scala:189)
+	at play.core.server.PekkoHttpServer.handleRequest(PekkoHttpServer.scala:320)
+	at play.core.server.PekkoHttpServer.$anonfun$createServerBinding$1(PekkoHttpServer.scala:224)
+	at org.apache.pekko.stream.impl.fusing.MapAsyncUnordered$$anon$31.onPush(Ops.scala:1443)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:555)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:506)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:400)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:662)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:532)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:637)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.org$apache$pekko$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:813)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:831)
+	at org.apache.pekko.actor.Actor.aroundReceive(Actor.scala:547)
+	at org.apache.pekko.actor.Actor.aroundReceive$(Actor.scala:545)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:729)
+	at org.apache.pekko.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at org.apache.pekko.actor.ActorCell.invoke(ActorCell.scala:557)
+	at org.apache.pekko.dispatch.Mailbox.processMailbox(Mailbox.scala:280)
+	at org.apache.pekko.dispatch.Mailbox.run(Mailbox.scala:241)
+	at org.apache.pekko.dispatch.Mailbox.exec(Mailbox.scala:253)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2024-11-08 10:52:45,755 [ERROR] from play.api.http.DevHttpErrorHandler in play-dev-mode-pekko.actor.default-dispatcher-48 - 
+
+! @87dj0if6j - Internal server error, for (GET) [/tags/XXYlFuWEuKI] ->
+ 
+play.sbt.PlayExceptions$CompilationException: Compilation error[not enough arguments for method showTags: (videoId: String, request: play.mvc.Http.Request): java.util.concurrent.CompletableFuture[play.mvc.Result].
+Unspecified value parameter request.]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.$anonfun$taskFailureHandler$8(PlayReload.scala:119)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:92)
+	at play.sbt.run.PlayReload$.$anonfun$compile$3(PlayReload.scala:144)
+	at scala.util.Either$LeftProjection.map(Either.scala:573)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:144)
+	at sbt.PlayRun$.$anonfun$playRunTask$5(PlayRun.scala:99)
+	at play.runsupport.Reloader.$anonfun$reload$1(Reloader.scala:495)
+	at play.runsupport.Reloader$$anon$1.run(Reloader.scala:58)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:389)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:64)
+	at play.runsupport.Reloader.reload(Reloader.scala:495)
+	at play.core.server.DevServerStart$DevServerApplicationProvider$1.get(DevServerStart.scala:189)
+	at play.core.server.PekkoHttpServer.handleRequest(PekkoHttpServer.scala:320)
+	at play.core.server.PekkoHttpServer.$anonfun$createServerBinding$1(PekkoHttpServer.scala:224)
+	at org.apache.pekko.stream.impl.fusing.MapAsyncUnordered$$anon$31.onPush(Ops.scala:1443)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:555)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:506)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:400)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:662)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:532)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:637)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.org$apache$pekko$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:813)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:831)
+	at org.apache.pekko.actor.Actor.aroundReceive(Actor.scala:547)
+	at org.apache.pekko.actor.Actor.aroundReceive$(Actor.scala:545)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:729)
+	at org.apache.pekko.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at org.apache.pekko.actor.ActorCell.invoke(ActorCell.scala:557)
+	at org.apache.pekko.dispatch.Mailbox.processMailbox(Mailbox.scala:280)
+	at org.apache.pekko.dispatch.Mailbox.run(Mailbox.scala:241)
+	at org.apache.pekko.dispatch.Mailbox.exec(Mailbox.scala:253)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2024-11-08 10:56:44,277 [ERROR] from play.api.http.DevHttpErrorHandler in play-dev-mode-pekko.actor.default-dispatcher-38 - 
+
+! @87dj1642h - Internal server error, for (GET) [/tags/XXYlFuWEuKI] ->
+ 
+play.sbt.PlayExceptions$CompilationException: Compilation error[not enough arguments for method searchByTag: (tag: String, request: play.mvc.Http.Request): java.util.concurrent.CompletableFuture[play.mvc.Result].
+Unspecified value parameter request.]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.$anonfun$taskFailureHandler$8(PlayReload.scala:119)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:92)
+	at play.sbt.run.PlayReload$.$anonfun$compile$3(PlayReload.scala:144)
+	at scala.util.Either$LeftProjection.map(Either.scala:573)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:144)
+	at sbt.PlayRun$.$anonfun$playRunTask$5(PlayRun.scala:99)
+	at play.runsupport.Reloader.$anonfun$reload$1(Reloader.scala:495)
+	at play.runsupport.Reloader$$anon$1.run(Reloader.scala:58)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:389)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:64)
+	at play.runsupport.Reloader.reload(Reloader.scala:495)
+	at play.core.server.DevServerStart$DevServerApplicationProvider$1.get(DevServerStart.scala:189)
+	at play.core.server.PekkoHttpServer.handleRequest(PekkoHttpServer.scala:320)
+	at play.core.server.PekkoHttpServer.$anonfun$createServerBinding$1(PekkoHttpServer.scala:224)
+	at org.apache.pekko.stream.impl.fusing.MapAsyncUnordered$$anon$31.onPush(Ops.scala:1443)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:555)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:506)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:400)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:662)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:532)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:637)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.org$apache$pekko$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:813)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:831)
+	at org.apache.pekko.actor.Actor.aroundReceive(Actor.scala:547)
+	at org.apache.pekko.actor.Actor.aroundReceive$(Actor.scala:545)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:729)
+	at org.apache.pekko.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at org.apache.pekko.actor.ActorCell.invoke(ActorCell.scala:557)
+	at org.apache.pekko.dispatch.Mailbox.processMailbox(Mailbox.scala:280)
+	at org.apache.pekko.dispatch.Mailbox.run(Mailbox.scala:241)
+	at org.apache.pekko.dispatch.Mailbox.exec(Mailbox.scala:253)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2024-11-08 10:57:39,785 [ERROR] from play.api.http.DevHttpErrorHandler in play-dev-mode-pekko.actor.default-dispatcher-36 - 
+
+! @87dj1985f - Internal server error, for (GET) [/tags/XXYlFuWEuKI] ->
+ 
+play.sbt.PlayExceptions$CompilationException: Compilation error[value TagsController is not a member of object controllers.routes]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.$anonfun$taskFailureHandler$8(PlayReload.scala:119)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:92)
+	at play.sbt.run.PlayReload$.$anonfun$compile$3(PlayReload.scala:144)
+	at scala.util.Either$LeftProjection.map(Either.scala:573)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:144)
+	at sbt.PlayRun$.$anonfun$playRunTask$5(PlayRun.scala:99)
+	at play.runsupport.Reloader.$anonfun$reload$1(Reloader.scala:495)
+	at play.runsupport.Reloader$$anon$1.run(Reloader.scala:58)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:389)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:64)
+	at play.runsupport.Reloader.reload(Reloader.scala:495)
+	at play.core.server.DevServerStart$DevServerApplicationProvider$1.get(DevServerStart.scala:189)
+	at play.core.server.PekkoHttpServer.handleRequest(PekkoHttpServer.scala:320)
+	at play.core.server.PekkoHttpServer.$anonfun$createServerBinding$1(PekkoHttpServer.scala:224)
+	at org.apache.pekko.stream.impl.fusing.MapAsyncUnordered$$anon$31.onPush(Ops.scala:1443)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:555)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:506)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:400)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:662)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:532)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:637)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.org$apache$pekko$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:813)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:831)
+	at org.apache.pekko.actor.Actor.aroundReceive(Actor.scala:547)
+	at org.apache.pekko.actor.Actor.aroundReceive$(Actor.scala:545)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:729)
+	at org.apache.pekko.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at org.apache.pekko.actor.ActorCell.invoke(ActorCell.scala:557)
+	at org.apache.pekko.dispatch.Mailbox.processMailbox(Mailbox.scala:280)
+	at org.apache.pekko.dispatch.Mailbox.run(Mailbox.scala:241)
+	at org.apache.pekko.dispatch.Mailbox.exec(Mailbox.scala:253)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2024-11-08 10:58:09,020 [ERROR] from play.api.http.DevHttpErrorHandler in play-dev-mode-pekko.actor.default-dispatcher-36 - 
+
+! @87dj1apc0 - Internal server error, for (GET) [/tags/XXYlFuWEuKI] ->
+ 
+play.sbt.PlayExceptions$CompilationException: Compilation error[value TagsController is not a member of object controllers.routes]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:28)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.$anonfun$taskFailureHandler$8(PlayReload.scala:119)
+	at scala.Option.map(Option.scala:230)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:92)
+	at play.sbt.run.PlayReload$.$anonfun$compile$3(PlayReload.scala:144)
+	at scala.util.Either$LeftProjection.map(Either.scala:573)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:144)
+	at sbt.PlayRun$.$anonfun$playRunTask$5(PlayRun.scala:99)
+	at play.runsupport.Reloader.$anonfun$reload$1(Reloader.scala:495)
+	at play.runsupport.Reloader$$anon$1.run(Reloader.scala:58)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:389)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:64)
+	at play.runsupport.Reloader.reload(Reloader.scala:495)
+	at play.core.server.DevServerStart$DevServerApplicationProvider$1.get(DevServerStart.scala:189)
+	at play.core.server.PekkoHttpServer.handleRequest(PekkoHttpServer.scala:320)
+	at play.core.server.PekkoHttpServer.$anonfun$createServerBinding$1(PekkoHttpServer.scala:224)
+	at org.apache.pekko.stream.impl.fusing.MapAsyncUnordered$$anon$31.onPush(Ops.scala:1443)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processPush(GraphInterpreter.scala:555)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.processEvent(GraphInterpreter.scala:506)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreter.execute(GraphInterpreter.scala:400)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.runBatch(ActorGraphInterpreter.scala:662)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell$AsyncInput.execute(ActorGraphInterpreter.scala:532)
+	at org.apache.pekko.stream.impl.fusing.GraphInterpreterShell.processEvent(ActorGraphInterpreter.scala:637)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.org$apache$pekko$stream$impl$fusing$ActorGraphInterpreter$$processEvent(ActorGraphInterpreter.scala:813)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter$$anonfun$receive$1.applyOrElse(ActorGraphInterpreter.scala:831)
+	at org.apache.pekko.actor.Actor.aroundReceive(Actor.scala:547)
+	at org.apache.pekko.actor.Actor.aroundReceive$(Actor.scala:545)
+	at org.apache.pekko.stream.impl.fusing.ActorGraphInterpreter.aroundReceive(ActorGraphInterpreter.scala:729)
+	at org.apache.pekko.actor.ActorCell.receiveMessage(ActorCell.scala:590)
+	at org.apache.pekko.actor.ActorCell.invoke(ActorCell.scala:557)
+	at org.apache.pekko.dispatch.Mailbox.processMailbox(Mailbox.scala:280)
+	at org.apache.pekko.dispatch.Mailbox.run(Mailbox.scala:241)
+	at org.apache.pekko.dispatch.Mailbox.exec(Mailbox.scala:253)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+2024-11-08 10:58:27,164 [INFO] from application in application-pekko.actor.internal-dispatcher-4 - ApplicationTimer demo: Stopping application at 2024-11-08T15:58:27.161576500Z after 1652s.
+2024-11-08 10:58:27,214 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-41 - Registering exception handler: guice-provision-exception-handler
+2024-11-08 10:58:27,332 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-41 - ApplicationTimer demo: Starting application at 2024-11-08T15:58:27.331806300Z
+2024-11-08 10:58:27,338 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-41 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+    play.filters.headers.SecurityHeadersFilter
+    play.filters.hosts.AllowedHostsFilter
+    filters.ExampleFilter
+
+2024-11-08 10:58:27,343 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-41 - Application started (Dev) (no global state)
+2024-11-08 11:00:07,838 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-5-thread-1 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 40000 milliseconds timeout
+2024-11-08 11:00:07,839 [INFO] from play.core.server.PekkoHttpServer in pool-5-thread-1 - Stopping Pekko HTTP server...
+2024-11-08 11:00:07,840 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-50 - Unbinding /0:0:0:0:0:0:0:0:9000
+2024-11-08 11:00:07,845 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-51 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2024-11-08 11:00:07,850 [INFO] from application in application-pekko.actor.internal-dispatcher-6 - ApplicationTimer demo: Stopping application at 2024-11-08T16:00:07.849324400Z after 100s.
+2024-11-08 11:00:07,860 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-51 - Running provided shutdown stop hooks

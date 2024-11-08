@@ -10,10 +10,11 @@ GET     /message                    controllers.AsyncController.message
 GET     /videoStatistics/:keyword   controllers.HomeController.videoStatistics(keyword: String)
 
 # Route for displaying tags based on video ID
-GET     /tags/:videoId              controllers.TagsController.showTags(videoId: String)
+GET     /tags/:videoId              controllers.HomeController.showTags(videoId: String)
 
 # Route for searching by tag
-GET     /searchByTag/:tag           controllers.TagsController.searchByTag(tag: String, request: Request)
+GET     /searchByTag/:tag           controllers.HomeController.searchByTag(tag: String, request: Request)
+
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(file)

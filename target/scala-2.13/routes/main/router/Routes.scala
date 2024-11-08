@@ -14,36 +14,32 @@ import _root_.play.libs.F
 class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:6
-  HomeController_4: controllers.HomeController,
+  HomeController_0: controllers.HomeController,
   // @LINE:8
   CountController_1: controllers.CountController,
   // @LINE:9
-  AsyncController_3: controllers.AsyncController,
-  // @LINE:13
-  TagsController_0: controllers.TagsController,
-  // @LINE:19
-  Assets_2: controllers.Assets,
+  AsyncController_2: controllers.AsyncController,
+  // @LINE:20
+  Assets_3: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
 
   @javax.inject.Inject()
   def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:6
-    HomeController_4: controllers.HomeController,
+    HomeController_0: controllers.HomeController,
     // @LINE:8
     CountController_1: controllers.CountController,
     // @LINE:9
-    AsyncController_3: controllers.AsyncController,
-    // @LINE:13
-    TagsController_0: controllers.TagsController,
-    // @LINE:19
-    Assets_2: controllers.Assets
-  ) = this(errorHandler, HomeController_4, CountController_1, AsyncController_3, TagsController_0, Assets_2, "/")
+    AsyncController_2: controllers.AsyncController,
+    // @LINE:20
+    Assets_3: controllers.Assets
+  ) = this(errorHandler, HomeController_0, CountController_1, AsyncController_2, Assets_3, "/")
 
   def withPrefix(addPrefix: String): Routes = {
     val prefix = play.api.routing.Router.concatPrefix(addPrefix, this.prefix)
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, HomeController_4, CountController_1, AsyncController_3, TagsController_0, Assets_2, prefix)
+    new Routes(errorHandler, HomeController_0, CountController_1, AsyncController_2, Assets_3, prefix)
   }
 
   private val defaultPrefix: String = {
@@ -56,8 +52,8 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """count""", """controllers.CountController.count"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """message""", """controllers.AsyncController.message"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """videoStatistics/""" + "$" + """keyword<[^/]+>""", """controllers.HomeController.videoStatistics(keyword:String)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """tags/""" + "$" + """videoId<[^/]+>""", """controllers.TagsController.showTags(videoId:String)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """searchByTag/""" + "$" + """tag<[^/]+>""", """controllers.TagsController.searchByTag(tag:String, request:Request)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """tags/""" + "$" + """videoId<[^/]+>""", """controllers.HomeController.showTags(videoId:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """searchByTag/""" + "$" + """tag<[^/]+>""", """controllers.HomeController.searchByTag(tag:String, request:Request)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(file:String)"""),
     Nil
   ).foldLeft(Seq.empty[(String, String, String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -73,7 +69,7 @@ class Routes(
   private lazy val controllers_HomeController_display0_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
-      HomeController_4.display(fakeValue[play.mvc.Http.Request]),
+      HomeController_0.display(fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -93,7 +89,7 @@ class Routes(
   private lazy val controllers_HomeController_search1_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
-      HomeController_4.search(fakeValue[play.mvc.Http.Request]),
+      HomeController_0.search(fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -129,7 +125,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("message")))
   )
   private lazy val controllers_AsyncController_message3_invoker = createInvoker(
-    AsyncController_3.message,
+    AsyncController_2.message,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.AsyncController",
@@ -147,7 +143,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("videoStatistics/"), DynamicPart("keyword", """[^/]+""", encodeable=true)))
   )
   private lazy val controllers_HomeController_videoStatistics4_invoker = createInvoker(
-    HomeController_4.videoStatistics(fakeValue[String]),
+    HomeController_0.videoStatistics(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -161,14 +157,14 @@ class Routes(
   )
 
   // @LINE:13
-  private lazy val controllers_TagsController_showTags5_route = Route("GET",
+  private lazy val controllers_HomeController_showTags5_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("tags/"), DynamicPart("videoId", """[^/]+""", encodeable=true)))
   )
-  private lazy val controllers_TagsController_showTags5_invoker = createInvoker(
-    TagsController_0.showTags(fakeValue[String]),
+  private lazy val controllers_HomeController_showTags5_invoker = createInvoker(
+    HomeController_0.showTags(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
-      "controllers.TagsController",
+      "controllers.HomeController",
       "showTags",
       Seq(classOf[String]),
       "GET",
@@ -179,16 +175,16 @@ class Routes(
   )
 
   // @LINE:16
-  private lazy val controllers_TagsController_searchByTag6_route = Route("GET",
+  private lazy val controllers_HomeController_searchByTag6_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("searchByTag/"), DynamicPart("tag", """[^/]+""", encodeable=true)))
   )
-  private lazy val controllers_TagsController_searchByTag6_invoker = createInvoker(
+  private lazy val controllers_HomeController_searchByTag6_invoker = createInvoker(
     
     (req:play.mvc.Http.Request) =>
-      TagsController_0.searchByTag(fakeValue[String], fakeValue[play.mvc.Http.Request]),
+      HomeController_0.searchByTag(fakeValue[String], fakeValue[play.mvc.Http.Request]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
-      "controllers.TagsController",
+      "controllers.HomeController",
       "searchByTag",
       Seq(classOf[String], classOf[play.mvc.Http.Request]),
       "GET",
@@ -198,12 +194,12 @@ class Routes(
     )
   )
 
-  // @LINE:19
+  // @LINE:20
   private lazy val controllers_Assets_versioned7_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""", encodeable=false)))
   )
   private lazy val controllers_Assets_versioned7_invoker = createInvoker(
-    Assets_2.versioned(fakeValue[String]),
+    Assets_3.versioned(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.Assets",
@@ -223,14 +219,14 @@ class Routes(
     case controllers_HomeController_display0_route(params@_) =>
       call { 
         controllers_HomeController_display0_invoker.call(
-          req => HomeController_4.display(req))
+          req => HomeController_0.display(req))
       }
   
     // @LINE:7
     case controllers_HomeController_search1_route(params@_) =>
       call { 
         controllers_HomeController_search1_invoker.call(
-          req => HomeController_4.search(req))
+          req => HomeController_0.search(req))
       }
   
     // @LINE:8
@@ -242,32 +238,32 @@ class Routes(
     // @LINE:9
     case controllers_AsyncController_message3_route(params@_) =>
       call { 
-        controllers_AsyncController_message3_invoker.call(AsyncController_3.message)
+        controllers_AsyncController_message3_invoker.call(AsyncController_2.message)
       }
   
     // @LINE:10
     case controllers_HomeController_videoStatistics4_route(params@_) =>
       call(params.fromPath[String]("keyword", None)) { (keyword) =>
-        controllers_HomeController_videoStatistics4_invoker.call(HomeController_4.videoStatistics(keyword))
+        controllers_HomeController_videoStatistics4_invoker.call(HomeController_0.videoStatistics(keyword))
       }
   
     // @LINE:13
-    case controllers_TagsController_showTags5_route(params@_) =>
+    case controllers_HomeController_showTags5_route(params@_) =>
       call(params.fromPath[String]("videoId", None)) { (videoId) =>
-        controllers_TagsController_showTags5_invoker.call(TagsController_0.showTags(videoId))
+        controllers_HomeController_showTags5_invoker.call(HomeController_0.showTags(videoId))
       }
   
     // @LINE:16
-    case controllers_TagsController_searchByTag6_route(params@_) =>
+    case controllers_HomeController_searchByTag6_route(params@_) =>
       call(params.fromPath[String]("tag", None)) { (tag) =>
-        controllers_TagsController_searchByTag6_invoker.call(
-          req => TagsController_0.searchByTag(tag, req))
+        controllers_HomeController_searchByTag6_invoker.call(
+          req => HomeController_0.searchByTag(tag, req))
       }
   
-    // @LINE:19
+    // @LINE:20
     case controllers_Assets_versioned7_route(params@_) =>
       call(params.fromPath[String]("file", None)) { (file) =>
-        controllers_Assets_versioned7_invoker.call(Assets_2.versioned(file))
+        controllers_Assets_versioned7_invoker.call(Assets_3.versioned(file))
       }
   }
 }

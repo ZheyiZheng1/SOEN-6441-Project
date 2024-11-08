@@ -13,6 +13,7 @@ import play.i18n.MessagesApi;
 import play.i18n.Messages;
 import play.mvc.Http.Request;
 
+import services.TagsService;
 import services.WordStatService;
 import services.YTResponse;
 import services.YTRestDir;
@@ -33,6 +34,7 @@ public class HomeController extends Controller {
     private final FormFactory formFactory;
     private final MessagesApi messagesApi;
     private final BeforeView beforeView;
+    private final TagsService tagsService;
     private CompletableFuture<List<YTResponse>> result_demo = new CompletableFuture<List<YTResponse>>();
     /**
      * Constructor method. This method creates a BeforeView model and inject the dependency of FormFactory and MessageApi.
@@ -41,9 +43,10 @@ public class HomeController extends Controller {
      * @param formFactory just the form factory, use to future form generate. messageApi is also required for form generate.
      */
     @Inject
-    public HomeController(FormFactory formFactory, MessagesApi messagesApi) {
+    public HomeController(FormFactory formFactory, MessagesApi messagesApi, TagsService tagsService) {
         this.formFactory = formFactory;
         this.messagesApi = messagesApi;
+        this.tagsService = tagsService;
         this.beforeView = new BeforeView();
     }
 
@@ -118,5 +121,30 @@ public class HomeController extends Controller {
 //        sortedWordFrequency.put("test4", 45L);
 
         return ok(videoStatistics.render(sortedWordFrequency));
+    }
+
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Calling the TagsService for search by tag.
+     *
+     * @param tag The search tag
+     * @param request The HTTP request
+     * @return CompletableFuture of Result with the tag search results
+     */
+    public CompletableFuture<Result> searchByTag(String tag, Http.Request request) {
+        return tagsService.searchByTag(tag, request);
+    }
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Calling the TagsService to show tags based on video ID.
+     *
+     * @param videoId The video ID
+     * @return CompletableFuture of Result with the tags display
+     */
+
+    public CompletableFuture<Result> showTags(String videoId) {
+        return tagsService.showTags(videoId);
     }
 }

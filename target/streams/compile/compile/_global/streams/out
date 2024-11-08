@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\app\views\Home\tags.scala.html:160:42: value TagsController is not a member of object controllers.routes[0m
+[0m[[0m[31merror[0m] [0m[0m                    <li><a href="@routes.TagsController.searchByTag(tag)">@tag</a></li>[0m
+[0m[[0m[31merror[0m] [0m[0m                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

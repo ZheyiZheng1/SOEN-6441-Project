@@ -1,4 +1,4 @@
-package controllers;
+package services;
 
 import Model.TextSegment;
 import play.data.Form;
@@ -7,8 +7,6 @@ import play.i18n.MessagesApi;
 import play.i18n.Messages;
 import play.mvc.Http.Request;
 import play.mvc.*;
-import services.YTResponse;
-import services.YTRestDir;
 import Model.SearchForm;
 import views.html.Home.searchResults;
 import views.html.Home.tags;
@@ -23,14 +21,14 @@ import java.util.concurrent.CompletableFuture;
  * Displays the tags page for a specific video.
  */
 
-public class TagsController extends Controller {
+public class TagsService extends Controller {
 
     private final YTRestDir ytRestDir;
     private final FormFactory formFactory;
     private final MessagesApi messagesApi;
 
     @Inject
-    public TagsController(YTRestDir ytRestDir, FormFactory formFactory, MessagesApi messagesApi) {
+    public TagsService(YTRestDir ytRestDir, FormFactory formFactory, MessagesApi messagesApi) {
         this.ytRestDir = ytRestDir;
         this.formFactory = formFactory;
         this.messagesApi = messagesApi;

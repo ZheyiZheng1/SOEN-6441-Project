@@ -130,7 +130,7 @@
 
                         <!-- Display "Tags" as a hyperlink if segment.text is "Tags" -->
                     @if(segment.text == "Tags"  && segment.videoId != null) {
-                        <a href="@routes.TagsController.showTags(segment.videoId)">Tags</a>
+                        <a href="@routes.HomeController.showTags(segment.videoId)">Tags</a>
                     }
 
                         <!-- Display other segments as hyperlinks if URL is present -->

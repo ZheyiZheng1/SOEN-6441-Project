@@ -1,4 +1,4 @@
-import controllers.TagsController;
+import services.TagsService;
 import org.junit.jupiter.api.Test;
 import play.Application;
 import play.data.FormFactory;
@@ -22,13 +22,13 @@ import static play.mvc.Http.Status.OK;
 import static play.mvc.Http.Status.NOT_FOUND;
 import static play.mvc.Http.Status.INTERNAL_SERVER_ERROR;
 
-public class TagsControllerTest {
+public class TagsServiceTest {
 
     private final Application app = new GuiceApplicationBuilder().build();
     private final YTRestDir ytRestDir = mock(YTRestDir.class);
     private final FormFactory formFactory = app.injector().instanceOf(FormFactory.class);
     private final MessagesApi messagesApi = app.injector().instanceOf(MessagesApi.class);
-    private final TagsController tagsController = new TagsController(ytRestDir, formFactory, messagesApi);
+    private final TagsService tagsController = new TagsService(ytRestDir, formFactory, messagesApi);
 
     @Test
     public void testShowTagsVideoFound() throws Exception {
