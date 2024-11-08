@@ -1,0 +1,31 @@
+[debug] > Exec(test, None, None)
+[debug] Evaluating tasks: Test / test
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug] Exporting web-assets:play-java-starter-example
+[info] compiling 8 Java sources to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\test-classes ...
+[debug] Exporting web-assets-test:play-java-starter-example
+[info] done compiling
+[info] Test run FunctionalTest started
+[info] Test FunctionalTest.renderTemplate started
+[info] Test run FunctionalTest finished: 0 failed, 0 ignored, 1 total, 1.66s
+[info] Test run UnitTest started
+[info] Test UnitTest.simpleCheck started
+[info] Test UnitTest.testAsync started
+[info] Test UnitTest.testCount started
+[info] Test run UnitTest finished: 0 failed, 0 ignored, 3 total, 1.204s
+[info] Test run BrowserTest started
+[info] Test BrowserTest.test started
+[error] Test BrowserTest.test failed: java.lang.AssertionError: null, took 1.62 sec
+[error]     at BrowserTest.test(BrowserTest.java:27)
+[error]     at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[error]     at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[error]     at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[error]     at java.lang.reflect.Method.invoke(Method.java:566)
+[error]     ...
+[info] Test run BrowserTest finished: 1 failed, 0 ignored, 1 total, 1.62s
+[error] Failed: Total 5, Failed 1, Errors 0, Passed 4
+[error] Failed tests:
+[error] 	BrowserTest
+[error] (Test / test) sbt.TestsFailedException: Tests unsuccessful
+[error] Total time: 7 s, completed Nov. 7, 2024, 7:21:32 p.m.
+[debug] > Exec(idea-shell, None, None)

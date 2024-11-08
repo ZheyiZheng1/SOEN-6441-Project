@@ -1,0 +1,13 @@
+[debug] > Exec(test, None, None)
+[debug] Evaluating tasks: Test / test
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug] Exporting web-assets:play-java-starter-example
+[debug] Exporting web-assets-test:play-java-starter-example
+[info] Test run UnitTest started
+[info] Test UnitTest.simpleCheck started
+[info] Test UnitTest.testAsync started
+[info] Test UnitTest.testCount started
+[info] Test run UnitTest finished: 0 failed, 0 ignored, 3 total, 2.165s
+[info] Passed: Total 3, Failed 0, Errors 0, Passed 3
+[success] Total time: 3 s, completed Nov. 7, 2024, 7:23:20 p.m.
+[debug] > Exec(idea-shell, None, None)

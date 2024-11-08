@@ -1,20 +1,104 @@
-2024-11-07 13:06:07,696 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-8 - ApplicationTimer demo: Starting application at 2024-11-07T17:06:07.696576300Z
-2024-11-07 13:06:07,727 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-8 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2024-11-07 21:06:55,943 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-6 - ApplicationTimer demo: Starting application at 2024-11-08T01:06:55.942077700Z
+2024-11-07 21:06:55,959 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-6 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     filters.ExampleFilter
 
-2024-11-07 13:06:07,959 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-8 - Application started (Dev) (no global state)
-2024-11-07 13:27:30,046 [INFO] from application in application-pekko.actor.internal-dispatcher-4 - ApplicationTimer demo: Stopping application at 2024-11-07T17:27:30.040890700Z after 1283s.
-2024-11-07 13:27:30,176 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-9 - Registering exception handler: guice-provision-exception-handler
-2024-11-07 13:27:30,395 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-9 - ApplicationTimer demo: Starting application at 2024-11-07T17:27:30.395645500Z
-2024-11-07 13:27:30,411 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-9 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2024-11-07 21:06:56,032 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-6 - Application started (Dev) (no global state)
+2024-11-07 21:07:00,056 [ERROR] from play.api.http.DefaultHttpErrorHandler in application-pekko.actor.default-dispatcher-7 - 
+
+! @87deeal99 - Internal server error, for (GET) [/search?keyword=java] ->
+ 
+play.api.PlayException: Execution exception[[CompletionException: java.lang.RuntimeException: java.io.IOException: HTTP error code: 403]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$3(HttpErrorHandler.scala:407)
+	at scala.Option.getOrElse(Option.scala:201)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:407)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:390)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:267)
+	at play.core.server.PekkoHttpServer$$anonfun$invokeAction$1$1.applyOrElse(PekkoHttpServer.scala:482)
+	at play.core.server.PekkoHttpServer$$anonfun$invokeAction$1$1.applyOrElse(PekkoHttpServer.scala:474)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at org.apache.pekko.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:73)
+	at org.apache.pekko.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:110)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at org.apache.pekko.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:110)
+	at org.apache.pekko.dispatch.TaskInvocation.run(AbstractDispatcher.scala:59)
+	at org.apache.pekko.dispatch.ForkJoinExecutorConfigurator$PekkoForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:57)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: java.util.concurrent.CompletionException: java.lang.RuntimeException: java.io.IOException: HTTP error code: 403
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:314)
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:319)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1702)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1692)
+	... 5 common frames omitted
+Caused by: java.lang.RuntimeException: java.io.IOException: HTTP error code: 403
+	at services.YTRestDir.lambda$searchVideosAsynch$0(YTRestDir.java:50)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1700)
+	... 6 common frames omitted
+Caused by: java.io.IOException: HTTP error code: 403
+	at services.YTRestDir.searchVideos(YTRestDir.java:78)
+	at services.YTRestDir.lambda$searchVideosAsynch$0(YTRestDir.java:48)
+	... 7 common frames omitted
+2024-11-07 21:09:02,236 [INFO] from application in application-pekko.actor.internal-dispatcher-4 - ApplicationTimer demo: Stopping application at 2024-11-08T01:09:02.236381100Z after 127s.
+2024-11-07 21:09:02,312 [INFO] from play.api.http.HttpErrorHandlerExceptions in play-dev-mode-pekko.actor.default-dispatcher-11 - Registering exception handler: guice-provision-exception-handler
+2024-11-07 21:09:02,371 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-11 - ApplicationTimer demo: Starting application at 2024-11-08T01:09:02.370954700Z
+2024-11-07 21:09:02,375 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-11 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     filters.ExampleFilter
 
-2024-11-07 13:27:30,426 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-9 - Application started (Dev) (no global state)
+2024-11-07 21:09:02,378 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-11 - Application started (Dev) (no global state)
+2024-11-07 21:09:05,188 [ERROR] from play.api.http.DefaultHttpErrorHandler in application-pekko.actor.default-dispatcher-6 - 
+
+! @87deehoc5 - Internal server error, for (GET) [/search?keyword=java] ->
+ 
+play.api.PlayException: Execution exception[[CompletionException: java.lang.RuntimeException: java.io.IOException: HTTP error code: 403]]
+	at play.api.http.HttpErrorHandlerExceptions$.$anonfun$convertToPlayException$3(HttpErrorHandler.scala:407)
+	at scala.Option.getOrElse(Option.scala:201)
+	at play.api.http.HttpErrorHandlerExceptions$.convertToPlayException(HttpErrorHandler.scala:407)
+	at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:390)
+	at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:267)
+	at play.core.server.PekkoHttpServer$$anonfun$invokeAction$1$1.applyOrElse(PekkoHttpServer.scala:482)
+	at play.core.server.PekkoHttpServer$$anonfun$invokeAction$1$1.applyOrElse(PekkoHttpServer.scala:474)
+	at scala.concurrent.impl.Promise$Transformation.run(Promise.scala:490)
+	at org.apache.pekko.dispatch.BatchingExecutor$AbstractBatch.processBatch(BatchingExecutor.scala:73)
+	at org.apache.pekko.dispatch.BatchingExecutor$BlockableBatch.$anonfun$run$1(BatchingExecutor.scala:110)
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.scala:18)
+	at scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:94)
+	at org.apache.pekko.dispatch.BatchingExecutor$BlockableBatch.run(BatchingExecutor.scala:110)
+	at org.apache.pekko.dispatch.TaskInvocation.run(AbstractDispatcher.scala:59)
+	at org.apache.pekko.dispatch.ForkJoinExecutorConfigurator$PekkoForkJoinTask.exec(ForkJoinExecutorConfigurator.scala:57)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:290)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1020)
+	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1656)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1594)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)
+Caused by: java.util.concurrent.CompletionException: java.lang.RuntimeException: java.io.IOException: HTTP error code: 403
+	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:314)
+	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:319)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1702)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1692)
+	... 5 common frames omitted
+Caused by: java.lang.RuntimeException: java.io.IOException: HTTP error code: 403
+	at services.YTRestDir.lambda$searchVideosAsynch$0(YTRestDir.java:50)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1700)
+	... 6 common frames omitted
+Caused by: java.io.IOException: HTTP error code: 403
+	at services.YTRestDir.searchVideos(YTRestDir.java:78)
+	at services.YTRestDir.lambda$searchVideosAsynch$0(YTRestDir.java:48)
+	... 7 common frames omitted
+2024-11-07 21:17:11,061 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-5-thread-12 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 40000 milliseconds timeout
+2024-11-07 21:17:11,062 [INFO] from play.core.server.PekkoHttpServer in pool-5-thread-12 - Stopping Pekko HTTP server...
+2024-11-07 21:17:11,062 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-3 - Unbinding /0:0:0:0:0:0:0:0:9000
+2024-11-07 21:17:11,066 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-3 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2024-11-07 21:17:11,069 [INFO] from application in application-pekko.actor.internal-dispatcher-4 - ApplicationTimer demo: Stopping application at 2024-11-08T01:17:11.069735300Z after 489s.
+2024-11-07 21:17:11,080 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-3 - Running provided shutdown stop hooks
