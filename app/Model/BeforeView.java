@@ -67,7 +67,7 @@ public class BeforeView {
             ReadabilityService rs = new ReadabilityService(result);
             List<Double> listOfFRE = rs.getFre();
             List<Double> listOfFKGL = rs.getFkgl();
-            SentimentService stm = new SentimentService(result);
+
 
             int index = 0;
             for (YTResponse ytResponse : list) {
@@ -107,7 +107,7 @@ public class BeforeView {
             // Add the result to the top of the list.
             userList.add(0, currentResult);
             userKeyword.add(0, keyword);
-            userReadability.add(0, new ArrayList<>(Arrays.asList(rs.getAvgFKGL().toString(), rs.getAvgFRE().toString(),stm.getFinalOutput())));
+            userReadability.add(0, new ArrayList<>(Arrays.asList(rs.getAvgFKGL().toString(), rs.getAvgFRE().toString())));
             // Trim the list to make sure we only keep 10 most recent results
             if (userList.size() > 10) {
                 userList.remove(userList.size() - 1);
