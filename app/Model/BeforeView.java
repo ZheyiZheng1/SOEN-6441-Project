@@ -83,7 +83,7 @@ public class BeforeView {
 
                 TextSegment fkgl = new TextSegment(". Flesh-Kincaid Grade Level=" + fkglValue, null);
                 TextSegment fre = new TextSegment(", Flesch Reading Ease Score=" + freValue, null);
-                TextSegment tag = new TextSegment("Tags", null);
+                TextSegment tag = new TextSegment("Tags", null, ytResponse.getVideoId());
                 TextSegment thumbnail = new TextSegment("thumbnail", ytResponse.getThumbnailUrl());
 
                 // Form the search result.

@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 2024-11-07 21:06:55,943 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-6 - ApplicationTimer demo: Starting application at 2024-11-08T01:06:55.942077700Z
 2024-11-07 21:06:55,959 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-6 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+=======
+2024-11-07 21:58:25,343 [INFO] from application in play-dev-mode-pekko.actor.default-dispatcher-4 - ApplicationTimer demo: Starting application at 2024-11-08T02:58:25.343250Z
+2024-11-07 21:58:25,380 [INFO] from play.api.http.EnabledFilters in play-dev-mode-pekko.actor.default-dispatcher-4 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+>>>>>>> taskc_new
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     filters.ExampleFilter
 
+<<<<<<< HEAD
 2024-11-07 21:06:56,032 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-6 - Application started (Dev) (no global state)
 2024-11-07 21:07:00,056 [ERROR] from play.api.http.DefaultHttpErrorHandler in application-pekko.actor.default-dispatcher-7 - 
 
@@ -102,3 +108,12 @@ Caused by: java.io.IOException: HTTP error code: 403
 2024-11-07 21:17:11,066 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-3 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
 2024-11-07 21:17:11,069 [INFO] from application in application-pekko.actor.internal-dispatcher-4 - ApplicationTimer demo: Stopping application at 2024-11-08T01:17:11.069735300Z after 489s.
 2024-11-07 21:17:11,080 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-3 - Running provided shutdown stop hooks
+=======
+2024-11-07 21:58:25,534 [INFO] from play.api.Play in play-dev-mode-pekko.actor.default-dispatcher-4 - Application started (Dev) (no global state)
+2024-11-07 21:58:45,886 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-5-thread-8 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 40000 milliseconds timeout
+2024-11-07 21:58:45,887 [INFO] from play.core.server.PekkoHttpServer in pool-5-thread-8 - Stopping Pekko HTTP server...
+2024-11-07 21:58:45,894 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-5 - Unbinding /0:0:0:0:0:0:0:0:9000
+2024-11-07 21:58:45,901 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-5 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2024-11-07 21:58:45,929 [INFO] from application in application-pekko.actor.internal-dispatcher-2 - ApplicationTimer demo: Stopping application at 2024-11-08T02:58:45.928542400Z after 20s.
+2024-11-07 21:58:45,955 [INFO] from play.core.server.PekkoHttpServer in play-dev-mode-pekko.actor.internal-dispatcher-3 - Running provided shutdown stop hooks
+>>>>>>> taskc_new
