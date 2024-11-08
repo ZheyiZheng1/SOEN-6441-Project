@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 
 public class HomeController extends Controller {
@@ -32,7 +33,7 @@ public class HomeController extends Controller {
     private final FormFactory formFactory;
     private final MessagesApi messagesApi;
     private final BeforeView beforeView;
-
+    private CompletableFuture<List<YTResponse>> result_demo = new CompletableFuture<List<YTResponse>>();
     /**
      * Constructor method. This method creates a BeforeView model and inject the dependency of FormFactory and MessageApi.
      * @author: Zheyi Zheng - 40266266
@@ -77,9 +78,12 @@ public class HomeController extends Controller {
         String keyword = searchForm.get().getKeyword();
         YTRestDir ytRestDir = new YTRestDir();
         // Get search result
-        CompletableFuture<List<YTResponse>> result = ytRestDir.searchVideosAsynch(keyword, null, "10");
+        CompletableFuture<List<YTResponse>> result = ytRestDir.searchVideosAsynch(keyword, null, "50");
+        result_demo = result;
+        CompletableFuture<List<YTResponse>> result2 = result
+                .thenApply(list -> list.stream().limit(10).collect(Collectors.toList()));
         // Call BeforeView to get and return the information to view.
-        return beforeView.process(request, keyword, result, formFactory, messagesApi);
+        return beforeView.process(request, keyword, result2, formFactory, messagesApi);
 
     }
 
@@ -101,9 +105,9 @@ public class HomeController extends Controller {
      * @author: Praneet Avhad - 40279347
      */
     public Result videoStatistics(String keyword) throws ExecutionException, InterruptedException, IOException {
-        CompletableFuture<List<YTResponse>> videosFuture = new YTRestDir().searchVideosAsynch(keyword,null, "50");
+        //CompletableFuture<List<YTResponse>> videosFuture = new YTRestDir().searchVideosAsynch(keyword,null, "50");
         //CompletableFuture<List<YTResponse>> videosFuture = getLatestVideos(keyword);
-        List<YTResponse> videos = videosFuture.get();
+        List<YTResponse> videos = result_demo.get();
         System.out.println(videos.get(0));
         Map<String, Long> wordFrequency = new WordStatService().getWordFrequency(videos);
         Map<String, Long> sortedWordFrequency = new WordStatService().sortWordsByFrequency(wordFrequency);
