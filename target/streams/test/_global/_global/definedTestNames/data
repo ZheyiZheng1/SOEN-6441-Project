@@ -1,1 +1,1 @@
-["services.ReadabilityServiceTest","Model.SearchFormTest","services.YTResponseTest","UnitTest","WordStatServiceTest","services.YTRestDirTest","HomeControllerTest"]
+["services.ReadabilityServiceTest","Model.SearchFormTest","services.YTResponseTest","UnitTest","TextSegmentTest","WordStatServiceTest","services.YTRestDirTest","HomeControllerTest"]
