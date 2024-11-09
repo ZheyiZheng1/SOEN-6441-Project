@@ -1,86 +1,177 @@
-/**
- * @author: Praneet Avhad - 40279347
- * This is the word stat service.
- */
-
-
-package services;
-
-import play.mvc.Controller;
-
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import services.WordStatService;
+import services.YTResponse;
+import org.junit.Test;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 /**
- * WordStatService is a service class responsible for processing a list of YouTube response objects
- * and calculating word frequency statistics based on their titles and descriptions. It provides
- * functionality to extract words, filter unnecessary data, count word occurrences, and sort words
- * by frequency in descending order.
- *
- * This class includes two main methods:
- * 1. `getWordFrequency(List<YTResponse> videos)` - Extracts words from video titles and descriptions,
- *    filters them, and returns a map of word frequencies.
- * 2. `sortWordsByFrequency(Map<String, Long> wordFrequency)` - Sorts the word frequency map
- *    in descending order by frequency.
- *
+ * Unit tests for the {@link WordStatService} class.
+ * Tests the word frequency and sorting functionalities on YouTube video data.
  * @author Praneet Avhad - 40279347
- *
- * @param videos List of YouTube response objects (YTResponse), each containing a title and description.
  */
 
+public class WordStatServiceTest {
 
-public class WordStatService extends Controller {
-    // private static final List<String> SKIPWORDS = Arrays.asList(
-    //         "a", "an", "and", "are", "as", "at", "be", "by", "for", "from", "has", "he",
-    //         "in", "is", "it", "its", "of", "on", "that", "the", "to", "was", "were", "will",
-    //         "with", "i", "you", "she", "we", "they", "my", "your", "this", "these", "those",
-    //         "or", "but", "if", "because", "just","s","t"
-    // );
+    /** Instance of {@link WordStatService} used for testing. */
+    private WordStatService videoProcessor;
 
     /**
-     * Extracts words from the titles and descriptions of a list of YouTube response objects,
-     * filters out empty words, single-character words, and numbers, and returns a map of
-     * word frequencies.
-     *
-     * @param videos The list of YouTube response objects.
-     * @return A map where the keys are words and the values are the count of occurrences of those words.
-     * @throws IllegalArgumentException if the input list is null or empty.
+     * Initializes the {@link WordStatService} instance before each test case.
      */
-    
-    public Map<String, Long> getWordFrequency(List<YTResponse> videos) {
-        return videos.stream()
-                // Extract words from each video's title or description
-                .flatMap(video -> Stream.of((video.getTitle() + " " + video.getDescription()).split("\\W+"))) // Split by non-word characters
-                .map(String::toLowerCase) // Convert to lowercase for case-insensitive counting
-                .filter(word -> !word.isEmpty()) // Remove any empty words
-                .filter(word -> word.length() > 1 || (word.length() == 1 && word.matches("[a-z]")))              // Remove single-character words
-                //.filter(word -> !SKIPWORDS.contains(word))   // Remove unneccasary words
-                .filter(word -> !word.matches("\\d+"))       // Remove numbers
-                .collect(Collectors.groupingBy(word -> word, Collectors.counting())); // Count each word
+    @Before
+    public void setUp() {
+        videoProcessor = new WordStatService();
     }
 
     /**
-     * Sorts the word frequency map by frequency in descending order.
-     * The sorted map maintains the order of words starting from the most frequent.
-     *
-     * @param wordFrequency A map containing word frequencies.
-     * @return A map sorted by frequency in descending order.
+     * Tests {@link WordStatService#getWordFrequency(List)} with an empty video list.
+     * Expects an empty map as the result.
      */
-    public Map<String, Long> sortWordsByFrequency(Map<String, Long> wordFrequency) {
-        return wordFrequency.entrySet().stream()
-                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (e1, e2) -> e1,
-                        LinkedHashMap::new // Maintain descending order
-                ));
+    @Test
+    public void testEmptyList() {
+        List<YTResponse> videos = Collections.emptyList();
+        Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(videos);
+        assertEquals(Collections.emptyMap(), wordFrequency, "Expected empty map for empty video list");
     }
 
+    /**
+     * Tests word frequency calculation for a single video with one word in both the title and description.
+     * Expects a map with each word appearing once.
+     */
+    @Test
+    public void testSingleVideoSingleWord() {
+        YTResponse video = new YTResponse();
+        video.setTitle("Hello");
+        video.setDescription("World");
+
+        Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video));
+        assertEquals(Map.of("hello", 1L, "world", 1L), wordFrequency, "Expected map with word counts for single video");
+    }
+
+    /**
+     * Tests word frequency calculation for a single video with repeated words.
+     * Expects a map with correct counts for repeated words.
+     */
+    @Test
+    public void testSingleVideoMultipleOccurrences() {
+        YTResponse video = new YTResponse();
+        video.setTitle("Hello Hello");
+        video.setDescription("Hello World");
+
+        Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video));
+        assertEquals(Map.of("hello", 3L, "world", 1L), wordFrequency, "Expected correct count for repeated words");
+    }
+
+    /**
+     * Tests that word frequency calculation is case-insensitive.
+     * Expects a map with all words counted regardless of case.
+     */
+    @Test
+    public void testCaseInsensitiveCounting() {
+        YTResponse video = new YTResponse();
+        video.setTitle("Hello hello");
+        video.setDescription("HELLO world");
+
+        Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video));
+        assertEquals(Map.of("hello", 3L, "world", 1L), wordFrequency, "Expected case-insensitive counting of words");
+    }
+
+    /**
+     * Tests word frequency calculation for multiple videos with no overlapping words.
+     * Expects each unique word to appear once in the result.
+     */
+    @Test
+    public void testMultipleVideosNoOverlappingWords() {
+        YTResponse video1 = new YTResponse();
+        video1.setTitle("Apple");
+        video1.setDescription("Orange");
+
+        YTResponse video2 = new YTResponse();
+        video2.setTitle("Banana");
+        video2.setDescription("Grape");
+
+        Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video1, video2));
+        // Expecting two words from each video with count 1
+        assertEquals(Map.of("apple", 1L, "orange", 1L, "banana", 1L, "grape", 1L), wordFrequency, "Expected word counts from two non-overlapping videos");
+    }
+
+    /**
+     * Tests word frequency calculation for multiple videos with overlapping words.
+     * Expects combined counts of overlapping words.
+     */
+    @Test
+    public void testMultipleVideosWithOverlappingWords() {
+        YTResponse video1 = new YTResponse();
+        video1.setTitle("Apple Banana");
+        video1.setDescription("Apple Grape");
+
+        YTResponse video2 = new YTResponse();
+        video2.setTitle("Banana Apple");
+        video2.setDescription("Grape Banana");
+
+        Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video1, video2));
+        // Expecting combined counts
+        assertEquals(Map.of("apple", 3L, "banana", 3L, "grape", 2L), wordFrequency, "Expected correct combined word counts from two overlapping videos");
+    }
+
+    /**
+     * Tests filtering of single-character words in word frequency calculation.
+     * Expects a map with specific counts for single-character words.
+     */
+    @Test
+    public void testFilterSingleCharacterWords() {
+        YTResponse video = new YTResponse();
+        video.setTitle("A I O");
+        video.setDescription("I A");
+
+        Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(List.of(video));
+        // Check that single characters are either filtered or not counted
+        assertEquals(Map.of("i", 2L, "a", 2L, "o", 1L), wordFrequency, "Expected filter for single-character words");
+    }
+
+
+    /**
+     * Tests sorting of words by frequency in descending order.
+     * Expects a sorted map with words in order of their frequency.
+     */
+    @Test
+    public void testSortWordsByFrequency() {
+        Map<String, Long> wordFrequency = Map.of(
+                "apple", 3L,
+                "banana", 1L,
+                "grape", 2L
+        );
+
+        Map<String, Long> sortedFrequency = videoProcessor.sortWordsByFrequency(wordFrequency);
+
+        // Expected to be sorted by frequency in descending order
+        assertEquals(Map.of(
+                "apple", 3L,
+                "grape", 2L,
+                "banana", 1L
+        ), sortedFrequency, "Expected words sorted by frequency in descending order");
+    }
+
+    /**
+     * Tests handling of words with non-alphabetic characters.
+     * Expects numbers and special characters to be properly handled or filtered.
+     */
+    @Test
+    public void testWordsWithNonAlphabeticCharacters() {
+        YTResponse video = new YTResponse();
+        video.setTitle("Hello 123");
+        video.setDescription("Test! Test...");
+
+        Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video));
+        // Check that numbers and special characters are properly handled (filtered or not counted)
+        assertEquals(Map.of("hello", 1L, "test", 2L), wordFrequency, "Expected proper handling of non-alphabetic characters");
+    }
 }
-
-
