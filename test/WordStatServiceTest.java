@@ -1,6 +1,7 @@
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 import org.junit.Before;
+//import org.junit.jupiter.api.Assertions;
 import services.WordStatService;
 import services.YTResponse;
 import org.junit.Test;
@@ -9,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 
 /**
@@ -39,8 +40,9 @@ public class WordStatServiceTest {
     public void testEmptyList() {
         List<YTResponse> videos = Collections.emptyList();
         Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(videos);
-        assertEquals(Collections.emptyMap(), wordFrequency, "Expected empty map for empty video list");
+        assertEquals(Collections.emptyMap(), wordFrequency);
     }
+
 
     /**
      * Tests word frequency calculation for a single video with one word in both the title and description.
@@ -53,7 +55,7 @@ public class WordStatServiceTest {
         video.setDescription("World");
 
         Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video));
-        assertEquals(Map.of("hello", 1L, "world", 1L), wordFrequency, "Expected map with word counts for single video");
+        assertEquals(Map.of("hello", 1L, "world", 1L), wordFrequency);
     }
 
     /**
@@ -67,8 +69,9 @@ public class WordStatServiceTest {
         video.setDescription("Hello World");
 
         Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video));
-        assertEquals(Map.of("hello", 3L, "world", 1L), wordFrequency, "Expected correct count for repeated words");
+        assertEquals(Map.of("hello", 3L, "world", 1L), wordFrequency);
     }
+
 
     /**
      * Tests that word frequency calculation is case-insensitive.
@@ -81,8 +84,9 @@ public class WordStatServiceTest {
         video.setDescription("HELLO world");
 
         Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video));
-        assertEquals(Map.of("hello", 3L, "world", 1L), wordFrequency, "Expected case-insensitive counting of words");
+        assertEquals(Map.of("hello", 3L, "world", 1L), wordFrequency);
     }
+
 
     /**
      * Tests word frequency calculation for multiple videos with no overlapping words.
@@ -100,7 +104,7 @@ public class WordStatServiceTest {
 
         Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video1, video2));
         // Expecting two words from each video with count 1
-        assertEquals(Map.of("apple", 1L, "orange", 1L, "banana", 1L, "grape", 1L), wordFrequency, "Expected word counts from two non-overlapping videos");
+        assertEquals(Map.of("apple", 1L, "orange", 1L, "banana", 1L, "grape", 1L), wordFrequency);
     }
 
     /**
@@ -119,7 +123,7 @@ public class WordStatServiceTest {
 
         Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video1, video2));
         // Expecting combined counts
-        assertEquals(Map.of("apple", 3L, "banana", 3L, "grape", 2L), wordFrequency, "Expected correct combined word counts from two overlapping videos");
+        assertEquals(Map.of("apple", 3L, "banana", 3L, "grape", 2L), wordFrequency);
     }
 
     /**
@@ -134,7 +138,7 @@ public class WordStatServiceTest {
 
         Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(List.of(video));
         // Check that single characters are either filtered or not counted
-        assertEquals(Map.of("i", 2L, "a", 2L, "o", 1L), wordFrequency, "Expected filter for single-character words");
+        assertEquals(Map.of("i", 2L, "a", 2L, "o", 1L), wordFrequency);
     }
 
 
@@ -157,7 +161,7 @@ public class WordStatServiceTest {
                 "apple", 3L,
                 "grape", 2L,
                 "banana", 1L
-        ), sortedFrequency, "Expected words sorted by frequency in descending order");
+        ), sortedFrequency);
     }
 
     /**
@@ -172,6 +176,12 @@ public class WordStatServiceTest {
 
         Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(Arrays.asList(video));
         // Check that numbers and special characters are properly handled (filtered or not counted)
-        assertEquals(Map.of("hello", 1L, "test", 2L), wordFrequency, "Expected proper handling of non-alphabetic characters");
+        assertEquals(Map.of("hello", 1L, "test", 2L), wordFrequency);
     }
+
+//    public void testNullInput() {
+//        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+//            videoProcessor.getWordFrequency(null);
+//        }, "Expected getWordFrequency to throw IllegalArgumentException for null input");
+//    }
 }
