@@ -5,9 +5,9 @@
  */
 package services;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.After;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -36,7 +36,7 @@ public class YTRestDirTest {
      * Before each test, open mocks and a spy of YTRestDir.
      * spy allows us to use both YTRestDir methods and mock methods.
      */
-    @BeforeEach
+    @Before
     public void setUp() {
         mocks = MockitoAnnotations.openMocks(this);
         ytRestDir = spy(new YTRestDir());
@@ -47,7 +47,7 @@ public class YTRestDirTest {
      * Created: 2024/10/29
      * After each test, close mock.
      */
-    @AfterEach
+    @After
     public void tearDown() throws Exception {
         mocks.close();
     }

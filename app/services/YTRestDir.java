@@ -60,7 +60,7 @@ public class YTRestDir {
      * @return a list of YTResponse (processed by mapResponse).
      */
     public List<YTResponse> searchVideos(String keyword, String url, String maxResult) throws IOException {
-        String API_KEY = "AIzaSyAPX6aCdEK_YnY7ebeYTU19OxELghm4zIg";
+        String API_KEY = "AIzaSyC9q637eiKNR6dnssWfxTn22W9UGG-sC30";
         String BASE_URL = "https://www.googleapis.com/youtube/v3/search";
         String MAX_RESULTS = (maxResult != null) ? maxResult : "50";
         String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString());
