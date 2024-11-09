@@ -633,3 +633,5 @@ play.sbt.PlayExceptions$CompilationException: Compilation error[value TagsContro
 2024-11-08 19:42:34,845 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-08T23:42:34.845706Z
 2024-11-08 19:42:34,863 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
 2024-11-08 19:42:34,914 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-08T23:42:34.914411600Z
+2024-11-09 15:43:54,115 [INFO] from play.api.http.HttpErrorHandlerExceptions in main - Registering exception handler: guice-provision-exception-handler
+2024-11-09 15:43:55,320 [INFO] from application in main - ApplicationTimer demo: Starting application at 2024-11-09T19:43:55.320085400Z

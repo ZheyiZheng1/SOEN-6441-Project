@@ -1,0 +1,166 @@
+@import services.YTResponse
+@(videoDetails: YTResponse)
+
+@*
+* Created by Pulkit Bansal - 40321488
+* Created: 2024/11/4
+* This is the tags view with CSS styling and video thumbnail.
+*@
+
+<html lang="en">
+    <head>
+        <title>@videoDetails.getTitle()</title>
+        <style>
+                /* General Styles */
+                body {
+                    font-family: Arial, sans-serif;
+                    color: #333;
+                    margin: 0;
+                    padding: 0;
+                    background: #f4f6f9;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-height: 100vh;
+                }
+                h1, h2, p {
+                    color: #444;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                /* Container */
+                .container {
+                    background: #fff;
+                    border-radius: 8px;
+                    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+                    padding: 30px;
+                    max-width: 800px;
+                    width: 90%;
+                    text-align: center;
+                }
+
+                /* Title */
+                .container h1 {
+                    font-size: 2.2rem;
+                    margin-bottom: 20px;
+                    color: #0056b3;
+                    text-transform: uppercase;
+                }
+
+                /* Thumbnail Image */
+                .thumbnail {
+                    width: 100%;
+                    max-width: 400px;
+                    border-radius: 8px;
+                    margin: 20px 0;
+                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+                }
+
+                /* Video Title Link */
+                .container h2 a {
+                    color: #0073e6;
+                    font-size: 1.6rem;
+                    text-decoration: none;
+                    transition: color 0.3s;
+                }
+                .container h2 a:hover {
+                    color: #005bb5;
+                    text-decoration: underline;
+                }
+
+                /* Channel Link */
+                .channel {
+                    font-size: 1rem;
+                    color: #777;
+                    margin-top: 10px;
+                }
+                .channel a {
+                    color: #0073e6;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+                .channel a:hover {
+                    color: #005bb5;
+                    text-decoration: underline;
+                }
+
+                /* Description */
+                .description {
+                    font-size: 1.1rem;
+                    line-height: 1.6;
+                    margin: 20px 0;
+                    color: #555;
+                    padding: 0 20px;
+                }
+
+                /* Tags List */
+                .tags {
+                    text-align: left;
+                    padding: 0;
+                    margin-top: 20px;
+                }
+                .tags h2 {
+                    font-size: 1.4rem;
+                    color: #333;
+                    border-bottom: 2px solid #0056b3;
+                    padding-bottom: 10px;
+                    text-transform: uppercase;
+                    text-align: center;
+                    margin-bottom: 15px;
+                }
+                .tags ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+                .tags li {
+                    background: #e1e7f2;
+                    border-radius: 20px;
+                    padding: 8px 15px;
+                    margin: 5px;
+                }
+                .tags a {
+                    color: #0056b3;
+                    font-size: 1rem;
+                    text-decoration: none;
+                    font-weight: bold;
+                    transition: color 0.3s;
+                }
+                .tags a:hover {
+                    color: #004099;
+                }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+                <!-- Page Title -->
+            <h1>Video Details / Tags Page</h1>
+
+                <!-- Video Title as link -->
+            <h2><a href="https://www.youtube.com/watch?v=@videoDetails.getVideoId()" target="_blank">
+            @videoDetails.getTitle()
+            </a></h2>
+
+                <!-- Display channel title as a hyperlink to the channel page -->
+            <p class="channel">Channel: <a href="https://www.youtube.com/channel/@videoDetails.getChannelId()" target="_blank">@videoDetails.getChannelTitle()</a></p>
+
+                <!-- Display video description -->
+            <p class="description">@videoDetails.getDescription()</p>
+
+                <!-- Tags with Links to Search by Tag -->
+            <div class="tags">
+                <h2>Tags</h2>
+                <ul>
+                @for(tag <- videoDetails.getTags()) {
+                    <li><a href="@routes.HomeController.searchByTag(tag)">@tag</a></li>
+                }
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

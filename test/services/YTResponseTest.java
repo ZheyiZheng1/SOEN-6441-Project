@@ -1,6 +1,11 @@
+/**
+ * @author: Zheyi Zheng - 40266266
+ * Created: 2024/10/29
+ * This is the YTResponseTest class. It is a class that test the YTResponse.
+ */
 package services;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,11 +14,21 @@ public class YTResponseTest {
 
     private YTResponse ytResponse;
 
-    @BeforeEach
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * Initialize the YTResponse.
+     */
+    @Before
     public void setUp() {
         ytResponse = new YTResponse();
     }
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * Test all the setter methods and getter methods by setting value, getting the set value and then compare.
+     */
     @Test
     public void testGettersAndSetters() {
         ytResponse.setTitle("Sample Video");
@@ -24,6 +39,7 @@ public class YTResponseTest {
         ytResponse.setChannelProfileLink("https://www.youtube.com/channel/abcde");
         ytResponse.setDescription("This is a sample video description.");
         ytResponse.setThumbnailUrl("https://i.ytimg.com/vi/12345/default.jpg");
+        ytResponse.setTags(null);
 
         assertEquals("Sample Video", ytResponse.getTitle());
         assertEquals("12345", ytResponse.getVideoId());
@@ -35,6 +51,11 @@ public class YTResponseTest {
         assertEquals("https://i.ytimg.com/vi/12345/default.jpg", ytResponse.getThumbnailUrl());
     }
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * Test toString method. Set all the values and then retrieve all information using toString(). Lastly, compare the value.
+     */
     @Test
     public void testToString() {
         ytResponse.setTitle("Sample Video");
@@ -45,8 +66,8 @@ public class YTResponseTest {
         ytResponse.setChannelProfileLink("https://www.youtube.com/channel/abcde");
         ytResponse.setDescription("This is a sample video description.");
         ytResponse.setThumbnailUrl("https://i.ytimg.com/vi/12345/default.jpg");
-
-        String expectedString = "Sample Video,12345,https://www.youtube.com/watch?v=12345,Sample Channel,abcde,https://www.youtube.com/channel/abcde,This is a sample video description.,https://i.ytimg.com/vi/12345/default.jpg";
+        System.out.println(ytResponse.toString());
+        String expectedString = "Sample Video,12345,https://www.youtube.com/watch?v=12345,Sample Channel,abcde,https://www.youtube.com/channel/abcde,This is a sample video description.,https://i.ytimg.com/vi/12345/default.jpg,null";
         assertEquals(expectedString, ytResponse.toString());
     }
 }
