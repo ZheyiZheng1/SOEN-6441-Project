@@ -1,8 +1,9 @@
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
+import org.junit.Before;
 import services.WordStatService;
 import services.YTResponse;
-
+import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -25,8 +26,8 @@ public class WordStatServiceTest {
     /**
      * Initializes the {@link WordStatService} instance before each test case.
      */
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         videoProcessor = new WordStatService();
     }
 
@@ -35,7 +36,7 @@ public class WordStatServiceTest {
      * Expects an empty map as the result.
      */
     @Test
-    void testEmptyList() {
+    public void testEmptyList() {
         List<YTResponse> videos = Collections.emptyList();
         Map<String, Long> wordFrequency = videoProcessor.getWordFrequency(videos);
         assertEquals(Collections.emptyMap(), wordFrequency, "Expected empty map for empty video list");
@@ -46,7 +47,7 @@ public class WordStatServiceTest {
      * Expects a map with each word appearing once.
      */
     @Test
-    void testSingleVideoSingleWord() {
+    public void testSingleVideoSingleWord() {
         YTResponse video = new YTResponse();
         video.setTitle("Hello");
         video.setDescription("World");
@@ -60,7 +61,7 @@ public class WordStatServiceTest {
      * Expects a map with correct counts for repeated words.
      */
     @Test
-    void testSingleVideoMultipleOccurrences() {
+    public void testSingleVideoMultipleOccurrences() {
         YTResponse video = new YTResponse();
         video.setTitle("Hello Hello");
         video.setDescription("Hello World");
@@ -74,7 +75,7 @@ public class WordStatServiceTest {
      * Expects a map with all words counted regardless of case.
      */
     @Test
-    void testCaseInsensitiveCounting() {
+    public void testCaseInsensitiveCounting() {
         YTResponse video = new YTResponse();
         video.setTitle("Hello hello");
         video.setDescription("HELLO world");
@@ -88,7 +89,7 @@ public class WordStatServiceTest {
      * Expects each unique word to appear once in the result.
      */
     @Test
-    void testMultipleVideosNoOverlappingWords() {
+    public void testMultipleVideosNoOverlappingWords() {
         YTResponse video1 = new YTResponse();
         video1.setTitle("Apple");
         video1.setDescription("Orange");
@@ -107,7 +108,7 @@ public class WordStatServiceTest {
      * Expects combined counts of overlapping words.
      */
     @Test
-    void testMultipleVideosWithOverlappingWords() {
+    public void testMultipleVideosWithOverlappingWords() {
         YTResponse video1 = new YTResponse();
         video1.setTitle("Apple Banana");
         video1.setDescription("Apple Grape");
@@ -126,7 +127,7 @@ public class WordStatServiceTest {
      * Expects a map with specific counts for single-character words.
      */
     @Test
-    void testFilterSingleCharacterWords() {
+    public void testFilterSingleCharacterWords() {
         YTResponse video = new YTResponse();
         video.setTitle("A I O");
         video.setDescription("I A");
@@ -142,7 +143,7 @@ public class WordStatServiceTest {
      * Expects a sorted map with words in order of their frequency.
      */
     @Test
-    void testSortWordsByFrequency() {
+    public void testSortWordsByFrequency() {
         Map<String, Long> wordFrequency = Map.of(
                 "apple", 3L,
                 "banana", 1L,
@@ -164,7 +165,7 @@ public class WordStatServiceTest {
      * Expects numbers and special characters to be properly handled or filtered.
      */
     @Test
-    void testWordsWithNonAlphabeticCharacters() {
+    public void testWordsWithNonAlphabeticCharacters() {
         YTResponse video = new YTResponse();
         video.setTitle("Hello 123");
         video.setDescription("Test! Test...");
