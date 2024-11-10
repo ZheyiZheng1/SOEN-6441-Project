@@ -16,17 +16,25 @@ import static org.junit.Assert.assertTrue;
 import static play.test.Helpers.*;
 
 
-
+/**
+ * @author: Zheyi Zheng - 40266266
+ * @author: Jiaxi Liu - 40278106
+ * Created: 2024/11/9
+ * This is the BeforeViewTest class. This class test the process method in BeforeView.
+ */
 public class BeforeViewTest {
+
+
 
  /**
   * @author: Zheyi Zheng - 40266266
   * @author: Jiaxi Liu - 40278106
-  * Created: 2024/10/29
-  * Test the process function.
+  * Created: 2024/11/9
+  * Test the process function in BeforeView.
+  * Provide sample input to Before view process method and retrieve the Result.
+  * Turn Result into html in String and then check if all the sample information appears correctly.
   */
-
-@Test
+   @Test
    public void processTest() throws ExecutionException, InterruptedException {
     BeforeView beforeView = new BeforeView();
     String Keyword = "Java";

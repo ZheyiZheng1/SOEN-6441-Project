@@ -635,3 +635,25 @@ play.sbt.PlayExceptions$CompilationException: Compilation error[value TagsContro
 2024-11-08 19:42:34,914 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-08T23:42:34.914411600Z
 2024-11-09 15:43:54,115 [INFO] from play.api.http.HttpErrorHandlerExceptions in main - Registering exception handler: guice-provision-exception-handler
 2024-11-09 15:43:55,320 [INFO] from application in main - ApplicationTimer demo: Starting application at 2024-11-09T19:43:55.320085400Z
+2024-11-09 17:40:33,046 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-09 17:40:34,468 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-09T21:40:34.467612400Z
+2024-11-09 17:42:27,570 [INFO] from play.api.http.HttpErrorHandlerExceptions in main - Registering exception handler: guice-provision-exception-handler
+2024-11-09 17:42:28,934 [INFO] from application in main - ApplicationTimer demo: Starting application at 2024-11-09T21:42:28.934710800Z
+2024-11-09 17:42:36,219 [INFO] from play.api.http.HttpErrorHandlerExceptions in main - Registering exception handler: guice-provision-exception-handler
+2024-11-09 17:42:37,367 [INFO] from application in main - ApplicationTimer demo: Starting application at 2024-11-09T21:42:37.366458400Z
+2024-11-09 17:50:47,897 [INFO] from play.api.http.HttpErrorHandlerExceptions in main - Registering exception handler: guice-provision-exception-handler
+2024-11-09 17:50:49,235 [INFO] from application in main - ApplicationTimer demo: Starting application at 2024-11-09T21:50:49.235785800Z
+2024-11-09 17:51:01,702 [INFO] from play.api.http.HttpErrorHandlerExceptions in main - Registering exception handler: guice-provision-exception-handler
+2024-11-09 17:51:02,973 [INFO] from application in main - ApplicationTimer demo: Starting application at 2024-11-09T21:51:02.973210700Z
+2024-11-09 17:56:03,310 [INFO] from play.api.http.HttpErrorHandlerExceptions in main - Registering exception handler: guice-provision-exception-handler
+2024-11-09 17:56:04,590 [INFO] from application in main - ApplicationTimer demo: Starting application at 2024-11-09T21:56:04.589339900Z
+2024-11-09 18:03:59,890 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-09 18:04:00,944 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-09T22:04:00.943555800Z
+2024-11-09 18:05:34,510 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-09 18:05:35,680 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-09T22:05:35.680981300Z
+2024-11-09 21:54:23,736 [INFO] from play.api.http.HttpErrorHandlerExceptions in main - Registering exception handler: guice-provision-exception-handler
+2024-11-09 21:54:24,852 [INFO] from application in main - ApplicationTimer demo: Starting application at 2024-11-10T01:54:24.852064300Z
+2024-11-09 21:55:21,849 [INFO] from play.api.http.HttpErrorHandlerExceptions in main - Registering exception handler: guice-provision-exception-handler
+2024-11-09 21:55:22,954 [INFO] from application in main - ApplicationTimer demo: Starting application at 2024-11-10T01:55:22.954133100Z
+2024-11-09 21:56:24,369 [INFO] from play.api.http.HttpErrorHandlerExceptions in main - Registering exception handler: guice-provision-exception-handler
+2024-11-09 21:56:25,465 [INFO] from application in main - ApplicationTimer demo: Starting application at 2024-11-10T01:56:25.465563Z
