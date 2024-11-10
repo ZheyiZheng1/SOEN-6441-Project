@@ -169,6 +169,22 @@ public class HomeControllerTest {
         // assertTrue(content.contains("Expected content for tags view"));
     }
 
+    /**
+     * * @author: Praneet Avhad
+     *  * Id - 40279347
+     * Sets up the test environment before each test case.
+     *
+     * This method is executed before each test method is run. It initializes the 
+     * application context and retrieves the instances of the necessary components 
+     * (e.g., `HomeController`, `WordStatService`). It also initializes `resultDemo` 
+     * as a new `CompletableFuture` instance to simulate asynchronous operations.
+     *
+     * The setup ensures that each test case runs with a fresh context and mockable 
+     * dependencies.
+     *
+     * @throws Exception if any error occurs during the setup process
+     */
+
     @Before
     public void setUp() {
         Application app = new GuiceApplicationBuilder().build();
