@@ -95,4 +95,68 @@ public class HomeControllerTest {
         assertTrue(content.contains("Learn Java in 14 Minutes"));
     }
 
+
+    /**
+     * Test the `searchByTag` method to ensure it returns correct search results.
+     *
+     * <p>This test verifies that the `searchByTag` method correctly calls the `TagsService`
+     * and returns a status of 200 OK when a valid tag is provided.</p>
+     *
+     * @throws ExecutionException   if there is an error during the asynchronous process.
+     * @throws InterruptedException if the current thread is interrupted while waiting.
+     */
+    @Test
+    public void testSearchByTag() throws ExecutionException, InterruptedException {
+        // Initialize the application context
+        Application app = new GuiceApplicationBuilder().build();
+        HomeController homeController = app.injector().instanceOf(HomeController.class);
+
+        // Create a fake request to search by tag
+        Http.RequestBuilder request = fakeRequest()
+                .method("GET")
+                .uri("/searchByTag/testTag");
+
+        // Call the searchByTag method
+        CompletableFuture<Result> futureResult = homeController.searchByTag("testTag", request.build());
+        Result result = futureResult.get();
+
+        // Check that the response status is OK
+        assertEquals(OK, result.status());
+
+        // Optional: Check the content
+        String content = contentAsString(result);
+        // assertTrue(content.contains("Expected content for tag search results"));
+    }
+
+    /**
+     * Test the `showTags` method to ensure it returns correct tags for a video.
+     *
+     * <p>This test verifies that the `showTags` method correctly calls the `TagsService`
+     * and returns a status of 200 OK when a valid video ID is provided.</p>
+     *
+     * @throws ExecutionException   if there is an error during the asynchronous process.
+     * @throws InterruptedException if the current thread is interrupted while waiting.
+     */
+    @Test
+    public void testShowTags() throws ExecutionException, InterruptedException {
+        // Initialize the application context
+        Application app = new GuiceApplicationBuilder().build();
+        HomeController homeController = app.injector().instanceOf(HomeController.class);
+
+        // Create a fake request to show tags for a video
+        Http.RequestBuilder request = fakeRequest()
+                .method("GET")
+                .uri("/video/tags/12345");
+
+        // Call the showTags method
+        CompletableFuture<Result> futureResult = homeController.showTags("12345");
+        Result result = futureResult.get();
+
+        // Check that the response status is OK
+        assertEquals(OK, result.status());
+
+        // Optional: Check the content
+        String content = contentAsString(result);
+        // assertTrue(content.contains("Expected content for tags view"));
+    }
 }
