@@ -1,4 +1,23 @@
+<!--
 
+    @author - Praneet Avhad
+    @ ID - 40279347
+    Javadoc for sortedWordFrequency:
+
+    @param sortedWordFrequency Map[String, Long]
+    This parameter is a Map containing words as keys (Strings) and their corresponding frequency as values (Long).
+    The Map is expected to be sorted by word frequency, where each entry represents a unique word and the number of occurrences in a dataset.
+    The HTML template iterates over the Map and dynamically generates a table where:
+    - The first column displays the word.
+    - The second column displays the frequency of the word.
+
+    Example structure:
+    sortedWordFrequency = {
+        "hello" -> 5,
+        "world" -> 3,
+        "java" -> 2
+    }
+-->
 @(sortedWordFrequency: Map[String, Long])
 
 <h1 style="text-align: center;">Word Frequency Statistics</h1>
