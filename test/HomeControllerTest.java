@@ -169,6 +169,14 @@ public class HomeControllerTest {
         // assertTrue(content.contains("Expected content for tags view"));
     }
 
+    @Before
+    public void setUp() {
+        Application app = new GuiceApplicationBuilder().build();
+        homeController = app.injector().instanceOf(HomeController.class);
+
+        wordStatService = app.injector().instanceOf(WordStatService.class);
+        resultDemo = new CompletableFuture<>();
+    }
     /**
      * @author: Praneet Avhad
      * Id - 40279347
