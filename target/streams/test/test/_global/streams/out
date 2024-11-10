@@ -5,14 +5,14 @@
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(services.ReadabilityServiceTest, sbt.ForkMain$AnnotatedFingerscan@543c6f6d, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mReadabilityServiceTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mReadabilityServiceTest[0m.[36mtestGetAvgFKGL[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mReadabilityServiceTest[0m.[36mtestGetAvgFKGL[0m finished, took 0.035 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mReadabilityServiceTest[0m.[36mtestGetAvgFKGL[0m finished, took 0.034 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mReadabilityServiceTest[0m.[36mtestGetFreAndValue[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mReadabilityServiceTest[0m.[36mtestGetFreAndValue[0m finished, took 0.003 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mReadabilityServiceTest[0m.[36mtestGetFreAndValue[0m finished, took 0.002 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mReadabilityServiceTest[0m.[36mtestGetAvgFRE[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest services.[33mReadabilityServiceTest[0m.[36mtestGetAvgFRE[0m finished, took 0.002 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mReadabilityServiceTest[0m.[36mtestGetFkglAndValue[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest services.[33mReadabilityServiceTest[0m.[36mtestGetFkglAndValue[0m finished, took 0.001 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mReadabilityServiceTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 4 total, 0.046s[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mReadabilityServiceTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 4 total, 0.044s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 4 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(Model.SearchFormTest, sbt.ForkMain$AnnotatedFingerscan@13eb8acf, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mModel.[33mSearchFormTest[0m[34m started[0m[0m
@@ -25,18 +25,18 @@
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestGettersAndSetters[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestGettersAndSetters[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestToString[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestToString[0m finished, took 0.014 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mYTResponseTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 2 total, 0.014s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestToString[0m finished, took 0.015 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mYTResponseTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 2 total, 0.015s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 2 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(UnitTest, sbt.ForkMain$AnnotatedFingerscan@7403c468, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mUnitTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mUnitTest[0m.[36msimpleCheck[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mUnitTest[0m.[36msimpleCheck[0m finished, took 0.05 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mUnitTest[0m.[36msimpleCheck[0m finished, took 0.049 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mUnitTest[0m.[36mtestAsync[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mUnitTest[0m.[36mtestAsync[0m finished, took 2.123 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mUnitTest[0m.[36mtestAsync[0m finished, took 2.203 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mUnitTest[0m.[36mtestCount[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mUnitTest[0m.[36mtestCount[0m finished, took 0.009 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mUnitTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 3 total, 2.182s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mUnitTest[0m.[36mtestCount[0m finished, took 0.005 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mUnitTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 3 total, 2.258s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 3 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(TextSegmentTest, sbt.ForkMain$AnnotatedFingerscan@43738a82, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mTextSegmentTest[0m[34m started[0m[0m
@@ -44,36 +44,44 @@
 [0m[[0m[0mdebug[0m] [0m[0mTest [33mTextSegmentTest[0m.[36mtestTextSegmentConstructor[0m finished, took 0.001 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mTextSegmentTest[0m.[36mtestTextSegmentConstructor2[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest [33mTextSegmentTest[0m.[36mtestTextSegmentConstructor2[0m finished, took 0.0 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mTextSegmentTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 2 total, 0.002s[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mTextSegmentTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 2 total, 0.001s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 2 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(BeforeViewTest, sbt.ForkMain$AnnotatedFingerscan@c81cdd1, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mBeforeViewTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mBeforeViewTest[0m.[36mprocessTest[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mBeforeViewTest[0m.[36mprocessTest[0m finished, took 0.888 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mBeforeViewTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.889s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mBeforeViewTest[0m.[36mprocessTest[0m finished, took 1.065 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mBeforeViewTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 1.065s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(WordStatServiceTest, sbt.ForkMain$AnnotatedFingerscan@1fc2b765, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mWordStatServiceTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSingleVideoMultipleOccurrences[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSingleVideoMultipleOccurrences[0m finished, took 0.003 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSingleVideoMultipleOccurrences[0m finished, took 0.002 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestCaseInsensitiveCounting[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestCaseInsensitiveCounting[0m finished, took 0.0 sec[0m
+[0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSortWordsByFrequency_MultipleEntries[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSortWordsByFrequency_MultipleEntries[0m finished, took 0.001 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestEmptyList[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestEmptyList[0m finished, took 0.0 sec[0m
+[0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSortWordsByFrequency_SingleEntry[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSortWordsByFrequency_SingleEntry[0m finished, took 0.001 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestFilterSingleCharacterWords[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestFilterSingleCharacterWords[0m finished, took 0.001 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSortWordsByFrequency[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSortWordsByFrequency[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSortWordsByFrequency[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestMultipleVideosNoOverlappingWords[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestMultipleVideosNoOverlappingWords[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestMultipleVideosNoOverlappingWords[0m finished, took 0.002 sec[0m
+[0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSortWordsByFrequency_MergeFunction[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSortWordsByFrequency_MergeFunction[0m finished, took 0.0 sec[0m
+[0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSortWordsByFrequency_EmptyMap[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSortWordsByFrequency_EmptyMap[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestMultipleVideosWithOverlappingWords[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestMultipleVideosWithOverlappingWords[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestWordsWithNonAlphabeticCharacters[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestWordsWithNonAlphabeticCharacters[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestWordsWithNonAlphabeticCharacters[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSingleVideoSingleWord[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSingleVideoSingleWord[0m finished, took 0.0 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mWordStatServiceTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 9 total, 0.008s[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 9 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mWordStatServiceTest[0m.[36mtestSingleVideoSingleWord[0m finished, took 0.001 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mWordStatServiceTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 13 total, 0.01s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 13 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(services.SentimentServiceTest, sbt.ForkMain$AnnotatedFingerscan@75881071, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mSentimentServiceTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mgetFinalOutputTest[0m started[0m
@@ -81,52 +89,49 @@
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestIfContainTrue[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestIfContainTrue[0m finished, took 0.001 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestsetFinalOutputSad[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestsetFinalOutputSad[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestsetFinalOutputSad[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestIfContainFalse[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestIfContainFalse[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestcountHappyWords[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestcountHappyWords[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestcountHappyWords[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestsetFinalOutputNeutral[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestsetFinalOutputNeutral[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestsetFinalOutputHappy[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestsetFinalOutputHappy[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestsetFinalOutputHappy[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestcountSadWords[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestcountSadWords[0m finished, took 0.0 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mSentimentServiceTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 8 total, 0.005s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mSentimentServiceTest[0m.[36mtestcountSadWords[0m finished, took 0.001 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mSentimentServiceTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 8 total, 0.003s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 8 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(services.YTRestDirTest, sbt.ForkMain$AnnotatedFingerscan@2a70a3d8, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mYTRestDirTest[0m[34m started[0m[0m
+[0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestIOException_HTTPErrorCode[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestIOException_HTTPErrorCode[0m finished, took 1.223 sec[0m
+[0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestURISyntaxException2[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestURISyntaxException2[0m finished, took 0.008 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestParseVideoDetails[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestParseVideoDetails[0m finished, took 0.838 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestParseVideoDetails[0m finished, took 0.012 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithInvalidVideoId[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithInvalidVideoId[0m finished, took 0.404 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithInvalidVideoId[0m finished, took 0.135 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestSearchVideosWithMockResponse[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestSearchVideosWithMockResponse[0m finished, took 0.014 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestSearchVideosWithMockResponse[0m finished, took 0.009 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithValidResponse[0m started[0m
-[0m[[0m[31merror[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[31mtestGetVideoDetailsWithValidResponse[0m failed: java.lang.[31mAssertionError[0m: null, took 0.105 sec[0m
-[0m[[0m[31merror[0m] [0m[0m    at services.YTRestDirTest.testGetVideoDetailsWithValidResponse([35mYTRestDirTest.java[0m:[33m105[0m)[0m
-[0m[[0m[31merror[0m] [0m[0m    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)[0m
-[0m[[0m[31merror[0m] [0m[0m    at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)[0m
-[0m[[0m[31merror[0m] [0m[0m    at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)[0m
-[0m[[0m[31merror[0m] [0m[0m    at java.lang.reflect.Method.invoke(Method.java:566)[0m
-[0m[[0m[31merror[0m] [0m[0m    ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithValidResponse[0m finished, took 0.107 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mYTRestDirTest[0m[34m finished: [0m[31m1 failed[0m[34m, [0m[34m0 ignored[0m[34m, 4 total, 1.365s[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 4 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithValidResponse[0m finished, took 0.076 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mYTRestDirTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 6 total, 1.468s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 6 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(HomeControllerTest, sbt.ForkMain$AnnotatedFingerscan@289d1c02, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mHomeControllerTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestSearchByTag[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestSearchByTag[0m finished, took 0.575 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestSearchByTag[0m finished, took 0.548 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestShowTags[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestShowTags[0m finished, took 0.182 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestShowTags[0m finished, took 0.172 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestDisplay[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestDisplay[0m finished, took 0.103 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestDisplay[0m finished, took 0.1 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestSearch[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestSearch[0m finished, took 0.582 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mHomeControllerTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 4 total, 1.443s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mHomeControllerTest[0m.[36mtestSearch[0m finished, took 0.598 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0m[33mHomeControllerTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 4 total, 1.418s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 4 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0mSummary for JUnit not available.[0m
-[0m[[0m[31merror[0m] [0m[0mFailed: Total 38, Failed 1, Errors 0, Passed 37[0m
+[0m[[0m[0minfo[0m] [0m[0mPassed: Total 44, Failed 0, Errors 0, Passed 44[0m
 [0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	services.ReadabilityServiceTest[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Model.SearchFormTest[0m
@@ -136,7 +141,5 @@
 [0m[[0m[0mdebug[0m] [0m[0m	BeforeViewTest[0m
 [0m[[0m[0mdebug[0m] [0m[0m	WordStatServiceTest[0m
 [0m[[0m[0mdebug[0m] [0m[0m	services.SentimentServiceTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m	services.YTRestDirTest[0m
 [0m[[0m[0mdebug[0m] [0m[0m	HomeControllerTest[0m
-[0m[[0m[31merror[0m] [0m[0mFailed tests:[0m
-[0m[[0m[31merror[0m] [0m[0m	services.YTRestDirTest[0m
-[0m[[0m[31merror[0m] [0m[0m(Test / [31mtest[0m) sbt.TestsFailedException: Tests unsuccessful[0m

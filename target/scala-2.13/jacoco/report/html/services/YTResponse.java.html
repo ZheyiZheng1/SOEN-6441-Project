@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>YTResponse.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">services</a> &gt; <span class="el_source">YTResponse.java</span></div><h1>YTResponse.java</h1><pre class="source lang-java linenums">/**
+ * @author: Zheyi Zheng - 40266266
+ * Created: 2024/10/29
+ * This is the YTResponse class. It is a class that contains all information about a video.
+ */
+package services;
+
+import java.util.List;
+
+public class YTResponse {
+    private String title;
+    private String videoId;
+    private String videoLink;
+    private String channelTitle;
+    private String channelId;
+    private String channelProfileLink;
+    private String description;
+    private String thumbnailUrl;
+    private List&lt;String&gt; tags;  // Added tags field
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * Constructor method that only call super();.
+     */
+    public YTResponse() {
+<span class="fc" id="L26">        super();</span>
+<span class="fc" id="L27">    }</span>
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a string that combine all information of the class.
+     */
+    public String toString(){
+<span class="fc" id="L35">        return title+&quot;,&quot;+videoId+&quot;,&quot;+videoLink+&quot;,&quot;+channelTitle+&quot;,&quot;+channelId+&quot;,&quot;+channelProfileLink+&quot;,&quot;+description+&quot;,&quot;+thumbnailUrl+&quot;,&quot;+tags;</span>
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a string of title.
+     */
+    public String getTitle() {
+<span class="fc" id="L44">        return title;</span>
+    }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param title set the title.
+     */
+    public void setTitle(String title) {
+<span class="fc" id="L52">        this.title = title;</span>
+<span class="fc" id="L53">    }</span>
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a string of video id.
+     */
+    public String getVideoId() {
+<span class="fc" id="L60">        return videoId;</span>
+    }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param videoId set the videoId.
+     */
+    public void setVideoId(String videoId) {
+<span class="fc" id="L68">        this.videoId = videoId;</span>
+<span class="fc" id="L69">    }</span>
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a string of video link.
+     */
+    public String getVideoLink() {
+<span class="fc" id="L76">        return videoLink;</span>
+    }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param videoLink set the videoId.
+     */
+    public void setVideoLink(String videoLink) {
+<span class="fc" id="L84">        this.videoLink = videoLink;</span>
+<span class="fc" id="L85">    }</span>
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a string of channel title.
+     */
+    public String getChannelTitle() {
+<span class="fc" id="L92">        return channelTitle;</span>
+    }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param channelTitle set the videoId.
+     */
+    public void setChannelTitle(String channelTitle) {
+<span class="fc" id="L100">        this.channelTitle = channelTitle;</span>
+<span class="fc" id="L101">    }</span>
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a string of channel id.
+     */
+    public String getChannelId() {
+<span class="fc" id="L108">        return channelId;</span>
+    }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param channelId set the channel id.
+     */
+    public void setChannelId(String channelId) {
+<span class="fc" id="L116">        this.channelId = channelId;</span>
+<span class="fc" id="L117">    }</span>
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a string of Channel profile link.
+     */
+    public String getChannelProfileLink() {
+<span class="fc" id="L124">        return channelProfileLink;</span>
+    }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param channelProfileLink set the Channel profile link.
+     */
+    public void setChannelProfileLink(String channelProfileLink) {
+<span class="fc" id="L132">        this.channelProfileLink = channelProfileLink;</span>
+<span class="fc" id="L133">    }</span>
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a string of video description.
+     */
+    public String getDescription() {
+<span class="fc" id="L140">        return description;</span>
+    }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param description set the video description.
+     */
+    public void setDescription(String description) {
+<span class="fc" id="L148">        this.description = description;</span>
+<span class="fc" id="L149">    }</span>
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a string of thumbnail Url.
+     */
+    public String getThumbnailUrl() {
+<span class="fc" id="L156">        return thumbnailUrl;</span>
+    }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param thumbnailUrl set the video thumbnailUrl.
+     */
+    public void setThumbnailUrl(String thumbnailUrl) {
+<span class="fc" id="L164">        this.thumbnailUrl = thumbnailUrl;</span>
+<span class="fc" id="L165">    }</span>
+
+
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Created: 2024/10/29
+     * returns the tags.
+     */
+    public List&lt;String&gt; getTags() {
+<span class="fc" id="L175">        return tags;</span>
+    }
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Created: 2024/10/29
+     * @param tags set the video tags.
+     */
+
+    public void setTags(List&lt;String&gt; tags) {
+<span class="fc" id="L184">        this.tags = tags;</span>
+<span class="fc" id="L185">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

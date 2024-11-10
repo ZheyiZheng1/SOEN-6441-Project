@@ -12,13 +12,13 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.util.List;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -84,7 +84,6 @@ public class YTRestDirTest {
         assertEquals("https://example.com/image.jpg", response.getThumbnailUrl());
     }
 
-
     /**
      * @author: Pulkit Bansal - 40321488
      * Test for getVideoDetails when video exists
@@ -147,4 +146,32 @@ public class YTRestDirTest {
         assertEquals(List.of("tag1", "tag2"), response.getTags());
     }
 
+    @Test
+    public void testIOException_HTTPErrorCode() throws Exception {
+        // Mock HttpURLConnection to simulate a non-200 response code
+        when(mockConnection.getResponseCode()).thenReturn(HttpURLConnection.HTTP_INTERNAL_ERROR); // 500
+
+        String validUrl = "https://www.googleapis.com/youtube/v3/search?q=java&key=API_KEY";
+
+        // Mocking the behavior of HttpURLConnection to simulate an error response
+        when(mockConnection.getInputStream()).thenThrow(new IOException("HTTP error code: 500"));
+
+        // Here we test the IOException for non-200 status code response
+        assertThrows(IOException.class, () -> {
+            ytRestDir.searchVideos("java", validUrl, "10");
+        });
+    }
+    @Test
+    public void testURISyntaxException2() {
+
+        String invalidUrl = "https://www.example.com/search?query=spaces in url"; // an invalid URL containing spaces
+        String keyword = "test";
+        String maxResult = "5";
+
+        IOException exception = assertThrows(IOException.class, () -> {
+            ytRestDir.searchVideos(keyword, invalidUrl, maxResult);
+        });
+
+        assertTrue(exception.getMessage().contains("Invalid URL"));
+    }
 }
