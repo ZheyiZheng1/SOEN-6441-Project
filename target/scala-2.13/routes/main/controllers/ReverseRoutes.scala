@@ -29,6 +29,12 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "search")
     }
   
+    // @LINE:22
+    def showChannelProfile(channelId:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "channelProfile/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("channelId", channelId)))
+    }
+  
     // @LINE:13
     def showTags(videoId:String): Call = {
       

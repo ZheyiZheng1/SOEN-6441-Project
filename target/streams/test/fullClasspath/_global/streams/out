@@ -1,4 +1,4 @@
-[0m[[0m[0minfo[0m] [0m[0mInstrumenting 45 classes to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\jacoco\instrumented-classes[0m
+[0m[[0m[0minfo[0m] [0m[0mInstrumenting 49 classes to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\jacoco\instrumented-classes[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting products: C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes[0m
 [0m[[0m[0mdebug[0m] [0m[0mFound jacoco agent: Vector()[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\AsyncController.class[0m
@@ -25,10 +25,12 @@
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\router\RoutesPrefix.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\ApplicationTimer.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\AtomicCounter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\ChannelProfile.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\Counter.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\ReadabilityService.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\SentimentService.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\TagsService.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\Video.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\WordStatService.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\YTResponse.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\YTRestDir.class[0m
@@ -36,6 +38,8 @@
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\Home\display.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\Home\searchResults$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\Home\searchResults.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\Home\showChannelProfile$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\Home\showChannelProfile.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\Home\tags$.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\Home\tags.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\Home\videoStatistics$.class[0m

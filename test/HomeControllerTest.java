@@ -143,7 +143,7 @@ public class HomeControllerTest {
         // Check the content type and output
         assertEquals("text/html", result.contentType().orElse(""));
         String content = contentAsString(result);
-        System.out.println(content);
+        //System.out.println(content);
 
         // Check that the rendered content contains java
         assertTrue(content.contains("Learn Java in 14 Minutes"));

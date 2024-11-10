@@ -1,46 +1,36 @@
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] IncrementalCompile -----------[0m
 [0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
-[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 11 products, 11 sources, 11 libraries[0m
-[0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/test/HomeControllerTest.java, ${BASE}/test/services/YTResponseTest.java, ${BASE}/test/WordStatServiceTest.java, ${BASE}/test/SearchFormTest.java, ${BASE}/test/services/ReadabilityServiceTest.java, ${BASE}/test/UnitTest.java, ${BASE}/test/BeforeViewTest.java, ${BASE}/test/services/SentimentServiceTest.java, ${BASE}/test/TagsServiceTest.java, ${BASE}/test/TextSegmentTest.java, ${BASE}/test/services/YTRestDirTest.java)[0m
-[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/test/services/YTRestDirTest.java), unmodified = ...),Set(),Set(),API Changes: Set())[0m
+[0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 12 products, 12 sources, 11 libraries[0m
+[0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/test/HomeControllerTest.java, ${BASE}/test/services/YTResponseTest.java, ${BASE}/test/services/WordStatServiceTest.java, ${BASE}/test/SearchFormTest.java, ${BASE}/test/services/ReadabilityServiceTest.java, ${BASE}/test/UnitTest.java, ${BASE}/test/BeforeViewTest.java, ${BASE}/test/services/SentimentServiceTest.java, ${BASE}/test/TagsServiceTest.java, ${BASE}/test/TextSegmentTest.java, ${BASE}/test/services/ChannelProfileTest.java, ${BASE}/test/services/YTRestDirTest.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/test/BeforeViewTest.java), unmodified = ...),Set(),Set(),API Changes: Set())[0m
 [0m[[0m[0mdebug[0m] [0m[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial source changes:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	removed: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	added: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/test/services/YTRestDirTest.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/test/BeforeViewTest.java)[0m
 [0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(services.YTRestDirTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(BeforeViewTest)[0m
 [0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	product: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0m	external source: Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(services.YTRestDirTest)[0m
-[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/test/services/YTRestDirTest.java)[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: services.YTRestDirTest[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(BeforeViewTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/test/BeforeViewTest.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: BeforeViewTest[0m
 [0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Java source to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\test-classes ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@49dc1514 directly...[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.9657518 s[0m
-[0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing services.YTRestDirTest[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.0725643 s[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 1.052296 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@40967fa directly...[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.8363093 s[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing BeforeViewTest[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.0670205 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 0.9212858 s[0m
 [0m[[0m[0mdebug[0m] [0m[0mdone compiling[0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from services.YTRestDirTest...[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: services.YTRestDirTest[0m
-[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(services.YTRestDirTest)[0m
-[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(services.YTRestDirTest,ModifiedNames(changes = UsedName(testURISyntaxException,[Default]))) invalidates 1 classes due to The services.YTRestDirTest has the following regular definitions changed:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	UsedName(testURISyntaxException,[Default]).[0m
-[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(services.YTRestDirTest)[0m
-[0m[[0m[0mdebug[0m] [0m[0m  > [0m
-[0m[[0m[0mdebug[0m] [0m[0m  > [0m
-[0m[[0m[0mdebug[0m] [0m[0m  > [0m
-[0m[[0m[0mdebug[0m] [0m[0m        [0m
 [0m[[0m[0mdebug[0m] [0m[0mNew invalidations:[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: [0m
 [0m[[0m[0mdebug[0m] [0m[0mPreviously invalidated, but (transitively) depend on new invalidations:[0m
 [0m[[0m[0mdebug[0m] [0m[0mFinal step, transitive dependencies:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Set()[0m
-[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: services.YTRestDirTest[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: BeforeViewTest[0m
 [0m[[0m[0mdebug[0m] [0m[0mNo classes were invalidated.[0m

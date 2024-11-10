@@ -71,7 +71,6 @@ public class BeforeViewTest {
     assertTrue(actualHtml.contains("https://www.youtube.com/watch?v=12345"));
     assertTrue(actualHtml.contains("Sample Channel"));
     assertTrue(actualHtml.contains("abcde"));
-    assertTrue(actualHtml.contains("https://www.youtube.com/channel/abcde"));
     assertTrue(actualHtml.contains("This is the sample description."));
     assertTrue(actualHtml.contains("https://i.ytimg.com/vi/12345/default.jpg"));
 }

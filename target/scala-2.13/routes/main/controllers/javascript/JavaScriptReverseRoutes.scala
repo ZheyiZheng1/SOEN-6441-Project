@@ -38,6 +38,16 @@ package controllers.javascript {
       """
     )
   
+    // @LINE:22
+    def showChannelProfile: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.showChannelProfile",
+      """
+        function(channelId0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "channelProfile/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("channelId", channelId0))})
+        }
+      """
+    )
+  
     // @LINE:13
     def showTags: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.showTags",

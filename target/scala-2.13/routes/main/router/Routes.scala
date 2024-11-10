@@ -55,6 +55,7 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """tags/""" + "$" + """videoId<[^/]+>""", """controllers.HomeController.showTags(videoId:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """searchByTag/""" + "$" + """tag<[^/]+>""", """controllers.HomeController.searchByTag(tag:String, request:Request)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(file:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """channelProfile/""" + "$" + """channelId<[^/]+>""", """controllers.HomeController.showChannelProfile(channelId:String)"""),
     Nil
   ).foldLeft(Seq.empty[(String, String, String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String, String, String)]
@@ -212,6 +213,24 @@ class Routes(
     )
   )
 
+  // @LINE:22
+  private lazy val controllers_HomeController_showChannelProfile8_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("channelProfile/"), DynamicPart("channelId", """[^/]+""", encodeable=true)))
+  )
+  private lazy val controllers_HomeController_showChannelProfile8_invoker = createInvoker(
+    HomeController_0.showChannelProfile(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.HomeController",
+      "showChannelProfile",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """channelProfile/""" + "$" + """channelId<[^/]+>""",
+      """for channelProfile""",
+      Seq()
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -264,6 +283,12 @@ class Routes(
     case controllers_Assets_versioned7_route(params@_) =>
       call(params.fromPath[String]("file", None)) { (file) =>
         controllers_Assets_versioned7_invoker.call(Assets_3.versioned(file))
+      }
+  
+    // @LINE:22
+    case controllers_HomeController_showChannelProfile8_route(params@_) =>
+      call(params.fromPath[String]("channelId", None)) { (channelId) =>
+        controllers_HomeController_showChannelProfile8_invoker.call(HomeController_0.showChannelProfile(channelId))
       }
   }
 }
