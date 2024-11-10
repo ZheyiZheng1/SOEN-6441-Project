@@ -14,7 +14,11 @@ import play.test.Helpers;
 import views.html.Home.display;
 import views.html.Home.videoStatistics;
 import org.junit.Test;
+import services.YTResponse;
+import java.util.*;
+import services.WordStatService;
 
+import org.junit.Before;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
@@ -36,6 +40,11 @@ import com.google.common.collect.ImmutableMap;
  */
 public class HomeControllerTest {
 
+    private HomeController homeController;
+
+    private WordStatService wordStatService;
+
+    private CompletableFuture<List<YTResponse>> resultDemo;
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/24
@@ -159,4 +168,38 @@ public class HomeControllerTest {
         String content = contentAsString(result);
         // assertTrue(content.contains("Expected content for tags view"));
     }
+
+    /**
+     * @author: Praneet Avhad
+     * Id - 40279347
+     * Test if the videoStatistics view gets generated correctly with the videoStatistics method in HomeController.
+     */
+    @Test
+    public void testVideoStatistics() throws ExecutionException, InterruptedException, IOException {
+        // Arrange
+        String keyword = "testKeyword";
+        YTResponse response1 = new YTResponse();
+        response1.setTitle("Video 1");
+        response1.setDescription("This is a test video description");
+        response1.setVideoLink("test link");
+
+        YTResponse response2 = new YTResponse();
+        response2.setTitle("Video 2");
+        response2.setDescription("This is a test video description 2");
+        response2.setVideoLink("test link 2");
+
+        List<YTResponse> videos = Arrays.asList(response1, response2);
+        resultDemo.complete(videos); // Complete the future with mock data
+
+        // Assign completed future to simulate data in result_demo
+        homeController.result_demo = resultDemo;
+
+        // Act
+        Result result = homeController.videoStatistics(keyword);
+
+        String content = contentAsString(result);
+        assertTrue(content.contains("6"));
+
+    }
+
 }
