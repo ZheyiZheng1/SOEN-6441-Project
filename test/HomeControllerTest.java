@@ -16,17 +16,21 @@ import views.html.Home.display;
 import views.html.Home.videoStatistics;
 import org.junit.Before;
 import org.junit.Test;
+import services.YTResponse;
+import java.util.*;
+import services.WordStatService;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import static play.mvc.Http.Status.*;
 
 
+import org.junit.Before;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-
+import static javax.security.auth.callback.ConfirmationCallback.OK;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static play.test.Helpers.contentAsString;
@@ -44,6 +48,11 @@ import static play.test.Helpers.contentAsString;
  */
 public class HomeControllerTest {
 
+    private HomeController homeController;
+
+    private WordStatService wordStatService;
+
+    private CompletableFuture<List<YTResponse>> resultDemo;
     @Mock
     private TagsService tagsService;
 
@@ -132,6 +141,118 @@ public class HomeControllerTest {
      * @throws ExecutionException   if there is an error during the asynchronous process.
      * @throws InterruptedException if the current thread is interrupted while waiting.
      */
+    @Test
+    public void testSearchByTag() throws ExecutionException, InterruptedException {
+        // Initialize the application context
+        Application app = new GuiceApplicationBuilder().build();
+        HomeController homeController = app.injector().instanceOf(HomeController.class);
+
+        // Create a fake request to search by tag
+        Http.RequestBuilder request = fakeRequest()
+                .method("GET")
+                .uri("/searchByTag/testTag");
+
+        // Call the searchByTag method
+        CompletableFuture<Result> futureResult = homeController.searchByTag("testTag", request.build());
+        Result result = futureResult.get();
+
+        // Check that the response status is OK
+        assertEquals(OK, result.status());
+
+        // Optional: Check the content
+        String content = contentAsString(result);
+        // assertTrue(content.contains("Expected content for tag search results"));
+    }
+
+    /**
+     * Test the `showTags` method to ensure it returns correct tags for a video.
+     *
+     * <p>This test verifies that the `showTags` method correctly calls the `TagsService`
+     * and returns a status of 200 OK when a valid video ID is provided.</p>
+     *
+     * @throws ExecutionException   if there is an error during the asynchronous process.
+     * @throws InterruptedException if the current thread is interrupted while waiting.
+     */
+    @Test
+    public void testShowTags() throws ExecutionException, InterruptedException {
+        // Initialize the application context
+        Application app = new GuiceApplicationBuilder().build();
+        HomeController homeController = app.injector().instanceOf(HomeController.class);
+
+        // Create a fake request to show tags for a video
+        Http.RequestBuilder request = fakeRequest()
+                .method("GET")
+                .uri("/video/tags/12345");
+
+        // Call the showTags method
+        CompletableFuture<Result> futureResult = homeController.showTags("12345");
+        Result result = futureResult.get();
+
+        // Check that the response status is OK
+        assertEquals(OK, result.status());
+
+        // Optional: Check the content
+        String content = contentAsString(result);
+        // assertTrue(content.contains("Expected content for tags view"));
+    }
+
+    /**
+     * * @author: Praneet Avhad
+     *  * Id - 40279347
+     * Sets up the test environment before each test case.
+     *
+     * This method is executed before each test method is run. It initializes the
+     * application context and retrieves the instances of the necessary components
+     * (e.g., `HomeController`, `WordStatService`). It also initializes `resultDemo`
+     * as a new `CompletableFuture` instance to simulate asynchronous operations.
+     *
+     * The setup ensures that each test case runs with a fresh context and mockable
+     * dependencies.
+     *
+     * @throws Exception if any error occurs during the setup process
+     */
+
+    @Before
+    public void setUp() {
+        Application app = new GuiceApplicationBuilder().build();
+        homeController = app.injector().instanceOf(HomeController.class);
+
+        wordStatService = app.injector().instanceOf(WordStatService.class);
+        resultDemo = new CompletableFuture<>();
+    }
+    /**
+     * @author: Praneet Avhad
+     * Id - 40279347
+     * Test if the videoStatistics view gets generated correctly with the videoStatistics method in HomeController.
+     */
+    @Test
+    public void testVideoStatistics() throws ExecutionException, InterruptedException, IOException {
+        // Arrange
+        String keyword = "testKeyword";
+        YTResponse response1 = new YTResponse();
+        response1.setTitle("Video 1");
+        response1.setDescription("This is a test video description");
+        response1.setVideoLink("test link");
+
+        YTResponse response2 = new YTResponse();
+        response2.setTitle("Video 2");
+        response2.setDescription("This is a test video description 2");
+        response2.setVideoLink("test link 2");
+
+        List<YTResponse> videos = Arrays.asList(response1, response2);
+        resultDemo.complete(videos); // Complete the future with mock data
+
+        // Assign completed future to simulate data in result_demo
+        homeController.result_demo = resultDemo;
+
+        // Act
+        Result result = homeController.videoStatistics(keyword);
+
+        String content = contentAsString(result);
+        assertTrue(content.contains("6"));
+
+    }
+
 //    @Test
 //    public void testSearchByTag() throws ExecutionException, InterruptedException {
 //        // Mock the expected response from TagsService

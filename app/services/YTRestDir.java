@@ -79,18 +79,15 @@ public class YTRestDir {
             }
 
             // process the response
-            try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-                // Process input stream into a single string
-                StringBuilder response = new StringBuilder();
-                String inputLine;
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                // Apply the mapResponse to the string and return
-                return mapResponse(response.toString());
-            } catch (IOException e) {
-                throw new IOException("Error reading response: " + e.getMessage());
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            // Process input stream into a single string
+            StringBuilder response = new StringBuilder();
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
             }
+            // Apply the mapResponse to the string and return
+            return mapResponse(response.toString());
         } catch (URISyntaxException e) {
             throw new IOException("Invalid URL: " + e.getMessage());
         }

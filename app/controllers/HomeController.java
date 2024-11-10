@@ -35,7 +35,7 @@ public class HomeController extends Controller {
     private final MessagesApi messagesApi;
     private final BeforeView beforeView;
     private final TagsService tagsService;
-    private CompletableFuture<List<YTResponse>> result_demo = new CompletableFuture<List<YTResponse>>();
+    public CompletableFuture<List<YTResponse>> result_demo = new CompletableFuture<List<YTResponse>>();
     /**
      * Constructor method. This method creates a BeforeView model and inject the dependency of FormFactory and MessageApi.
      * @author: Zheyi Zheng - 40266266

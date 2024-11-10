@@ -49,6 +49,7 @@ public class YTResponseTest {
         assertEquals("https://www.youtube.com/channel/abcde", ytResponse.getChannelProfileLink());
         assertEquals("This is a sample video description.", ytResponse.getDescription());
         assertEquals("https://i.ytimg.com/vi/12345/default.jpg", ytResponse.getThumbnailUrl());
+        assertEquals(null, ytResponse.getTags());
     }
 
     /**
@@ -67,6 +68,7 @@ public class YTResponseTest {
         ytResponse.setDescription("This is a sample video description.");
         ytResponse.setThumbnailUrl("https://i.ytimg.com/vi/12345/default.jpg");
         System.out.println(ytResponse.toString());
+        ytResponse.setTags(null);
         String expectedString = "Sample Video,12345,https://www.youtube.com/watch?v=12345,Sample Channel,abcde,https://www.youtube.com/channel/abcde,This is a sample video description.,https://i.ytimg.com/vi/12345/default.jpg,null";
         assertEquals(expectedString, ytResponse.toString());
     }

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TagsService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">services</a> &gt; <span class="el_source">TagsService.java</span></div><h1>TagsService.java</h1><pre class="source lang-java linenums">package services;
+
+import Model.TextSegment;
+import play.data.Form;
+import play.data.FormFactory;
+import play.i18n.MessagesApi;
+import play.i18n.Messages;
+import play.mvc.Http.Request;
+import play.mvc.*;
+import Model.SearchForm;
+import views.html.Home.searchResults;
+import views.html.Home.tags;
+import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+
+
+/**
+ * Service for handling video tags and related operations.
+ *
+ * &lt;p&gt;This service provides methods to display tags of a specific video,
+ * as well as search for videos by a specified tag. It uses the {@link YTRestDir}
+ * service for interacting with YouTube to get video details and search videos asynchronously.&lt;/p&gt;
+ *
+ * &lt;p&gt;The service methods are designed to be used in a reactive manner, leveraging
+ * {@link CompletableFuture} to handle asynchronous responses from the YouTube Data API.&lt;/p&gt;
+ *
+ * &lt;p&gt;Author: Pulkit Bansal - 40321488&lt;/p&gt;
+ */
+
+public class TagsService extends Controller {
+
+    private final YTRestDir ytRestDir;
+    private final FormFactory formFactory;
+    private final MessagesApi messagesApi;
+
+
+    /**
+     * Constructs a new TagsService with the specified dependencies.
+     *
+     * @param ytRestDir   The YouTube REST Directory service used for interacting with the YouTube Data API.
+     * @param formFactory The form factory used for handling form data.
+     * @param messagesApi The messages API used for handling internationalization messages.
+     */
+
+    @Inject
+<span class="fc" id="L49">    public TagsService(YTRestDir ytRestDir, FormFactory formFactory, MessagesApi messagesApi) {</span>
+<span class="fc" id="L50">        this.ytRestDir = ytRestDir;</span>
+<span class="fc" id="L51">        this.formFactory = formFactory;</span>
+<span class="fc" id="L52">        this.messagesApi = messagesApi;</span>
+<span class="fc" id="L53">    }</span>
+
+    /**
+     * Displays the tags page for a specific video.
+     *
+     * &lt;p&gt;This method fetches the video details, including its tags, by interacting with the {@link YTRestDir}
+     * service. If the video details are found, it renders the tags view. Otherwise, it returns a 404 error.&lt;/p&gt;
+     *
+     * @param videoId The ID of the video to fetch details and tags for.
+     * @return A {@link CompletableFuture} of {@link Result} that renders the tags page view.
+     *         Returns a &quot;not found&quot; response if the video could not be located.
+     */
+    public CompletableFuture&lt;Result&gt; showTags(String videoId) {
+<span class="fc" id="L66">        return ytRestDir.getVideoDetails(videoId).thenApply(video -&gt; {</span>
+            if (video == null) {
+                return notFound(&quot;Video not found.&quot;);
+            }
+            return ok(tags.render(video)); // Pass video details to the view
+        });
+    }
+
+    /**
+     * Searches for videos by a specified tag and renders the search results page.
+     *
+     * &lt;p&gt;This method searches for videos that match the given tag by interacting with the
+     * {@link YTRestDir} service asynchronously. Once the search results are retrieved,
+     * it prepares the video details to be displayed in the search results view.&lt;/p&gt;
+     *
+     * &lt;p&gt;If the search fails due to an error, a 500 Internal Server Error response is returned.&lt;/p&gt;
+     *
+     * @param tag     The tag used to search for videos.
+     * @param request The HTTP request object.
+     * @return A {@link CompletableFuture} of {@link Result} that renders the search results view
+     *         with videos containing the specified tag.
+     */
+    public CompletableFuture&lt;Result&gt; searchByTag(String tag, Request request) {
+<span class="fc" id="L89">        return ytRestDir.searchVideosAsynch(tag, null, &quot;10&quot;).thenApply(videos -&gt; {</span>
+            ArrayList&lt;ArrayList&lt;ArrayList&lt;TextSegment&gt;&gt;&gt; userList = new ArrayList&lt;&gt;();
+            ArrayList&lt;ArrayList&lt;String&gt;&gt; userReadability = new ArrayList&lt;&gt;();
+
+            for (YTResponse video : videos) {
+                ArrayList&lt;TextSegment&gt; segments = new ArrayList&lt;&gt;();
+                segments.add(new TextSegment(&quot;Title: &quot;, video.getVideoLink()));
+                segments.add(new TextSegment(video.getTitle(), null));
+                segments.add(new TextSegment(&quot;, Channel: &quot;, null));
+                segments.add(new TextSegment(video.getChannelTitle(), video.getChannelProfileLink()));
+                segments.add(new TextSegment(&quot;, Description: &quot; + video.getDescription(), null));
+
+                ArrayList&lt;ArrayList&lt;TextSegment&gt;&gt; videoResult = new ArrayList&lt;&gt;();
+                videoResult.add(segments);
+                userList.add(videoResult);
+
+                userReadability.add(new ArrayList&lt;&gt;(List.of(&quot;N/A&quot;, &quot;N/A&quot;))); // Placeholder
+            }
+
+            Form&lt;SearchForm&gt; searchForm = formFactory.form(SearchForm.class);
+            Messages messages = messagesApi.preferred(request);
+            ArrayList&lt;String&gt; keywords = new ArrayList&lt;&gt;();
+            keywords.add(tag);
+
+            return ok(searchResults.render(keywords, userList, userReadability, searchForm, messages, request));
+<span class="fc" id="L114">        }).exceptionally(ex -&gt; {</span>
+            return internalServerError(&quot;An error occurred while searching for videos by tag.&quot;);
+        });
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
