@@ -184,4 +184,96 @@ public class WordStatServiceTest {
 //            videoProcessor.getWordFrequency(null);
 //        }, "Expected getWordFrequency to throw IllegalArgumentException for null input");
 //    }
+    /**
+     * Test case for the {@link WordStatService#sortWordsByFrequency(Map)} method.
+     *
+     * This test verifies that when an empty map is passed to the
+     * {@link WordStatService#sortWordsByFrequency(Map)} method, the result is also an empty map.
+     * It ensures that the method handles the edge case of an empty input correctly, returning an
+     * empty map without errors or unexpected behavior.
+     *
+     * @see WordStatService#sortWordsByFrequency(Map)
+     */
+
+    @Test
+    public void testSortWordsByFrequency_EmptyMap() {
+        Map<String, Long> wordFrequency = Collections.emptyMap();
+        Map<String, Long> sortedFrequency = videoProcessor.sortWordsByFrequency(wordFrequency);
+        assertEquals(Collections.emptyMap(), sortedFrequency);
+    }
+
+    /**
+     * Test case for the {@link WordStatService#sortWordsByFrequency(Map)} method with a map containing
+     * a single entry.
+     *
+     * This test ensures that when a map with a single entry is passed to the
+     * {@link WordStatService#sortWordsByFrequency(Map)} method, the map is returned unchanged, as
+     * sorting a single-entry map does not alter its contents.
+     *
+     * @see WordStatService#sortWordsByFrequency(Map)
+     */
+
+
+    @Test
+    public void testSortWordsByFrequency_SingleEntry() {
+        Map<String, Long> wordFrequency = Map.of("apple", 1L);
+        Map<String, Long> sortedFrequency = videoProcessor.sortWordsByFrequency(wordFrequency);
+        assertEquals(wordFrequency, sortedFrequency);
+    }
+
+    /**
+     * Test case for the {@link WordStatService#sortWordsByFrequency(Map)} method with multiple entries.
+     *
+     * This test verifies that the {@link WordStatService#sortWordsByFrequency(Map)} method correctly
+     * sorts a map by frequency in descending order. It ensures that words with higher frequency appear
+     * first in the sorted map.
+     *
+     * @see WordStatService#sortWordsByFrequency(Map)
+     */
+
+    @Test
+    public void testSortWordsByFrequency_MultipleEntries() {
+        Map<String, Long> wordFrequency = Map.of(
+                "apple", 3L,
+                "banana", 1L,
+                "grape", 2L
+        );
+
+        Map<String, Long> expectedSorted = new LinkedHashMap<>();
+        expectedSorted.put("apple", 3L);
+        expectedSorted.put("grape", 2L);
+        expectedSorted.put("banana", 1L);
+
+        Map<String, Long> sortedFrequency = videoProcessor.sortWordsByFrequency(wordFrequency);
+        assertEquals(expectedSorted, sortedFrequency);
+    }
+
+    /**
+     * Test case for the {@link WordStatService#sortWordsByFrequency(Map)} method when duplicate entries
+     * exist for a word.
+     *
+     * This test ensures that the merge function works correctly by keeping the last entry for duplicate
+     * words, as specified by the map’s merge strategy. It verifies that the method returns the correct
+     * frequencies after resolving duplicates.
+     *
+     * @see WordStatService#sortWordsByFrequency(Map)
+     */
+    
+    @Test
+    public void testSortWordsByFrequency_MergeFunction() {
+        // Creating a Map with duplicate entries manually.
+        Map<String, Long> wordFrequency = new LinkedHashMap<>();
+        wordFrequency.put("apple", 2L);
+        wordFrequency.put("apple", 3L); // Duplicate key to trigger merge function
+        wordFrequency.put("banana", 1L);
+
+        Map<String, Long> sortedFrequency = videoProcessor.sortWordsByFrequency(wordFrequency);
+
+        // Expected result after merging duplicate entries.
+        Map<String, Long> expectedFrequency = new LinkedHashMap<>();
+        expectedFrequency.put("apple", 3L); // Keeps the last duplicate
+        expectedFrequency.put("banana", 1L);
+
+        assertEquals(expectedFrequency, sortedFrequency);
+    }
 }
