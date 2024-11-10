@@ -1,6 +1,7 @@
 package services;
 
 import Model.TextSegment;
+import Model.BeforeView;
 import play.data.Form;
 import play.data.FormFactory;
 import play.i18n.MessagesApi;
@@ -12,8 +13,11 @@ import views.html.Home.searchResults;
 import views.html.Home.tags;
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.CompletionException;
 
 
 
@@ -35,6 +39,7 @@ public class TagsService extends Controller {
     private final YTRestDir ytRestDir;
     private final FormFactory formFactory;
     private final MessagesApi messagesApi;
+    private final BeforeView beforeView;
 
 
     /**
@@ -50,6 +55,7 @@ public class TagsService extends Controller {
         this.ytRestDir = ytRestDir;
         this.formFactory = formFactory;
         this.messagesApi = messagesApi;
+        this.beforeView = new BeforeView();
     }
 
     /**
@@ -67,9 +73,34 @@ public class TagsService extends Controller {
             if (video == null) {
                 return notFound("Video not found.");
             }
-            return ok(tags.render(video)); // Pass video details to the view
+            // Pass the YTResponse object directly to the view
+            return ok(views.html.Home.tags.render(video)); // This matches the expected argument type in the view
+        }).exceptionally(e -> {
+            e.printStackTrace();
+            return internalServerError("Error occurred while fetching video details.");
         });
     }
+
+
+//
+//    public CompletableFuture<Result> showVideoDetails(String videoId) {
+//        return ytRestDir.getVideoDetails(videoId)
+//                .thenApply(video -> {
+//                    if (video == null) {
+//                        return notFound("Video not found.");
+//                    }
+//
+//                    String videoTitle = (String) video.getTitle();
+//                    String videoDescription = (String) video.getDescription();
+//                    List<String> tags = (List<String>) video.getTags();
+//
+//                    return ok(views.html.Home.tags.render(videoTitle, videoDescription, tags));
+//                })
+//                .exceptionally(e -> {
+//                    e.printStackTrace();
+//                    return internalServerError("Error occurred while fetching video details.");
+//                });
+//    }
 
     /**
      * Searches for videos by a specified tag and renders the search results page.
@@ -86,35 +117,25 @@ public class TagsService extends Controller {
      *         with videos containing the specified tag.
      */
     public CompletableFuture<Result> searchByTag(String tag, Request request) {
-        return ytRestDir.searchVideosAsynch(tag, null, "10").thenApply(videos -> {
-            ArrayList<ArrayList<ArrayList<TextSegment>>> userList = new ArrayList<>();
-            ArrayList<ArrayList<String>> userReadability = new ArrayList<>();
-
-            for (YTResponse video : videos) {
-                ArrayList<TextSegment> segments = new ArrayList<>();
-                segments.add(new TextSegment("Title: ", video.getVideoLink()));
-                segments.add(new TextSegment(video.getTitle(), null));
-                segments.add(new TextSegment(", Channel: ", null));
-                segments.add(new TextSegment(video.getChannelTitle(), video.getChannelProfileLink()));
-                segments.add(new TextSegment(", Description: " + video.getDescription(), null));
-
-                ArrayList<ArrayList<TextSegment>> videoResult = new ArrayList<>();
-                videoResult.add(segments);
-                userList.add(videoResult);
-
-                userReadability.add(new ArrayList<>(List.of("N/A", "N/A"))); // Placeholder
-            }
-
+        try{
+            // Create the form and get the search query from the tag
             Form<SearchForm> searchForm = formFactory.form(SearchForm.class);
-            Messages messages = messagesApi.preferred(request);
-            ArrayList<String> keywords = new ArrayList<>();
-            keywords.add(tag);
 
-            return ok(searchResults.render(keywords, userList, userReadability, searchForm, messages, request));
-        }).exceptionally(ex -> {
-            return internalServerError("An error occurred while searching for videos by tag.");
-        });
+            // Use YTRestDir to fetch the search results for the given tag
+            CompletableFuture<List<YTResponse>> result = ytRestDir.searchVideosAsynch(tag, null, "50");
+
+            // Process the result similar to the search method
+            CompletableFuture<List<YTResponse>> result2 = result.thenApply(list -> list.stream().limit(10).collect(Collectors.toList()));
+
+            // Call BeforeView to get and return the information to view
+            return beforeView.process(request, tag, result2, formFactory, messagesApi);
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return CompletableFuture.completedFuture(internalServerError("An error occurred while processing the tag search."));
+        }
+
     }
+
 
 
 

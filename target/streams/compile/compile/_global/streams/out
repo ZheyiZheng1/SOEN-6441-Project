@@ -1,0 +1,5 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\DELL\Downloads\APP_Project\SOEN-6441-Project\app\services\TagsService.java:130:18: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m  symbol:   class ExecutionException[0m
+[0m[[0m[31merror[0m] [0m[0m  location: class services.TagsService[0m
+[0m[[0m[31merror[0m] [0m[0mExecutionException[0m
+[0m[[0m[31merror[0m] [0m[0m                 ^[0m
