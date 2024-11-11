@@ -94,14 +94,19 @@ public class YTRestDirTest {
         String mockJsonResponse = "{ \"items\": [{ \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\", \"tags\": [\"tag1\", \"tag2\"] } }] }";
         String mockUrl = "https://mocked_url_for_testing";
 
-        doReturn(mockConnection).when(ytRestDir).getHttpURLConnection(new URI(mockUrl));
+        // Mock the getHttpURLConnection method to return mockConnection
+        doReturn(mockConnection).when(ytRestDir).getHttpURLConnection(any(URI.class));
         when(mockConnection.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
+
+        // Mock the input stream with the valid JSON response
         InputStream stream = new ByteArrayInputStream(mockJsonResponse.getBytes());
         when(mockConnection.getInputStream()).thenReturn(stream);
 
+        // Call the method under test
         YTResponse videoDetails = ytRestDir.getVideoDetails(videoId).toCompletableFuture().join();
 
-        assertNotNull(videoDetails);
+        // Validate the response
+        assertNotNull("Video details should not be null", videoDetails);
         assertEquals("Test Video", videoDetails.getTitle());
         assertEquals("Test Channel", videoDetails.getChannelTitle());
         assertEquals("12345", videoDetails.getChannelId());

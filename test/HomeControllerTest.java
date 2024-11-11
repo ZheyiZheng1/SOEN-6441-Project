@@ -21,25 +21,19 @@ import java.util.*;
 import services.WordStatService;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import static play.mvc.Http.Status.*;
-
-
-import org.junit.Before;
-import javax.inject.Inject;
 import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import static javax.security.auth.callback.ConfirmationCallback.OK;
+import static play.mvc.Http.Status.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static play.test.Helpers.contentAsString;
 import static play.test.Helpers.fakeRequest;
 import static play.test.Helpers.GET;
-import static play.test.Helpers.route;
-import com.google.common.collect.ImmutableMap;
+
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import static org.mockito.Mockito.*;
-import static play.test.Helpers.contentAsString;
+import com.google.common.collect.ImmutableMap;
+import static play.mvc.Results.ok;
 
 /**
  * @author: Zheyi Zheng - 40266266
@@ -161,9 +155,9 @@ public class HomeControllerTest {
      */
     @Test
     public void testSearchByTag() throws ExecutionException, InterruptedException {
-        // Initialize the application context
-        Application app = new GuiceApplicationBuilder().build();
-        HomeController homeController = app.injector().instanceOf(HomeController.class);
+        // Mock the expected response from TagsService
+        CompletableFuture<Result> mockResult = CompletableFuture.completedFuture(ok("Mocked tag search response"));
+        when(tagsService.searchByTag(anyString(), any(Http.Request.class))).thenReturn(mockResult);
 
         // Create a fake request to search by tag
         Http.RequestBuilder request = fakeRequest()
@@ -177,9 +171,9 @@ public class HomeControllerTest {
         // Check that the response status is OK
         assertEquals(OK, result.status());
 
-        // Optional: Check the content
+        // Check that the content matches the mock response
         String content = contentAsString(result);
-        // assertTrue(content.contains("Expected content for tag search results"));
+        assertTrue(content.contains("Mocked tag search response"));
     }
 
     /**
@@ -193,9 +187,9 @@ public class HomeControllerTest {
      */
     @Test
     public void testShowTags() throws ExecutionException, InterruptedException {
-        // Initialize the application context
-        Application app = new GuiceApplicationBuilder().build();
-        HomeController homeController = app.injector().instanceOf(HomeController.class);
+        // Mock the expected response from TagsService
+        CompletableFuture<Result> mockResult = CompletableFuture.completedFuture(ok("Mocked tags response"));
+        when(tagsService.showTags(anyString())).thenReturn(mockResult);
 
         // Create a fake request to show tags for a video
         Http.RequestBuilder request = fakeRequest()
@@ -209,9 +203,9 @@ public class HomeControllerTest {
         // Check that the response status is OK
         assertEquals(OK, result.status());
 
-        // Optional: Check the content
+        // Check that the content matches the mock response
         String content = contentAsString(result);
-        // assertTrue(content.contains("Expected content for tags view"));
+        assertTrue(content.contains("Mocked tags response"));
     }
 
    
@@ -249,65 +243,4 @@ public class HomeControllerTest {
         assertTrue(content.contains("6"));
 
     }
-
-//    @Test
-//    public void testSearchByTag() throws ExecutionException, InterruptedException {
-//        // Mock the expected response from TagsService
-//        CompletableFuture<Result> mockResult = CompletableFuture.completedFuture(ok("Mocked tag search response"));
-//        when(tagsService.searchByTag(anyString(), any(Http.Request.class))).thenReturn(mockResult);
-//
-//        // Create a fake request to search by tag
-//        Http.RequestBuilder request = fakeRequest()
-//                .method("GET")
-//                .uri("/searchByTag/testTag");
-//
-//        // Call the searchByTag method
-//        CompletableFuture<Result> futureResult = homeController.searchByTag("testTag", request.build());
-//        Result result = futureResult.get();
-//
-//        // Debugging: Print the result status
-//        System.out.println("Result Status (searchByTag): " + result.status());
-//
-//        // Check that the response status is OK
-//        assertTrue(result.status() == play.mvc.Http.Status.OK);
-//
-//        // Check that the content matches the mock response
-//        String content = contentAsString(result);
-//        assertTrue(content.contains("Mocked tag search response"));
-//    }
-//
-//    /**
-//     * Test the `showTags` method to ensure it returns correct tags for a video.
-//     *
-//     * <p>This test verifies that the `showTags` method correctly calls the `TagsService`
-//     * and returns a status of 200 OK when a valid video ID is provided.</p>
-//     *
-//     * @throws ExecutionException   if there is an error during the asynchronous process.
-//     * @throws InterruptedException if the current thread is interrupted while waiting.
-//     */
-//    @Test
-//    public void testShowTags() throws ExecutionException, InterruptedException {
-//        // Mock the expected response from TagsService
-//        CompletableFuture<Result> mockResult = CompletableFuture.completedFuture(ok("Mocked tags response"));
-//        when(tagsService.showTags(anyString())).thenReturn(mockResult);
-//
-//        // Create a fake request to show tags for a video
-//        Http.RequestBuilder request = fakeRequest()
-//                .method("GET")
-//                .uri("/video/tags/12345");
-//
-//        // Call the showTags method
-//        CompletableFuture<Result> futureResult = homeController.showTags("12345");
-//        Result result = futureResult.get();
-//
-//        // Debugging: Print the result status
-//        System.out.println("Result Status (showTags): " + result.status());
-//
-//        // Check that the response status is OK
-//        assertTrue(result.status() == play.mvc.Http.Status.OK);
-//
-//        // Check that the content matches the mock response
-//        String content = contentAsString(result);
-//        assertTrue(content.contains("Mocked tags response"));
-//    }
 }
