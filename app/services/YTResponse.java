@@ -16,6 +16,7 @@ public class YTResponse {
     private String channelProfileLink;
     private String description;
     private String thumbnailUrl;
+    private int videoCount;
     private List<String> tags;  // Added tags field
     /**
      * @author: Zheyi Zheng - 40266266
@@ -24,6 +25,12 @@ public class YTResponse {
      */
     public YTResponse() {
         super();
+    }
+    /*
+     *
+     * @author Sakshi Mulik - 40295793
+     * */
+    public YTResponse(String title, String description, int videoCount, String youtubeLink, String thumbnailUrl) {
     }
 
     /**
@@ -184,5 +191,16 @@ public class YTResponse {
         this.tags = tags;
     }
 
+
+    /**
+     * @author: Sakshi Mulik - 40295793
+     *  set the videocount .
+     */
+    public int getVideoCount() {
+        return videoCount;
+    }
+    public void setVideoCount(int videoCount) {
+        this.videoCount = videoCount;
+    }
 
 }

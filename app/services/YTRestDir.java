@@ -60,7 +60,7 @@ public class YTRestDir {
      * @return a list of YTResponse (processed by mapResponse).
      */
     public List<YTResponse> searchVideos(String keyword, String url, String maxResult) throws IOException {
-        String API_KEY = "AIzaSyC9q637eiKNR6dnssWfxTn22W9UGG-sC30";
+        String API_KEY = "AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w";
         String BASE_URL = "https://www.googleapis.com/youtube/v3/search";
         String MAX_RESULTS = (maxResult != null) ? maxResult : "50";
         String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString());
@@ -102,7 +102,7 @@ public class YTRestDir {
      */
 
     public CompletableFuture<YTResponse> getVideoDetails(String videoId) {
-        String API_KEY = "AIzaSyAPX6aCdEK_YnY7ebeYTU19OxELghm4zIg";
+        String API_KEY = "AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w";
         String urlString = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoId + "&key=" + API_KEY;
 
         return CompletableFuture.supplyAsync(() -> {
@@ -211,5 +211,54 @@ public class YTRestDir {
                 // collect all ytResponse into list
                 .collect(Collectors.toList());
     }
+    /**
+     *  Sakshi Mulik -40295793
+     * get channel profile
+     */
+    public CompletableFuture<YTResponse> getChannelProfile(String channelId) {
+        String API_KEY = "AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w";
+        String urlString = "https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=" + channelId + "&key=" + API_KEY;
+
+
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                URI uri = new URI(urlString);
+                HttpURLConnection conn = getHttpURLConnection(uri);
+                conn.setRequestMethod("GET");
+
+                if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                    throw new IOException("HTTP error code: " + conn.getResponseCode());
+                }
+
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    StringBuilder response = new StringBuilder();
+                    String inputLine;
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+                    return parseChannelDetails(response.toString());
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Error fetching channel profile: " + e.getMessage(), e);
+            }
+        });
+    }
+    private YTResponse parseChannelDetails(String jsonResponse) {
+        JSONObject jsonObject = new JSONObject(jsonResponse);
+        JSONObject snippet = jsonObject.getJSONArray("items").getJSONObject(0).getJSONObject("snippet");
+        JSONObject statistics = jsonObject.getJSONArray("items").getJSONObject(0).getJSONObject("statistics");
+
+        YTResponse ytResponse = new YTResponse();
+        ytResponse.setChannelTitle(snippet.getString("title"));
+        ytResponse.setDescription(snippet.getString("description"));
+        ytResponse.setThumbnailUrl(snippet.getJSONObject("thumbnails").getJSONObject("default").getString("url"));
+
+        ytResponse.setChannelProfileLink("https://www.youtube.com/channel/" + jsonObject.getJSONArray("items").getJSONObject(0).getString("id"));
+
+        return ytResponse;
+
+    }
+
+
 
 }

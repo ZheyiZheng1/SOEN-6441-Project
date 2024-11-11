@@ -13,12 +13,10 @@ import play.i18n.MessagesApi;
 import play.i18n.Messages;
 import play.mvc.Http.Request;
 
-import services.TagsService;
-import services.WordStatService;
-import services.YTResponse;
-import services.YTRestDir;
+import services.*;
 import views.html.Home.display;
 import play.data.FormFactory;
+import views.html.Home.showChannelProfile;
 import views.html.Home.videoStatistics;
 
 import javax.inject.Inject;
@@ -103,7 +101,7 @@ public class HomeController extends Controller {
         return sessionId.orElseGet(() -> UUID.randomUUID().toString());
     }
 
-     /**
+    /**
      * Calling the word stat service .
      * @author: Praneet Avhad - 40279347
      */
@@ -147,4 +145,55 @@ public class HomeController extends Controller {
     public CompletableFuture<Result> showTags(String videoId) {
         return tagsService.showTags(videoId);
     }
+
+    /**
+     * calling Channel Profile
+     * @author :Sakshi Mulik-
+     */
+    public Result showChannelProfile(String channelId) {
+        ChannelProfile profile = getChannelProfileByUrl(channelId);
+        System.out.println("Fetched Channel Title: " + profile.getTitle());  // Debug title
+        System.out.println("Thumbnail URL: " + profile.getThumbnailUrl());    // Debug thumbnail URL
+
+        List<services.Video> last10Videos = getLast10VideosForChannel(channelId);  // Simulate or fetch video data
+        return ok(showChannelProfile.render(profile, last10Videos));
+    }
+
+
+
+    private ChannelProfile getChannelProfileByUrl(String url) {
+        ChannelProfile profile = new ChannelProfile(
+                " Channel Title",  // Set a sample title here
+                "This is a sample description.",
+                "US", // Country
+                100, // Video count
+                url, // YouTube link
+                "https://www.example.com/sample-thumbnail.jpg" // Thumbnail URL
+        );
+
+        System.out.println("Channel Title in getChannelProfileByUrl: " + profile.getTitle());
+
+        return profile;
+    }
+
+    private List<services.Video> getLast10VideosForChannel(String url) {
+        List<services.Video> videos = new ArrayList<>();
+
+        for (int i = 1; i <= 10; i++) {
+            videos.add(new Video(
+                    "Video Title " + i, // Title for each video
+                    " description for video " + i, // Description for each video
+                    "https://www.youtube.com/watch?v=sample" + i, // Example video URL
+                    "https://www.example.com/-thumbnail" + i + ".jpg" // Example thumbnail URL
+            ));
+        }
+
+        // Logging to verify videos are being added
+        if (!videos.isEmpty()) {
+            System.out.println("Fetched last 10 videos for channel: " + videos);
+        }
+
+        return videos;
+    }
+
 }

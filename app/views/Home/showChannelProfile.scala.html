@@ -1,0 +1,114 @@
+
+
+@import services.ChannelProfile
+@import services.Video
+
+@(channelProfile: ChannelProfile, last10Videos: List[Video])
+
+<!-- Sakshi Mulik - 40295793 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Profile</title>
+    <style>
+            body { font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 0; }
+            header, footer { background-color: #1b1717; color: #fff; padding: 1rem; text-align: center; }
+            .container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgb(40, 96, 156); }
+            .channel-info h2 { color: #333; font-size: 1.5em; }
+            .videos-section h3 { color: #666; font-size: 1.3em; margin-bottom: 10px; }
+            .video-item { padding: 10px 0; border-bottom: 1px solid #ddd; }
+            .video-item a { color: #28609c; text-decoration: none; }
+            .video-item a:hover { text-decoration: underline; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Channel Profile</h1>
+    </header>
+      <!-- Sakshi Mulik - 40295793 -->
+    <div class="container">
+        <!-- Channel Details Section -->
+      <div class="channel-info">
+        <h2>Channel Details</h2>
+
+          <!-- Displaying Title with fallback text if title is null -->
+        <p><strong>Title:</strong>
+            <!-- Display the channel title here -->
+          @if(channelProfile.getTitle() != null && !channelProfile.getTitle().isEmpty()) {
+            <a href="@channelProfile.getYoutubeLink()" target="_blank">@channelProfile.getTitle()</a>
+          } else {
+            <span>Title Not Available</span>
+          }
+          </p>
+
+
+          <!-- Displaying Description -->
+        <p><strong>Description:</strong>
+          @if(channelProfile.getDescription() != null && !channelProfile.getDescription().isEmpty()) {
+            @channelProfile.getDescription()
+          } else {
+            <span>Not Available</span>
+          }
+        </p>
+
+          <!-- Displaying Country -->
+        <p><strong>Country:</strong>
+          @if(channelProfile.getCountry() != null && !channelProfile.getCountry().isEmpty()) {
+            @channelProfile.getCountry()
+          } else {
+            <span>Not Available</span>
+          }
+        </p>
+
+          <!-- Displaying Video Count -->
+        <p><strong>Video Count:</strong> @channelProfile.getVideoCount()</p>
+
+          <!-- Displaying YouTube Link -->
+        <p><strong>YouTube Link:</strong>
+          @if(channelProfile.getYoutubeLink() != null && !channelProfile.getYoutubeLink().isEmpty()) {
+            <a href="@channelProfile.getYoutubeLink()" target="_blank">@channelProfile.getYoutubeLink()</a>
+          } else {
+            <span>Not Available</span>
+          }
+        </p>
+
+          <!-- Displaying Thumbnail -->
+        <p><strong>Thumbnail:</strong><br>
+          @if(channelProfile.getThumbnailUrl() != null && !channelProfile.getThumbnailUrl().isEmpty()) {
+            <img src="@channelProfile.getThumbnailUrl()" alt="Channel Thumbnail" style="width:100%; max-width:300px;"/>
+          } else {
+            <span>No Thumbnail Available</span>
+          }
+        </p>
+      </div>
+
+        <!-- Last 10 Videos Section -->
+      <div class="videos-section">
+        <h3>Last 10 Videos</h3>
+        @if(last10Videos != null && !last10Videos.isEmpty()) {
+          @for(video <- last10Videos) {
+            <div class="video-item">
+              <h4>
+              @if(video.getVideoUrl() != null && !video.getVideoUrl().isEmpty()) {
+                <a href="@video.getVideoUrl()" target="_blank">@video.getTitle()</a>
+              } else {
+                <span>@video.getTitle()</span>
+              }
+              </h4>
+              <p>@video.getDescription()</p>
+              @if(video.getThumbnailUrl() != null && !video.getThumbnailUrl().isEmpty()) {
+                <img src="@video.getThumbnailUrl" alt="Video Thumbnail" style="width:100%; max-width:300px;"/>
+              } else {
+                <span>No Thumbnail Available</span>
+              }
+            </div>
+          }
+        } else {
+          <p>No videos available for this channel.</p>
+        }
+      </div>
+    </div>
+  </body>
+</html>

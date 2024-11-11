@@ -13,110 +13,110 @@
 *@
 
 <html lang="en">
-<head>
-    <title>Welcome to YT Lytics</title>
-    <style>
-        /* General body styling */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
-            color: #333;
-        }
+    <head>
+        <title>Welcome to YT Lytics</title>
+        <style>
+                /* General body styling */
+                body {
+                    font-family: 'Arial', sans-serif;
+                    background-color: #f4f4f9;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                    min-height: 100vh;
+                    color: #333;
+                }
 
-        /* Heading styling */
-        h1 {
-            color: #007bff;
-            font-size: 2.5em;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+                /* Heading styling */
+                h1 {
+                    color: #007bff;
+                    font-size: 2.5em;
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
 
-        /* Form container styling */
-        .form-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-        }
+                /* Form container styling */
+                .form-container {
+                    background-color: white;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    padding: 30px;
+                    width: 100%;
+                    max-width: 500px;
+                    text-align: center;
+                }
 
-        /* Form styling to align input and button */
-        .form-container form {
-            display: flex;
-            flex-direction: column; /* Stack input and button vertically */
-            align-items: center;
-        }
+                /* Form styling to align input and button */
+                .form-container form {
+                    display: flex;
+                    flex-direction: column; /* Stack input and button vertically */
+                    align-items: center;
+                }
 
-        /* Styling for input text field */
-        .form-container input[type="text"] {
-            width: 80%;
-            padding: 12px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 1.1em;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
+                /* Styling for input text field */
+                .form-container input[type="text"] {
+                    width: 80%;
+                    padding: 12px;
+                    margin-top: 10px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    font-size: 1.1em;
+                    box-sizing: border-box;
+                    transition: border-color 0.3s;
+                }
 
-        /* Focus effect on the input text */
-        .form-container input[type="text"]:focus {
-            border-color: #007bff;
-            outline: none;
-        }
+                /* Focus effect on the input text */
+                .form-container input[type="text"]:focus {
+                    border-color: #007bff;
+                    outline: none;
+                }
 
-        /* Styling for submit button */
-        .form-container input[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: background-color 0.3s;
-        }
+                /* Styling for submit button */
+                .form-container input[type="submit"] {
+                    background-color: #007bff;
+                    color: white;
+                    padding: 12px 25px;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 1.2em;
+                    cursor: pointer;
+                    margin-top: 15px;
+                    transition: background-color 0.3s;
+                }
 
-        /* Hover effect on the submit button */
-        .form-container input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
+                /* Hover effect on the submit button */
+                .form-container input[type="submit"]:hover {
+                    background-color: #0056b3;
+                }
 
-         label[for="keyword"] {
-            display: none;
-        }
+                label[for="keyword"] {
+                    display: none;
+                }
 
-    </style>
-</head>
-<body>
-<h1>Welcome to YT Lytics</h1>
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to YT Lytics</h1>
 
-<!-- Input form for keyword -->
-<div class="form-container">
-    @helper.form(action = routes.HomeController.search()) {
-    @helper.inputText(searchForm("keyword"))
-    <input type="submit" value="Submit">
-    }
-</div>
-</body>
+            <!-- Input form for keyword -->
+        <div class="form-container">
+        @helper.form(action = routes.HomeController.search()) {
+            @helper.inputText(searchForm("keyword"))
+            <input type="submit" value="Submit">
+            }
+        </div>
+    </body>
 </html>
 
-<!-- Display search results-->
+    <!-- Display search results-->
 @for((responseList, index) <- userList.zipWithIndex) {
     <div class="response">
         <p>
-            <!-- Print the keyword here then print search results for this keyword-->
-        <h3><b>Search term:</b> @keywords.get(index) @userReadability.get(index).get(2) , Flesh-Kincaid Grade Level Avg.= @userReadability.get(index).get(0) , Flesch Reading Ease Score Avg.= @userReadability.get(index).get(1) .</h3>
+                <!-- Print the keyword here then print search results for this keyword-->
+    <h3><b>Search term:</b> @keywords.get(index) @userReadability.get(index).get(2) , Flesh-Kincaid Grade Level Avg.= @userReadability.get(index).get(0) , Flesch Reading Ease Score Avg.= @userReadability.get(index).get(1) .</h3>
         <a href="@routes.HomeController.videoStatistics(keywords.get(index))" style="font-weight: bold; color: green;">More stats</a>
         <br/>
             @for(response <- responseList) {
@@ -126,6 +126,9 @@
                     @if(segment.url != null && segment.text == "thumbnail") {
                         <br/>
                         <img src="@segment.url" alt="Video thumbnail" />
+                    }   <!-- Sakshi Mulik - 40295793 -->
+                    @if(segment.url != null && segment.url.contains("channel")) {
+                        <a href="@routes.HomeController.showChannelProfile(segment.url)">@segment.text</a>
                     }
 
                         <!-- Display "Tags" as a hyperlink if segment.text is "Tags" -->
@@ -133,8 +136,8 @@
                         <a href="@routes.HomeController.showTags(segment.videoId)">Tags</a>
                     }
 
-                        <!-- Display other segments as hyperlinks if URL is present -->
-                    @if(segment.url != null && segment.text != "thumbnail" && segment.text != "Tags") {
+                        <!-- Display other segments as hyperlinks if URL is present -->  <!-- Sakshi Mulik - 40295793 -->
+                    @if(segment.url != null && segment.text != "thumbnail" && segment.text != "Tags" && !(segment.url.contains("channel"))) {
                         <a href="@segment.url">@segment.text</a>
                     }
 
@@ -149,5 +152,5 @@
 
     </div>
 }
-</body>
-</html>
+    </body>
+    </html>
