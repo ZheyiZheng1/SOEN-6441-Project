@@ -14,6 +14,9 @@ lazy val root = (project in file("."))
       "com.google.apis" % "google-api-services-youtube" % "v3-rev222-1.25.0",
       //json unit
       "org.json" % "json" % "20210307",
+      //Akka dependency
+      "com.typesafe.akka" % "akka-actor_2.13" % "2.5.32",
+      //"com.typesafe.akka" % "akka-testkit" % "2.10.0" % Test,
       // Mockito
       "org.mockito" % "mockito-core" % "5.3.1" % Test,
       //JUnit
