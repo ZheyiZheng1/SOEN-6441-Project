@@ -1,10 +1,11 @@
-[0m[[0m[0minfo[0m] [0m[0mInstrumenting 55 classes to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\jacoco\instrumented-classes[0m
+[0m[[0m[0minfo[0m] [0m[0mInstrumenting 56 classes to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\jacoco\instrumented-classes[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting products: C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes[0m
 [0m[[0m[0mdebug[0m] [0m[0mFound jacoco agent: Vector()[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\APIActor.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ProjectProtocol$ErrorMessage.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ProjectProtocol$KeyWordSearch.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ProjectProtocol$ReadabilityCheck.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ProjectProtocol$ReadabilityResponse.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ProjectProtocol.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ReadabilityActor.class[0m
 [0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\AsyncController.class[0m

@@ -6,8 +6,15 @@ import actors.ProjectProtocol.*;
 import services.ReadabilityService;
 import services.YTResponse;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import akka.actor.AbstractActor;
 
 /**
@@ -15,7 +22,14 @@ import akka.actor.AbstractActor;
  * Created: 2024/11/12
  * This is the ReadabilityActor class. This class is responsible to take a search result and send back a ReadabilityService.
  */
-<span class="nc" id="L18">public class ReadabilityActor extends AbstractActor {</span>
+<span class="fc" id="L25">public class ReadabilityActor extends AbstractActor {</span>
+    //Flesch Reading Ease Score
+<span class="fc" id="L27">    List&lt;Double&gt; fre = new ArrayList&lt;&gt;();</span>
+    //Flesch-Kincaid Grade Level
+<span class="fc" id="L29">    List&lt;Double&gt; fkgl = new ArrayList&lt;&gt;();</span>
+
+    Double avgFRE;
+    Double avgFKGL;
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/11/11
@@ -23,7 +37,7 @@ import akka.actor.AbstractActor;
      * @return Props Proper return object in Akka
      */
     public static Props getProps() {
-<span class="nc" id="L26">        return Props.create(ReadabilityActor.class);</span>
+<span class="fc" id="L40">        return Props.create(ReadabilityActor.class);</span>
     }
 
     /**
@@ -34,15 +48,107 @@ import akka.actor.AbstractActor;
      */
     @Override
     public Receive createReceive() {
-<span class="nc" id="L37">        return receiveBuilder()</span>
-<span class="nc" id="L38">                .match(ReadabilityCheck.class, message -&gt; {</span>
+<span class="fc" id="L51">        return receiveBuilder()</span>
+<span class="fc" id="L52">                .match(ReadabilityCheck.class, message -&gt; {</span>
+                    System.out.println(&quot;Received&quot;);
                     // Retrieve search result from message
                     CompletableFuture&lt;List&lt;YTResponse&gt;&gt; result = message.result;
                     // Create the ReadabilityService instance
-                    ReadabilityService rs = new ReadabilityService(result);
-                    sender().tell(rs, self());
+                    ReadabilityService(result);
+                    System.out.println(avgFRE+&quot;,&quot;+avgFKGL);
+                    sender().tell(new ReadabilityResponse(fre, fkgl, avgFRE, avgFKGL), self());
+                    System.out.println(&quot;Done&quot;);
                 })
-<span class="nc" id="L45">                .build();</span>
+<span class="fc" id="L62">                .build();</span>
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/30
+     * This is the Constructors method. This class method take a CompletableFuture&lt;List&lt;YTResponse&gt;&gt; and use thenApply to perform calculation.
+     * Calculation inside thenApply are for fre and fkgl. All calculation and data processing are done by stream.
+     * @param target should be the response of the YouTube
+     */
+    public void ReadabilityService(CompletableFuture&lt;List&lt;YTResponse&gt;&gt; target){
+        // Process the input to get fre, fkgl and average readability
+<span class="fc" id="L74">        target.thenAccept(list -&gt; {</span>
+            List&lt;Double&gt; totalWords;
+            List&lt;Double&gt; totalSentences;
+            List&lt;Double&gt; totalSyl;
+
+            // Use steam to count each description's total word number and collect as list of Integer. Assuming all words are separated by at least one whitespace.
+            totalWords = list.stream()
+                    .map(YTResponse::getDescription)
+                    .map(sentence -&gt; (double) sentence.trim().split(&quot;\\s+&quot;).length)
+                    .collect(Collectors.toList());
+
+            // Use steam to count each description's total sentences number and collect as list of Integer. Assuming all sentences end with . or ! or ?.
+            totalSentences = list.stream()
+                    .map(YTResponse::getDescription)
+                    .map(sentence -&gt; (double) sentence.trim().split(&quot;[.!?]+&quot;).length)
+                    .collect(Collectors.toList());
+
+            // Use steams to count each description's total syllable numbers. It first map to stream of String, then map to stream integers which each represent syllable number of that description.
+            totalSyl = list.stream()
+                    .map(YTResponse::getDescription)
+                    .map(this::countSyllablesInDescription)
+                    .map(Integer::doubleValue)
+                    .collect(Collectors.toList());
+
+            // Prepare the decimal format, this object round the result to 1 decimal place. Otherwise, it will not match with the result provided by the website.
+            DecimalFormat df = new DecimalFormat(&quot;#.0&quot;);
+            // Calculate FRE use provided formula. For each group of totalWords, totalSentences and totalSyl, perform the formula and add to the result list.
+            IntStream.range(0, totalWords.size()).forEach(i -&gt; {
+                // Calculate and round the fre to one decimal place.
+                this.fre.add(Double.parseDouble(df.format(206.835 - 1.015 * (totalWords.get(i)/totalSentences.get(i)) - 84.6*(totalSyl.get(i)/totalWords.get(i)))));
+            });
+            // Calculate FKGL use provided formula. Same logic with fre.
+            IntStream.range(0, totalWords.size()).forEach(i -&gt; {
+                // Calculate and round the fkgl to one decimal place.
+                this.fkgl.add(Double.parseDouble(df.format(0.39 * (totalWords.get(i)/totalSentences.get(i)) + 11.8*(totalSyl.get(i)/totalWords.get(i)) - 15.59)));
+            });
+<span class="fc" id="L110">        }).join();</span>
+        // Calculate the average readability using stream. map to double, take average, orElse 0.0 in case of the list is empty.
+<span class="fc" id="L112">        avgFRE = fre.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);</span>
+<span class="fc" id="L113">        avgFKGL = fkgl.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);</span>
+<span class="fc" id="L114">        System.out.println(&quot;Calculation done.&quot;);</span>
+<span class="fc" id="L115">    }</span>
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/30
+     * This is the countSyllablesInDescription method.
+     * This method use countSyllables to count all syllables in a description.
+     * @param description, pass a description of a video.
+     * @return an integer, represents number of syllables in provided description.
+     *
+     */
+    private int countSyllablesInDescription(String description){
+<span class="fc" id="L127">        return Arrays.stream(description.toLowerCase().split(&quot;\\s+&quot;))</span>
+<span class="fc" id="L128">                .map(this::countSyllables)</span>
+<span class="fc" id="L129">                .mapToInt(Integer::intValue)</span>
+<span class="fc" id="L130">                .sum();</span>
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/30
+     * This is the countSyllables method. This method just take a word and count Syllables
+     * It returns an integer.
+     * @param word in String.
+     * @return an int that represents number of syllables in the word.
+     */
+    private int countSyllables(String word){
+<span class="fc" id="L142">        AtomicBoolean prevWasVowel = new AtomicBoolean(false);</span>
+<span class="fc" id="L143">        return (int) Arrays.stream(word.toLowerCase().split(&quot;&quot;))</span>
+<span class="fc" id="L144">                .filter(c -&gt; {</span>
+                    boolean isVowel = c.matches(&quot;[aeiou]&quot;);
+                    // Continues syllables count as one. for example, io in description, ee in deep.
+                    boolean countThis = isVowel &amp;&amp; !prevWasVowel.get();
+                    prevWasVowel.set(isVowel);
+                    return countThis;
+                })
+<span class="fc" id="L151">                .count();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -110,7 +110,7 @@ public class APIActorTest {
                     assertNotNull("Expected a valid response, but got null", response);
                     return response;
                 }
-            }).join();
+            });
         }};
     }
 

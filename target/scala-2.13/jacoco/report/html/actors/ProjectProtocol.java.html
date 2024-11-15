@@ -2,6 +2,7 @@
 
 import services.YTResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -10,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
  * Created: 2024/11/11
  * This is the ProjectProtocol class. This class contains all the messages classes.
  */
-<span class="nc" id="L13">public class ProjectProtocol {</span>
+<span class="nc" id="L14">public class ProjectProtocol {</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/11/11
@@ -27,11 +28,11 @@ import java.util.concurrent.CompletableFuture;
          * Constructor method.
          * @param keyword string of keyword that user want to search.
          */
-<span class="fc" id="L30">        public KeyWordSearch(String keyword, String url, String maxResult) {</span>
-<span class="fc" id="L31">            this.keyword = keyword;</span>
-<span class="fc" id="L32">            this.url = url;</span>
-<span class="fc" id="L33">            this.maxResult = maxResult;</span>
-<span class="fc" id="L34">        }</span>
+<span class="fc" id="L31">        public KeyWordSearch(String keyword, String url, String maxResult) {</span>
+<span class="fc" id="L32">            this.keyword = keyword;</span>
+<span class="fc" id="L33">            this.url = url;</span>
+<span class="fc" id="L34">            this.maxResult = maxResult;</span>
+<span class="fc" id="L35">        }</span>
     }
 
     /**
@@ -48,9 +49,36 @@ import java.util.concurrent.CompletableFuture;
          * Constructor method.
          * @param result CompletableFuture&lt;List&lt;YTResponse&gt;&gt; that should get readability level checked.
          */
-<span class="nc" id="L51">        public ReadabilityCheck(CompletableFuture&lt;List&lt;YTResponse&gt;&gt; result) {</span>
-<span class="nc" id="L52">            this.result = result;</span>
-<span class="nc" id="L53">        }</span>
+<span class="fc" id="L52">        public ReadabilityCheck(CompletableFuture&lt;List&lt;YTResponse&gt;&gt; result) {</span>
+<span class="fc" id="L53">            this.result = result;</span>
+<span class="fc" id="L54">        }</span>
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/11
+     * This is the ReadabilityResponse class. This is a message class that only pass readability information result back.
+     */
+    public static class ReadabilityResponse {
+        //Flesch Reading Ease Score
+        public final List&lt;Double&gt; fre;
+        //Flesch-Kincaid Grade Level
+        public final List&lt;Double&gt; fkgl;
+
+        public final Double avgFRE;
+        public final Double avgFKGL;
+        /**
+         * @author: Zheyi Zheng - 40266266
+         * Created: 2024/11/11
+         * Constructor method.
+         * @param fre Flesch Reading Ease Score. fkgl Flesch-Kincaid Grade Level. avgFRE average Flesch Reading Ease Score. avgFKGL average Flesch-Kincaid Grade Level
+         */
+<span class="fc" id="L76">        public ReadabilityResponse(List&lt;Double&gt; fre, List&lt;Double&gt; fkgl, Double avgFRE, Double avgFKGL) {</span>
+<span class="fc" id="L77">            this.fre = fre;</span>
+<span class="fc" id="L78">            this.fkgl = fkgl;</span>
+<span class="fc" id="L79">            this.avgFRE = avgFRE;</span>
+<span class="fc" id="L80">            this.avgFKGL = avgFKGL;</span>
+<span class="fc" id="L81">        }</span>
     }
 
     /**
@@ -66,9 +94,9 @@ import java.util.concurrent.CompletableFuture;
          * Constructor method.
          * @param message a string that contains error information.
          */
-<span class="nc" id="L69">        public ErrorMessage(String message) {</span>
-<span class="nc" id="L70">            this.message = message;</span>
-<span class="nc" id="L71">        }</span>
+<span class="nc" id="L97">        public ErrorMessage(String message) {</span>
+<span class="nc" id="L98">            this.message = message;</span>
+<span class="nc" id="L99">        }</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -77,3 +77,35 @@
 2024-11-14 20:06:07,779 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T00:06:07.779412100Z
 2024-11-14 20:06:07,785 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
 2024-11-14 20:06:07,819 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T00:06:07.819840900Z
+2024-11-14 21:51:37,380 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:51:37,800 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:51:37.800391800Z
+2024-11-14 21:51:39,451 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:51:39,578 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:51:39.578052400Z
+2024-11-14 21:51:39,598 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:51:39,650 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:51:39.650692700Z
+2024-11-14 21:51:39,660 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:51:39,705 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:51:39.705693Z
+2024-11-14 21:51:39,717 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:51:39,762 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:51:39.762692400Z
+2024-11-14 21:51:39,769 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:51:39,819 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:51:39.818010Z
+2024-11-14 21:51:39,834 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:51:39,873 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:51:39.872436200Z
+2024-11-14 21:51:39,879 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:51:39,917 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:51:39.917156300Z
+2024-11-14 21:52:30,917 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:52:31,349 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:52:31.349537300Z
+2024-11-14 21:52:32,940 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:52:33,043 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:52:33.042389700Z
+2024-11-14 21:52:33,062 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:52:33,107 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:52:33.107390800Z
+2024-11-14 21:52:33,119 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:52:33,161 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:52:33.161390800Z
+2024-11-14 21:52:33,172 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:52:33,215 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:52:33.215390800Z
+2024-11-14 21:52:33,222 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:52:33,260 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:52:33.260390Z
+2024-11-14 21:52:33,272 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:52:33,311 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:52:33.311389600Z
+2024-11-14 21:52:33,319 [INFO] from play.api.http.HttpErrorHandlerExceptions in pool-1-thread-1 - Registering exception handler: guice-provision-exception-handler
+2024-11-14 21:52:33,363 [INFO] from application in pool-1-thread-1 - ApplicationTimer demo: Starting application at 2024-11-15T01:52:33.362390200Z

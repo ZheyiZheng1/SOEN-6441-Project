@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>APIActor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">actors</a> &gt; <span class="el_source">APIActor.java</span></div><h1>APIActor.java</h1><pre class="source lang-java linenums">package actors;
 
 import akka.actor.*;
-import akka.japi.*;
 import actors.ProjectProtocol.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,34 +22,34 @@ import java.util.stream.Stream;
 
 /**
  * @author: Zheyi Zheng - 40266266
- * Created: 2024/11/11
+ * Created: 2024/11/14
  * This is the APIAcotr class. This class is responsible to make API call to YouTube.
  */
-<span class="fc" id="L29">public class APIActor extends AbstractActor{</span>
+<span class="fc" id="L28">public class APIActor extends AbstractActor{</span>
     // Create YTRestDir
     private static YTRestDir ytRestDir;
 
     /**
      * @author: Zheyi Zheng - 40266266
-     * Created: 2024/11/11
+     * Created: 2024/11/14
      * This is the getProps method. This method allows Props create APIActor.
      * @return Props Proper return object in Akka
      */
     public static Props getProps() {
-<span class="fc" id="L40">        return Props.create(APIActor.class);</span>
+<span class="fc" id="L39">        return Props.create(APIActor.class);</span>
     }
 
     /**
      * @author: Zheyi Zheng - 40266266
-     * Created: 2024/11/11
+     * Created: 2024/11/14
      * This is the createReceive method. This method distinguish messages.
      * If the message is KeyWordSearch class, then return a search result to requester. Else, do nothing.
      * @return Receive proper return object in Akka
      */
     @Override
     public Receive createReceive() {
-<span class="fc" id="L52">        return receiveBuilder()</span>
-<span class="fc" id="L53">                .match(KeyWordSearch.class, message -&gt; {</span>
+<span class="fc" id="L51">        return receiveBuilder()</span>
+<span class="fc" id="L52">                .match(KeyWordSearch.class, message -&gt; {</span>
                     // Retrieve keyword
                     String keyword = message.keyword;
                     String url = message.url;
@@ -62,6 +61,7 @@ import java.util.stream.Stream;
                         sender().tell(result, self());
 
                     } catch (Exception e) {
+                        // Error occurred, return an error message.
                         sender().tell(new ErrorMessage(&quot;An error occurred&quot;), self());
                     }
                 })
@@ -69,7 +69,7 @@ import java.util.stream.Stream;
     }
     /**
      * @author: Zheyi Zheng - 40266266
-     * Created: 2024/10/29
+     * Created: 2024/11/14
      * Dependency injection method for HttpURLConnection. Without this method the mock test will not work, it will trigger actual network requests.
      * @param uri a target URI
      * @return an HttpURLConnection instance connect to target uri.
@@ -80,7 +80,7 @@ import java.util.stream.Stream;
 
     /**
      * @author: Zheyi Zheng - 40266266
-     * Created: 2024/10/29
+     * Created: 2024/11/14
      * In order to allow fetch data asynchronously. I created this class to return CompletionFuture&lt;List&lt;YTResponse&gt;&gt;.
      * This class essentially is just calling the searchVideos method with supplyAsync, enable users to call it concurrently without interfering with each other's results.
      * @return the CompletableFuture. Everyone calls it can access additional asynchronous methods like thenApply.
@@ -97,7 +97,7 @@ import java.util.stream.Stream;
 
     /**
      * @author: Zheyi Zheng - 40266266
-     * Created: 2024/10/29
+     * Created: 2024/11/14
      * Request 10 search result from YouTube by making GET request.
      * @param keyword keyword that user provided. Target uri that should be to YouTube. The number of the search result.
      * @return a list of YTResponse (processed by mapResponse).
@@ -130,7 +130,7 @@ import java.util.stream.Stream;
     }
     /**
      * @author: Zheyi Zheng - 40266266
-     * Created: 2024/10/29
+     * Created: 2024/11/14
      * Map json response into YTResponse.
      * @param jsonResponse a json response in String.
      * @return a list of YTResponse.
