@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HomeController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">controllers</a> &gt; <span class="el_source">HomeController.java</span></div><h1>HomeController.java</h1><pre class="source lang-java linenums">/**
+ * @author: Zheyi Zheng - 40266266
+ * Created: 2024/10/24
+ * This is the home controller. It is the only controller for this project.
+ */
+package controllers;
+
+import Model.BeforeView;
+import Model.SearchForm;
+import play.data.Form;
+import play.mvc.*;
+import play.i18n.MessagesApi;
+import play.i18n.Messages;
+import play.mvc.Http.Request;
+
+import services.*;
+import views.html.Home.display;
+import play.data.FormFactory;
+import views.html.Home.showChannelProfile;
+import views.html.Home.videoStatistics;
+
+import javax.inject.Inject;
+import java.io.IOException;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
+
+
+public class HomeController extends Controller {
+
+    private final FormFactory formFactory;
+    private final MessagesApi messagesApi;
+    private final BeforeView beforeView;
+    private final TagsService tagsService;
+<span class="fc" id="L36">    public CompletableFuture&lt;List&lt;YTResponse&gt;&gt; result_demo = new CompletableFuture&lt;List&lt;YTResponse&gt;&gt;();</span>
+    /**
+     * Constructor method. This method creates a BeforeView model and inject the dependency of FormFactory and MessageApi.
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/24
+     * @param formFactory just the form factory, use to future form generate. messageApi is also required for form generate.
+     */
+    @Inject
+<span class="fc" id="L44">    public HomeController(FormFactory formFactory, MessagesApi messagesApi, TagsService tagsService) {</span>
+<span class="fc" id="L45">        this.formFactory = formFactory;</span>
+<span class="fc" id="L46">        this.messagesApi = messagesApi;</span>
+<span class="fc" id="L47">        this.tagsService = tagsService;</span>
+<span class="fc" id="L48">        this.beforeView = new BeforeView();</span>
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * Basic home page of this application. url:&quot;/&quot;
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/24
+     * @param request take Request from user
+     * @return The Result.
+     */
+    public Result display(Request request) {
+        // Create form based on SearchForm and FormFactory.
+<span class="fc" id="L60">        Form&lt;SearchForm&gt; searchForm = formFactory.form(SearchForm.class);</span>
+<span class="fc" id="L61">        Messages messages = messagesApi.preferred(request);</span>
+        // Pass the form to display view.
+<span class="fc" id="L63">        return ok(display.render(searchForm, messages));</span>
+    }
+
+    /**
+     * Basic search page of this application. Use it to display search result. Still need to display search bar
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/24
+     * @param request take Request from user
+     * @throws ExecutionException if some of the results from helper class is not ready
+     * @throws InterruptedException if some of the threads got interrupt during processing.
+     * @return The CompletableFuture of Result.
+     */
+    public CompletableFuture&lt;Result&gt; search(Request request) throws ExecutionException, InterruptedException {
+<span class="fc" id="L76">        Form&lt;SearchForm&gt; searchForm = formFactory.form(SearchForm.class).bindFromRequest(request);</span>
+
+        // Get keyword
+<span class="fc" id="L79">        String keyword = searchForm.get().getKeyword();</span>
+<span class="fc" id="L80">        YTRestDir ytRestDir = new YTRestDir();</span>
+        // Get search result
+<span class="fc" id="L82">        CompletableFuture&lt;List&lt;YTResponse&gt;&gt; result = ytRestDir.searchVideosAsynch(keyword, null, &quot;50&quot;);</span>
+<span class="fc" id="L83">        result_demo = result;</span>
+<span class="fc" id="L84">        CompletableFuture&lt;List&lt;YTResponse&gt;&gt; result2 = result</span>
+<span class="fc" id="L85">                .thenApply(list -&gt; list.stream().limit(10).collect(Collectors.toList()));</span>
+        // Call BeforeView to get and return the information to view.
+<span class="fc" id="L87">        return beforeView.process(request, keyword, result2, formFactory, messagesApi);</span>
+
+    }
+
+    /**
+     * Simple getSessionId method. This method will get session id from user request. If no id exist, it will create it.
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/24
+     * @return The request
+     */
+    private String getSessionId(Request request){
+        // Try to get session id from user request
+<span class="nc" id="L99">        Optional&lt;String&gt; sessionId = request.session().get(&quot;sessionId&quot;);</span>
+        // If there is a session id, return it. If not, create is randomly.
+<span class="nc" id="L101">        return sessionId.orElseGet(() -&gt; UUID.randomUUID().toString());</span>
+    }
+
+    /**
+     * Calling the word stat service .
+     * @author: Praneet Avhad - 40279347
+     */
+    public Result videoStatistics(String keyword) throws ExecutionException, InterruptedException, IOException {
+        //CompletableFuture&lt;List&lt;YTResponse&gt;&gt; videosFuture = new YTRestDir().searchVideosAsynch(keyword,null, &quot;50&quot;);
+        //CompletableFuture&lt;List&lt;YTResponse&gt;&gt; videosFuture = getLatestVideos(keyword);
+<span class="fc" id="L111">        List&lt;YTResponse&gt; videos = result_demo.get();</span>
+<span class="fc" id="L112">        System.out.println(videos.get(0));</span>
+<span class="fc" id="L113">        Map&lt;String, Long&gt; wordFrequency = new WordStatService().getWordFrequency(videos);</span>
+<span class="fc" id="L114">        Map&lt;String, Long&gt; sortedWordFrequency = new WordStatService().sortWordsByFrequency(wordFrequency);</span>
+//        Map&lt;String, Long&gt; sortedWordFrequency = new LinkedHashMap&lt;&gt;();
+//        sortedWordFrequency.put(&quot;test1&quot;, 45L);
+//        sortedWordFrequency.put(&quot;test2&quot;, 45L);
+//        sortedWordFrequency.put(&quot;test3&quot;, 45L);
+//        sortedWordFrequency.put(&quot;test4&quot;, 45L);
+
+<span class="fc" id="L121">        return ok(videoStatistics.render(sortedWordFrequency));</span>
+    }
+
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Calling the TagsService for search by tag.
+     *
+     * @param tag The search tag
+     * @param request The HTTP request
+     * @return CompletableFuture of Result with the tag search results
+     */
+    public CompletableFuture&lt;Result&gt; searchByTag(String tag, Http.Request request) {
+<span class="fc" id="L134">        return tagsService.searchByTag(tag, request);</span>
+    }
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Calling the TagsService to show tags based on video ID.
+     *
+     * @param videoId The video ID
+     * @return CompletableFuture of Result with the tags display
+     */
+
+    public CompletableFuture&lt;Result&gt; showTags(String videoId) {
+<span class="fc" id="L146">        return tagsService.showTags(videoId);</span>
+    }
+
+    /**
+     * calling Channel Profile
+     * @author :Sakshi Mulik-
+     */
+    public Result showChannelProfile(String channelId) {
+<span class="nc" id="L154">        ChannelProfile profile = getChannelProfileByUrl(channelId);</span>
+<span class="nc" id="L155">        System.out.println(&quot;Fetched Channel Title: &quot; + profile.getTitle());  // Debug title</span>
+<span class="nc" id="L156">        System.out.println(&quot;Thumbnail URL: &quot; + profile.getThumbnailUrl());    // Debug thumbnail URL</span>
+
+<span class="nc" id="L158">        List&lt;services.Video&gt; last10Videos = getLast10VideosForChannel(channelId);  // Simulate or fetch video data</span>
+<span class="nc" id="L159">        return ok(showChannelProfile.render(profile, last10Videos));</span>
+    }
+
+
+
+    private ChannelProfile getChannelProfileByUrl(String url) {
+<span class="nc" id="L165">        ChannelProfile profile = new ChannelProfile(</span>
+                &quot; Channel Title&quot;,  // Set a sample title here
+                &quot;This is a sample description.&quot;,
+                &quot;US&quot;, // Country
+                100, // Video count
+                url, // YouTube link
+                &quot;https://www.example.com/sample-thumbnail.jpg&quot; // Thumbnail URL
+        );
+
+<span class="nc" id="L174">        System.out.println(&quot;Channel Title in getChannelProfileByUrl: &quot; + profile.getTitle());</span>
+
+<span class="nc" id="L176">        return profile;</span>
+    }
+
+    private List&lt;services.Video&gt; getLast10VideosForChannel(String url) {
+<span class="nc" id="L180">        List&lt;services.Video&gt; videos = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L182" title="All 2 branches missed.">        for (int i = 1; i &lt;= 10; i++) {</span>
+<span class="nc" id="L183">            videos.add(new Video(</span>
+                    &quot;Video Title &quot; + i, // Title for each video
+                    &quot; description for video &quot; + i, // Description for each video
+                    &quot;https://www.youtube.com/watch?v=sample&quot; + i, // Example video URL
+                    &quot;https://www.example.com/-thumbnail&quot; + i + &quot;.jpg&quot; // Example thumbnail URL
+            ));
+        }
+
+        // Logging to verify videos are being added
+<span class="nc bnc" id="L192" title="All 2 branches missed.">        if (!videos.isEmpty()) {</span>
+<span class="nc" id="L193">            System.out.println(&quot;Fetched last 10 videos for channel: &quot; + videos);</span>
+        }
+
+<span class="nc" id="L196">        return videos;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

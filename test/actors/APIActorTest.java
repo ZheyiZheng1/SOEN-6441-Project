@@ -1,7 +1,7 @@
 package actors;
 
-import akka.actor.ActorRef;
-import akka.actor.ActorSystem;
+import akka.actor.*;
+import actors.ProjectProtocol.*;
 import akka.testkit.javadsl.TestKit;
 import actors.ProjectProtocol.KeyWordSearch;
 import org.junit.After;
@@ -9,12 +9,13 @@ import org.junit.Before;
 import org.junit.Test;
 import services.YTResponse;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author: Zheyi Zheng - 40266266
@@ -40,7 +41,7 @@ public class APIActorTest {
      * After each test, shut down the ActorSystem.
      */
     @After
-    public void teardown() {
+    public void teardown() throws Exception {
         TestKit.shutdownActorSystem(system);
         system = null;
     }
@@ -61,7 +62,7 @@ public class APIActorTest {
             String keyword = "java";
 
             // Send KeyWordSearch message
-            apiActor.tell(new KeyWordSearch(keyword), getRef());
+            apiActor.tell(new KeyWordSearch(keyword, null, null), getRef());
 
             // Expect a CompletableFuture<List<YTResponse>> as a response.
             @SuppressWarnings("unchecked")
@@ -76,6 +77,40 @@ public class APIActorTest {
                 //System.out.println(result.toString());
                 assertTrue(result.toString().toLowerCase().contains("java"));
             }
+        }};
+    }
+
+    /**
+     * Test to ensure URISyntaxException is thrown when an invalid URL is provided.
+     */
+    @Test
+    public void testException() {
+        new TestKit(system) {{
+            // Create APIActor
+            ActorRef apiActor = system.actorOf(APIActor.getProps());
+
+            // Define a sample keyword for the search
+            String keyword = "java";
+            String invalidUrl = "This is an invalid url";
+
+            // Send message to API actor with invalid url and expect a Status.Failure
+            apiActor.tell(new KeyWordSearch(keyword, invalidUrl, null), getRef());
+
+            // Expect the response as a CompletableFuture
+            CompletableFuture<?> futureResponse = expectMsgClass(CompletableFuture.class);
+
+            // Handle the future's completion
+            futureResponse.handle((response, throwable) -> {
+                if (throwable != null) {
+                    // If an exception occurred, the response should be an ErrorMessage
+                    assertTrue("Expected ErrorMessage, but got exception: " + throwable.getMessage(), throwable instanceof RuntimeException);
+                    return throwable;
+                } else {
+                    // If there was no exception, assert the response is not null
+                    assertNotNull("Expected a valid response, but got null", response);
+                    return response;
+                }
+            }).join();
         }};
     }
 
