@@ -81,7 +81,9 @@ public class APIActorTest {
     }
 
     /**
-     * Test to ensure URISyntaxException is thrown when an invalid URL is provided.
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/12
+     * Test to see if the APIActor throws exception correctly when the url is invalid.
      */
     @Test
     public void testException() {

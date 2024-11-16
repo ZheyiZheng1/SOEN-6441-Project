@@ -5,9 +5,7 @@ import static org.junit.Assert.assertEquals;
 import akka.actor.*;
 import akka.testkit.TestActorRef;
 import akka.testkit.javadsl.TestKit;
-import actors.ProjectProtocol.*;
 import services.YTResponse;
-import actors.ReadabilityActor;
 import actors.ProjectProtocol.ReadabilityCheck;
 import actors.ProjectProtocol.ReadabilityResponse;
 
@@ -18,7 +16,6 @@ import org.junit.Test;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.Arrays;
-import java.util.concurrent.TimeUnit;
 
 public class ReadabilityActorTest {
 

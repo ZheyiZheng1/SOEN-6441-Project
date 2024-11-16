@@ -1,10 +1,6 @@
-[info] downloading https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.12.3/jackson-databind-2.12.3.pom
-[info] downloaded https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.12.3/jackson-databind-2.12.3.pom
-[info] downloading https://repo1.maven.org/maven2/com/fasterxml/jackson/jackson-base/2.12.3/jackson-base-2.12.3.pom
-[info] downloaded https://repo1.maven.org/maven2/com/fasterxml/jackson/jackson-base/2.12.3/jackson-base-2.12.3.pom
-[info] downloading https://repo1.maven.org/maven2/com/fasterxml/jackson/jackson-bom/2.12.3/jackson-bom-2.12.3.pom
-[info] downloaded https://repo1.maven.org/maven2/com/fasterxml/jackson/jackson-bom/2.12.3/jackson-bom-2.12.3.pom
-[info] downloading https://repo1.maven.org/maven2/com/fasterxml/jackson/jackson-parent/2.12/jackson-parent-2.12.pom
-[info] downloaded https://repo1.maven.org/maven2/com/fasterxml/jackson/jackson-parent/2.12/jackson-parent-2.12.pom
-[info] downloading https://repo1.maven.org/maven2/com/fasterxml/oss-parent/41/oss-parent-41.pom
-[info] downloaded https://repo1.maven.org/maven2/com/fasterxml/oss-parent/41/oss-parent-41.pom
+[info] downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-testkit_2.13/2.6.21/akka-testkit_2.13-2.6.21.pom
+[info] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-testkit_2.13/2.6.21/akka-testkit_2.13-2.6.21.pom
+[info] downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-testkit_2.13/2.6.21/akka-testkit_2.13-2.6.21.jar
+[info] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-testkit_2.13/2.6.21/akka-testkit_2.13-2.6.21.jar
+[info] downloading https://repo1.maven.org/maven2/com/typesafe/akka/akka-testkit_2.13/2.6.21/akka-testkit_2.13-2.6.21-sources.jar
+[info] downloaded https://repo1.maven.org/maven2/com/typesafe/akka/akka-testkit_2.13/2.6.21/akka-testkit_2.13-2.6.21-sources.jar

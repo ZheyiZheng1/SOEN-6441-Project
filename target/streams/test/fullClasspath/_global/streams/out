@@ -1,0 +1,36 @@
+[0m[[0m[0minfo[0m] [0m[0mInstrumenting 33 classes to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\jacoco\instrumented-classes[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting products: C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes[0m
+[0m[[0m[0mdebug[0m] [0m[0mFound jacoco agent: Vector()[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\APIActor.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ProjectProtocol$ErrorMessage.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ProjectProtocol$KeyWordSearch.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ProjectProtocol$ReadabilityCheck.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ProjectProtocol$ReadabilityResponse.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ProjectProtocol.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\ReadabilityActor.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\actors\WebSocketActor.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\javascript\ReverseAssets.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\javascript\ReverseNewHomeController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\NewHomeController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\ReverseAssets.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\ReverseNewHomeController.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\routes$javascript.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\controllers\routes.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\filters\ExampleFilter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\Model\BeforeView.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\Model\SearchForm.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\Model\TextSegment.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\Module.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\router\Routes$$anonfun$routes$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\router\Routes.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\router\RoutesPrefix$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\router\RoutesPrefix.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\ApplicationTimer.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\AtomicCounter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\Counter.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\YTResponse.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\services\YTRestDir.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\index$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\index.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0minstrumenting C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\classes\views\html\main.class[0m

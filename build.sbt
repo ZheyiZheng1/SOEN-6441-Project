@@ -16,9 +16,9 @@ lazy val root = (project in file("."))
       "org.json" % "json" % "20210307",
       "com.fasterxml.jackson.core" % "jackson-databind" % "2.12.3",
       //Akka dependency
-      "com.typesafe.akka" %% "akka-actor" % "2.6.20",
-      "com.typesafe.akka" %% "akka-stream" % "2.6.20",
-      "com.typesafe.akka" %% "akka-testkit" % "2.6.20" % Test,
+      "com.typesafe.akka" %% "akka-actor" % "2.6.21",
+      "com.typesafe.akka" %% "akka-stream" % "2.6.21",
+      "com.typesafe.akka" %% "akka-testkit" % "2.6.21" % Test,
       // Mockito
       "org.mockito" % "mockito-core" % "5.3.1" % Test,
       //JUnit

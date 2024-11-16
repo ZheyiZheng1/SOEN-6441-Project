@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>index.template.scala</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">views.html</a> &gt; <span class="el_source">index.template.scala</span></div><h1>index.template.scala</h1><pre class="source lang-java linenums">
+package views.html
+
+import _root_.play.twirl.api.TwirlFeatureImports._
+import _root_.play.twirl.api.TwirlHelperImports._
+import _root_.play.twirl.api.Html
+import _root_.play.twirl.api.JavaScript
+import _root_.play.twirl.api.Txt
+import _root_.play.twirl.api.Xml
+import models._
+import controllers._
+import play.api.i18n._
+import views.html._
+import play.api.templates.PlayMagic._
+import java.lang._
+import java.util._
+import play.core.j.PlayMagicForJava._
+import play.mvc._
+import play.api.data.Field
+import play.data._
+import play.core.j.PlayFormsMagicForJava._
+import scala.jdk.CollectionConverters._
+
+<span class="nc" id="L24">object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template0[play.twirl.api.HtmlFormat.Appendable] {</span>
+
+  /**/
+  def apply():play.twirl.api.HtmlFormat.Appendable = {
+<span class="nc" id="L28">    _display_ {</span>
+      {
+
+
+<span class="nc" id="L32">Seq[Any](format.raw/*1.1*/(&quot;&quot;&quot;&lt;!DOCTYPE html&gt;</span>
+&lt;!-- Author Zheyi Zheng--&gt;
+&lt;!-- Created: 2024/11/14--&gt;
+&lt;!-- This is index view, the main view for this project--&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;YT lytics&lt;/title&gt;
+    &lt;script&gt;
+        let socket = new WebSocket(&quot;ws://localhost:9000/search&quot;);
+        let allResults = [];
+        let allKeyword = [];
+
+<span class="nc" id="L45">        socket.onopen = function(event) &quot;&quot;&quot;),format.raw/*14.41*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*14.42*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L46">            &quot;&quot;&quot;),format.raw/*15.13*/(&quot;&quot;&quot;console.log(&quot;Connection established.&quot;);</span>
+<span class="nc" id="L47">        &quot;&quot;&quot;),format.raw/*16.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*16.10*/(&quot;&quot;&quot;;</span>
+
+<span class="nc" id="L49">        socket.onmessage = function(event) &quot;&quot;&quot;),format.raw/*18.44*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*18.45*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L50">            &quot;&quot;&quot;),format.raw/*19.13*/(&quot;&quot;&quot;console.log(&quot;Received new results: &quot; + event.data);</span>
+            let newResults = event.data.split('\n');
+            allResults.unshift(newResults);
+
+            // Clear previous results from result div
+            let resultsDiv = document.getElementById(&quot;results&quot;);
+            resultsDiv.innerHTML = &quot;&quot;;
+
+            // Display all results
+
+<span class="nc" id="L60">             for (let i = 0; i &lt; allKeyword.length; i++) &quot;&quot;&quot;),format.raw/*29.58*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*29.59*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L61">                &quot;&quot;&quot;),format.raw/*30.17*/(&quot;&quot;&quot;// Display the search term</span>
+<span class="nc" id="L62">                resultsDiv.innerHTML += `&lt;p&gt;&lt;strong&gt;Search Term:&lt;/strong&gt; $&quot;&quot;&quot;),format.raw/*31.76*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*31.77*/(&quot;&quot;&quot;allKeyword[i]&quot;&quot;&quot;),format.raw/*31.90*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*31.91*/(&quot;&quot;&quot;`;</span>
+                // Display average FKGL and FRE (placeholders for now)
+<span class="nc" id="L64">                resultsDiv.innerHTML += `&lt;strong&gt;Flesh-Kincaid Grade Level Avg.:&lt;/strong&gt; $&quot;&quot;&quot;),format.raw/*33.92*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*33.93*/(&quot;&quot;&quot;allResults[i][0]&quot;&quot;&quot;),format.raw/*33.109*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*33.110*/(&quot;&quot;&quot;,</span>
+<span class="nc" id="L65">                &lt;strong&gt;Flesh Reading Ease Score Avg.:&lt;/strong&gt; $&quot;&quot;&quot;),format.raw/*34.66*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*34.67*/(&quot;&quot;&quot;allResults[i][1]&quot;&quot;&quot;),format.raw/*34.83*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*34.84*/(&quot;&quot;&quot;&lt;/p&gt;`;</span>
+
+                // Display individual results
+<span class="nc" id="L68">                if (allResults[i] &amp;&amp; allResults[i].length &gt; 0) &quot;&quot;&quot;),format.raw/*37.64*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*37.65*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L69">                    &quot;&quot;&quot;),format.raw/*38.21*/(&quot;&quot;&quot;for (let j = 2; j &lt; allResults[i].length; j++) &quot;&quot;&quot;),format.raw/*38.68*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*38.69*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L70">                        &quot;&quot;&quot;),format.raw/*39.25*/(&quot;&quot;&quot;resultsDiv.innerHTML += `&lt;p&gt;$&quot;&quot;&quot;),format.raw/*39.54*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*39.55*/(&quot;&quot;&quot;j-1&quot;&quot;&quot;),format.raw/*39.58*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*39.59*/(&quot;&quot;&quot;. $&quot;&quot;&quot;),format.raw/*39.62*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*39.63*/(&quot;&quot;&quot;allResults[i][j]&quot;&quot;&quot;),format.raw/*39.79*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*39.80*/(&quot;&quot;&quot;&lt;/p&gt;`;</span>
+<span class="nc" id="L71">                    &quot;&quot;&quot;),format.raw/*40.21*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*40.22*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L72">                &quot;&quot;&quot;),format.raw/*41.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*41.18*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*41.19*/(&quot;&quot;&quot;else &quot;&quot;&quot;),format.raw/*41.24*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*41.25*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L73">                    &quot;&quot;&quot;),format.raw/*42.21*/(&quot;&quot;&quot;resultsDiv.innerHTML += `&lt;p&gt;No results available.&lt;/p&gt;`;</span>
+<span class="nc" id="L74">                &quot;&quot;&quot;),format.raw/*43.17*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*43.18*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L75">             &quot;&quot;&quot;),format.raw/*44.14*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*44.15*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L77">        &quot;&quot;&quot;),format.raw/*46.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*46.10*/(&quot;&quot;&quot;;</span>
+
+<span class="nc" id="L79">        socket.onclose = function(event) &quot;&quot;&quot;),format.raw/*48.42*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*48.43*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L80">            &quot;&quot;&quot;),format.raw/*49.13*/(&quot;&quot;&quot;console.log(&quot;Connection closed. Code: &quot; + event.code + &quot; Reason: &quot; + event.reason);</span>
+<span class="nc" id="L81">        &quot;&quot;&quot;),format.raw/*50.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*50.10*/(&quot;&quot;&quot;;</span>
+
+<span class="nc" id="L83">        socket.onerror = function(error) &quot;&quot;&quot;),format.raw/*52.42*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*52.43*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L84">            &quot;&quot;&quot;),format.raw/*53.13*/(&quot;&quot;&quot;console.log(&quot;Error occurred: &quot; + error.message);</span>
+<span class="nc" id="L85">        &quot;&quot;&quot;),format.raw/*54.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*54.10*/(&quot;&quot;&quot;;</span>
+
+<span class="nc" id="L87">        function sendKeyword() &quot;&quot;&quot;),format.raw/*56.32*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*56.33*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L88">            &quot;&quot;&quot;),format.raw/*57.13*/(&quot;&quot;&quot;let keyword = document.getElementById(&quot;keyword&quot;).value;</span>
+            allKeyword.unshift(keyword);
+            console.log(&quot;Sending keyword: &quot; + keyword);
+<span class="nc" id="L91">            if (socket.readyState === WebSocket.OPEN) &quot;&quot;&quot;),format.raw/*60.55*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*60.56*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L92">                &quot;&quot;&quot;),format.raw/*61.17*/(&quot;&quot;&quot;socket.send(keyword);</span>
+<span class="nc" id="L93">            &quot;&quot;&quot;),format.raw/*62.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*62.14*/(&quot;&quot;&quot; &quot;&quot;&quot;),format.raw/*62.15*/(&quot;&quot;&quot;else &quot;&quot;&quot;),format.raw/*62.20*/(&quot;&quot;&quot;{&quot;&quot;&quot;),format.raw/*62.21*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L94">                &quot;&quot;&quot;),format.raw/*63.17*/(&quot;&quot;&quot;console.log(&quot;WebSocket is not open. State: &quot; + socket.readyState);</span>
+<span class="nc" id="L95">            &quot;&quot;&quot;),format.raw/*64.13*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*64.14*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L96">        &quot;&quot;&quot;),format.raw/*65.9*/(&quot;&quot;&quot;}&quot;&quot;&quot;),format.raw/*65.10*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L97">    &quot;&quot;&quot;),format.raw/*66.5*/(&quot;&quot;&quot;&lt;/script&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to the YT lytics&lt;/h1&gt;
+&lt;input type=&quot;text&quot; id=&quot;keyword&quot; placeholder=&quot;Enter keyword&quot;&gt;
+&lt;button onclick=&quot;sendKeyword()&quot;&gt;Search&lt;/button&gt;
+&lt;div id=&quot;results&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&quot;&quot;&quot;))
+      }
+    }
+  }
+
+<span class="nc" id="L111">  def render(): play.twirl.api.HtmlFormat.Appendable = apply()</span>
+
+<span class="nc" id="L113">  def f:(() =&gt; play.twirl.api.HtmlFormat.Appendable) = () =&gt; apply()</span>
+
+<span class="nc" id="L115">  def ref: this.type = this</span>
+
+}
+
+
+              /*
+                  -- GENERATED --
+                  SOURCE: app/views/index.scala.html
+                  HASH: c5a10d1d0091b01c845820b4c87bc9476274377a
+                  MATRIX: 989-&gt;0|1418-&gt;401|1447-&gt;402|1489-&gt;416|1565-&gt;465|1594-&gt;466|1670-&gt;514|1699-&gt;515|1741-&gt;529|2181-&gt;941|2210-&gt;942|2256-&gt;960|2387-&gt;1063|2416-&gt;1064|2457-&gt;1077|2486-&gt;1078|2681-&gt;1245|2710-&gt;1246|2755-&gt;1262|2785-&gt;1263|2881-&gt;1331|2910-&gt;1332|2954-&gt;1348|2983-&gt;1349|3131-&gt;1469|3160-&gt;1470|3210-&gt;1492|3285-&gt;1539|3314-&gt;1540|3368-&gt;1566|3425-&gt;1595|3454-&gt;1596|3485-&gt;1599|3514-&gt;1600|3545-&gt;1603|3574-&gt;1604|3618-&gt;1620|3647-&gt;1621|3703-&gt;1649|3732-&gt;1650|3778-&gt;1668|3807-&gt;1669|3836-&gt;1670|3869-&gt;1675|3898-&gt;1676|3948-&gt;1698|4049-&gt;1771|4078-&gt;1772|4121-&gt;1787|4150-&gt;1788|4189-&gt;1800|4218-&gt;1801|4292-&gt;1847|4321-&gt;1848|4363-&gt;1862|4483-&gt;1955|4512-&gt;1956|4586-&gt;2002|4615-&gt;2003|4657-&gt;2017|4742-&gt;2075|4771-&gt;2076|4835-&gt;2112|4864-&gt;2113|4906-&gt;2127|5144-&gt;2337|5173-&gt;2338|5219-&gt;2356|5282-&gt;2391|5311-&gt;2392|5340-&gt;2393|5373-&gt;2398|5402-&gt;2399|5448-&gt;2417|5556-&gt;2497|5585-&gt;2498|5622-&gt;2508|5651-&gt;2509|5684-&gt;2515
+                  LINES: 32-&gt;1|45-&gt;14|45-&gt;14|46-&gt;15|47-&gt;16|47-&gt;16|49-&gt;18|49-&gt;18|50-&gt;19|60-&gt;29|60-&gt;29|61-&gt;30|62-&gt;31|62-&gt;31|62-&gt;31|62-&gt;31|64-&gt;33|64-&gt;33|64-&gt;33|64-&gt;33|65-&gt;34|65-&gt;34|65-&gt;34|65-&gt;34|68-&gt;37|68-&gt;37|69-&gt;38|69-&gt;38|69-&gt;38|70-&gt;39|70-&gt;39|70-&gt;39|70-&gt;39|70-&gt;39|70-&gt;39|70-&gt;39|70-&gt;39|70-&gt;39|71-&gt;40|71-&gt;40|72-&gt;41|72-&gt;41|72-&gt;41|72-&gt;41|72-&gt;41|73-&gt;42|74-&gt;43|74-&gt;43|75-&gt;44|75-&gt;44|77-&gt;46|77-&gt;46|79-&gt;48|79-&gt;48|80-&gt;49|81-&gt;50|81-&gt;50|83-&gt;52|83-&gt;52|84-&gt;53|85-&gt;54|85-&gt;54|87-&gt;56|87-&gt;56|88-&gt;57|91-&gt;60|91-&gt;60|92-&gt;61|93-&gt;62|93-&gt;62|93-&gt;62|93-&gt;62|93-&gt;62|94-&gt;63|95-&gt;64|95-&gt;64|96-&gt;65|96-&gt;65|97-&gt;66
+                  -- GENERATED --
+              */
+          
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

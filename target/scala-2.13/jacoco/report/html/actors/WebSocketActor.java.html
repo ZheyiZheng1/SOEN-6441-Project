@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WebSocketActor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">actors</a> &gt; <span class="el_source">WebSocketActor.java</span></div><h1>WebSocketActor.java</h1><pre class="source lang-java linenums">package actors;
+
+import akka.actor.AbstractActor;
+import akka.actor.ActorRef;
+import akka.actor.Props;
+import services.YTResponse;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+
+/**
+ * @author: Zheyi Zheng - 40266266
+ * Created: 2024/11/14
+ * This is the WebSocketActor class. This class keeps websocket with user, receive keyword from user,
+ * forward keyword to APIActor, keep all search results and return all search results to user.
+ */
+public class WebSocketActor extends AbstractActor {
+
+    private final ActorRef out;
+    private final ActorRef apiActor;
+    private final ActorRef readabilityActor;
+    // keep searched keywords
+    private List&lt;String&gt; searchHistory;
+    // Keep search results
+    private List&lt;List&lt;YTResponse&gt;&gt; searchResults;
+
+
+<span class="fc" id="L30">    public WebSocketActor(ActorRef out, ActorRef apiActor, ActorRef readabilityActor) {</span>
+<span class="fc" id="L31">        this.out = out;</span>
+<span class="fc" id="L32">        this.apiActor = apiActor;</span>
+<span class="fc" id="L33">        this.readabilityActor = readabilityActor;</span>
+<span class="fc" id="L34">        this.searchHistory = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L35">        this.searchResults = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L36">    }</span>
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * This is the getProps method. This method allows Props create APIActor.
+     * @param out from Flow.
+     * @return Props Proper return object in Akka
+     */
+    static public Props props(ActorRef out, ActorRef apiActor, ActorRef readabilityActor) {
+<span class="fc" id="L46">        return Props.create(WebSocketActor.class, () -&gt; new WebSocketActor(out, apiActor, readabilityActor));</span>
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * This is the createReceive method. This method distinguish messages.
+     * If the message is a string class, then it's a request message from user. Add the keyword to list and send keyWordSearch message to APIActor.
+     * If the message is a CompletableFuture, then this is a response from APIActor. Read the information out and return new result to user.
+     * @return Receive proper return object in Akka
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+    @Override
+    public Receive createReceive() {
+<span class="fc" id="L60">        return receiveBuilder()</span>
+<span class="fc" id="L61">                .match(String.class, keyword -&gt; {</span>
+                    System.out.println(&quot;Received keyword: &quot; + keyword);
+                    if (searchHistory.size() &gt;= 10) {
+                        // Remove the oldest entry if size exceeds 10
+                        searchHistory.remove(0);
+                    }
+                    // Store the keyword in search history
+                    searchHistory.add(keyword);
+
+                    // Forward the keyword to the APIActor for processing
+                    apiActor.tell(new ProjectProtocol.KeyWordSearch(keyword, null, null), getSelf());
+                })
+<span class="fc" id="L73">                .match(CompletableFuture.class, future -&gt; {</span>
+                    // Wait for the APIActor to return the search results
+                    future.thenAccept(results -&gt; {
+                        // Send a message to the ReadabilityActor
+                        readabilityActor.tell(new ProjectProtocol.ReadabilityCheck(future), getSelf());
+                        // Store the result in search results, only keep 10 most recent results
+                        if (searchResults.size() &gt;= 10) {
+                            searchResults.remove(0);
+                        }
+                        searchResults.add((List&lt;YTResponse&gt;) results);
+                    });
+                })
+<span class="fc" id="L85">                .match(ProjectProtocol.ReadabilityResponse.class, message -&gt; {</span>
+                    // Receive readability response from the ReadabilityActor
+                    double avgFRE = message.avgFRE;
+                    double avgFKGL = message.avgFKGL;
+                    List&lt;Double&gt; fre = message.fre;
+                    List&lt;Double&gt; fkgl = message.fkgl;
+                    for (int i=0; i&lt;searchResults.get(searchResults.size()-1).size(); i++){
+                        searchResults.get(0).get(i).setFre(fre.get(i));
+                        searchResults.get(0).get(i).setFkgl(fkgl.get(i));
+                    }
+                    // Send message back
+                    String response = avgFKGL + &quot;\n&quot; + avgFRE + &quot;\n&quot;;
+                    response += searchResults.get(searchResults.size()-1).stream()
+                            .map(result -&gt; result.toHTMLString())
+                            .collect(Collectors.joining(&quot;\n&quot;));
+
+                    System.out.println(&quot;Sending results: \n&quot; + response);
+                    // Send the result back to the WebSocket client
+                    out.tell(response, getSelf());
+                })
+<span class="fc" id="L105">                .build();</span>
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * This is the postStop method. This method cleanup resources when the actor is stopped.
+     */
+    @Override
+    public void postStop() throws Exception {
+        // Cleanup resources when the actor is stopped
+<span class="fc" id="L116">        super.postStop();</span>
+<span class="fc" id="L117">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

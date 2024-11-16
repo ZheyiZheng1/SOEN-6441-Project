@@ -40,6 +40,8 @@ public class YTResponseTest {
         ytResponse.setDescription("This is a sample video description.");
         ytResponse.setThumbnailUrl("https://i.ytimg.com/vi/12345/default.jpg");
         ytResponse.setTags(null);
+        ytResponse.setFre(50.0);
+        ytResponse.setFkgl(50.0);
 
         assertEquals("Sample Video", ytResponse.getTitle());
         assertEquals("12345", ytResponse.getVideoId());
@@ -50,6 +52,8 @@ public class YTResponseTest {
         assertEquals("This is a sample video description.", ytResponse.getDescription());
         assertEquals("https://i.ytimg.com/vi/12345/default.jpg", ytResponse.getThumbnailUrl());
         assertEquals(null, ytResponse.getTags());
+        assertEquals(50.0, ytResponse.getFkgl());
+        assertEquals(50.0, ytResponse.getFre());
     }
 
     /**
@@ -71,5 +75,35 @@ public class YTResponseTest {
         ytResponse.setTags(null);
         String expectedString = "Sample Video,12345,https://www.youtube.com/watch?v=12345,Sample Channel,abcde,https://www.youtube.com/channel/abcde,This is a sample video description.,https://i.ytimg.com/vi/12345/default.jpg,null";
         assertEquals(expectedString, ytResponse.toString());
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * Test toHTMLString method. Set all the values and then retrieve all information using toHTMLString(). Lastly, compare the value.
+     */
+    @Test
+    public void testToHTMLString() {
+        ytResponse.setTitle("Sample Video");
+        ytResponse.setVideoId("12345");
+        ytResponse.setVideoLink("https://www.youtube.com/watch?v=12345");
+        ytResponse.setChannelTitle("Sample Channel");
+        ytResponse.setChannelId("abcde");
+        ytResponse.setChannelProfileLink("https://www.youtube.com/channel/abcde");
+        ytResponse.setDescription("This is a sample video description.");
+        ytResponse.setThumbnailUrl("https://i.ytimg.com/vi/12345/default.jpg");
+        System.out.println(ytResponse.toString());
+        ytResponse.setTags(null);
+        ytResponse.setFre(50.0);
+        ytResponse.setFkgl(50.0);
+        String html = "Title: ";
+        html += "<a href=\"https://www.youtube.com/watch?v=12345\">Sample Video</a>";
+        html += ", Channel: <a href=\"https://www.youtube.com/channel/abcde\">Sample Channel</a>";
+        html += ", Description: \"This is a sample video description.\".";
+        html += "Flesch-Kincaid Grade Level= "+ 50.0 + ", ";
+        html += "Flesch Reading Ease Score= "+ 50.0 + ".";
+        html += "<a href=\"TODO\">Tags</a>";
+        html += "<img src=\"https://i.ytimg.com/vi/12345/default.jpg\" alt=\"Thumbnail Image\">";
+        assertEquals(html, ytResponse.toHTMLString());
     }
 }

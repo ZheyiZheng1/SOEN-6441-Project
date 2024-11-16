@@ -69,7 +69,7 @@
     <orderEntry type="library" name="sbt: com.typesafe.akka:akka-serialization-jackson_2.13:2.6.21:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe.akka:akka-slf4j_2.13:2.6.21:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe.akka:akka-stream_2.13:2.6.21:jar" level="project" />
-    <orderEntry type="library" scope="TEST" name="sbt: com.typesafe.akka:akka-testkit_2.13:2.6.20:jar" level="project" />
+    <orderEntry type="library" scope="TEST" name="sbt: com.typesafe.akka:akka-testkit_2.13:2.6.21:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe.play:play-akka-http-server_2.13:2.9.5:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe.play:play-build-link:2.9.5:jar" level="project" />
     <orderEntry type="library" name="sbt: com.typesafe.play:play-configuration_2.13:2.9.5:jar" level="project" />
