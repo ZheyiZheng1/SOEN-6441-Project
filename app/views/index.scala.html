@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<!-- Author Zheyi Zheng-->
+<!-- Created: 2024/11/14-->
+<!-- This is index view, the main view for this project-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,24 +9,40 @@
     <script>
         let socket = new WebSocket("ws://localhost:9000/search");
         let allResults = [];
+        let allKeyword = [];
 
         socket.onopen = function(event) {
             console.log("Connection established.");
         };
 
         socket.onmessage = function(event) {
-            console.log("Received new results: " + event.data); // Debugging
+            console.log("Received new results: " + event.data);
             let newResults = event.data.split('\n');
-            allResults = newResults.concat(allResults); // Combine new results with history
+            allResults.unshift(newResults);
 
-            // Clear previous results
+            // Clear previous results from result div
             let resultsDiv = document.getElementById("results");
             resultsDiv.innerHTML = "";
 
             // Display all results
-            allResults.forEach(result => {
-                resultsDiv.innerHTML += `<p>${result}</p>`;
-            });
+
+             for (let i = 0; i < allKeyword.length; i++) {
+                // Display the search term
+                resultsDiv.innerHTML += `<p><strong>Search Term:</strong> ${allKeyword[i]}`;
+                // Display average FKGL and FRE (placeholders for now)
+                resultsDiv.innerHTML += `<strong>Flesh-Kincaid Grade Level Avg.:</strong> ${allResults[i][0]},
+                <strong>Flesh Reading Ease Score Avg.:</strong> ${allResults[i][1]}</p>`;
+
+                // Display individual results
+                if (allResults[i] && allResults[i].length > 0) {
+                    for (let j = 2; j < allResults[i].length; j++) {
+                        resultsDiv.innerHTML += `<p>${j-1}. ${allResults[i][j]}</p>`;
+                    }
+                } else {
+                    resultsDiv.innerHTML += `<p>No results available.</p>`;
+                }
+             }
+
         };
 
         socket.onclose = function(event) {
@@ -36,6 +55,7 @@
 
         function sendKeyword() {
             let keyword = document.getElementById("keyword").value;
+            allKeyword.unshift(keyword);
             console.log("Sending keyword: " + keyword);
             if (socket.readyState === WebSocket.OPEN) {
                 socket.send(keyword);

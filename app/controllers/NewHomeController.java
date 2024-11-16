@@ -1,5 +1,6 @@
 package controllers;
 
+import actors.ReadabilityActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.stream.Materializer;
@@ -54,8 +55,9 @@ public class NewHomeController extends Controller {
         return WebSocket.Text.acceptOrResult(request -> {
             // Create the APIActor
             ActorRef apiActor = actorSystem.actorOf(APIActor.getProps());
+            ActorRef readabilityActor = actorSystem.actorOf(ReadabilityActor.getProps());
             return CompletableFuture.completedFuture(Either.Right(
-                    ActorFlow.actorRef(out -> WebSocketActor.props(out, apiActor), actorSystem, materializer)
+                    ActorFlow.actorRef(out -> WebSocketActor.props(out, apiActor, readabilityActor), actorSystem, materializer)
             ));
         });
     }

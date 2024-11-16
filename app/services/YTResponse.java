@@ -1,6 +1,6 @@
 /**
  * @author: Zheyi Zheng - 40266266
- * Created: 2024/10/29
+ * Created: 2024/11/16
  * This is the YTResponse class. It is a class that contains all information about a video.
  */
 package services;
@@ -18,6 +18,9 @@ public class YTResponse {
     private String thumbnailUrl;
     private int videoCount;
     private List<String> tags;  // Added tags field
+    private double fre;
+    private double fkgl;
+
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
@@ -40,6 +43,23 @@ public class YTResponse {
      */
     public String toString(){
         return title+","+videoId+","+videoLink+","+channelTitle+","+channelId+","+channelProfileLink+","+description+","+thumbnailUrl+","+tags;
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a string that combine all information of the class in HTML format.
+     */
+    public String toHTMLString(){
+        String html = "Title: ";
+        html += "<a href=\""+ videoLink +"\">"+title+"</a>";
+        html += ", Channel: <a href=\""+ channelProfileLink + "\">" + channelTitle+"</a>";
+        html += ", Description: \""+ description + "\".";
+        html += "Flesch-Kincaid Grade Level= "+ fkgl + ", ";
+        html += "Flesch Reading Ease Score= "+ fre + ".";
+        html += "<a href=\"TODO\">Tags</a>";
+        html += "<img src=\""+thumbnailUrl+"\" alt=\"Thumbnail Image\">";
+        return html;
     }
 
     /**
@@ -170,7 +190,30 @@ public class YTResponse {
     public void setThumbnailUrl(String thumbnailUrl) {
         this.thumbnailUrl = thumbnailUrl;
     }
-
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a double of fre value.
+     */
+    public double getFre(){return fre;}
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param fre set the fre value.
+     */
+    public void setFre(double fre){this.fre=fre;}
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a double of fkgl value.
+     */
+    public double getFkgl(){return fkgl;}
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param fkgl set the fkgl value.
+     */
+    public void setFkgl(double fkgl){this.fkgl=fkgl;}
 
 
     /**

@@ -20,15 +20,17 @@ public class WebSocketActor extends AbstractActor {
 
     private final ActorRef out;
     private final ActorRef apiActor;
+    private final ActorRef readabilityActor;
     // keep searched keywords
     private List<String> searchHistory;
     // Keep search results
     private List<List<YTResponse>> searchResults;
 
 
-    public WebSocketActor(ActorRef out, ActorRef apiActor) {
+    public WebSocketActor(ActorRef out, ActorRef apiActor, ActorRef readabilityActor) {
         this.out = out;
         this.apiActor = apiActor;
+        this.readabilityActor = readabilityActor;
         this.searchHistory = new LinkedList<>();
         this.searchResults = new LinkedList<>();
     }
@@ -40,8 +42,8 @@ public class WebSocketActor extends AbstractActor {
      * @param out from Flow.
      * @return Props Proper return object in Akka
      */
-    static public Props props(ActorRef out, ActorRef apiActor) {
-        return Props.create(WebSocketActor.class, () -> new WebSocketActor(out, apiActor));
+    static public Props props(ActorRef out, ActorRef apiActor, ActorRef readabilityActor) {
+        return Props.create(WebSocketActor.class, () -> new WebSocketActor(out, apiActor, readabilityActor));
     }
 
     /**
@@ -71,22 +73,34 @@ public class WebSocketActor extends AbstractActor {
                 .match(CompletableFuture.class, future -> {
                     // Wait for the APIActor to return the search results
                     future.thenAccept(results -> {
+                        // Send a message to the ReadabilityActor
+                        readabilityActor.tell(new ProjectProtocol.ReadabilityCheck(future), getSelf());
                         // Store the result in search results, only keep 10 most recent results
                         if (searchResults.size() >= 10) {
                             searchResults.remove(0);
                         }
                         searchResults.add((List<YTResponse>) results);
-                        String response = ((List<YTResponse>) results).stream()
-                                .map(result -> result.getTitle()+" - " + result.getVideoLink())
-                                .collect(Collectors.joining("\n"));
-                        System.out.println("Sending results: " + response);
-
-                        // Send the result back to the WebSocket client
-                        out.tell(response, getSelf());
-                    }).exceptionally(ex -> {
-                        System.out.println("Error processing information");
-                        return null;
                     });
+                })
+                .match(ProjectProtocol.ReadabilityResponse.class, message -> {
+                    // Receive readability response from the ReadabilityActor
+                    double avgFRE = message.avgFRE;
+                    double avgFKGL = message.avgFKGL;
+                    List<Double> fre = message.fre;
+                    List<Double> fkgl = message.fkgl;
+                    for (int i=0; i<searchResults.get(searchResults.size()-1).size(); i++){
+                        searchResults.get(0).get(i).setFre(fre.get(i));
+                        searchResults.get(0).get(i).setFkgl(fkgl.get(i));
+                    }
+                    // Send message back
+                    String response = avgFKGL + "\n" + avgFRE + "\n";
+                    response += searchResults.get(searchResults.size()-1).stream()
+                            .map(result -> result.toHTMLString())
+                            .collect(Collectors.joining("\n"));
+
+                    System.out.println("Sending results: \n" + response);
+                    // Send the result back to the WebSocket client
+                    out.tell(response, getSelf());
                 })
                 .build();
     }
