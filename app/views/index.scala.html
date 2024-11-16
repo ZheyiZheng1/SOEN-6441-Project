@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Keyword Search</title>
+    <script>
+        let socket = new WebSocket("ws://localhost:9000/search");
+        let allResults = [];
+
+        socket.onopen = function(event) {
+            console.log("Connection established.");
+        };
+
+        socket.onmessage = function(event) {
+            console.log("Received new results: " + event.data); // Debugging
+            let newResults = event.data.split('\n');
+            allResults = newResults.concat(allResults); // Combine new results with history
+
+            // Clear previous results
+            let resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            // Display all results
+            allResults.forEach(result => {
+                resultsDiv.innerHTML += `<p>${result}</p>`;
+            });
+        };
+
+        socket.onclose = function(event) {
+            console.log("Connection closed. Code: " + event.code + " Reason: " + event.reason);
+        };
+
+        socket.onerror = function(error) {
+            console.log("Error occurred: " + error.message);
+        };
+
+        function sendKeyword() {
+            let keyword = document.getElementById("keyword").value;
+            console.log("Sending keyword: " + keyword);
+            if (socket.readyState === WebSocket.OPEN) {
+                socket.send(keyword);
+            } else {
+                console.log("WebSocket is not open. State: " + socket.readyState);
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Welcome to the WebSocket Search Page!</h1>
+<input type="text" id="keyword" placeholder="Enter keyword">
+<button onclick="sendKeyword()">Search</button>
+<div id="results"></div>
+</body>
+</html>

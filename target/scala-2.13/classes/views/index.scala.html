@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+@*
+* @author: Zheyi Zheng - 40266266
+* Created: 2024/11/15
+* This is the main view for project 2. It contains a search bar and a method that allows user make websocket request to controller.
+*@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YT Lytics</title>
+    <script>
+        let socket = new WebSocket("ws://localhost:9000/ws");
+        socket.onopen = function(event){
+            console.log("Connection established.");
+        };
+
+        socket.onmessage = function(event) {
+            console.log("Received results: " + event.data); // Debugging
+            let searchResults = JSON.parse(event.data);
+            let resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = ""; // Clear previous results
+            searchResults.forEach(results => {
+                results.forEach(result => {
+                    resultsDiv.innerHTML += "<p><strong>" + result.title + "</strong> - <a href='" + result.videoLink + "' target='_blank'>" + result.videoLink + "</a><br>" +
+                    "Channel: <a href='" + result.channelProfileLink + "' target='_blank'>" + result.channelTitle + "</a><br>" +
+                    "Description: " + result.description + "<br>" +
+                    "<img src='" + result.thumbnailUrl + "' alt='Thumbnail'></p>";
+                });
+            });
+        };
+
+        socket.onclose = function(event) {
+            console.log("Connection closed. Code: " + event.code + " Reason: " + event.reason);
+        };
+
+        socket.onerror = function(event) {
+            console.log("Error occurred: " + error.message);
+        };
+
+        function sendKeyword() {
+            let keyword = document.getElementById("keyword").value;
+            console.log("Sending keyword: "+keyword);
+            if (socket.readyState === WebSocket.OPEN){
+                socket.send(keyword);
+            } else {
+                console.log("WebSocket is not open. State: "+socket.readyState);
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Welcome to YT Lytics</h1>
+<input type="text" id="keyword" placeholder="Enter keyword">
+<button onclick="sendKeyword()">Search</button>
+<div id="results"></div>
+</body>
+</html>

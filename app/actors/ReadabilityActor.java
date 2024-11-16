@@ -1,9 +1,7 @@
 package actors;
 
 import akka.actor.*;
-import akka.japi.*;
 import actors.ProjectProtocol.*;
-import services.ReadabilityService;
 import services.YTResponse;
 
 import java.text.DecimalFormat;
