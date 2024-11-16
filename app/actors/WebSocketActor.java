@@ -25,6 +25,7 @@ public class WebSocketActor extends AbstractActor {
     // Keep search results
     private List<List<YTResponse>> searchResults;
 
+
     public WebSocketActor(ActorRef out, ActorRef apiActor) {
         this.out = out;
         this.apiActor = apiActor;
@@ -32,10 +33,25 @@ public class WebSocketActor extends AbstractActor {
         this.searchResults = new LinkedList<>();
     }
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * This is the getProps method. This method allows Props create APIActor.
+     * @param out from Flow.
+     * @return Props Proper return object in Akka
+     */
     static public Props props(ActorRef out, ActorRef apiActor) {
         return Props.create(WebSocketActor.class, () -> new WebSocketActor(out, apiActor));
     }
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * This is the createReceive method. This method distinguish messages.
+     * If the message is a string class, then it's a request message from user. Add the keyword to list and send keyWordSearch message to APIActor.
+     * If the message is a CompletableFuture, then this is a response from APIActor. Read the information out and return new result to user.
+     * @return Receive proper return object in Akka
+     */
     @SuppressWarnings("unchecked")
     @Override
     public Receive createReceive() {
@@ -75,6 +91,11 @@ public class WebSocketActor extends AbstractActor {
                 .build();
     }
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * This is the postStop method. This method cleanup resources when the actor is stopped.
+     */
     @Override
     public void postStop() throws Exception {
         // Cleanup resources when the actor is stopped

@@ -26,8 +26,6 @@ import java.util.stream.Stream;
  * This is the APIAcotr class. This class is responsible to make API call to YouTube.
  */
 public class APIActor extends AbstractActor{
-    // Create YTRestDir
-    private static YTRestDir ytRestDir;
 
     /**
      * @author: Zheyi Zheng - 40266266
