@@ -21,12 +21,23 @@
 [0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: actors.ProjectProtocolTest[0m
 [0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Java source to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\test-classes ...[0m
-[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@6a54b591 directly...[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.8034346 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@3776647a directly...[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.8416584 s[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing actors.ProjectProtocolTest$1[0m
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing actors.ProjectProtocolTest[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.0546227 s[0m
-[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 0.8702277 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.1182233 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 0.973777901 s[0m
 [0m[[0m[0mdebug[0m] [0m[0mdone compiling[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from actors.ProjectProtocolTest...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: actors.ProjectProtocolTest[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(actors.ProjectProtocolTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(actors.ProjectProtocolTest,ModifiedNames(changes = UsedName(testUpdateApiAndReadabilityRef,[Default]), UsedName(setup,[Default]), UsedName(teardown,[Default]))) invalidates 1 classes due to The actors.ProjectProtocolTest has the following regular definitions changed:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	UsedName(testUpdateApiAndReadabilityRef,[Default]), UsedName(setup,[Default]), UsedName(teardown,[Default]).[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(actors.ProjectProtocolTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m        [0m
 [0m[[0m[0mdebug[0m] [0m[0mNew invalidations:[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: [0m
 [0m[[0m[0mdebug[0m] [0m[0mPreviously invalidated, but (transitively) depend on new invalidations:[0m

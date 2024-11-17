@@ -1,5 +1,10 @@
 package actors;
 
+import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
+import akka.testkit.javadsl.TestKit;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import services.YTResponse;
@@ -14,7 +19,27 @@ import java.util.concurrent.CompletableFuture;
  * This is the ProjectProtocolTest class. This class test all messages inside ProjectProtocol class.
  */
 public class ProjectProtocolTest {
+    private ActorSystem actorSystem;
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/16
+     * This is the setup method. It makes sure the actor system is properly created.
+     */
+    @Before
+    public void setup(){
+        actorSystem = ActorSystem.create();
+    }
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/16
+     * This is the teardown method. It makes sure the actor system is properly closed.
+     */
+    @After
+    public void teardown(){
+        TestKit.shutdownActorSystem(actorSystem);
+        actorSystem=null;
+    }
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/11/16
@@ -90,5 +115,22 @@ public class ProjectProtocolTest {
         ProjectProtocol.ErrorMessage errorMessage = new ProjectProtocol.ErrorMessage("This is an error message");
 
         assertEquals("This is an error message", errorMessage.message);
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/16
+     * This is the testUpdateApiAndReadabilityRef method. Test set and retrieve value from it.
+     */
+    @Test
+    public void testUpdateApiAndReadabilityRef() {
+        new TestKit(actorSystem){{
+            final TestKit apiProbe = new TestKit(actorSystem);
+            final TestKit readabilityProbe = new TestKit(actorSystem);
+            ProjectProtocol.UpdateApiAndReadabilityRef updateApiAndReadabilityRef = new ProjectProtocol.UpdateApiAndReadabilityRef(apiProbe.getRef(), readabilityProbe.getRef());
+
+            assertEquals(apiProbe.getRef(), updateApiAndReadabilityRef.apiActor);
+            assertEquals(readabilityProbe.getRef(), updateApiAndReadabilityRef.readabilityActor);
+        }};
     }
 }

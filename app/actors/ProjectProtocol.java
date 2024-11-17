@@ -1,5 +1,6 @@
 package actors;
 
+import akka.actor.ActorRef;
 import services.YTResponse;
 
 import java.util.List;
@@ -95,6 +96,27 @@ public class ProjectProtocol {
          */
         public ErrorMessage(String message) {
             this.message = message;
+        }
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/11
+     * This is the UpdateApiAndReadabilityRef class. This class is used to pass APIActor and ReadabilityActor to WebSocketActors.
+     * This message should not be used other than test purpose.
+     */
+    public static class UpdateApiAndReadabilityRef {
+        public final ActorRef apiActor;
+        public final ActorRef readabilityActor;
+        /**
+         * @author: Zheyi Zheng - 40266266
+         * Created: 2024/11/11
+         * Constructor method.
+         * @param apiActor a APIActor's ActorRef. readabilityActor's ActorRef
+         */
+        public UpdateApiAndReadabilityRef(ActorRef apiActor, ActorRef readabilityActor) {
+            this.apiActor = apiActor;
+            this.readabilityActor = readabilityActor;
         }
     }
 }

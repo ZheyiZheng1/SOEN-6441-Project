@@ -5,69 +5,71 @@
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(Model.SearchFormTest, sbt.ForkMain$AnnotatedFingerscan@51c8530f, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mModel.[33mSearchFormTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest Model.[33mSearchFormTest[0m.[36mtestSearchVForm[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest Model.[33mSearchFormTest[0m.[36mtestSearchVForm[0m finished, took 0.019 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mModel.[33mSearchFormTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.024s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest Model.[33mSearchFormTest[0m.[36mtestSearchVForm[0m finished, took 0.018 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mModel.[33mSearchFormTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.023s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(services.YTResponseTest, sbt.ForkMain$AnnotatedFingerscan@7403c468, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mYTResponseTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestGettersAndSetters[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestGettersAndSetters[0m finished, took 0.001 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestToString[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestToString[0m finished, took 0.013 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestToString[0m finished, took 0.014 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestToHTMLString[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestToHTMLString[0m finished, took 0.007 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mYTResponseTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 3 total, 0.021s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTResponseTest[0m.[36mtestToHTMLString[0m finished, took 0.005 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mYTResponseTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 3 total, 0.02s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 3 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(actors.APIActorTest, sbt.ForkMain$AnnotatedFingerscan@43738a82, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mactors.[33mAPIActorTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest actors.[33mAPIActorTest[0m.[36mtestException[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mAPIActorTest[0m.[36mtestException[0m finished, took 0.996 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mAPIActorTest[0m.[36mtestException[0m finished, took 1.012 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest actors.[33mAPIActorTest[0m.[36mtestKeyWordSearch[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mAPIActorTest[0m.[36mtestKeyWordSearch[0m finished, took 0.842 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mactors.[33mAPIActorTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 2 total, 1.839s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mAPIActorTest[0m.[36mtestKeyWordSearch[0m finished, took 0.752 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mactors.[33mAPIActorTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 2 total, 1.765s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 2 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(actors.ProjectProtocolTest, sbt.ForkMain$AnnotatedFingerscan@c81cdd1, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mactors.[33mProjectProtocolTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestErrorMessage[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestErrorMessage[0m finished, took 0.002 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestErrorMessage[0m finished, took 0.045 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestReadabilityResponse[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestReadabilityResponse[0m finished, took 0.0 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestReadabilityResponse[0m finished, took 0.032 sec[0m
+[0m[[0m[0minfo[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestUpdateApiAndReadabilityRef[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestUpdateApiAndReadabilityRef[0m finished, took 0.075 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestKeyWordSearch[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestKeyWordSearch[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestKeyWordSearch[0m finished, took 0.031 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestReadabilityCheck[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestReadabilityCheck[0m finished, took 0.0 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mactors.[33mProjectProtocolTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 4 total, 0.004s[0m[0m
-[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 4 events.[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mProjectProtocolTest[0m.[36mtestReadabilityCheck[0m finished, took 0.032 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mactors.[33mProjectProtocolTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 5 total, 0.216s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 5 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(services.YTRestDirTest, sbt.ForkMain$AnnotatedFingerscan@1fc2b765, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mYTRestDirTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestIOException_HTTPErrorCode[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestIOException_HTTPErrorCode[0m finished, took 0.888 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestIOException_HTTPErrorCode[0m finished, took 0.877 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestURISyntaxException2[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestURISyntaxException2[0m finished, took 0.003 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestURISyntaxException2[0m finished, took 0.002 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestParseVideoDetails[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestParseVideoDetails[0m finished, took 0.001 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestParseVideoDetails[0m finished, took 0.002 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithInvalidVideoId[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithInvalidVideoId[0m finished, took 0.192 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithInvalidVideoId[0m finished, took 0.18 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestSearchVideosWithMockResponse[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestSearchVideosWithMockResponse[0m finished, took 0.014 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestSearchVideosWithMockResponse[0m finished, took 0.012 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithValidResponse[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithValidResponse[0m finished, took 0.006 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mYTRestDirTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 6 total, 1.105s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest services.[33mYTRestDirTest[0m.[36mtestGetVideoDetailsWithValidResponse[0m finished, took 0.005 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mservices.[33mYTRestDirTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 6 total, 1.08s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 6 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(actors.WebSocketActorTest, sbt.ForkMain$AnnotatedFingerscan@75881071, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mactors.[33mWebSocketActorTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest actors.[33mWebSocketActorTest[0m.[36mtestReceiveKeyWordAndReturn[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mWebSocketActorTest[0m.[36mtestReceiveKeyWordAndReturn[0m finished, took 0.142 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mactors.[33mWebSocketActorTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.143s[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mWebSocketActorTest[0m.[36mtestReceiveKeyWordAndReturn[0m finished, took 0.161 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mactors.[33mWebSocketActorTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.162s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0m  Running TaskDef(actors.ReadabilityActorTest, sbt.ForkMain$AnnotatedFingerscan@2a70a3d8, false, [SuiteSelector])[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mactors.[33mReadabilityActorTest[0m[34m started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest actors.[33mReadabilityActorTest[0m.[36mtestReadabilityActor[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mReadabilityActorTest[0m.[36mtestReadabilityActor[0m finished, took 0.061 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest actors.[33mReadabilityActorTest[0m.[36mtestReadabilityActor[0m finished, took 0.06 sec[0m
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run [0mactors.[33mReadabilityActorTest[0m[34m finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 1 total, 0.061s[0m[0m
 [0m[[0m[0mdebug[0m] [0m[0m    Produced 0 nested tasks and 1 events.[0m
 [0m[[0m[0mdebug[0m] [0m[0mSummary for JUnit not available.[0m
-[0m[[0m[0minfo[0m] [0m[0mPassed: Total 18, Failed 0, Errors 0, Passed 18[0m
+[0m[[0m[0minfo[0m] [0m[0mPassed: Total 19, Failed 0, Errors 0, Passed 19[0m
 [0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Model.SearchFormTest[0m
 [0m[[0m[0mdebug[0m] [0m[0m	services.YTResponseTest[0m

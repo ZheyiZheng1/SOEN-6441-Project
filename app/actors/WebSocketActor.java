@@ -2,12 +2,18 @@ package actors;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
+import akka.actor.OneForOneStrategy;
 import akka.actor.Props;
+import akka.actor.SupervisorStrategy;
+
+import akka.japi.pf.DeciderBuilder;
 import services.YTResponse;
 
+import javax.inject.Inject;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
 /**
@@ -15,22 +21,52 @@ import java.util.stream.Collectors;
  * Created: 2024/11/14
  * This is the WebSocketActor class. This class keeps websocket with user, receive keyword from user,
  * forward keyword to APIActor, keep all search results and return all search results to user.
+ * WebSocketActor is also the supervisor to all other actors. Home controller also only knows about WebSocketActor.
  */
 public class WebSocketActor extends AbstractActor {
 
     private final ActorRef out;
-    private final ActorRef apiActor;
-    private final ActorRef readabilityActor;
+    private ActorRef apiActor;
+    private ActorRef readabilityActor;
     // keep searched keywords
     private List<String> searchHistory;
     // Keep search results
     private List<List<YTResponse>> searchResults;
+    private final SupervisorStrategy strategy = new OneForOneStrategy(
+            -1,
+            java.time.Duration.ofMinutes(3),
+            DeciderBuilder.match(TimeoutException.class,
+                    // Timeout exception, should be able to resolve in the next message, so resume.
+                    e -> SupervisorStrategy.resume()
+            ).match(RuntimeException.class,
+                    // Runtime exception, probably not be able to get resolve by itself, restart it.
+                    e -> SupervisorStrategy.restart()
+            ).matchAny(
+                    // Any other issue, escalate it to actor system.
+                    e -> SupervisorStrategy.escalate()
+            ).build()
+    );
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * Define the supervise strategy.
+     */
+    @Override
+    public SupervisorStrategy supervisorStrategy(){
+        return strategy;
+    }
 
-    public WebSocketActor(ActorRef out, ActorRef apiActor, ActorRef readabilityActor) {
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * This is the constructor method.
+     */
+    @Inject
+    public WebSocketActor(ActorRef out) {
         this.out = out;
-        this.apiActor = apiActor;
-        this.readabilityActor = readabilityActor;
+        this.apiActor = getContext().actorOf(APIActor.getProps());
+        this.readabilityActor = getContext().actorOf(ReadabilityActor.getProps());
         this.searchHistory = new LinkedList<>();
         this.searchResults = new LinkedList<>();
     }
@@ -42,8 +78,8 @@ public class WebSocketActor extends AbstractActor {
      * @param out from Flow.
      * @return Props Proper return object in Akka
      */
-    static public Props props(ActorRef out, ActorRef apiActor, ActorRef readabilityActor) {
-        return Props.create(WebSocketActor.class, () -> new WebSocketActor(out, apiActor, readabilityActor));
+    static public Props props(ActorRef out) {
+        return Props.create(WebSocketActor.class, () -> new WebSocketActor(out));
     }
 
     /**
@@ -101,6 +137,11 @@ public class WebSocketActor extends AbstractActor {
                     System.out.println("Sending results: \n" + response);
                     // Send the result back to the WebSocket client
                     out.tell(response, getSelf());
+                })
+                .match(ProjectProtocol.UpdateApiAndReadabilityRef.class, message ->{
+                    // This should not be used, it is created for test purpose.
+                    this.apiActor=message.apiActor;
+                    this.readabilityActor=message.readabilityActor;
                 })
                 .build();
     }

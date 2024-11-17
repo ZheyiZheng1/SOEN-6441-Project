@@ -25,6 +25,11 @@ public class NewHomeController extends Controller {
     private final ActorSystem actorSystem;
     private final Materializer materializer;
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * This is the constructor method.
+     */
     @Inject
     public NewHomeController(ActorSystem actorSystem, Materializer materializer) {
         this.actorSystem = actorSystem;
@@ -53,11 +58,9 @@ public class NewHomeController extends Controller {
     public WebSocket ws() {
         // Create a web socket and return
         return WebSocket.Text.acceptOrResult(request -> {
-            // Create the APIActor
-            ActorRef apiActor = actorSystem.actorOf(APIActor.getProps());
-            ActorRef readabilityActor = actorSystem.actorOf(ReadabilityActor.getProps());
+            // Create actor
             return CompletableFuture.completedFuture(Either.Right(
-                    ActorFlow.actorRef(out -> WebSocketActor.props(out, apiActor, readabilityActor), actorSystem, materializer)
+                    ActorFlow.actorRef(out -> WebSocketActor.props(out), actorSystem, materializer)
             ));
         });
     }

@@ -54,8 +54,8 @@ public class WebSocketActorTest {
             final TestKit testProbe = new TestKit(actorSystem);
             final TestKit apiProbe = new TestKit(actorSystem);
             final TestKit readabilityProbe = new TestKit(actorSystem);
-            final ActorRef webSocketActor = actorSystem.actorOf(WebSocketActor.props(testProbe.getRef(), apiProbe.getRef(), readabilityProbe.getRef()));
-
+            final ActorRef webSocketActor = actorSystem.actorOf(WebSocketActor.props(testProbe.getRef()));
+            webSocketActor.tell(new ProjectProtocol.UpdateApiAndReadabilityRef(apiProbe.getRef(), readabilityProbe.getRef()), getTestActor());
             // Send keyword to web socket actor
             webSocketActor.tell("java", testProbe.getRef());
 

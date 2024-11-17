@@ -1,12 +1,12 @@
 [0m[[0m[0minfo[0m] [0m[0m[0m
 [0m[[0m[0minfo[0m] [0m[0m------- Jacoco Coverage Report -------[0m
 [0m[[0m[0minfo[0m] [0m[0m[0m
-[0m[[0m[0minfo[0m] [0m[0mLines: 45.53% (>= required 0.0%) covered, 207 of 380 missed, OK[0m
-[0m[[0m[0minfo[0m] [0m[0mInstructions: 24.38% (>= required 0.0%) covered, 1970 of 2605 missed, OK[0m
+[0m[[0m[0minfo[0m] [0m[0mLines: 47.19% (>= required 0.0%) covered, 207 of 392 missed, OK[0m
+[0m[[0m[0minfo[0m] [0m[0mInstructions: 25.44% (>= required 0.0%) covered, 1970 of 2642 missed, OK[0m
 [0m[[0m[0minfo[0m] [0m[0mBranches: 17.07% (>= required 0.0%) covered, 68 of 82 missed, OK[0m
-[0m[[0m[0minfo[0m] [0m[0mMethods: 30.48% (>= required 0.0%) covered, 130 of 187 missed, OK[0m
-[0m[[0m[0minfo[0m] [0m[0mComplexity: 27.19% (>= required 0.0%) covered, 166 of 228 missed, OK[0m
-[0m[[0m[0minfo[0m] [0m[0mClass: 34.38% (>= required 0.0%) covered, 21 of 32 missed, OK[0m
+[0m[[0m[0minfo[0m] [0m[0mMethods: 31.22% (>= required 0.0%) covered, 130 of 189 missed, OK[0m
+[0m[[0m[0minfo[0m] [0m[0mComplexity: 27.83% (>= required 0.0%) covered, 166 of 230 missed, OK[0m
+[0m[[0m[0minfo[0m] [0m[0mClass: 36.36% (>= required 0.0%) covered, 21 of 33 missed, OK[0m
 [0m[[0m[0minfo[0m] [0m[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mCheck C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\jacoco\report for detailed report[0m
 [0m[[0m[0minfo[0m] [0m[0m [0m
