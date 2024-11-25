@@ -113,15 +113,36 @@ public class WebSocketActor extends AbstractActor {
         return receiveBuilder()
                 .match(String.class, keyword -> {
                     System.out.println("Received keyword: " + keyword);
-                    if (searchHistory.size() >= 10) {
-                        // Remove the oldest entry if size exceeds 10
-                        searchHistory.remove(0);
+                    // Check if the keyword is already inside the searchHistory
+                    if (searchHistory.contains(keyword)){
+                        // The keyword is in the searchHistory, just change the order of all information.
+                        // Get index of this keyword
+                        int index = searchHistory.indexOf(keyword);
+                        // Retrieve all information from list
+                        double targetAvgFre = avgFRE.get(index);
+                        double targetAvgFkgl = avgFKGL.get(index);
+                        List<YTResponse> targetResult = searchResults.get(index);
+                        // Delete the original copy
+                        searchHistory.remove(index);
+                        avgFRE.remove(index);
+                        avgFKGL.remove(index);
+                        searchResults.remove(index);
+                        // Add the result back at the last place of all lists.
+                        searchHistory.add(keyword);
+                        avgFRE.add(targetAvgFre);
+                        avgFKGL.add(targetAvgFkgl);
+                        searchResults.add(targetResult);
+                    }else {
+                        // The keyword is not in the searchHistory, fetch information from the YouTube
+                        if (searchHistory.size() >= 10) {
+                            // Remove the oldest entry if size exceeds 10
+                            searchHistory.remove(0);
+                        }
+                        // Store the keyword in search history
+                        searchHistory.add(keyword);
+                        // Forward the keyword to the APIActor for processing
+                        apiActor.tell(new ProjectProtocol.KeyWordSearch(keyword, null, null), getSelf());
                     }
-                    // Store the keyword in search history
-                    searchHistory.add(keyword);
-
-                    // Forward the keyword to the APIActor for processing
-                    apiActor.tell(new ProjectProtocol.KeyWordSearch(keyword, null, null), getSelf());
                 })
                 .match(CompletableFuture.class, future -> {
                     System.out.println("Received CompletableFuture");
@@ -169,6 +190,13 @@ public class WebSocketActor extends AbstractActor {
                     // Create a JSON response
                     ObjectMapper mapper = new ObjectMapper();
                     ObjectNode root = mapper.createObjectNode();
+
+                    // Add keywords as JSON array
+                    ArrayNode searchHistoryArray = mapper.createArrayNode();
+                    searchHistory.stream()
+                            .sorted((a, b) -> Integer.compare(searchHistory.indexOf(b), searchHistory.indexOf(a)))
+                            .forEach(searchHistoryArray::add);
+                    root.set("searchHistory", searchHistoryArray);
                     // Add avgFKGL and avgFRE as JSON arrays
                     ArrayNode avgFKGLArray = mapper.createArrayNode();
                     avgFKGL.stream()
