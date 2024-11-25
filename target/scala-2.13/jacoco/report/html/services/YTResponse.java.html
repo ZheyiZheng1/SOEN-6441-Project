@@ -20,6 +20,7 @@ public class YTResponse {
     private List&lt;String&gt; tags;  // Added tags field
     private double fre;
     private double fkgl;
+    private String keyword;
 
     /**
      * @author: Zheyi Zheng - 40266266
@@ -27,14 +28,14 @@ public class YTResponse {
      * Constructor method that only call super();.
      */
     public YTResponse() {
-<span class="fc" id="L30">        super();</span>
-<span class="fc" id="L31">    }</span>
+<span class="fc" id="L31">        super();</span>
+<span class="fc" id="L32">    }</span>
     /*
      *
      * @author Sakshi Mulik - 40295793
      * */
-<span class="nc" id="L36">    public YTResponse(String title, String description, int videoCount, String youtubeLink, String thumbnailUrl) {</span>
-<span class="nc" id="L37">    }</span>
+<span class="nc" id="L37">    public YTResponse(String title, String description, int videoCount, String youtubeLink, String thumbnailUrl) {</span>
+<span class="nc" id="L38">    }</span>
 
     /**
      * @author: Zheyi Zheng - 40266266
@@ -42,7 +43,7 @@ public class YTResponse {
      * @return a string that combine all information of the class.
      */
     public String toString(){
-<span class="fc" id="L45">        return title+&quot;,&quot;+videoId+&quot;,&quot;+videoLink+&quot;,&quot;+channelTitle+&quot;,&quot;+channelId+&quot;,&quot;+channelProfileLink+&quot;,&quot;+description+&quot;,&quot;+thumbnailUrl+&quot;,&quot;+tags;</span>
+<span class="fc" id="L46">        return title+&quot;,&quot;+videoId+&quot;,&quot;+videoLink+&quot;,&quot;+channelTitle+&quot;,&quot;+channelId+&quot;,&quot;+channelProfileLink+&quot;,&quot;+description+&quot;,&quot;+thumbnailUrl+&quot;,&quot;+tags;</span>
     }
 
     /**
@@ -51,15 +52,15 @@ public class YTResponse {
      * @return a string that combine all information of the class in HTML format.
      */
     public String toHTMLString(){
-<span class="fc" id="L54">        String html = &quot;Title: &quot;;</span>
-<span class="fc" id="L55">        html += &quot;&lt;a href=\&quot;&quot;+ videoLink +&quot;\&quot;&gt;&quot;+title+&quot;&lt;/a&gt;&quot;;</span>
-<span class="fc" id="L56">        html += &quot;, Channel: &lt;a href=\&quot;&quot;+ channelProfileLink + &quot;\&quot;&gt;&quot; + channelTitle+&quot;&lt;/a&gt;&quot;;</span>
-<span class="fc" id="L57">        html += &quot;, Description: \&quot;&quot;+ description + &quot;\&quot;.&quot;;</span>
-<span class="fc" id="L58">        html += &quot;Flesch-Kincaid Grade Level= &quot;+ fkgl + &quot;, &quot;;</span>
-<span class="fc" id="L59">        html += &quot;Flesch Reading Ease Score= &quot;+ fre + &quot;.&quot;;</span>
-<span class="fc" id="L60">        html += &quot;&lt;a href=\&quot;TODO\&quot;&gt;Tags&lt;/a&gt;&quot;;</span>
-<span class="fc" id="L61">        html += &quot;&lt;img src=\&quot;&quot;+thumbnailUrl+&quot;\&quot; alt=\&quot;Thumbnail Image\&quot;&gt;&quot;;</span>
-<span class="fc" id="L62">        return html;</span>
+<span class="fc" id="L55">        String html = &quot;Title: &quot;;</span>
+<span class="fc" id="L56">        html += &quot;&lt;a href=\&quot;&quot;+ videoLink +&quot;\&quot;&gt;&quot;+title+&quot;&lt;/a&gt;&quot;;</span>
+<span class="fc" id="L57">        html += &quot;, Channel: &lt;a href=\&quot;&quot;+ channelProfileLink + &quot;\&quot;&gt;&quot; + channelTitle+&quot;&lt;/a&gt;&quot;;</span>
+<span class="fc" id="L58">        html += &quot;, Description: \&quot;&quot;+ description + &quot;\&quot;.&quot;;</span>
+<span class="fc" id="L59">        html += &quot;Flesch-Kincaid Grade Level= &quot;+ fkgl + &quot;, &quot;;</span>
+<span class="fc" id="L60">        html += &quot;Flesch Reading Ease Score= &quot;+ fre + &quot;.&quot;;</span>
+<span class="fc" id="L61">        html += &quot;&lt;a href=\&quot;TODO\&quot;&gt;Tags&lt;/a&gt;&quot;;</span>
+<span class="fc" id="L62">        html += &quot;&lt;img src=\&quot;&quot;+thumbnailUrl+&quot;\&quot; alt=\&quot;Thumbnail Image\&quot;&gt;&quot;;</span>
+<span class="fc" id="L63">        return html;</span>
     }
 
     /**
@@ -68,7 +69,7 @@ public class YTResponse {
      * @return a string of title.
      */
     public String getTitle() {
-<span class="fc" id="L71">        return title;</span>
+<span class="fc" id="L72">        return title;</span>
     }
     /**
      * @author: Zheyi Zheng - 40266266
@@ -76,15 +77,15 @@ public class YTResponse {
      * @param title set the title.
      */
     public void setTitle(String title) {
-<span class="fc" id="L79">        this.title = title;</span>
-<span class="fc" id="L80">    }</span>
+<span class="fc" id="L80">        this.title = title;</span>
+<span class="fc" id="L81">    }</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * @return a string of video id.
      */
     public String getVideoId() {
-<span class="fc" id="L87">        return videoId;</span>
+<span class="fc" id="L88">        return videoId;</span>
     }
     /**
      * @author: Zheyi Zheng - 40266266
@@ -92,15 +93,15 @@ public class YTResponse {
      * @param videoId set the videoId.
      */
     public void setVideoId(String videoId) {
-<span class="fc" id="L95">        this.videoId = videoId;</span>
-<span class="fc" id="L96">    }</span>
+<span class="fc" id="L96">        this.videoId = videoId;</span>
+<span class="fc" id="L97">    }</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * @return a string of video link.
      */
     public String getVideoLink() {
-<span class="fc" id="L103">        return videoLink;</span>
+<span class="fc" id="L104">        return videoLink;</span>
     }
     /**
      * @author: Zheyi Zheng - 40266266
@@ -108,15 +109,15 @@ public class YTResponse {
      * @param videoLink set the videoId.
      */
     public void setVideoLink(String videoLink) {
-<span class="fc" id="L111">        this.videoLink = videoLink;</span>
-<span class="fc" id="L112">    }</span>
+<span class="fc" id="L112">        this.videoLink = videoLink;</span>
+<span class="fc" id="L113">    }</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * @return a string of channel title.
      */
     public String getChannelTitle() {
-<span class="fc" id="L119">        return channelTitle;</span>
+<span class="fc" id="L120">        return channelTitle;</span>
     }
     /**
      * @author: Zheyi Zheng - 40266266
@@ -124,15 +125,15 @@ public class YTResponse {
      * @param channelTitle set the videoId.
      */
     public void setChannelTitle(String channelTitle) {
-<span class="fc" id="L127">        this.channelTitle = channelTitle;</span>
-<span class="fc" id="L128">    }</span>
+<span class="fc" id="L128">        this.channelTitle = channelTitle;</span>
+<span class="fc" id="L129">    }</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * @return a string of channel id.
      */
     public String getChannelId() {
-<span class="fc" id="L135">        return channelId;</span>
+<span class="fc" id="L136">        return channelId;</span>
     }
     /**
      * @author: Zheyi Zheng - 40266266
@@ -140,15 +141,15 @@ public class YTResponse {
      * @param channelId set the channel id.
      */
     public void setChannelId(String channelId) {
-<span class="fc" id="L143">        this.channelId = channelId;</span>
-<span class="fc" id="L144">    }</span>
+<span class="fc" id="L144">        this.channelId = channelId;</span>
+<span class="fc" id="L145">    }</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * @return a string of Channel profile link.
      */
     public String getChannelProfileLink() {
-<span class="fc" id="L151">        return channelProfileLink;</span>
+<span class="fc" id="L152">        return channelProfileLink;</span>
     }
     /**
      * @author: Zheyi Zheng - 40266266
@@ -156,15 +157,15 @@ public class YTResponse {
      * @param channelProfileLink set the Channel profile link.
      */
     public void setChannelProfileLink(String channelProfileLink) {
-<span class="fc" id="L159">        this.channelProfileLink = channelProfileLink;</span>
-<span class="fc" id="L160">    }</span>
+<span class="fc" id="L160">        this.channelProfileLink = channelProfileLink;</span>
+<span class="fc" id="L161">    }</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * @return a string of video description.
      */
     public String getDescription() {
-<span class="fc" id="L167">        return description;</span>
+<span class="fc" id="L168">        return description;</span>
     }
     /**
      * @author: Zheyi Zheng - 40266266
@@ -172,15 +173,15 @@ public class YTResponse {
      * @param description set the video description.
      */
     public void setDescription(String description) {
-<span class="fc" id="L175">        this.description = description;</span>
-<span class="fc" id="L176">    }</span>
+<span class="fc" id="L176">        this.description = description;</span>
+<span class="fc" id="L177">    }</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * @return a string of thumbnail Url.
      */
     public String getThumbnailUrl() {
-<span class="fc" id="L183">        return thumbnailUrl;</span>
+<span class="fc" id="L184">        return thumbnailUrl;</span>
     }
     /**
      * @author: Zheyi Zheng - 40266266
@@ -188,33 +189,57 @@ public class YTResponse {
      * @param thumbnailUrl set the video thumbnailUrl.
      */
     public void setThumbnailUrl(String thumbnailUrl) {
-<span class="fc" id="L191">        this.thumbnailUrl = thumbnailUrl;</span>
-<span class="fc" id="L192">    }</span>
+<span class="fc" id="L192">        this.thumbnailUrl = thumbnailUrl;</span>
+<span class="fc" id="L193">    }</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * @return a double of fre value.
      */
-<span class="fc" id="L198">    public double getFre(){return fre;}</span>
+<span class="fc" id="L199">    public double getFre(){return fre;}</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * @param fre set the fre value.
      */
-<span class="fc" id="L204">    public void setFre(double fre){this.fre=fre;}</span>
+<span class="fc" id="L205">    public void setFre(double fre){this.fre=fre;}</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * @return a double of fkgl value.
      */
-<span class="fc" id="L210">    public double getFkgl(){return fkgl;}</span>
+<span class="fc" id="L211">    public double getFkgl(){return fkgl;}</span>
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/10/29
      * @param fkgl set the fkgl value.
      */
-<span class="fc" id="L216">    public void setFkgl(double fkgl){this.fkgl=fkgl;}</span>
+<span class="fc" id="L217">    public void setFkgl(double fkgl){this.fkgl=fkgl;}</span>
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a String of keyword value.
+     */
+<span class="fc" id="L223">    public String getKeyword(){return keyword;}</span>
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param keyword set the keyword value.
+     */
+<span class="fc" id="L229">    public void setkeyword(String keyword){this.keyword=keyword;}</span>
 
+    public boolean equals(YTResponse target){
+<span class="nc bnc" id="L232" title="All 2 branches missed.">        if(target.getTitle().equals(this.title)) {return false;}</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">        if(target.getVideoId().equals(this.videoId)) {return false;}</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">        if(target.getVideoLink().equals(this.videoLink)) {return false;}</span>
+<span class="nc bnc" id="L235" title="All 2 branches missed.">        if(target.getChannelTitle().equals(this.channelTitle)) {return false;}</span>
+<span class="nc bnc" id="L236" title="All 2 branches missed.">        if(target.getChannelId().equals(this.channelId)) {return false;}</span>
+<span class="nc bnc" id="L237" title="All 2 branches missed.">        if(target.getChannelProfileLink().equals(this.channelProfileLink)) {return false;}</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">        if(target.getDescription().equals(this.description)) {return false;}</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        if(target.getThumbnailUrl().equals(this.thumbnailUrl)) {return false;}</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">        if(target.getTags().equals(this.tags)) {return false;}</span>
+<span class="nc" id="L241">        return true;</span>
+    }
 
     /**
      * @author: Pulkit Bansal - 40321488
@@ -222,7 +247,7 @@ public class YTResponse {
      * returns the tags.
      */
     public List&lt;String&gt; getTags() {
-<span class="fc" id="L225">        return tags;</span>
+<span class="fc" id="L250">        return tags;</span>
     }
     /**
      * @author: Pulkit Bansal - 40321488
@@ -231,8 +256,8 @@ public class YTResponse {
      */
 
     public void setTags(List&lt;String&gt; tags) {
-<span class="fc" id="L234">        this.tags = tags;</span>
-<span class="fc" id="L235">    }</span>
+<span class="fc" id="L259">        this.tags = tags;</span>
+<span class="fc" id="L260">    }</span>
 
 
     /**
@@ -240,11 +265,11 @@ public class YTResponse {
      *  set the videocount .
      */
     public int getVideoCount() {
-<span class="nc" id="L243">        return videoCount;</span>
+<span class="nc" id="L268">        return videoCount;</span>
     }
     public void setVideoCount(int videoCount) {
-<span class="nc" id="L246">        this.videoCount = videoCount;</span>
-<span class="nc" id="L247">    }</span>
+<span class="nc" id="L271">        this.videoCount = videoCount;</span>
+<span class="nc" id="L272">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

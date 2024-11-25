@@ -54,6 +54,14 @@ public class ReadabilityActor extends AbstractActor {
                     ReadabilityService(result);
                     sender().tell(new ReadabilityResponse(fre, fkgl, avgFRE, avgFKGL), self());
                 })
+                .match(ReadabilityUpdate.class, message -> {
+                    String keyword = message.keyword;
+                    // Retrieve search result from message
+                    CompletableFuture<List<YTResponse>> result = message.result;
+                    // Create the ReadabilityService instance
+                    ReadabilityService(result);
+                    sender().tell(new ReadabilityUpdateResponse(fre, fkgl, avgFRE, avgFKGL, keyword), self());
+                })
                 .build();
     }
 

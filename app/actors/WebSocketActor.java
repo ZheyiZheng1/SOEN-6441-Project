@@ -16,6 +16,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeoutException;
+import java.util.stream.IntStream;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -187,10 +189,9 @@ public class WebSocketActor extends AbstractActor {
                 .match(RefreshResults.class, message -> {
                     // The scheduler called, check if there is any update of data and refresh on user side.
                     System.out.println("Refreshing");
-                    // Create a set of APIActor
-
-                    // Each APIActor search for one keyword to see if there is any update on YouTube side
-
+                    // Call APIActor with UpdateDataRequest message, allows APIActor to check if there is any update on YouTube side.
+                    searchHistory.stream().
+                            forEach(keyword -> apiActor.tell(new ProjectProtocol.UpdateDataRequest(keyword, null, null), getSelf()));
 
                     // Send all data back to user
                     // Create a JSON response
@@ -245,6 +246,47 @@ public class WebSocketActor extends AbstractActor {
                     String jsonResponse = mapper.writeValueAsString(root);
 
                     out.tell(jsonResponse, getSelf());
+                })
+                .match(ProjectProtocol.UpdateDataResponse.class, message -> {
+                    System.out.println("Received UpdateDataResponse");
+                    // Received data update response, check if there is any actual update. If yes, call readability actor
+                    String keyword = message.keyword;
+                    // Get index of this keyword
+                    int index = searchHistory.indexOf(keyword);
+                    // Compare the results.
+                    message.updatedData.thenAccept(results -> {
+                        boolean change = false;
+                        for(int i=0; i< searchResults.get(index).size(); i++){
+                            // Compare each YTResponse.
+                            if (!searchResults.get(index).get(i).equals(results.get(i))){
+                                change = true;
+                                break;
+                            }
+                        }
+                        if(change){
+                            // There is actual update in data, store the data
+                            searchResults.set(index, (List<YTResponse>) results);
+                            // Call the readability actor
+                            readabilityActor.tell(new ProjectProtocol.ReadabilityUpdate(message.updatedData, keyword), getSelf());
+                        }
+                        // If there is no actual update in data, just do nothing.
+                    });
+                })
+                .match(ProjectProtocol.ReadabilityUpdateResponse.class, message -> {
+                    System.out.println("Received ReadabilityUpdateResponse");
+                    // edit the readability information in list using keyword.
+                    String keyword = message.keyword;
+                    int index = searchHistory.indexOf(keyword);
+                    avgFRE.set(index, message.avgFRE);
+                    avgFKGL.set(index, message.avgFKGL);
+                    List<YTResponse> responses = searchResults.get(index);
+                    // Update all fre and fkgl value in target list.
+                    IntStream.range(0, responses.size())
+                            .forEach(i -> {
+                                YTResponse ytResponse = responses.get(i);
+                                ytResponse.setFre(message.fre.get(i));
+                                ytResponse.setFkgl(message.fkgl.get(i));
+                            });
                 })
                 .build();
     }

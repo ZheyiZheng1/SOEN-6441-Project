@@ -56,6 +56,27 @@ public class ProjectProtocol {
 
     /**
      * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/25
+     * This is the ReadabilityCheck class. This is a message class that only pass CompletableFuture<List<YTResponse>> and keyword.
+     * This class only gets used when WebSocketActor want to update readability.
+     */
+    public static class ReadabilityUpdate {
+        public final CompletableFuture<List<YTResponse>> result;
+        public final String keyword;
+        /**
+         * @author: Zheyi Zheng - 40266266
+         * Created: 2024/11/11
+         * Constructor method.
+         * @param result CompletableFuture<List<YTResponse>> that should get readability level checked.
+         */
+        public ReadabilityUpdate(CompletableFuture<List<YTResponse>> result, String keyword) {
+            this.result = result;
+            this.keyword = keyword;
+        }
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
      * Created: 2024/11/11
      * This is the ReadabilityResponse class. This is a message class that only pass readability information result back.
      */
@@ -78,6 +99,35 @@ public class ProjectProtocol {
             this.fkgl = fkgl;
             this.avgFRE = avgFRE;
             this.avgFKGL = avgFKGL;
+        }
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/25
+     * This is the ReadabilityResponse class. This is a message class that only pass readability information result back.
+     */
+    public static class ReadabilityUpdateResponse {
+        //Flesch Reading Ease Score
+        public final List<Double> fre;
+        //Flesch-Kincaid Grade Level
+        public final List<Double> fkgl;
+
+        public final Double avgFRE;
+        public final Double avgFKGL;
+        public final String keyword;
+        /**
+         * @author: Zheyi Zheng - 40266266
+         * Created: 2024/11/11
+         * Constructor method.
+         * @param fre Flesch Reading Ease Score. fkgl Flesch-Kincaid Grade Level. avgFRE average Flesch Reading Ease Score. avgFKGL average Flesch-Kincaid Grade Level
+         */
+        public ReadabilityUpdateResponse(List<Double> fre, List<Double> fkgl, Double avgFRE, Double avgFKGL, String keyword) {
+            this.fre = fre;
+            this.fkgl = fkgl;
+            this.avgFRE = avgFRE;
+            this.avgFKGL = avgFKGL;
+            this.keyword = keyword;
         }
     }
 

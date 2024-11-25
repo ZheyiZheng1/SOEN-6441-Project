@@ -108,4 +108,40 @@ public class YTResponseTest {
         html += "<img src=\"https://i.ytimg.com/vi/12345/default.jpg\" alt=\"Thumbnail Image\">";
         assertEquals(html, ytResponse.toHTMLString());
     }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/25
+     * Test equals method.
+     */
+    @Test
+    public void testEquals() {
+        ytResponse.setTitle("Sample Video");
+        ytResponse.setVideoId("12345");
+        ytResponse.setVideoLink("https://www.youtube.com/watch?v=12345");
+        ytResponse.setChannelTitle("Sample Channel");
+        ytResponse.setChannelId("abcde");
+        ytResponse.setChannelProfileLink("https://www.youtube.com/channel/abcde");
+        ytResponse.setDescription("This is a sample video description.");
+        ytResponse.setThumbnailUrl("https://i.ytimg.com/vi/12345/default.jpg");
+        ytResponse.setTags(null);
+        ytResponse.setFre(50.0);
+        ytResponse.setFkgl(50.0);
+        ytResponse.setkeyword("keyword1");
+
+        YTResponse ytResponse2 = new YTResponse();
+        ytResponse2.setTitle("Sample Video");
+        ytResponse2.setVideoId("12345");
+        ytResponse2.setVideoLink("https://www.youtube.com/watch?v=12345");
+        ytResponse2.setChannelTitle("Sample Channel");
+        ytResponse2.setChannelId("abcde");
+        ytResponse2.setChannelProfileLink("https://www.youtube.com/channel/abcde");
+        ytResponse2.setDescription("This is a sample video description.");
+        ytResponse2.setThumbnailUrl("https://i.ytimg.com/vi/12345/default.jpg");
+        ytResponse2.setTags(null);
+        ytResponse2.setFre(50.0);
+        ytResponse2.setFkgl(50.0);
+        ytResponse2.setkeyword("keyword1");
+        assertTrue(ytResponse.equals(ytResponse2));
+    }
 }

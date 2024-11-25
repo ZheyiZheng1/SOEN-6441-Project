@@ -54,7 +54,15 @@ import akka.actor.AbstractActor;
                     ReadabilityService(result);
                     sender().tell(new ReadabilityResponse(fre, fkgl, avgFRE, avgFKGL), self());
                 })
-<span class="fc" id="L57">                .build();</span>
+<span class="fc" id="L57">                .match(ReadabilityUpdate.class, message -&gt; {</span>
+                    String keyword = message.keyword;
+                    // Retrieve search result from message
+                    CompletableFuture&lt;List&lt;YTResponse&gt;&gt; result = message.result;
+                    // Create the ReadabilityService instance
+                    ReadabilityService(result);
+                    sender().tell(new ReadabilityUpdateResponse(fre, fkgl, avgFRE, avgFKGL, keyword), self());
+                })
+<span class="fc" id="L65">                .build();</span>
     }
 
     /**
@@ -66,7 +74,7 @@ import akka.actor.AbstractActor;
      */
     public void ReadabilityService(CompletableFuture&lt;List&lt;YTResponse&gt;&gt; target){
         // Process the input to get fre, fkgl and average readability
-<span class="fc" id="L69">        target.thenAccept(list -&gt; {</span>
+<span class="fc" id="L77">        target.thenAccept(list -&gt; {</span>
             List&lt;Double&gt; totalWords;
             List&lt;Double&gt; totalSentences;
             List&lt;Double&gt; totalSyl;
@@ -102,11 +110,11 @@ import akka.actor.AbstractActor;
                 // Calculate and round the fkgl to one decimal place.
                 this.fkgl.add(Double.parseDouble(df.format(0.39 * (totalWords.get(i)/totalSentences.get(i)) + 11.8*(totalSyl.get(i)/totalWords.get(i)) - 15.59)));
             });
-<span class="fc" id="L105">        }).join();</span>
+<span class="fc" id="L113">        }).join();</span>
         // Calculate the average readability using stream. map to double, take average, orElse 0.0 in case of the list is empty.
-<span class="fc" id="L107">        avgFRE = fre.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);</span>
-<span class="fc" id="L108">        avgFKGL = fkgl.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);</span>
-<span class="fc" id="L109">    }</span>
+<span class="fc" id="L115">        avgFRE = fre.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);</span>
+<span class="fc" id="L116">        avgFKGL = fkgl.stream().mapToDouble(Double::doubleValue).average().orElse(0.0);</span>
+<span class="fc" id="L117">    }</span>
 
     /**
      * @author: Zheyi Zheng - 40266266
@@ -118,10 +126,10 @@ import akka.actor.AbstractActor;
      *
      */
     private int countSyllablesInDescription(String description){
-<span class="fc" id="L121">        return Arrays.stream(description.toLowerCase().split(&quot;\\s+&quot;))</span>
-<span class="fc" id="L122">                .map(this::countSyllables)</span>
-<span class="fc" id="L123">                .mapToInt(Integer::intValue)</span>
-<span class="fc" id="L124">                .sum();</span>
+<span class="fc" id="L129">        return Arrays.stream(description.toLowerCase().split(&quot;\\s+&quot;))</span>
+<span class="fc" id="L130">                .map(this::countSyllables)</span>
+<span class="fc" id="L131">                .mapToInt(Integer::intValue)</span>
+<span class="fc" id="L132">                .sum();</span>
     }
 
     /**
@@ -133,16 +141,16 @@ import akka.actor.AbstractActor;
      * @return an int that represents number of syllables in the word.
      */
     private int countSyllables(String word){
-<span class="fc" id="L136">        AtomicBoolean prevWasVowel = new AtomicBoolean(false);</span>
-<span class="fc" id="L137">        return (int) Arrays.stream(word.toLowerCase().split(&quot;&quot;))</span>
-<span class="fc" id="L138">                .filter(c -&gt; {</span>
+<span class="fc" id="L144">        AtomicBoolean prevWasVowel = new AtomicBoolean(false);</span>
+<span class="fc" id="L145">        return (int) Arrays.stream(word.toLowerCase().split(&quot;&quot;))</span>
+<span class="fc" id="L146">                .filter(c -&gt; {</span>
                     boolean isVowel = c.matches(&quot;[aeiou]&quot;);
                     // Continues syllables count as one. for example, io in description, ee in deep.
                     boolean countThis = isVowel &amp;&amp; !prevWasVowel.get();
                     prevWasVowel.set(isVowel);
                     return countThis;
                 })
-<span class="fc" id="L145">                .count();</span>
+<span class="fc" id="L153">                .count();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
