@@ -124,6 +124,7 @@ public class WebSocketActor extends AbstractActor {
                     apiActor.tell(new ProjectProtocol.KeyWordSearch(keyword, null, null), getSelf());
                 })
                 .match(CompletableFuture.class, future -> {
+                    System.out.println("Received CompletableFuture");
                     // Wait for the APIActor to return the search results
                     future.thenAccept(results -> {
                         // Send a message to the ReadabilityActor
@@ -136,6 +137,7 @@ public class WebSocketActor extends AbstractActor {
                     });
                 })
                 .match(ProjectProtocol.ReadabilityResponse.class, message -> {
+                    System.out.println("Received ReadabilityResponse");
                     // Receive readability response from the ReadabilityActor
                     double avgFRE = message.avgFRE;
                     double avgFKGL = message.avgFKGL;
@@ -162,6 +164,7 @@ public class WebSocketActor extends AbstractActor {
                     this.readabilityActor=message.readabilityActor;
                 })
                 .match(RefreshResults.class, message -> {
+                    System.out.println("Refreshing");
                     // Send all data back to user
                     // Create a JSON response
                     ObjectMapper mapper = new ObjectMapper();
