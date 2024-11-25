@@ -39,62 +39,90 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
     <title>YT lytics</title>
     <script>
         let socket = new WebSocket("ws://localhost:9000/search");
-        let allResults = [];
         let allKeyword = [];
+        let avgFKGLList = [];
+        let avgFREList = [];
+        let searchResultsList = [];
 
-        socket.onopen = function(event) """),format.raw/*14.41*/("""{"""),format.raw/*14.42*/("""
-            """),format.raw/*15.13*/("""console.log("Connection established.");
-        """),format.raw/*16.9*/("""}"""),format.raw/*16.10*/(""";
+        socket.onopen = function(event) """),format.raw/*16.41*/("""{"""),format.raw/*16.42*/("""
+            """),format.raw/*17.13*/("""console.log("Connection established.");
+        """),format.raw/*18.9*/("""}"""),format.raw/*18.10*/(""";
 
-        socket.onmessage = function(event) """),format.raw/*18.44*/("""{"""),format.raw/*18.45*/("""
-            """),format.raw/*19.13*/("""console.log("Received new results: " + event.data);
-            let newResults = event.data.split('\n');
-            allResults.unshift(newResults);
+        socket.onmessage = function(event) """),format.raw/*20.44*/("""{"""),format.raw/*20.45*/("""
+            """),format.raw/*21.13*/("""console.log("Received new results: " + event.data);
 
             // Clear previous results from result div
             let resultsDiv = document.getElementById("results");
             resultsDiv.innerHTML = "";
+            avgFKGLList = [];
+            avgFREList = [];
+            searchResultsList = [];
+
+            // Read result from JSON
+            let data = JSON.parse(event.data);
+
+            // Process the data
+            avgFKGLList.push(...data.avgFKGL);
+            avgFREList.push(...data.avgFRE);
+            data.searchResults.forEach(resultList => """),format.raw/*36.54*/("""{"""),format.raw/*36.55*/("""
+                """),format.raw/*37.17*/("""resultList.forEach(result => """),format.raw/*37.46*/("""{"""),format.raw/*37.47*/("""
+                    """),format.raw/*38.21*/("""// Create an object for each result that contains all information
+                    let resultObj = """),format.raw/*39.37*/("""{"""),format.raw/*39.38*/("""
+                        """),format.raw/*40.25*/("""title: result.title,
+                        videoID: result.videoID,
+                        videoLink: result.videoLink,
+                        channelTitle: result.channelTitle,
+                        channelID: result.channelID,
+                        channelProfileLink: result.channelProfileLink,
+                        description: result.description,
+                        thumbnailUrl: result.thumbnailUrl,
+                        fkgl: result.fkgl,
+                        fre: result.fre,
+                    """),format.raw/*50.21*/("""}"""),format.raw/*50.22*/(""";
+
+                    // Add the result object to the resultsList
+                    searchResultsList.push(resultObj);
+                """),format.raw/*54.17*/("""}"""),format.raw/*54.18*/(""");
+            """),format.raw/*55.13*/("""}"""),format.raw/*55.14*/(""");
 
             // Display all results
+             for (let i = 0; i < allKeyword.length; i++) """),format.raw/*58.58*/("""{"""),format.raw/*58.59*/("""
+                """),format.raw/*59.17*/("""// Display the search term, average FKGL and FRE
+                resultsDiv.innerHTML += `<p><strong>Search Term:</strong> $"""),format.raw/*60.76*/("""{"""),format.raw/*60.77*/("""allKeyword[i]"""),format.raw/*60.90*/("""}"""),format.raw/*60.91*/(""" """),format.raw/*60.92*/("""<strong>Flesh-Kincaid Grade Level Avg.:</strong> $"""),format.raw/*60.142*/("""{"""),format.raw/*60.143*/("""avgFKGLList[i]"""),format.raw/*60.157*/("""}"""),format.raw/*60.158*/(""", <strong>Flesh Reading Ease Score Avg.:</strong> $"""),format.raw/*60.209*/("""{"""),format.raw/*60.210*/("""avgFREList[i]"""),format.raw/*60.223*/("""}"""),format.raw/*60.224*/("""</p>`;
 
-             for (let i = 0; i < allKeyword.length; i++) """),format.raw/*29.58*/("""{"""),format.raw/*29.59*/("""
-                """),format.raw/*30.17*/("""// Display the search term
-                resultsDiv.innerHTML += `<p><strong>Search Term:</strong> $"""),format.raw/*31.76*/("""{"""),format.raw/*31.77*/("""allKeyword[i]"""),format.raw/*31.90*/("""}"""),format.raw/*31.91*/("""`;
-                // Display average FKGL and FRE (placeholders for now)
-                resultsDiv.innerHTML += `<strong>Flesh-Kincaid Grade Level Avg.:</strong> $"""),format.raw/*33.92*/("""{"""),format.raw/*33.93*/("""allResults[i][0]"""),format.raw/*33.109*/("""}"""),format.raw/*33.110*/(""",
-                <strong>Flesh Reading Ease Score Avg.:</strong> $"""),format.raw/*34.66*/("""{"""),format.raw/*34.67*/("""allResults[i][1]"""),format.raw/*34.83*/("""}"""),format.raw/*34.84*/("""</p>`;
+                // Display each search results
+                for(let j = i*10; j<i*10+10; j++)"""),format.raw/*63.50*/("""{"""),format.raw/*63.51*/("""
+                    """),format.raw/*64.21*/("""// Display each video information
+                    resultsDiv.innerHTML += `<p>$"""),format.raw/*65.50*/("""{"""),format.raw/*65.51*/("""j%10+1"""),format.raw/*65.57*/("""}"""),format.raw/*65.58*/(""". <strong>Title</strong>: <a href="$"""),format.raw/*65.94*/("""{"""),format.raw/*65.95*/("""searchResultsList[j].videoLink"""),format.raw/*65.125*/("""}"""),format.raw/*65.126*/("""">$"""),format.raw/*65.129*/("""{"""),format.raw/*65.130*/("""searchResultsList[j].title"""),format.raw/*65.156*/("""}"""),format.raw/*65.157*/("""</a>, `
+                    resultsDiv.innerHTML += `<strong>Channel</strong>: <a href="$"""),format.raw/*66.82*/("""{"""),format.raw/*66.83*/("""searchResultsList[j].channelProfileLink"""),format.raw/*66.122*/("""}"""),format.raw/*66.123*/("""">$"""),format.raw/*66.126*/("""{"""),format.raw/*66.127*/("""searchResultsList[j].channelTitle"""),format.raw/*66.160*/("""}"""),format.raw/*66.161*/("""</a>, `
+                    resultsDiv.innerHTML += `<strong>Description</strong>: "$"""),format.raw/*67.78*/("""{"""),format.raw/*67.79*/("""searchResultsList[j].description"""),format.raw/*67.111*/("""}"""),format.raw/*67.112*/("""", `
+                    resultsDiv.innerHTML += `Flesh-Kincaid Grade Level= "$"""),format.raw/*68.75*/("""{"""),format.raw/*68.76*/("""searchResultsList[j].fkgl"""),format.raw/*68.101*/("""}"""),format.raw/*68.102*/("""", `
+                    resultsDiv.innerHTML += `Flesh Reading Ease Score= "$"""),format.raw/*69.74*/("""{"""),format.raw/*69.75*/("""searchResultsList[j].fre"""),format.raw/*69.99*/("""}"""),format.raw/*69.100*/("""", `
+                    resultsDiv.innerHTML += `<a href="">Tags</a></p>`
+                    resultsDiv.innerHTML += `<img src="$"""),format.raw/*71.57*/("""{"""),format.raw/*71.58*/("""searchResultsList[j].thumbnailUrl"""),format.raw/*71.91*/("""}"""),format.raw/*71.92*/("""" alt="thumbnail">`
+                """),format.raw/*72.17*/("""}"""),format.raw/*72.18*/("""
+             """),format.raw/*73.14*/("""}"""),format.raw/*73.15*/("""
+        """),format.raw/*74.9*/("""}"""),format.raw/*74.10*/(""";
 
-                // Display individual results
-                if (allResults[i] && allResults[i].length > 0) """),format.raw/*37.64*/("""{"""),format.raw/*37.65*/("""
-                    """),format.raw/*38.21*/("""for (let j = 2; j < allResults[i].length; j++) """),format.raw/*38.68*/("""{"""),format.raw/*38.69*/("""
-                        """),format.raw/*39.25*/("""resultsDiv.innerHTML += `<p>$"""),format.raw/*39.54*/("""{"""),format.raw/*39.55*/("""j-1"""),format.raw/*39.58*/("""}"""),format.raw/*39.59*/(""". $"""),format.raw/*39.62*/("""{"""),format.raw/*39.63*/("""allResults[i][j]"""),format.raw/*39.79*/("""}"""),format.raw/*39.80*/("""</p>`;
-                    """),format.raw/*40.21*/("""}"""),format.raw/*40.22*/("""
-                """),format.raw/*41.17*/("""}"""),format.raw/*41.18*/(""" """),format.raw/*41.19*/("""else """),format.raw/*41.24*/("""{"""),format.raw/*41.25*/("""
-                    """),format.raw/*42.21*/("""resultsDiv.innerHTML += `<p>No results available.</p>`;
-                """),format.raw/*43.17*/("""}"""),format.raw/*43.18*/("""
-             """),format.raw/*44.14*/("""}"""),format.raw/*44.15*/("""
+        socket.onclose = function(event) """),format.raw/*76.42*/("""{"""),format.raw/*76.43*/("""
+            """),format.raw/*77.13*/("""console.log("Connection closed. Code: " + event.code + " Reason: " + event.reason);
+        """),format.raw/*78.9*/("""}"""),format.raw/*78.10*/(""";
 
-        """),format.raw/*46.9*/("""}"""),format.raw/*46.10*/(""";
+        socket.onerror = function(error) """),format.raw/*80.42*/("""{"""),format.raw/*80.43*/("""
+            """),format.raw/*81.13*/("""console.log("Error occurred: " + error.message);
+        """),format.raw/*82.9*/("""}"""),format.raw/*82.10*/(""";
 
-        socket.onclose = function(event) """),format.raw/*48.42*/("""{"""),format.raw/*48.43*/("""
-            """),format.raw/*49.13*/("""console.log("Connection closed. Code: " + event.code + " Reason: " + event.reason);
-        """),format.raw/*50.9*/("""}"""),format.raw/*50.10*/(""";
-
-        socket.onerror = function(error) """),format.raw/*52.42*/("""{"""),format.raw/*52.43*/("""
-            """),format.raw/*53.13*/("""console.log("Error occurred: " + error.message);
-        """),format.raw/*54.9*/("""}"""),format.raw/*54.10*/(""";
-
-        function sendKeyword() """),format.raw/*56.32*/("""{"""),format.raw/*56.33*/("""
-            """),format.raw/*57.13*/("""let keyword = document.getElementById("keyword").value;
+        function sendKeyword() """),format.raw/*84.32*/("""{"""),format.raw/*84.33*/("""
+            """),format.raw/*85.13*/("""let keyword = document.getElementById("keyword").value;
             allKeyword.unshift(keyword);
             console.log("Sending keyword: " + keyword);
-            if (socket.readyState === WebSocket.OPEN) """),format.raw/*60.55*/("""{"""),format.raw/*60.56*/("""
-                """),format.raw/*61.17*/("""socket.send(keyword);
-            """),format.raw/*62.13*/("""}"""),format.raw/*62.14*/(""" """),format.raw/*62.15*/("""else """),format.raw/*62.20*/("""{"""),format.raw/*62.21*/("""
-                """),format.raw/*63.17*/("""console.log("WebSocket is not open. State: " + socket.readyState);
-            """),format.raw/*64.13*/("""}"""),format.raw/*64.14*/("""
-        """),format.raw/*65.9*/("""}"""),format.raw/*65.10*/("""
-    """),format.raw/*66.5*/("""</script>
+            if (socket.readyState === WebSocket.OPEN) """),format.raw/*88.55*/("""{"""),format.raw/*88.56*/("""
+                """),format.raw/*89.17*/("""socket.send(keyword);
+            """),format.raw/*90.13*/("""}"""),format.raw/*90.14*/(""" """),format.raw/*90.15*/("""else """),format.raw/*90.20*/("""{"""),format.raw/*90.21*/("""
+                """),format.raw/*91.17*/("""console.log("WebSocket is not open. State: " + socket.readyState);
+            """),format.raw/*92.13*/("""}"""),format.raw/*92.14*/("""
+        """),format.raw/*93.9*/("""}"""),format.raw/*93.10*/("""
+    """),format.raw/*94.5*/("""</script>
 </head>
 <body>
 <h1>Welcome to the YT lytics</h1>
@@ -120,9 +148,9 @@ Seq[Any](format.raw/*1.1*/("""<!DOCTYPE html>
               /*
                   -- GENERATED --
                   SOURCE: app/views/index.scala.html
-                  HASH: c5a10d1d0091b01c845820b4c87bc9476274377a
-                  MATRIX: 989->0|1418->401|1447->402|1489->416|1565->465|1594->466|1670->514|1699->515|1741->529|2181->941|2210->942|2256->960|2387->1063|2416->1064|2457->1077|2486->1078|2681->1245|2710->1246|2755->1262|2785->1263|2881->1331|2910->1332|2954->1348|2983->1349|3131->1469|3160->1470|3210->1492|3285->1539|3314->1540|3368->1566|3425->1595|3454->1596|3485->1599|3514->1600|3545->1603|3574->1604|3618->1620|3647->1621|3703->1649|3732->1650|3778->1668|3807->1669|3836->1670|3869->1675|3898->1676|3948->1698|4049->1771|4078->1772|4121->1787|4150->1788|4189->1800|4218->1801|4292->1847|4321->1848|4363->1862|4483->1955|4512->1956|4586->2002|4615->2003|4657->2017|4742->2075|4771->2076|4835->2112|4864->2113|4906->2127|5144->2337|5173->2338|5219->2356|5282->2391|5311->2392|5340->2393|5373->2398|5402->2399|5448->2417|5556->2497|5585->2498|5622->2508|5651->2509|5684->2515
-                  LINES: 32->1|45->14|45->14|46->15|47->16|47->16|49->18|49->18|50->19|60->29|60->29|61->30|62->31|62->31|62->31|62->31|64->33|64->33|64->33|64->33|65->34|65->34|65->34|65->34|68->37|68->37|69->38|69->38|69->38|70->39|70->39|70->39|70->39|70->39|70->39|70->39|70->39|70->39|71->40|71->40|72->41|72->41|72->41|72->41|72->41|73->42|74->43|74->43|75->44|75->44|77->46|77->46|79->48|79->48|80->49|81->50|81->50|83->52|83->52|84->53|85->54|85->54|87->56|87->56|88->57|91->60|91->60|92->61|93->62|93->62|93->62|93->62|93->62|94->63|95->64|95->64|96->65|96->65|97->66
+                  HASH: a9875891caf01cb3471e322ca59032b5774038a4
+                  MATRIX: 989->0|1486->469|1515->470|1557->484|1633->533|1662->534|1738->582|1767->583|1809->597|2421->1181|2450->1182|2496->1200|2553->1229|2582->1230|2632->1252|2763->1355|2792->1356|2846->1382|3410->1918|3439->1919|3609->2061|3638->2062|3682->2078|3711->2079|3838->2178|3867->2179|3913->2197|4066->2322|4095->2323|4136->2336|4165->2337|4194->2338|4273->2388|4303->2389|4346->2403|4376->2404|4456->2455|4486->2456|4528->2469|4558->2470|4693->2577|4722->2578|4772->2600|4884->2684|4913->2685|4947->2691|4976->2692|5040->2728|5069->2729|5128->2759|5158->2760|5190->2763|5220->2764|5275->2790|5305->2791|5423->2881|5452->2882|5520->2921|5550->2922|5582->2925|5612->2926|5674->2959|5704->2960|5818->3046|5847->3047|5908->3079|5938->3080|6046->3160|6075->3161|6129->3186|6159->3187|6266->3266|6295->3267|6347->3291|6377->3292|6538->3425|6567->3426|6628->3459|6657->3460|6722->3497|6751->3498|6794->3513|6823->3514|6860->3524|6889->3525|6963->3571|6992->3572|7034->3586|7154->3679|7183->3680|7257->3726|7286->3727|7328->3741|7413->3799|7442->3800|7506->3836|7535->3837|7577->3851|7815->4061|7844->4062|7890->4080|7953->4115|7982->4116|8011->4117|8044->4122|8073->4123|8119->4141|8227->4221|8256->4222|8293->4232|8322->4233|8355->4239
+                  LINES: 32->1|47->16|47->16|48->17|49->18|49->18|51->20|51->20|52->21|67->36|67->36|68->37|68->37|68->37|69->38|70->39|70->39|71->40|81->50|81->50|85->54|85->54|86->55|86->55|89->58|89->58|90->59|91->60|91->60|91->60|91->60|91->60|91->60|91->60|91->60|91->60|91->60|91->60|91->60|91->60|94->63|94->63|95->64|96->65|96->65|96->65|96->65|96->65|96->65|96->65|96->65|96->65|96->65|96->65|96->65|97->66|97->66|97->66|97->66|97->66|97->66|97->66|97->66|98->67|98->67|98->67|98->67|99->68|99->68|99->68|99->68|100->69|100->69|100->69|100->69|102->71|102->71|102->71|102->71|103->72|103->72|104->73|104->73|105->74|105->74|107->76|107->76|108->77|109->78|109->78|111->80|111->80|112->81|113->82|113->82|115->84|115->84|116->85|119->88|119->88|120->89|121->90|121->90|121->90|121->90|121->90|122->91|123->92|123->92|124->93|124->93|125->94
                   -- GENERATED --
               */
           

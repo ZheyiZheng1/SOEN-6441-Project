@@ -8,8 +8,10 @@
     <title>YT lytics</title>
     <script>
         let socket = new WebSocket("ws://localhost:9000/search");
-        let allResults = [];
         let allKeyword = [];
+        let avgFKGLList = [];
+        let avgFREList = [];
+        let searchResultsList = [];
 
         socket.onopen = function(event) {
             console.log("Connection established.");
@@ -17,32 +19,58 @@
 
         socket.onmessage = function(event) {
             console.log("Received new results: " + event.data);
-            let newResults = event.data.split('\n');
-            allResults.unshift(newResults);
 
             // Clear previous results from result div
             let resultsDiv = document.getElementById("results");
             resultsDiv.innerHTML = "";
+            avgFKGLList = [];
+            avgFREList = [];
+            searchResultsList = [];
+
+            // Read result from JSON
+            let data = JSON.parse(event.data);
+
+            // Process the data
+            avgFKGLList.push(...data.avgFKGL);
+            avgFREList.push(...data.avgFRE);
+            data.searchResults.forEach(resultList => {
+                resultList.forEach(result => {
+                    // Create an object for each result that contains all information
+                    let resultObj = {
+                        title: result.title,
+                        videoID: result.videoID,
+                        videoLink: result.videoLink,
+                        channelTitle: result.channelTitle,
+                        channelID: result.channelID,
+                        channelProfileLink: result.channelProfileLink,
+                        description: result.description,
+                        thumbnailUrl: result.thumbnailUrl,
+                        fkgl: result.fkgl,
+                        fre: result.fre,
+                    };
+
+                    // Add the result object to the resultsList
+                    searchResultsList.push(resultObj);
+                });
+            });
 
             // Display all results
-
              for (let i = 0; i < allKeyword.length; i++) {
-                // Display the search term
-                resultsDiv.innerHTML += `<p><strong>Search Term:</strong> ${allKeyword[i]}`;
-                // Display average FKGL and FRE (placeholders for now)
-                resultsDiv.innerHTML += `<strong>Flesh-Kincaid Grade Level Avg.:</strong> ${allResults[i][0]},
-                <strong>Flesh Reading Ease Score Avg.:</strong> ${allResults[i][1]}</p>`;
+                // Display the search term, average FKGL and FRE
+                resultsDiv.innerHTML += `<p><strong>Search Term:</strong> ${allKeyword[i]} <strong>Flesh-Kincaid Grade Level Avg.:</strong> ${avgFKGLList[i]}, <strong>Flesh Reading Ease Score Avg.:</strong> ${avgFREList[i]}</p>`;
 
-                // Display individual results
-                if (allResults[i] && allResults[i].length > 0) {
-                    for (let j = 2; j < allResults[i].length; j++) {
-                        resultsDiv.innerHTML += `<p>${j-1}. ${allResults[i][j]}</p>`;
-                    }
-                } else {
-                    resultsDiv.innerHTML += `<p>No results available.</p>`;
+                // Display each search results
+                for(let j = i*10; j<i*10+10; j++){
+                    // Display each video information
+                    resultsDiv.innerHTML += `<p>${j%10+1}. <strong>Title</strong>: <a href="${searchResultsList[j].videoLink}">${searchResultsList[j].title}</a>, `
+                    resultsDiv.innerHTML += `<strong>Channel</strong>: <a href="${searchResultsList[j].channelProfileLink}">${searchResultsList[j].channelTitle}</a>, `
+                    resultsDiv.innerHTML += `<strong>Description</strong>: "${searchResultsList[j].description}", `
+                    resultsDiv.innerHTML += `Flesh-Kincaid Grade Level= "${searchResultsList[j].fkgl}", `
+                    resultsDiv.innerHTML += `Flesh Reading Ease Score= "${searchResultsList[j].fre}", `
+                    resultsDiv.innerHTML += `<a href="">Tags</a></p>`
+                    resultsDiv.innerHTML += `<img src="${searchResultsList[j].thumbnailUrl}" alt="thumbnail">`
                 }
              }
-
         };
 
         socket.onclose = function(event) {

@@ -5,8 +5,10 @@ import akka.actor.ActorRef;
 import akka.actor.OneForOneStrategy;
 import akka.actor.Props;
 import akka.actor.SupervisorStrategy;
-
+import akka.actor.Cancellable;
 import akka.japi.pf.DeciderBuilder;
+
+import scala.concurrent.duration.Duration;
 import services.YTResponse;
 
 import javax.inject.Inject;
@@ -14,7 +16,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeoutException;
-import java.util.stream.Collectors;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * @author: Zheyi Zheng - 40266266
@@ -32,6 +38,13 @@ public class WebSocketActor extends AbstractActor {
     private List<String> searchHistory;
     // Keep search results
     private List<List<YTResponse>> searchResults;
+    private List<Double> avgFKGL;
+    private List<Double> avgFRE;
+    // Scheduler for periodic updates
+    private Cancellable refreshScheduler;
+    // Default refresh interval
+    private int refreshInterval = 10;
+
     private final SupervisorStrategy strategy = new OneForOneStrategy(
             -1,
             java.time.Duration.ofMinutes(3),
@@ -69,6 +82,10 @@ public class WebSocketActor extends AbstractActor {
         this.readabilityActor = getContext().actorOf(ReadabilityActor.getProps());
         this.searchHistory = new LinkedList<>();
         this.searchResults = new LinkedList<>();
+        this.avgFKGL = new LinkedList<>();
+        this.avgFRE = new LinkedList<>();
+        // Start the scheduler for keep refresh
+        startScheduler();
     }
 
     /**
@@ -128,20 +145,69 @@ public class WebSocketActor extends AbstractActor {
                         searchResults.get(0).get(i).setFre(fre.get(i));
                         searchResults.get(0).get(i).setFkgl(fkgl.get(i));
                     }
-                    // Send message back
-                    String response = avgFKGL + "\n" + avgFRE + "\n";
-                    response += searchResults.get(searchResults.size()-1).stream()
-                            .map(result -> result.toHTMLString())
-                            .collect(Collectors.joining("\n"));
 
-                    System.out.println("Sending results: \n" + response);
-                    // Send the result back to the WebSocket client
-                    out.tell(response, getSelf());
+                    // Store the result in search results, only keep 10 most recent results
+                    if (this.avgFKGL.size() >= 10) {
+                        this.avgFKGL.remove(0);
+                    }
+                    if (this.avgFRE.size() >= 10) {
+                        this.avgFRE.remove(0);
+                    }
+                    this.avgFKGL.add(avgFKGL);
+                    this.avgFRE.add(avgFRE);
                 })
                 .match(ProjectProtocol.UpdateApiAndReadabilityRef.class, message ->{
                     // This should not be used, it is created for test purpose.
                     this.apiActor=message.apiActor;
                     this.readabilityActor=message.readabilityActor;
+                })
+                .match(RefreshResults.class, message -> {
+                    // Send all data back to user
+                    // Create a JSON response
+                    ObjectMapper mapper = new ObjectMapper();
+                    ObjectNode root = mapper.createObjectNode();
+                    // Add avgFKGL and avgFRE as JSON arrays
+                    ArrayNode avgFKGLArray = mapper.createArrayNode();
+                    avgFKGL.stream()
+                            .sorted((a, b) -> Double.compare(avgFKGL.indexOf(b), avgFKGL.indexOf(a)))
+                            .forEach(avgFKGLArray::add);
+                    root.set("avgFKGL", avgFKGLArray);
+
+                    ArrayNode avgFREArray = mapper.createArrayNode();
+                    avgFRE.stream()
+                            .sorted((a, b) -> Double.compare(avgFRE.indexOf(b), avgFRE.indexOf(a)))
+                            .forEach(avgFREArray::add);
+                    root.set("avgFRE", avgFREArray);
+
+                    // Add searchResults as an array of arrays
+                    ArrayNode searchResultsArray = mapper.createArrayNode();
+                    searchResults.stream()
+                            .sorted((a, b) -> Integer.compare(searchResults.indexOf(b), searchResults.indexOf(a)))
+                            .forEach(resultList -> {
+                                ArrayNode resultArray = mapper.createArrayNode();
+                                resultList.forEach(result -> {
+                                    ObjectNode resultNode = mapper.createObjectNode();
+                                    resultNode.put("title", result.getTitle());
+                                    resultNode.put("videoID", result.getVideoId());
+                                    resultNode.put("videoLink", result.getVideoLink());
+                                    resultNode.put("channelTitle", result.getChannelTitle());
+                                    resultNode.put("channelID", result.getChannelId());
+                                    resultNode.put("channelProfileLink", result.getChannelProfileLink());
+                                    resultNode.put("description", result.getDescription());
+                                    resultNode.put("thumbnailUrl", result.getThumbnailUrl());
+                                    resultNode.put("fkgl", result.getFkgl());
+                                    resultNode.put("fre", result.getFre());
+                                    resultArray.add(resultNode);
+                                });
+                                searchResultsArray.add(resultArray);
+                            });
+
+                    root.set("searchResults", searchResultsArray);
+
+                    // Convert the response object to a JSON string
+                    String jsonResponse = mapper.writeValueAsString(root);
+
+                    out.tell(jsonResponse, getSelf());
                 })
                 .build();
     }
@@ -149,12 +215,37 @@ public class WebSocketActor extends AbstractActor {
     /**
      * @author: Zheyi Zheng - 40266266
      * Created: 2024/11/14
-     * This is the postStop method. This method cleanup resources when the actor is stopped.
+     * This is the postStop method. This method cleanup scheduler.
      */
     @Override
     public void postStop() throws Exception {
-        // Cleanup resources when the actor is stopped
-        super.postStop();
+        if (refreshScheduler != null && !refreshScheduler.isCancelled()) {
+            // Cleanup the scheduler
+            refreshScheduler.cancel();
+        }
     }
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/24
+     * This is the startScheduler class. This class setup a scheduler which send RefreshResults message to WebSocketActor every refreshInterval seconds.
+     */
+    private void startScheduler() {
+        refreshScheduler = getContext().getSystem().scheduler().scheduleWithFixedDelay(
+                Duration.create(0, SECONDS),
+                Duration.create(refreshInterval, SECONDS),
+                getSelf(), // Send message to WebSocketActor itself
+                new RefreshResults(), // Message type is RefreshResults
+                getContext().getDispatcher(), // Use the actor's dispatcher
+                null // No sender
+        );
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/24
+     * This is the RefreshResults class. This class has nothing, only used as a message to let scheduler send data to view periodically.
+     */
+    private static class RefreshResults {
+    }
 }
