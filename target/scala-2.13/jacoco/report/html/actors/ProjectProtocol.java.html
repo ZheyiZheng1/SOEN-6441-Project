@@ -69,10 +69,10 @@ import java.util.concurrent.CompletableFuture;
          * Constructor method.
          * @param result CompletableFuture&lt;List&lt;YTResponse&gt;&gt; that should get readability level checked.
          */
-<span class="nc" id="L72">        public ReadabilityUpdate(CompletableFuture&lt;List&lt;YTResponse&gt;&gt; result, String keyword) {</span>
-<span class="nc" id="L73">            this.result = result;</span>
-<span class="nc" id="L74">            this.keyword = keyword;</span>
-<span class="nc" id="L75">        }</span>
+<span class="fc" id="L72">        public ReadabilityUpdate(CompletableFuture&lt;List&lt;YTResponse&gt;&gt; result, String keyword) {</span>
+<span class="fc" id="L73">            this.result = result;</span>
+<span class="fc" id="L74">            this.keyword = keyword;</span>
+<span class="fc" id="L75">        }</span>
     }
 
     /**
@@ -122,13 +122,13 @@ import java.util.concurrent.CompletableFuture;
          * Constructor method.
          * @param fre Flesch Reading Ease Score. fkgl Flesch-Kincaid Grade Level. avgFRE average Flesch Reading Ease Score. avgFKGL average Flesch-Kincaid Grade Level
          */
-<span class="nc" id="L125">        public ReadabilityUpdateResponse(List&lt;Double&gt; fre, List&lt;Double&gt; fkgl, Double avgFRE, Double avgFKGL, String keyword) {</span>
-<span class="nc" id="L126">            this.fre = fre;</span>
-<span class="nc" id="L127">            this.fkgl = fkgl;</span>
-<span class="nc" id="L128">            this.avgFRE = avgFRE;</span>
-<span class="nc" id="L129">            this.avgFKGL = avgFKGL;</span>
-<span class="nc" id="L130">            this.keyword = keyword;</span>
-<span class="nc" id="L131">        }</span>
+<span class="fc" id="L125">        public ReadabilityUpdateResponse(List&lt;Double&gt; fre, List&lt;Double&gt; fkgl, Double avgFRE, Double avgFKGL, String keyword) {</span>
+<span class="fc" id="L126">            this.fre = fre;</span>
+<span class="fc" id="L127">            this.fkgl = fkgl;</span>
+<span class="fc" id="L128">            this.avgFRE = avgFRE;</span>
+<span class="fc" id="L129">            this.avgFKGL = avgFKGL;</span>
+<span class="fc" id="L130">            this.keyword = keyword;</span>
+<span class="fc" id="L131">        }</span>
     }
 
     /**

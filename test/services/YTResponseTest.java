@@ -116,18 +116,19 @@ public class YTResponseTest {
      */
     @Test
     public void testEquals() {
-        ytResponse.setTitle("Sample Video");
-        ytResponse.setVideoId("12345");
-        ytResponse.setVideoLink("https://www.youtube.com/watch?v=12345");
-        ytResponse.setChannelTitle("Sample Channel");
-        ytResponse.setChannelId("abcde");
-        ytResponse.setChannelProfileLink("https://www.youtube.com/channel/abcde");
-        ytResponse.setDescription("This is a sample video description.");
-        ytResponse.setThumbnailUrl("https://i.ytimg.com/vi/12345/default.jpg");
-        ytResponse.setTags(null);
-        ytResponse.setFre(50.0);
-        ytResponse.setFkgl(50.0);
-        ytResponse.setkeyword("keyword1");
+        YTResponse ytResponse1 = new YTResponse();
+        ytResponse1.setTitle("Sample Video");
+        ytResponse1.setVideoId("12345");
+        ytResponse1.setVideoLink("https://www.youtube.com/watch?v=12345");
+        ytResponse1.setChannelTitle("Sample Channel");
+        ytResponse1.setChannelId("abcde");
+        ytResponse1.setChannelProfileLink("https://www.youtube.com/channel/abcde");
+        ytResponse1.setDescription("This is a sample video description.");
+        ytResponse1.setThumbnailUrl("https://i.ytimg.com/vi/12345/default.jpg");
+        ytResponse1.setTags(null);
+        ytResponse1.setFre(50.0);
+        ytResponse1.setFkgl(50.0);
+        ytResponse1.setkeyword("keyword1");
 
         YTResponse ytResponse2 = new YTResponse();
         ytResponse2.setTitle("Sample Video");
@@ -142,6 +143,8 @@ public class YTResponseTest {
         ytResponse2.setFre(50.0);
         ytResponse2.setFkgl(50.0);
         ytResponse2.setkeyword("keyword1");
-        assertTrue(ytResponse.equals(ytResponse2));
+        System.out.println(ytResponse1.toString());
+        System.out.println(ytResponse2.toString());
+        assertTrue(ytResponse1.equals(ytResponse2));
     }
 }

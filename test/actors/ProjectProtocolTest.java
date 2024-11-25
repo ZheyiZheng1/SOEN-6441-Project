@@ -133,4 +133,56 @@ public class ProjectProtocolTest {
             assertEquals(readabilityProbe.getRef(), updateApiAndReadabilityRef.readabilityActor);
         }};
     }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/25
+     * This is the testReadabilityUpdate method. Test set and retrieve value from it.
+     */
+    @Test
+    public void testReadabilityUpdate() {
+        YTResponse yt1 = new YTResponse();
+        YTResponse yt2 = new YTResponse();
+        yt1.setTitle("test1");
+        yt1.setVideoId("12345");
+        yt1.setVideoLink("testLink1");
+        yt1.setChannelId("123");
+        yt1.setChannelTitle("test channel1");
+        yt1.setChannelProfileLink("test profile link1");
+        yt1.setDescription("This is the first description.");
+        yt1.setThumbnailUrl("test thumbnail url 1");
+
+        yt2.setTitle("test2");
+        yt2.setVideoId("45678");
+        yt2.setVideoLink("testLink2");
+        yt2.setChannelId("456");
+        yt2.setChannelTitle("test channel2");
+        yt2.setChannelProfileLink("test profile link2");
+        yt2.setDescription("This is the second description.");
+        yt2.setThumbnailUrl("test thumbnail url 2");
+        List<YTResponse> responses = Arrays.asList(yt1, yt2);
+        CompletableFuture<List<YTResponse>> future = CompletableFuture.completedFuture(responses);
+        ProjectProtocol.ReadabilityUpdate readabilityUpdate = new ProjectProtocol.ReadabilityUpdate(future, "test keyword");
+
+        assertEquals(future, readabilityUpdate.result);
+        assertEquals("test keyword", readabilityUpdate.keyword);
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/25
+     * This is the testReadabilityUpdate method. Test set and retrieve value from it.
+     */
+    @Test
+    public void ReadabilityUpdateResponse() {
+        List<Double> freScores = Arrays.asList(60.0, 70.0);
+        List<Double> fkglScores = Arrays.asList(6.0, 7.0);
+        ProjectProtocol.ReadabilityUpdateResponse readabilityUpdateResponse = new ProjectProtocol.ReadabilityUpdateResponse(freScores, fkglScores, 65.0, 6.5, "test keyword");
+
+        assertEquals(freScores, readabilityUpdateResponse.fre);
+        assertEquals(fkglScores, readabilityUpdateResponse.fkgl);
+        assertEquals(Double.valueOf(65.0), readabilityUpdateResponse.avgFRE);
+        assertEquals(Double.valueOf(6.5), readabilityUpdateResponse.avgFKGL);
+        assertEquals("test keyword", readabilityUpdateResponse.keyword);
+    }
 }

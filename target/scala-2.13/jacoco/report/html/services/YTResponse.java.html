@@ -229,16 +229,15 @@ public class YTResponse {
 <span class="fc" id="L229">    public void setkeyword(String keyword){this.keyword=keyword;}</span>
 
     public boolean equals(YTResponse target){
-<span class="nc bnc" id="L232" title="All 2 branches missed.">        if(target.getTitle().equals(this.title)) {return false;}</span>
-<span class="nc bnc" id="L233" title="All 2 branches missed.">        if(target.getVideoId().equals(this.videoId)) {return false;}</span>
-<span class="nc bnc" id="L234" title="All 2 branches missed.">        if(target.getVideoLink().equals(this.videoLink)) {return false;}</span>
-<span class="nc bnc" id="L235" title="All 2 branches missed.">        if(target.getChannelTitle().equals(this.channelTitle)) {return false;}</span>
-<span class="nc bnc" id="L236" title="All 2 branches missed.">        if(target.getChannelId().equals(this.channelId)) {return false;}</span>
-<span class="nc bnc" id="L237" title="All 2 branches missed.">        if(target.getChannelProfileLink().equals(this.channelProfileLink)) {return false;}</span>
-<span class="nc bnc" id="L238" title="All 2 branches missed.">        if(target.getDescription().equals(this.description)) {return false;}</span>
-<span class="nc bnc" id="L239" title="All 2 branches missed.">        if(target.getThumbnailUrl().equals(this.thumbnailUrl)) {return false;}</span>
-<span class="nc bnc" id="L240" title="All 2 branches missed.">        if(target.getTags().equals(this.tags)) {return false;}</span>
-<span class="nc" id="L241">        return true;</span>
+<span class="pc bpc" id="L232" title="1 of 2 branches missed.">        if(!target.getTitle().equals(this.title)) {return false;}</span>
+<span class="pc bpc" id="L233" title="1 of 2 branches missed.">        if(!target.getVideoId().equals(this.videoId)) {return false;}</span>
+<span class="pc bpc" id="L234" title="1 of 2 branches missed.">        if(!target.getVideoLink().equals(this.videoLink)) {return false;}</span>
+<span class="pc bpc" id="L235" title="1 of 2 branches missed.">        if(!target.getChannelTitle().equals(this.channelTitle)) {return false;}</span>
+<span class="pc bpc" id="L236" title="1 of 2 branches missed.">        if(!target.getChannelId().equals(this.channelId)) {return false;}</span>
+<span class="pc bpc" id="L237" title="1 of 2 branches missed.">        if(!target.getChannelProfileLink().equals(this.channelProfileLink)) {return false;}</span>
+<span class="pc bpc" id="L238" title="1 of 2 branches missed.">        if(!target.getDescription().equals(this.description)) {return false;}</span>
+<span class="pc bpc" id="L239" title="1 of 2 branches missed.">        if(!target.getThumbnailUrl().equals(this.thumbnailUrl)) {return false;}</span>
+<span class="fc" id="L240">        return true;</span>
     }
 
     /**
@@ -247,7 +246,7 @@ public class YTResponse {
      * returns the tags.
      */
     public List&lt;String&gt; getTags() {
-<span class="fc" id="L250">        return tags;</span>
+<span class="fc" id="L249">        return tags;</span>
     }
     /**
      * @author: Pulkit Bansal - 40321488
@@ -256,8 +255,8 @@ public class YTResponse {
      */
 
     public void setTags(List&lt;String&gt; tags) {
-<span class="fc" id="L259">        this.tags = tags;</span>
-<span class="fc" id="L260">    }</span>
+<span class="fc" id="L258">        this.tags = tags;</span>
+<span class="fc" id="L259">    }</span>
 
 
     /**
@@ -265,11 +264,11 @@ public class YTResponse {
      *  set the videocount .
      */
     public int getVideoCount() {
-<span class="nc" id="L268">        return videoCount;</span>
+<span class="nc" id="L267">        return videoCount;</span>
     }
     public void setVideoCount(int videoCount) {
-<span class="nc" id="L271">        this.videoCount = videoCount;</span>
-<span class="nc" id="L272">    }</span>
+<span class="nc" id="L270">        this.videoCount = videoCount;</span>
+<span class="nc" id="L271">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

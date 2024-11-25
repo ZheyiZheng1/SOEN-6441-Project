@@ -229,15 +229,14 @@ public class YTResponse {
     public void setkeyword(String keyword){this.keyword=keyword;}
 
     public boolean equals(YTResponse target){
-        if(target.getTitle().equals(this.title)) {return false;}
-        if(target.getVideoId().equals(this.videoId)) {return false;}
-        if(target.getVideoLink().equals(this.videoLink)) {return false;}
-        if(target.getChannelTitle().equals(this.channelTitle)) {return false;}
-        if(target.getChannelId().equals(this.channelId)) {return false;}
-        if(target.getChannelProfileLink().equals(this.channelProfileLink)) {return false;}
-        if(target.getDescription().equals(this.description)) {return false;}
-        if(target.getThumbnailUrl().equals(this.thumbnailUrl)) {return false;}
-        if(target.getTags().equals(this.tags)) {return false;}
+        if(!target.getTitle().equals(this.title)) {return false;}
+        if(!target.getVideoId().equals(this.videoId)) {return false;}
+        if(!target.getVideoLink().equals(this.videoLink)) {return false;}
+        if(!target.getChannelTitle().equals(this.channelTitle)) {return false;}
+        if(!target.getChannelId().equals(this.channelId)) {return false;}
+        if(!target.getChannelProfileLink().equals(this.channelProfileLink)) {return false;}
+        if(!target.getDescription().equals(this.description)) {return false;}
+        if(!target.getThumbnailUrl().equals(this.thumbnailUrl)) {return false;}
         return true;
     }
 
