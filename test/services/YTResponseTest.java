@@ -42,6 +42,7 @@ public class YTResponseTest {
         ytResponse.setTags(null);
         ytResponse.setFre(50.0);
         ytResponse.setFkgl(50.0);
+        ytResponse.setkeyword("keyword1");
 
         assertEquals("Sample Video", ytResponse.getTitle());
         assertEquals("12345", ytResponse.getVideoId());
@@ -54,6 +55,7 @@ public class YTResponseTest {
         assertEquals(null, ytResponse.getTags());
         assertEquals(50.0, ytResponse.getFkgl());
         assertEquals(50.0, ytResponse.getFre());
+        assertEquals("keyword1", ytResponse.getKeyword());
     }
 
     /**
@@ -71,7 +73,7 @@ public class YTResponseTest {
         ytResponse.setChannelProfileLink("https://www.youtube.com/channel/abcde");
         ytResponse.setDescription("This is a sample video description.");
         ytResponse.setThumbnailUrl("https://i.ytimg.com/vi/12345/default.jpg");
-        System.out.println(ytResponse.toString());
+        //System.out.println(ytResponse.toString());
         ytResponse.setTags(null);
         String expectedString = "Sample Video,12345,https://www.youtube.com/watch?v=12345,Sample Channel,abcde,https://www.youtube.com/channel/abcde,This is a sample video description.,https://i.ytimg.com/vi/12345/default.jpg,null";
         assertEquals(expectedString, ytResponse.toString());
@@ -92,7 +94,7 @@ public class YTResponseTest {
         ytResponse.setChannelProfileLink("https://www.youtube.com/channel/abcde");
         ytResponse.setDescription("This is a sample video description.");
         ytResponse.setThumbnailUrl("https://i.ytimg.com/vi/12345/default.jpg");
-        System.out.println(ytResponse.toString());
+        //System.out.println(ytResponse.toString());
         ytResponse.setTags(null);
         ytResponse.setFre(50.0);
         ytResponse.setFkgl(50.0);

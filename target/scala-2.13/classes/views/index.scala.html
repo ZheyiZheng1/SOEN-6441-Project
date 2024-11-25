@@ -26,11 +26,13 @@
             avgFKGLList = [];
             avgFREList = [];
             searchResultsList = [];
+            allKeyword = [];
 
             // Read result from JSON
             let data = JSON.parse(event.data);
 
             // Process the data
+            allKeyword.push(...data.searchHistory);
             avgFKGLList.push(...data.avgFKGL);
             avgFREList.push(...data.avgFRE);
             data.searchResults.forEach(resultList => {

@@ -5,7 +5,6 @@ import actors.ProjectProtocol.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import services.YTResponse;
-import services.YTRestDir;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -48,6 +47,7 @@ public class APIActor extends AbstractActor{
     public Receive createReceive() {
         return receiveBuilder()
                 .match(KeyWordSearch.class, message -> {
+                    // Perform normal search
                     // Retrieve keyword
                     String keyword = message.keyword;
                     String url = message.url;
@@ -55,8 +55,25 @@ public class APIActor extends AbstractActor{
                     // Retrieve search result using searchVideosAsynch method
                     try {
                         CompletableFuture<List<YTResponse>> result = searchVideosAsynch(keyword, url, maxResult);
-                        // Send a message back to requester
+                        // Send a simple message back to requester
                         sender().tell(result, self());
+
+                    } catch (Exception e) {
+                        // Error occurred, return an error message.
+                        sender().tell(new ErrorMessage("An error occurred"), self());
+                    }
+                })
+                .match(UpdateDataRequest.class, message -> {
+                    // Received update request
+                    // Retrieve keyword
+                    String keyword = message.keyword;
+                    String url = message.url;
+                    String maxResult = message.maxResult;
+                    // Retrieve search result using searchVideosAsynch method
+                    try {
+                        CompletableFuture<List<YTResponse>> result = searchVideosAsynch(keyword, url, maxResult);
+                        // Send a UpdateDataResponse message back to requester
+                        sender().tell(new UpdateDataResponse(result, keyword), self());
 
                     } catch (Exception e) {
                         // Error occurred, return an error message.
@@ -123,7 +140,7 @@ public class APIActor extends AbstractActor{
             response.append(inputLine);
         }
         // Apply the mapResponse to the string and return
-        return mapResponse(response.toString());
+        return mapResponse(response.toString(), keyword);
 
     }
     /**
@@ -133,7 +150,7 @@ public class APIActor extends AbstractActor{
      * @param jsonResponse a json response in String.
      * @return a list of YTResponse.
      */
-    private List<YTResponse> mapResponse(String jsonResponse) {
+    private List<YTResponse> mapResponse(String jsonResponse, String keyword) {
         // Use JSONObject to retrieve information from response string
         JSONObject jsonObject = new JSONObject(jsonResponse);
         JSONArray items = jsonObject.getJSONArray("items");
@@ -171,8 +188,8 @@ public class APIActor extends AbstractActor{
                                 .collect(Collectors.toList());
                         ytResponse.setTags(tags);
                     }
-
-
+                    // New keyword feature added for later update.
+                    ytResponse.setkeyword(keyword);
                     return ytResponse;
                 })
                 // collect all ytResponse into list

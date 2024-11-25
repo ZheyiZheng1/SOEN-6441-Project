@@ -20,6 +20,7 @@ public class YTResponse {
     private List<String> tags;  // Added tags field
     private double fre;
     private double fkgl;
+    private String keyword;
 
     /**
      * @author: Zheyi Zheng - 40266266
@@ -214,6 +215,18 @@ public class YTResponse {
      * @param fkgl set the fkgl value.
      */
     public void setFkgl(double fkgl){this.fkgl=fkgl;}
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @return a String of keyword value.
+     */
+    public String getKeyword(){return keyword;}
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/10/29
+     * @param keyword set the keyword value.
+     */
+    public void setkeyword(String keyword){this.keyword=keyword;}
 
 
     /**

@@ -185,7 +185,13 @@ public class WebSocketActor extends AbstractActor {
                     this.readabilityActor=message.readabilityActor;
                 })
                 .match(RefreshResults.class, message -> {
+                    // The scheduler called, check if there is any update of data and refresh on user side.
                     System.out.println("Refreshing");
+                    // Create a set of APIActor
+
+                    // Each APIActor search for one keyword to see if there is any update on YouTube side
+
+
                     // Send all data back to user
                     // Create a JSON response
                     ObjectMapper mapper = new ObjectMapper();

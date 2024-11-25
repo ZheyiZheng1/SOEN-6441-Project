@@ -2,5 +2,60 @@
 [0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
 [0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 12 products, 7 sources, 15 libraries[0m
 [0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/test/services/YTResponseTest.java, ${BASE}/test/actors/WebSocketActorTest.java, ${BASE}/test/actors/APIActorTest.java, ${BASE}/test/SearchFormTest.java, ${BASE}/test/actors/ProjectProtocolTest.java, ${BASE}/test/actors/ReadabilityActorTest.java, ${BASE}/test/services/YTRestDirTest.java)[0m
-[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())[0m
-[0m[[0m[0mdebug[0m] [0m[0mNo changes[0m
+[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/test/services/YTResponseTest.java, ${BASE}/test/actors/WebSocketActorTest.java, ${BASE}/test/actors/APIActorTest.java), unmodified = ...),Set(${BASE}/target/scala-2.13/test-classes/actors/WebSocketActorTest$1.class, ${BASE}/target/scala-2.13/test-classes/actors/APIActorTest$2.class, ${BASE}/target/scala-2.13/test-classes/actors/WebSocketActorTest.class, ${BASE}/target/scala-2.13/test-classes/actors/APIActorTest.class, ${BASE}/target/scala-2.13/test-classes/services/YTResponseTest.class),Set(),API Changes: Set())[0m
+[0m[[0m[0mdebug[0m] [0m[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial source changes:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	removed: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	added: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	modified: Set(${BASE}/test/services/YTResponseTest.java, ${BASE}/test/actors/WebSocketActorTest.java, ${BASE}/test/actors/APIActorTest.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated products: Set(${BASE}/target/scala-2.13/test-classes/actors/WebSocketActorTest$1.class, ${BASE}/target/scala-2.13/test-classes/actors/APIActorTest$2.class, ${BASE}/target/scala-2.13/test-classes/actors/WebSocketActorTest.class, ${BASE}/target/scala-2.13/test-classes/actors/APIActorTest.class, ${BASE}/target/scala-2.13/test-classes/services/YTResponseTest.class)[0m
+[0m[[0m[0mdebug[0m] [0m[0mExternal API changes: API Changes: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mModified binary dependencies: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial directly invalidated classes: Set(services.YTResponseTest, actors.WebSocketActorTest, actors.APIActorTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0mSources indirectly invalidated by:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	product: Set(${BASE}/test/services/YTResponseTest.java, ${BASE}/test/actors/WebSocketActorTest.java, ${BASE}/test/actors/APIActorTest.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	binary dep: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0m	external source: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated classes: Set(services.YTResponseTest, actors.WebSocketActorTest, actors.APIActorTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll initially invalidated sources:Set(${BASE}/test/services/YTResponseTest.java, ${BASE}/test/actors/WebSocketActorTest.java, ${BASE}/test/actors/APIActorTest.java)[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: services.YTResponseTest, actors.WebSocketActorTest, actors.APIActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 3 Java sources to C:\Users\zheng\OneDrive\Desktop\CurrentSem\SOEN6441(AdvProgramPractice\SOEN-6441-Project\target\scala-2.13\test-classes ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mAttempting to call com.sun.tools.javac.api.JavacTool@259e8304 directly...[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation took 0.6314469 s[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing services.YTResponseTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing actors.WebSocketActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing actors.APIActorTest$1[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing actors.WebSocketActorTest$1[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing actors.APIActorTest$2[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] classfile.Parser parsing actors.APIActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava analysis took 0.0742737 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mJava compilation + analysis took 0.711117 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mdone compiling[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from actors.WebSocketActorTest...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: actors.WebSocketActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(actors.WebSocketActorTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(actors.WebSocketActorTest,ModifiedNames(changes = UsedName(testReceiveKeyWordAndReturn,[Default]))) invalidates 1 classes due to The actors.WebSocketActorTest has the following regular definitions changed:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	UsedName(testReceiveKeyWordAndReturn,[Default]).[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(actors.WebSocketActorTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m        [0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from actors.APIActorTest...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: actors.APIActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(actors.APIActorTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(actors.APIActorTest,ModifiedNames(changes = UsedName(testUpdateDataRequest,[Default]))) invalidates 1 classes due to The actors.APIActorTest has the following regular definitions changed:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	UsedName(testUpdateDataRequest,[Default]).[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(actors.APIActorTest)[0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m  > [0m
+[0m[[0m[0mdebug[0m] [0m[0m        [0m
+[0m[[0m[0mdebug[0m] [0m[0mNew invalidations:[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: [0m
+[0m[[0m[0mdebug[0m] [0m[0mPreviously invalidated, but (transitively) depend on new invalidations:[0m
+[0m[[0m[0mdebug[0m] [0m[0mFinal step, transitive dependencies:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: services.YTResponseTest, actors.WebSocketActorTest, actors.APIActorTest[0m
+[0m[[0m[0mdebug[0m] [0m[0mNo classes were invalidated.[0m

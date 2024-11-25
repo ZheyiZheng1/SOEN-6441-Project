@@ -82,6 +82,43 @@ public class APIActorTest {
 
     /**
      * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/25
+     * This test provide a keyword "java" within KeyWordSearch message.
+     * APIActor should return a response that contains all search results.
+     */
+    @Test
+    public void testUpdateDataRequest() throws InterruptedException, ExecutionException {
+        new TestKit(system) {{
+            // Create APIActor
+            ActorRef apiActor = system.actorOf(APIActor.getProps());
+
+            // Define a sample keyword for the search
+            String keyword = "java";
+
+            // Send UpdateDataRequest message
+            apiActor.tell(new UpdateDataRequest(keyword, null, null), getRef());
+
+            // Expect a CompletableFuture<List<YTResponse>> as a response.
+            @SuppressWarnings("unchecked")
+            UpdateDataResponse rawResponse = (UpdateDataResponse) expectMsgClass(UpdateDataResponse.class);
+            CompletableFuture<List<YTResponse>> response = rawResponse.updatedData;
+            String returnedKeyword = rawResponse.keyword;
+            // Verify that the keyword is correct
+            assertEquals(keyword, returnedKeyword);
+            // Verify that the CompletableFuture is not null
+            assertNotNull(response);
+            // Block the code to get the search results.
+            List<YTResponse> results = response.get();
+            // Go through each result, every result should contain at least 1 "java" as the keyword is java.
+            for (YTResponse result: results) {
+                //System.out.println(result.toString());
+                assertTrue(result.toString().toLowerCase().contains("java"));
+            }
+        }};
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
      * Created: 2024/11/12
      * Test to see if the APIActor throws exception correctly when the url is invalid.
      */

@@ -120,5 +120,46 @@ public class ProjectProtocol {
         }
     }
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/25
+     * This is the UpdateDataRequest class. This class is used to let APIActor to check if there is any update on existing data.
+     */
+    public static class UpdateDataRequest {
+        public final String keyword;
+        public final String url;
+        public final String maxResult;
+        /**
+         * @author: Zheyi Zheng - 40266266
+         * Created: 2024/11/25
+         * Constructor method.
+         * @param keyword string of keyword that user want to search.
+         */
+        public UpdateDataRequest(String keyword, String url, String maxResult) {
+            this.keyword = keyword;
+            this.url = url;
+            this.maxResult = maxResult;
+        }
+    }
 
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/11
+     * This is the UpdateApiAndReadabilityRef class. This class is used to pass APIActor and ReadabilityActor to WebSocketActors.
+     * This message should not be used other than test purpose.
+     */
+    public static class UpdateDataResponse {
+        public final CompletableFuture<List<YTResponse>> updatedData;
+        public final String keyword;
+        /**
+         * @author: Zheyi Zheng - 40266266
+         * Created: 2024/11/11
+         * Constructor method.
+         * @param updatedData a completeableFuture that will contains all updated data respect to certain keyword.
+         */
+        public UpdateDataResponse(CompletableFuture<List<YTResponse>>updatedData, String keyword) {
+            this.updatedData = updatedData;
+            this.keyword = keyword;
+        }
+    }
 }
