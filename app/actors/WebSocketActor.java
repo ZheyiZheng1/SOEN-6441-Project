@@ -36,12 +36,14 @@ public class WebSocketActor extends AbstractActor {
     private final ActorRef out;
     private ActorRef apiActor;
     private ActorRef readabilityActor;
+    private ActorRef sentimentActor;
     // keep searched keywords
     private List<String> searchHistory;
     // Keep search results
     private List<List<YTResponse>> searchResults;
     private List<Double> avgFKGL;
     private List<Double> avgFRE;
+    private String stm;
     // Scheduler for periodic updates
     private Cancellable refreshScheduler;
     // Default refresh interval
@@ -82,6 +84,7 @@ public class WebSocketActor extends AbstractActor {
         this.out = out;
         this.apiActor = getContext().actorOf(APIActor.getProps());
         this.readabilityActor = getContext().actorOf(ReadabilityActor.getProps());
+        this.sentimentActor = getContext().actorOf(SentimentActor.props());
         this.searchHistory = new LinkedList<>();
         this.searchResults = new LinkedList<>();
         this.avgFKGL = new LinkedList<>();
@@ -152,6 +155,8 @@ public class WebSocketActor extends AbstractActor {
                     future.thenAccept(results -> {
                         // Send a message to the ReadabilityActor
                         readabilityActor.tell(new ProjectProtocol.ReadabilityCheck(future), getSelf());
+                        // Send a message to the SentimentActor
+                        sentimentActor.tell(new ProjectProtocol.SentimentCheck(future), getSelf());
                         // Store the result in search results, only keep 10 most recent results
                         if (searchResults.size() >= 10) {
                             searchResults.remove(0);
@@ -186,6 +191,10 @@ public class WebSocketActor extends AbstractActor {
                     this.apiActor=message.apiActor;
                     this.readabilityActor=message.readabilityActor;
                 })
+                .match(ProjectProtocol.SentimentResponse.class,message ->{
+                 System.out.println("Received SentimentResponse");
+                    this.stm = message.sentiment;
+                })
                 .match(RefreshResults.class, message -> {
                     // The scheduler called, check if there is any update of data and refresh on user side.
                     System.out.println("Refreshing");
@@ -216,6 +225,11 @@ public class WebSocketActor extends AbstractActor {
                             .sorted((a, b) -> Double.compare(avgFRE.indexOf(b), avgFRE.indexOf(a)))
                             .forEach(avgFREArray::add);
                     root.set("avgFRE", avgFREArray);
+
+                    // Add sentiment iformation (stm) as JSON arrays
+                    ArrayNode stmArray = mapper.createArrayNode();
+                    stmArray.add(this.stm);
+                    root.set("stm",stmArray);
 
                     // Add searchResults as an array of arrays
                     ArrayNode searchResultsArray = mapper.createArrayNode();
