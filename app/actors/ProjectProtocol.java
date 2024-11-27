@@ -212,4 +212,32 @@ public class ProjectProtocol {
             this.keyword = keyword;
         }
     }
+
+        public static class SentimentCheck {
+        public final CompletableFuture<List<YTResponse>> input;
+        /**
+         * @author: Jiaxi Liu - 40278106
+         * Created: 2024/11/27
+         * This is a Constructor method used to pass the input value to SentimentActor
+         * @param  Input is the search result
+         */
+        public SentimentCheck(CompletableFuture<List<YTResponse>> Input)
+        {
+            this.input = Input;
+        }
+
+    }
+
+    public static class SentimentResponse{
+        public final String sentiment;
+        /**
+         * @author: Jiaxi Liu - 40278106
+         * Created: 2024/11/27
+         * This is a Constructor method used to pass the output value to WebsocketActor
+         * @param  sentiment is the final result after calculating
+         */
+        public SentimentResponse(String sentiment) {
+            this.sentiment = sentiment;
+        }
+    }
 }
