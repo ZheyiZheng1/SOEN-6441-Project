@@ -11,6 +11,7 @@
         let allKeyword = [];
         let avgFKGLList = [];
         let avgFREList = [];
+        let sentiment = [];
         let searchResultsList = [];
 
         socket.onopen = function(event) {
@@ -35,6 +36,7 @@
             allKeyword.push(...data.searchHistory);
             avgFKGLList.push(...data.avgFKGL);
             avgFREList.push(...data.avgFRE);
+            sentiment.push(...data.stm);
             data.searchResults.forEach(resultList => {
                 resultList.forEach(result => {
                     // Create an object for each result that contains all information
@@ -59,7 +61,7 @@
             // Display all results
              for (let i = 0; i < allKeyword.length; i++) {
                 // Display the search term, average FKGL and FRE
-                resultsDiv.innerHTML += `<p><strong>Search Term:</strong> ${allKeyword[i]} <strong>Flesh-Kincaid Grade Level Avg.:</strong> ${avgFKGLList[i]}, <strong>Flesh Reading Ease Score Avg.:</strong> ${avgFREList[i]}</p>`;
+                resultsDiv.innerHTML += `<p><strong>Search Term:</strong> ${allKeyword[i]} <strong>Sentiment:</strong> ${sentiment[0]},<strong>Flesh-Kincaid Grade Level Avg.:</strong> ${avgFKGLList[i]}, <strong>Flesh Reading Ease Score Avg.:</strong> ${avgFREList[i]}</p>`;
 
                 // Display each search results
                 for(let j = i*10; j<i*10+10; j++){
