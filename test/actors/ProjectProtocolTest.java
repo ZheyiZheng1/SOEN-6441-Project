@@ -185,4 +185,68 @@ public class ProjectProtocolTest {
         assertEquals(Double.valueOf(6.5), readabilityUpdateResponse.avgFKGL);
         assertEquals("test keyword", readabilityUpdateResponse.keyword);
     }
+
+        /**
+     * @author: Jiaxi Liu - 40278106
+     * Created: 2024/11/27
+     * The method is used to test the sentimentCheck method
+     */
+    @Test
+    public void SentimentCheckTest(){
+        YTResponse mock1 = new YTResponse();
+        String Description1 = "happy joyful disappointed blissful cheerful defeated satisfied relaxed fulfilled surprised peaceful eager.";
+        mock1.setDescription(Description1);
+        mock1.setTitle("Title");
+        mock1.setVideoId("11111111");
+        mock1.setChannelTitle("Channel");
+        List<YTResponse> mockList = new ArrayList<>();
+        mockList.add(mock1);
+        CompletableFuture<List<YTResponse>> Input = CompletableFuture.completedFuture(mockList);
+        ProjectProtocol.SentimentCheck stmcheck = new ProjectProtocol.SentimentCheck(Input);
+        assertEquals(Input,stmcheck.input);
+    }
+
+    /**
+     * @author: Jiaxi Liu - 40278106
+     * Created: 2024/11/27
+     * The method is used to test the SentimentUpdate method
+     */
+    @Test
+    public void SentimentUpdateTest(){
+        YTResponse mock1 = new YTResponse();
+        String Description1 = "happy joyful disappointed blissful cheerful defeated satisfied relaxed fulfilled surprised peaceful eager.";
+        mock1.setDescription(Description1);
+        mock1.setTitle("Title");
+        mock1.setVideoId("11111111");
+        mock1.setChannelTitle("Channel");
+        List<YTResponse> mockList = new ArrayList<>();
+        mockList.add(mock1);
+        CompletableFuture<List<YTResponse>> Input = CompletableFuture.completedFuture(mockList);
+        ProjectProtocol.SentimentUpdate stmupdate = new ProjectProtocol.SentimentUpdate(Input);
+        assertEquals(Input,stmupdate.input);
+    }
+
+    /**
+     * @author: Jiaxi Liu - 40278106
+     * Created: 2024/11/27
+     * The method is used to test the SentimentResponse method
+     */
+    @Test
+    public void SentimentResponseTest(){
+        String sentiment = ":-)";
+        ProjectProtocol.SentimentResponse stm = new ProjectProtocol.SentimentResponse(sentiment);
+        assertEquals(":-)",stm.sentiment);
+    }
+
+    /**
+     * @author: Jiaxi Liu - 40278106
+     * Created: 2024/11/27
+     * The method is used to test the SentimentUpdateResponse method
+     */
+    @Test
+    public void SentimentUpdateResponseTest(){
+        String sentiment = ":-)";
+        ProjectProtocol.SentimentUpdateResponse stm = new ProjectProtocol.SentimentUpdateResponse(sentiment);
+        assertEquals(":-)",stm.Sentiment);
+    }
 }
