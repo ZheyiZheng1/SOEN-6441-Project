@@ -34,7 +34,12 @@ public class SentimentActor extends AbstractActor {
                     SentimentService(message.input);
                     //return a message to SentimentResponse()
                     sender().tell(new ProjectProtocol.SentimentResponse(FinalOutput),self());
-                        }).build();
+                        })
+             .match(SentimentUpdate.class,message->{
+                    SentimentService(message.input);
+                    sender().tell(new ProjectProtocol.SentimentUpdateResponse(FinalOutput),self());
+                })
+            .build();
     }
 
     /**
