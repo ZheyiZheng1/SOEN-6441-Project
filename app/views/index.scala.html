@@ -62,7 +62,8 @@
             // Display all results
              for (let i = 0; i < allKeyword.length; i++) {
                 // Display the search term, average FKGL and FRE
-                resultsDiv.innerHTML += `<p><strong>Search Term:</strong> ${allKeyword[i]} <strong>Sentiment:</strong> ${sentiment[0]},<strong>Flesh-Kincaid Grade Level Avg.:</strong> ${avgFKGLList[i]}, <strong>Flesh Reading Ease Score Avg.:</strong> ${avgFREList[i]}</p>`;
+                resultsDiv.innerHTML += `<p><strong>Search Term:</strong> ${allKeyword[i]} <a href="/wordstats/${allKeyword[i]}" target="_blank">Word Stats</a>
+ <strong>Sentiment:</strong> ${sentiment[0]},<strong>Flesh-Kincaid Grade Level Avg.:</strong> ${avgFKGLList[i]}, <strong>Flesh Reading Ease Score Avg.:</strong> ${avgFREList[i]}</p>`;
 
                 // Display each search results
                 for(let j = i*10; j<i*10+10; j++){

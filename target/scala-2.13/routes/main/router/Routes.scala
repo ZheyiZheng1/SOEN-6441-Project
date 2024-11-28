@@ -15,7 +15,7 @@ class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:6
   NewHomeController_0: controllers.NewHomeController,
-  // @LINE:10
+  // @LINE:11
   Assets_1: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
@@ -24,7 +24,7 @@ class Routes(
   def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:6
     NewHomeController_0: controllers.NewHomeController,
-    // @LINE:10
+    // @LINE:11
     Assets_1: controllers.Assets
   ) = this(errorHandler, NewHomeController_0, Assets_1, "/")
 
@@ -41,6 +41,7 @@ class Routes(
   def documentation = List(
     ("""GET""", this.prefix, """controllers.NewHomeController.index"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """search""", """controllers.NewHomeController.ws"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """wordstats/""" + "$" + """query<[^/]+>""", """controllers.NewHomeController.GetWordStats(query:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(file:String)"""),
     Nil
   ).foldLeft(Seq.empty[(String, String, String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -85,11 +86,29 @@ class Routes(
     )
   )
 
-  // @LINE:10
-  private lazy val controllers_Assets_versioned2_route = Route("GET",
+  // @LINE:8
+  private lazy val controllers_NewHomeController_GetWordStats2_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("wordstats/"), DynamicPart("query", """[^/]+""", encodeable=true)))
+  )
+  private lazy val controllers_NewHomeController_GetWordStats2_invoker = createInvoker(
+    NewHomeController_0.GetWordStats(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NewHomeController",
+      "GetWordStats",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """wordstats/""" + "$" + """query<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:11
+  private lazy val controllers_Assets_versioned3_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""", encodeable=false)))
   )
-  private lazy val controllers_Assets_versioned2_invoker = createInvoker(
+  private lazy val controllers_Assets_versioned3_invoker = createInvoker(
     Assets_1.versioned(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -118,10 +137,16 @@ class Routes(
         controllers_NewHomeController_ws1_invoker.call(NewHomeController_0.ws)
       }
   
-    // @LINE:10
-    case controllers_Assets_versioned2_route(params@_) =>
+    // @LINE:8
+    case controllers_NewHomeController_GetWordStats2_route(params@_) =>
+      call(params.fromPath[String]("query", None)) { (query) =>
+        controllers_NewHomeController_GetWordStats2_invoker.call(NewHomeController_0.GetWordStats(query))
+      }
+  
+    // @LINE:11
+    case controllers_Assets_versioned3_route(params@_) =>
       call(params.fromPath[String]("file", None)) { (file) =>
-        controllers_Assets_versioned2_invoker.call(Assets_1.versioned(file))
+        controllers_Assets_versioned3_invoker.call(Assets_1.versioned(file))
       }
   }
 }
