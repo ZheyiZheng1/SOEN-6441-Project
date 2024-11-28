@@ -8,11 +8,12 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import services.YTResponse;
-
+import org.mockito.Mockito;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-
+import java.util.Map;
 /**
  * @author: Zheyi Zheng - 40266266
  * Created: 2024/11/16
@@ -249,4 +250,77 @@ public class ProjectProtocolTest {
         ProjectProtocol.SentimentUpdateResponse stm = new ProjectProtocol.SentimentUpdateResponse(sentiment);
         assertEquals(":-)",stm.Sentiment);
     }
+
+    /**
+     * @author: Praneet Avhad
+     * Created: 2024/11/29
+     * This is the testWordStatsRequest method using Mockito. Test set and retrieve value from WordStatsRequest.
+     */
+    @Test
+    public void testWordStatsRequestWithMockito() {
+        // Mock YTResponse objects
+        YTResponse yt1 = Mockito.mock(YTResponse.class);
+        YTResponse yt2 = Mockito.mock(YTResponse.class);
+
+        // Mock descriptions
+        Mockito.when(yt1.getDescription()).thenReturn("This is a sample description for testing.");
+        Mockito.when(yt2.getDescription()).thenReturn("Another description to test the functionality.");
+
+        List<YTResponse> descriptions = Arrays.asList(yt1, yt2);
+
+        // Create the WordStatsRequest object
+        ProjectProtocol.WordStatsRequest wordStatsRequest = new ProjectProtocol.WordStatsRequest("12345", descriptions);
+
+        // Verify the behavior and assertions
+        assertEquals("12345", wordStatsRequest.videoId);
+        assertEquals(2, wordStatsRequest.getDescriptions().size());
+        assertEquals("This is a sample description for testing.", wordStatsRequest.getDescriptions().get(0).getDescription());
+        assertEquals("Another description to test the functionality.", wordStatsRequest.getDescriptions().get(1).getDescription());
+
+        // Verify interactions with the mocked objects
+        Mockito.verify(yt1).getDescription();
+        Mockito.verify(yt2).getDescription();
+    }
+
+
+
+        /**
+         * Test case for WordStatsResponse using Mockito.
+         */
+        @Test
+        @SuppressWarnings("unchecked") // Suppress unchecked warnings for generic type mocking
+        public void testWordStatsResponseWithMockito() {
+            // Mock Map.Entry objects
+            Map.Entry<String, Long> entry1 = (Map.Entry<String, Long>) Mockito.mock(Map.Entry.class);
+            Map.Entry<String, Long> entry2 = (Map.Entry<String, Long>) Mockito.mock(Map.Entry.class);
+
+
+            // Define behavior for the mocked entries
+            Mockito.when(entry1.getKey()).thenReturn("word1");
+            Mockito.when(entry1.getValue()).thenReturn(5L);
+
+            Mockito.when(entry2.getKey()).thenReturn("word2");
+            Mockito.when(entry2.getValue()).thenReturn(3L);
+
+            // Create a list of mocked entries
+            List<Map.Entry<String, Long>> mockWordStats = List.of(entry1, entry2);
+
+            // Create an instance of WordStatsResponse
+            ProjectProtocol.WordStatsResponse wordStatsResponse = new ProjectProtocol.WordStatsResponse(mockWordStats);
+
+            // Assertions to validate the WordStatsResponse functionality
+            assertEquals(2, wordStatsResponse.getWordStats().size());
+            assertEquals("word1", wordStatsResponse.getWordStats().get(0).getKey());
+            assertEquals(Long.valueOf(5L), wordStatsResponse.getWordStats().get(0).getValue());
+            assertEquals("word2", wordStatsResponse.getWordStats().get(1).getKey());
+            assertEquals(Long.valueOf(3L), wordStatsResponse.getWordStats().get(1).getValue());
+
+            // Verify interactions with the mocked Map.Entry objects
+            Mockito.verify(entry1).getKey();
+            Mockito.verify(entry1).getValue();
+            Mockito.verify(entry2).getKey();
+            Mockito.verify(entry2).getValue();
+        }
+
+
 }

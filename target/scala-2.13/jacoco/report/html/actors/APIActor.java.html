@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>APIActor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">actors</a> &gt; <span class="el_source">APIActor.java</span></div><h1>APIActor.java</h1><pre class="source lang-java linenums">package actors;
+
+import akka.actor.*;
+import actors.ProjectProtocol.*;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import services.YTResponse;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+/**
+ * @author: Zheyi Zheng - 40266266
+ * Created: 2024/11/14
+ * This is the APIAcotr class. This class is responsible to make API call to YouTube.
+ */
+<span class="fc" id="L27">public class APIActor extends AbstractActor{</span>
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * This is the getProps method. This method allows Props create APIActor.
+     * @return Props Proper return object in Akka
+     */
+    public static Props getProps() {
+<span class="fc" id="L36">        return Props.create(APIActor.class);</span>
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * This is the createReceive method. This method distinguish messages.
+     * If the message is KeyWordSearch class, then return a search result to requester. Else, do nothing.
+     * @return Receive proper return object in Akka
+     */
+    @Override
+    public Receive createReceive() {
+<span class="fc" id="L48">        return receiveBuilder()</span>
+<span class="fc" id="L49">                .match(KeyWordSearch.class, message -&gt; {</span>
+                    // Perform normal search
+                    // Retrieve keyword
+                    String keyword = message.keyword;
+                    String url = message.url;
+                    String maxResult = message.maxResult;
+                    // Retrieve search result using searchVideosAsynch method
+                    try {
+                        CompletableFuture&lt;List&lt;YTResponse&gt;&gt; result = searchVideosAsynch(keyword, url, maxResult);
+                        // Send a simple message back to requester
+                        sender().tell(result, self());
+
+                    } catch (Exception e) {
+                        // Error occurred, return an error message.
+                        sender().tell(new ErrorMessage(&quot;An error occurred&quot;), self());
+                    }
+                })
+<span class="fc" id="L66">                .match(UpdateDataRequest.class, message -&gt; {</span>
+                    // Received update request
+                    // Retrieve keyword
+                    String keyword = message.keyword;
+                    String url = message.url;
+                    String maxResult = message.maxResult;
+                    // Retrieve search result using searchVideosAsynch method
+                    try {
+                        CompletableFuture&lt;List&lt;YTResponse&gt;&gt; result = searchVideosAsynch(keyword, url, maxResult);
+                        // Send a UpdateDataResponse message back to requester
+                        sender().tell(new UpdateDataResponse(result, keyword), self());
+
+                    } catch (Exception e) {
+                        // Error occurred, return an error message.
+                        sender().tell(new ErrorMessage(&quot;An error occurred&quot;), self());
+                    }
+                })
+<span class="fc" id="L83">                .build();</span>
+    }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * Dependency injection method for HttpURLConnection. Without this method the mock test will not work, it will trigger actual network requests.
+     * @param uri a target URI
+     * @return an HttpURLConnection instance connect to target uri.
+     */
+    protected HttpURLConnection getHttpURLConnection(URI uri) throws IOException {
+<span class="nc" id="L93">        return (HttpURLConnection) uri.toURL().openConnection();</span>
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * In order to allow fetch data asynchronously. I created this class to return CompletionFuture&lt;List&lt;YTResponse&gt;&gt;.
+     * This class essentially is just calling the searchVideos method with supplyAsync, enable users to call it concurrently without interfering with each other's results.
+     * @return the CompletableFuture. Everyone calls it can access additional asynchronous methods like thenApply.
+     */
+    public CompletableFuture&lt;List&lt;YTResponse&gt;&gt; searchVideosAsynch(String keyword, String url, String maxResult) {
+<span class="nc" id="L104">        return CompletableFuture.supplyAsync(() -&gt; {</span>
+            try {
+                return searchVideos(keyword, url, maxResult);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * Request 10 search result from YouTube by making GET request.
+     * @param keyword keyword that user provided. Target uri that should be to YouTube. The number of the search result.
+     * @return a list of YTResponse (processed by mapResponse).
+     */
+    public List&lt;YTResponse&gt; searchVideos(String keyword, String url, String maxResult) throws IOException, URISyntaxException {
+<span class="nc" id="L121">        String API_KEY = &quot;AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w&quot;;</span>
+<span class="nc" id="L122">        String BASE_URL = &quot;https://www.googleapis.com/youtube/v3/search&quot;;</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">        String MAX_RESULTS = (maxResult != null) ? maxResult : &quot;10&quot;;</span>
+<span class="nc" id="L124">        String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString());</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        String urlString = (url != null) ? url : BASE_URL + &quot;?part=snippet&amp;q=&quot; + encodedKeyword + &quot;&amp;key=&quot; + API_KEY + &quot;&amp;maxResults=&quot; + MAX_RESULTS;</span>
+
+<span class="nc" id="L127">        URI uri = new URI(urlString);</span>
+<span class="nc" id="L128">        HttpURLConnection conn = getHttpURLConnection(uri);</span>
+<span class="nc" id="L129">        conn.setRequestMethod(&quot;GET&quot;);</span>
+
+        // Handle response code
+<span class="nc" id="L132">        int responseCode = conn.getResponseCode();</span>
+
+        // process the response
+<span class="nc" id="L135">        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));</span>
+        // Process input stream into a single string
+<span class="nc" id="L137">        StringBuilder response = new StringBuilder();</span>
+        String inputLine;
+<span class="nc bnc" id="L139" title="All 2 branches missed.">        while ((inputLine = in.readLine()) != null) {</span>
+<span class="nc" id="L140">            response.append(inputLine);</span>
+        }
+        // Apply the mapResponse to the string and return
+<span class="nc" id="L143">        return mapResponse(response.toString(), keyword);</span>
+
+    }
+    /**
+     * @author: Zheyi Zheng - 40266266
+     * Created: 2024/11/14
+     * Map json response into YTResponse.
+     * @param jsonResponse a json response in String.
+     * @return a list of YTResponse.
+     */
+    private List&lt;YTResponse&gt; mapResponse(String jsonResponse, String keyword) {
+        // Use JSONObject to retrieve information from response string
+<span class="nc" id="L155">        JSONObject jsonObject = new JSONObject(jsonResponse);</span>
+<span class="nc" id="L156">        JSONArray items = jsonObject.getJSONArray(&quot;items&quot;);</span>
+
+        // Use Stream to map the response into YTResponse object
+<span class="nc" id="L159">        return Stream.iterate(0, n -&gt; n + 1)</span>
+<span class="nc" id="L160">                .limit(items.length())</span>
+<span class="nc" id="L161">                .map(n -&gt; {</span>
+                    // For each json object, create a YTResponse instance and feed information into the instance.
+                    JSONObject video = items.getJSONObject(n);
+                    //System.out.println(video);
+                    JSONObject snippet = video.getJSONObject(&quot;snippet&quot;);
+                    YTResponse ytResponse = new YTResponse();
+                    ytResponse.setTitle(video.getJSONObject(&quot;snippet&quot;).getString(&quot;title&quot;));
+
+                    JSONObject idObject = video.getJSONObject(&quot;id&quot;);
+                    if (idObject.has(&quot;videoId&quot;)) {
+                        ytResponse.setVideoId(idObject.getString(&quot;videoId&quot;));
+                        ytResponse.setVideoLink(&quot;https://www.youtube.com/watch?v=&quot; + ytResponse.getVideoId());
+                    } else {
+                        // based on my test, result might contains playlist. If the response is not a video, use N/A as the Id and link
+                        ytResponse.setVideoId(&quot;N/A&quot;);
+                        ytResponse.setVideoLink(&quot;N/A&quot;);
+                    }
+                    ytResponse.setChannelTitle(video.getJSONObject(&quot;snippet&quot;).getString(&quot;channelTitle&quot;));
+                    ytResponse.setChannelId(video.getJSONObject(&quot;snippet&quot;).getString(&quot;channelId&quot;));
+                    ytResponse.setChannelProfileLink(&quot;https://www.youtube.com/channel/&quot; + ytResponse.getChannelId());
+                    ytResponse.setDescription(video.getJSONObject(&quot;snippet&quot;).getString(&quot;description&quot;));
+                    ytResponse.setThumbnailUrl(video.getJSONObject(&quot;snippet&quot;).getJSONObject(&quot;thumbnails&quot;).getJSONObject(&quot;default&quot;).getString(&quot;url&quot;));
+                    //System.out.println(ytResponse.toString());
+
+                    if (snippet.has(&quot;tags&quot;)) {
+                        List&lt;String&gt; tags = snippet.getJSONArray(&quot;tags&quot;).toList().stream()
+                                .map(Object::toString)
+                                .collect(Collectors.toList());
+                        ytResponse.setTags(tags);
+                    }
+                    // New keyword feature added for later update.
+                    ytResponse.setkeyword(keyword);
+                    return ytResponse;
+                })
+                // collect all ytResponse into list
+<span class="nc" id="L196">                .collect(Collectors.toList());</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

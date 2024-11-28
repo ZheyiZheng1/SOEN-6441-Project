@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>wordstats.template.scala</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">views.html</a> &gt; <span class="el_source">wordstats.template.scala</span></div><h1>wordstats.template.scala</h1><pre class="source lang-java linenums">
+package views.html
+
+import _root_.play.twirl.api.TwirlFeatureImports._
+import _root_.play.twirl.api.TwirlHelperImports._
+import _root_.play.twirl.api.Html
+import _root_.play.twirl.api.JavaScript
+import _root_.play.twirl.api.Txt
+import _root_.play.twirl.api.Xml
+import models._
+import controllers._
+import play.api.i18n._
+import views.html._
+import play.api.templates.PlayMagic._
+import java.lang._
+import java.util._
+import play.core.j.PlayMagicForJava._
+import play.mvc._
+import play.api.data.Field
+import play.data._
+import play.core.j.PlayFormsMagicForJava._
+import scala.jdk.CollectionConverters._
+/*1.2*/import com.fasterxml.jackson.databind.JsonNode
+/*2.2*/import scala.jdk.CollectionConverters._
+
+<span class="nc" id="L26">object wordstats extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,_root_.play.twirl.api.Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with _root_.play.twirl.api.Template2[JsonNode,String,play.twirl.api.HtmlFormat.Appendable] {</span>
+
+  /**/
+  def apply/*4.2*/(wordStats: JsonNode, searchTerm: String):play.twirl.api.HtmlFormat.Appendable = {
+<span class="nc" id="L30">    _display_ {</span>
+      {
+
+
+<span class="nc" id="L34">Seq[Any](format.raw/*4.43*/(&quot;&quot;&quot;</span>
+
+<span class="nc" id="L36">&quot;&quot;&quot;),format.raw/*6.1*/(&quot;&quot;&quot;&lt;!DOCTYPE html&gt;</span>
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+<span class="nc" id="L40">    &lt;title&gt;Word Stats for &quot;&quot;&quot;),_display_(/*10.28*/searchTerm),format.raw/*10.38*/(&quot;&quot;&quot;&lt;/title&gt;</span>
+&lt;/head&gt;
+&lt;body&gt;
+<span class="nc" id="L43">&lt;h1&gt;Word Statistics for Search Term: &quot;&quot;&quot;&quot;),_display_(/*13.40*/searchTerm),format.raw/*13.50*/(&quot;&quot;&quot;&quot;&lt;/h1&gt;</span>
+
+&lt;table border=&quot;1&quot;&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Word&lt;/th&gt;
+        &lt;th&gt;Frequency&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+<span class="nc" id="L53">    &quot;&quot;&quot;),_display_(/*23.6*/for(entry &lt;- wordStats.fields().asScala) yield /*23.46*/ {_display_(Seq[Any](format.raw/*23.48*/(&quot;&quot;&quot;</span>
+    &quot;&quot;&quot;),format.raw/*24.5*/(&quot;&quot;&quot;&lt;tr&gt;
+        &lt;td&gt;&quot;&quot;&quot;),_display_(/*25.14*/entry/*25.19*/.getKey),format.raw/*25.26*/(&quot;&quot;&quot;&lt;/td&gt;
+        &lt;td&gt;&quot;&quot;&quot;),_display_(/*26.14*/entry/*26.19*/.getValue.asInt()),format.raw/*26.36*/(&quot;&quot;&quot;&lt;/td&gt;
+    &lt;/tr&gt;
+<span class="nc" id="L58">    &quot;&quot;&quot;)))}),format.raw/*28.6*/(&quot;&quot;&quot;</span>
+<span class="nc" id="L59">    &quot;&quot;&quot;),format.raw/*29.5*/(&quot;&quot;&quot;&lt;/tbody&gt;</span>
+&lt;/table&gt;
+
+&lt;p&gt;&lt;a href=&quot;/&quot;&gt;Back to Search&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&quot;&quot;&quot;))
+      }
+    }
+  }
+
+<span class="nc" id="L70">  def render(wordStats:JsonNode,searchTerm:String): play.twirl.api.HtmlFormat.Appendable = apply(wordStats,searchTerm)</span>
+
+<span class="nc" id="L72">  def f:((JsonNode,String) =&gt; play.twirl.api.HtmlFormat.Appendable) = (wordStats,searchTerm) =&gt; apply(wordStats,searchTerm)</span>
+
+<span class="nc" id="L74">  def ref: this.type = this</span>
+
+}
+
+
+              /*
+                  -- GENERATED --
+                  SOURCE: app/views/wordstats.scala.html
+                  HASH: 6aec44afc388db2444045cd0a2e0515de7df8a4f
+                  MATRIX: 610-&gt;1|664-&gt;50|1021-&gt;94|1157-&gt;135|1187-&gt;139|1312-&gt;237|1343-&gt;247|1436-&gt;313|1467-&gt;323|1640-&gt;470|1696-&gt;510|1736-&gt;512|1769-&gt;518|1815-&gt;537|1829-&gt;542|1857-&gt;549|1904-&gt;569|1918-&gt;574|1956-&gt;591|2009-&gt;614|2042-&gt;620
+                  LINES: 23-&gt;1|24-&gt;2|29-&gt;4|34-&gt;4|36-&gt;6|40-&gt;10|40-&gt;10|43-&gt;13|43-&gt;13|53-&gt;23|53-&gt;23|53-&gt;23|54-&gt;24|55-&gt;25|55-&gt;25|55-&gt;25|56-&gt;26|56-&gt;26|56-&gt;26|58-&gt;28|59-&gt;29
+                  -- GENERATED --
+              */
+          
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
