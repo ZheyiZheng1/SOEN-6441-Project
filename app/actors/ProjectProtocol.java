@@ -240,4 +240,32 @@ public class ProjectProtocol {
             this.sentiment = sentiment;
         }
     }
+
+        public static class SentimentUpdate {
+        public final CompletableFuture<List<YTResponse>> input;
+        /**
+         * @author: Jiaxi Liu - 40278106
+         * Created: 2024/11/27
+         * This is a Constructor method used to pass the input value to SentimentActor
+         * @param  Input is the updated data
+         */
+        public SentimentUpdate(CompletableFuture<List<YTResponse>> Input)
+        {
+            this.input = Input;
+        }
+    }
+
+    public static class SentimentUpdateResponse {
+        public final String Sentiment;
+        /**
+         * @author: Jiaxi Liu - 40278106
+         * Created: 2024/11/27
+         * This is a Constructor method used to pass the input value to WebsocketActor
+         * @param  Input is the updated sentiment
+         */
+        public SentimentUpdateResponse(String Input){
+            this.Sentiment = Input;
+        }
+    }
+}
 }
