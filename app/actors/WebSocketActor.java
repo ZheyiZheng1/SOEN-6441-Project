@@ -8,6 +8,7 @@ import akka.actor.SupervisorStrategy;
 import akka.actor.Cancellable;
 import akka.japi.pf.DeciderBuilder;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import scala.concurrent.duration.Duration;
 import services.YTResponse;
 
@@ -16,12 +17,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeoutException;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
+import static actors.WordStatsActor.wordStatsMap;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
@@ -34,9 +37,11 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class WebSocketActor extends AbstractActor {
 
     private final ActorRef out;
+    private String keyword;
     private ActorRef apiActor;
     private ActorRef readabilityActor;
     private ActorRef sentimentActor;
+    private ActorRef wordStatsActor;
     // keep searched keywords
     private List<String> searchHistory;
     // Keep search results
@@ -85,6 +90,7 @@ public class WebSocketActor extends AbstractActor {
         this.apiActor = getContext().actorOf(APIActor.getProps());
         this.readabilityActor = getContext().actorOf(ReadabilityActor.getProps());
         this.sentimentActor = getContext().actorOf(SentimentActor.props());
+        this.wordStatsActor = getContext().actorOf(WordStatsActor.getProps());
         this.searchHistory = new LinkedList<>();
         this.searchResults = new LinkedList<>();
         this.avgFKGL = new LinkedList<>();
@@ -118,6 +124,7 @@ public class WebSocketActor extends AbstractActor {
         return receiveBuilder()
                 .match(String.class, keyword -> {
                     System.out.println("Received keyword: " + keyword);
+                    this.keyword = keyword;
                     // Check if the keyword is already inside the searchHistory
                     if (searchHistory.contains(keyword)){
                         // The keyword is in the searchHistory, just change the order of all information.
@@ -158,6 +165,22 @@ public class WebSocketActor extends AbstractActor {
                         // Send a message to the SentimentActor
                         sentimentActor.tell(new ProjectProtocol.SentimentCheck(future), getSelf());
                         // Store the result in search results, only keep 10 most recent results
+
+
+                        List<YTResponse> ytResponses = (List<YTResponse>) results;
+                        List<String> descriptions = ytResponses.stream()
+
+                                .map(YTResponse::getDescription)
+
+                                .collect(Collectors.toList());
+
+                        wordStatsActor.tell(new ProjectProtocol.WordStatsRequest(this.keyword,ytResponses), getSelf());
+
+
+
+
+
+
                         if (searchResults.size() >= 10) {
                             searchResults.remove(0);
                         }
@@ -301,6 +324,10 @@ public class WebSocketActor extends AbstractActor {
                                 ytResponse.setFre(message.fre.get(i));
                                 ytResponse.setFkgl(message.fkgl.get(i));
                             });
+                })
+                .match(WordStatsActor.WordStatsResults.class, message ->{
+                    JsonNode wordStats = message.wordStats;
+                    wordStatsMap.put(message.videoId, wordStats);
                 })
                 .build();
     }

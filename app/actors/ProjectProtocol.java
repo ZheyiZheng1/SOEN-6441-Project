@@ -4,6 +4,7 @@ import akka.actor.ActorRef;
 import services.YTResponse;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -239,5 +240,34 @@ public class ProjectProtocol {
         public SentimentResponse(String sentiment) {
             this.sentiment = sentiment;
         }
+    }
+
+
+    public static class WordStatsRequest {
+        public final String videoId;
+        private final List<YTResponse> descriptions;
+
+        public WordStatsRequest(String videoId, List<YTResponse> descriptions) {
+            this.videoId = videoId;
+            this.descriptions = descriptions;
+            System.out.println("desc:" + this.descriptions.size());
+        }
+
+        public List<YTResponse> getDescriptions() {
+            return descriptions;
+        }
+    }
+
+    public static class WordStatsResponse {
+        private final List<Map.Entry<String, Long>> wordStats;
+
+        public WordStatsResponse(List<Map.Entry<String, Long>> wordStats) {
+            this.wordStats = wordStats;
+        }
+
+        public List<Map.Entry<String, Long>> getWordStats() {
+            return wordStats;
+        }
+
     }
 }

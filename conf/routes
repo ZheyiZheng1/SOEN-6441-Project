@@ -5,6 +5,7 @@
 # Displays homepage.
 GET     /                           controllers.NewHomeController.index
 GET     /search                     controllers.NewHomeController.ws
+GET     /wordstats/:query           controllers.NewHomeController.GetWordStats(query: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(file)

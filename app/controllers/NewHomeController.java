@@ -1,9 +1,11 @@
 package controllers;
 
 import actors.ReadabilityActor;
+import actors.WordStatsActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.stream.Materializer;
+import com.fasterxml.jackson.databind.JsonNode;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.WebSocket;
@@ -63,5 +65,10 @@ public class NewHomeController extends Controller {
                     ActorFlow.actorRef(out -> WebSocketActor.props(out), actorSystem, materializer)
             ));
         });
+    }
+
+    public Result GetWordStats(String query){
+        JsonNode wordStat = WordStatsActor.wordStatsMap.get(query);
+        return ok(views.html.wordstats.render(wordStat, query));
     }
 }

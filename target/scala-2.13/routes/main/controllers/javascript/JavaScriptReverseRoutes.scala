@@ -38,9 +38,19 @@ package controllers.javascript {
       """
     )
   
+    // @LINE:8
+    def GetWordStats: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.NewHomeController.GetWordStats",
+      """
+        function(query0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "wordstats/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("query", query0))})
+        }
+      """
+    )
+  
   }
 
-  // @LINE:10
+  // @LINE:11
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -48,7 +58,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:10
+    // @LINE:11
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """

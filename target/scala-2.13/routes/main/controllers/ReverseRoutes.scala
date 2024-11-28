@@ -29,16 +29,22 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "search")
     }
   
+    // @LINE:8
+    def GetWordStats(query:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "wordstats/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("query", query)))
+    }
+  
   }
 
-  // @LINE:10
+  // @LINE:11
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:10
+    // @LINE:11
     def versioned(file:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[String]].unbind("file", file))
