@@ -282,6 +282,8 @@ public class WebSocketActor extends AbstractActor {
                             searchResults.set(index, (List<YTResponse>) results);
                             // Call the readability actor
                             readabilityActor.tell(new ProjectProtocol.ReadabilityUpdate(message.updatedData, keyword), getSelf());
+                            //Call the Sentiment actor
+                            sentimentActor.tell(new ProjectProtocol.SentimentUpdate(message.updatedData),getSelf());
                         }
                         // If there is no actual update in data, just do nothing.
                     });
@@ -301,6 +303,10 @@ public class WebSocketActor extends AbstractActor {
                                 ytResponse.setFre(message.fre.get(i));
                                 ytResponse.setFkgl(message.fkgl.get(i));
                             });
+                })
+                .match(ProjectProtocol.SentimentUpdateResponse.class, message -> {
+                System.out.println("Received SentimentUpdateResponse");
+                stm = message.Sentiment;
                 })
                 .build();
     }
