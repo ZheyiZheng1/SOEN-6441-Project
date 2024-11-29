@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>YTRestDir.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">services</a> &gt; <span class="el_source">YTRestDir.java</span></div><h1>YTRestDir.java</h1><pre class="source lang-java linenums">/**
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>YTRestDir.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=2;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Jacoco Coverage Report</a> &gt; <a href="index.source.html" class="el_package">services</a> &gt; <span class="el_source">YTRestDir.java</span></div><h1>YTRestDir.java</h1><pre class="source lang-java linenums">package services;
+
+/**
  * @author: Zheyi Zheng - 40266266
  * Created: 2024/10/29
  * This is the YTRestDir class. It handles the API request to YouTube.
  */
-package services;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,7 +24,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-<span class="fc" id="L25">public class YTRestDir {</span>
+<span class="fc" id="L27">public class YTRestDir {</span>
 
     /**
      * @author: Zheyi Zheng - 40266266
@@ -32,7 +34,7 @@ import java.util.stream.Stream;
      * @return an HttpURLConnection instance connect to target uri.
      */
     protected HttpURLConnection getHttpURLConnection(URI uri) throws IOException {
-<span class="fc" id="L35">        return (HttpURLConnection) uri.toURL().openConnection();</span>
+<span class="fc" id="L37">        return (HttpURLConnection) uri.toURL().openConnection();</span>
     }
 
     /**
@@ -43,7 +45,7 @@ import java.util.stream.Stream;
      * @return the CompletableFuture. Everyone calls it can access additional asynchronous methods like thenApply.
      */
     public CompletableFuture&lt;List&lt;YTResponse&gt;&gt; searchVideosAsynch(String keyword, String url, String maxResult) {
-<span class="fc" id="L46">        return CompletableFuture.supplyAsync(() -&gt; {</span>
+<span class="fc" id="L48">        return CompletableFuture.supplyAsync(() -&gt; {</span>
             try {
                 return searchVideos(keyword, url, maxResult);
             } catch (IOException e) {
@@ -60,36 +62,36 @@ import java.util.stream.Stream;
      * @return a list of YTResponse (processed by mapResponse).
      */
     public List&lt;YTResponse&gt; searchVideos(String keyword, String url, String maxResult) throws IOException {
-<span class="fc" id="L63">        String API_KEY = &quot;AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w&quot;;</span>
-<span class="fc" id="L64">        String BASE_URL = &quot;https://www.googleapis.com/youtube/v3/search&quot;;</span>
-<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        String MAX_RESULTS = (maxResult != null) ? maxResult : &quot;50&quot;;</span>
-<span class="fc" id="L66">        String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString());</span>
-<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        String urlString = (url != null) ? url : BASE_URL + &quot;?part=snippet&amp;q=&quot; + encodedKeyword + &quot;&amp;key=&quot; + API_KEY + &quot;&amp;maxResults=&quot; + MAX_RESULTS;</span>
+<span class="fc" id="L65">        String API_KEY = &quot;AIzaSyDOyqiNvLkq9N-VivWzNg2FeGoE8a_IENI&quot;;</span>
+<span class="fc" id="L66">        String BASE_URL = &quot;https://www.googleapis.com/youtube/v3/search&quot;;</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        String MAX_RESULTS = (maxResult != null) ? maxResult : &quot;50&quot;;</span>
+<span class="fc" id="L68">        String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString());</span>
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">        String urlString = (url != null) ? url : BASE_URL + &quot;?part=snippet&amp;q=&quot; + encodedKeyword + &quot;&amp;key=&quot; + API_KEY + &quot;&amp;maxResults=&quot; + MAX_RESULTS;</span>
 
         try {
-<span class="fc" id="L70">            URI uri = new URI(urlString);</span>
-<span class="fc" id="L71">            HttpURLConnection conn = getHttpURLConnection(uri);</span>
-<span class="fc" id="L72">            conn.setRequestMethod(&quot;GET&quot;);</span>
+<span class="fc" id="L72">            URI uri = new URI(urlString);</span>
+<span class="fc" id="L73">            HttpURLConnection conn = getHttpURLConnection(uri);</span>
+<span class="fc" id="L74">            conn.setRequestMethod(&quot;GET&quot;);</span>
 
             // Handle response code
-<span class="fc" id="L75">            int responseCode = conn.getResponseCode();</span>
-<span class="fc bfc" id="L76" title="All 2 branches covered.">            if (responseCode != HttpURLConnection.HTTP_OK) {</span>
+<span class="fc" id="L77">            int responseCode = conn.getResponseCode();</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">            if (responseCode != HttpURLConnection.HTTP_OK) {</span>
                 // If not 200, just throw an IOException
-<span class="fc" id="L78">                throw new IOException(&quot;HTTP error code: &quot; + responseCode);</span>
+<span class="fc" id="L80">                throw new IOException(&quot;HTTP error code: &quot; + responseCode);</span>
             }
 
             // process the response
-<span class="fc" id="L82">            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));</span>
+<span class="fc" id="L84">            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));</span>
             // Process input stream into a single string
-<span class="fc" id="L84">            StringBuilder response = new StringBuilder();</span>
+<span class="fc" id="L86">            StringBuilder response = new StringBuilder();</span>
             String inputLine;
-<span class="fc bfc" id="L86" title="All 2 branches covered.">            while ((inputLine = in.readLine()) != null) {</span>
-<span class="fc" id="L87">                response.append(inputLine);</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">            while ((inputLine = in.readLine()) != null) {</span>
+<span class="fc" id="L89">                response.append(inputLine);</span>
             }
             // Apply the mapResponse to the string and return
-<span class="fc" id="L90">            return mapResponse(response.toString());</span>
-<span class="fc" id="L91">        } catch (URISyntaxException e) {</span>
-<span class="fc" id="L92">            throw new IOException(&quot;Invalid URL: &quot; + e.getMessage());</span>
+<span class="fc" id="L92">            return mapResponse(response.toString());</span>
+<span class="fc" id="L93">        } catch (URISyntaxException e) {</span>
+<span class="fc" id="L94">            throw new IOException(&quot;Invalid URL: &quot; + e.getMessage());</span>
         }
     }
 
@@ -102,10 +104,10 @@ import java.util.stream.Stream;
      */
 
     public CompletableFuture&lt;YTResponse&gt; getVideoDetails(String videoId) {
-<span class="fc" id="L105">        String API_KEY = &quot;AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w&quot;;</span>
-<span class="fc" id="L106">        String urlString = &quot;https://www.googleapis.com/youtube/v3/videos?part=snippet&amp;id=&quot; + videoId + &quot;&amp;key=&quot; + API_KEY;</span>
+<span class="fc" id="L107">        String API_KEY = &quot;AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w&quot;;</span>
+<span class="fc" id="L108">        String urlString = &quot;https://www.googleapis.com/youtube/v3/videos?part=snippet&amp;id=&quot; + videoId + &quot;&amp;key=&quot; + API_KEY;</span>
 
-<span class="fc" id="L108">        return CompletableFuture.supplyAsync(() -&gt; {</span>
+<span class="fc" id="L110">        return CompletableFuture.supplyAsync(() -&gt; {</span>
             try {
                 URI uri = new URI(urlString);
                 HttpURLConnection conn = getHttpURLConnection(uri);
@@ -134,28 +136,28 @@ import java.util.stream.Stream;
      * Helper method to parse JSON response and create a YTResponse object
      */
     public YTResponse parseVideoDetails(String jsonResponse) {
-<span class="fc" id="L137">        JSONObject jsonObject = new JSONObject(jsonResponse);</span>
-<span class="fc" id="L138">        JSONArray items = jsonObject.getJSONArray(&quot;items&quot;);</span>
+<span class="fc" id="L139">        JSONObject jsonObject = new JSONObject(jsonResponse);</span>
+<span class="fc" id="L140">        JSONArray items = jsonObject.getJSONArray(&quot;items&quot;);</span>
 
-<span class="fc bfc" id="L140" title="All 2 branches covered.">        if (items.length() == 0) {</span>
-<span class="fc" id="L141">            return null; // No video found</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">        if (items.length() == 0) {</span>
+<span class="fc" id="L143">            return null; // No video found</span>
         }
 
-<span class="fc" id="L144">        JSONObject snippet = items.getJSONObject(0).getJSONObject(&quot;snippet&quot;);</span>
-<span class="fc" id="L145">        YTResponse ytResponse = new YTResponse();</span>
-<span class="fc" id="L146">        ytResponse.setTitle(snippet.getString(&quot;title&quot;));</span>
-<span class="fc" id="L147">        ytResponse.setDescription(snippet.getString(&quot;description&quot;));</span>
-<span class="fc" id="L148">        ytResponse.setChannelTitle(snippet.getString(&quot;channelTitle&quot;));</span>
-<span class="fc" id="L149">        ytResponse.setChannelId(snippet.getString(&quot;channelId&quot;));</span>
+<span class="fc" id="L146">        JSONObject snippet = items.getJSONObject(0).getJSONObject(&quot;snippet&quot;);</span>
+<span class="fc" id="L147">        YTResponse ytResponse = new YTResponse();</span>
+<span class="fc" id="L148">        ytResponse.setTitle(snippet.getString(&quot;title&quot;));</span>
+<span class="fc" id="L149">        ytResponse.setDescription(snippet.getString(&quot;description&quot;));</span>
+<span class="fc" id="L150">        ytResponse.setChannelTitle(snippet.getString(&quot;channelTitle&quot;));</span>
+<span class="fc" id="L151">        ytResponse.setChannelId(snippet.getString(&quot;channelId&quot;));</span>
 
         // Setting tags if they exist
-<span class="pc bpc" id="L152" title="1 of 2 branches missed.">        if (snippet.has(&quot;tags&quot;)) {</span>
-<span class="fc" id="L153">            List&lt;String&gt; tags = snippet.getJSONArray(&quot;tags&quot;).toList().stream()</span>
-<span class="fc" id="L154">                    .map(Object::toString)</span>
-<span class="fc" id="L155">                    .collect(Collectors.toList());</span>
-<span class="fc" id="L156">            ytResponse.setTags(tags);</span>
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">        if (snippet.has(&quot;tags&quot;)) {</span>
+<span class="fc" id="L155">            List&lt;String&gt; tags = snippet.getJSONArray(&quot;tags&quot;).toList().stream()</span>
+<span class="fc" id="L156">                    .map(Object::toString)</span>
+<span class="fc" id="L157">                    .collect(Collectors.toList());</span>
+<span class="fc" id="L158">            ytResponse.setTags(tags);</span>
         }
-<span class="fc" id="L158">        return ytResponse;</span>
+<span class="fc" id="L160">        return ytResponse;</span>
     }
 
 
@@ -168,13 +170,13 @@ import java.util.stream.Stream;
      */
     private List&lt;YTResponse&gt; mapResponse(String jsonResponse) {
         // Use JSONObject to retrieve information from response string
-<span class="fc" id="L171">        JSONObject jsonObject = new JSONObject(jsonResponse);</span>
-<span class="fc" id="L172">        JSONArray items = jsonObject.getJSONArray(&quot;items&quot;);</span>
+<span class="fc" id="L173">        JSONObject jsonObject = new JSONObject(jsonResponse);</span>
+<span class="fc" id="L174">        JSONArray items = jsonObject.getJSONArray(&quot;items&quot;);</span>
 
         // Use Stream to map the response into YTResponse object
-<span class="fc" id="L175">        return Stream.iterate(0, n -&gt; n + 1)</span>
-<span class="fc" id="L176">                .limit(items.length())</span>
-<span class="fc" id="L177">                .map(n -&gt; {</span>
+<span class="fc" id="L177">        return Stream.iterate(0, n -&gt; n + 1)</span>
+<span class="fc" id="L178">                .limit(items.length())</span>
+<span class="fc" id="L179">                .map(n -&gt; {</span>
                     // For each json object, create a YTResponse instance and feed information into the instance.
                     JSONObject video = items.getJSONObject(n);
                     //System.out.println(video);
@@ -209,18 +211,18 @@ import java.util.stream.Stream;
                     return ytResponse;
                 })
                 // collect all ytResponse into list
-<span class="fc" id="L212">                .collect(Collectors.toList());</span>
+<span class="fc" id="L214">                .collect(Collectors.toList());</span>
     }
     /**
      *  Sakshi Mulik -40295793
      * get channel profile
      */
     public CompletableFuture&lt;YTResponse&gt; getChannelProfile(String channelId) {
-<span class="nc" id="L219">        String API_KEY = &quot;AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w&quot;;</span>
-<span class="nc" id="L220">        String urlString = &quot;https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&amp;id=&quot; + channelId + &quot;&amp;key=&quot; + API_KEY;</span>
+<span class="nc" id="L221">        String API_KEY = &quot;AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w&quot;;</span>
+<span class="nc" id="L222">        String urlString = &quot;https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&amp;id=&quot; + channelId + &quot;&amp;key=&quot; + API_KEY;</span>
 
 
-<span class="nc" id="L223">        return CompletableFuture.supplyAsync(() -&gt; {</span>
+<span class="nc" id="L225">        return CompletableFuture.supplyAsync(() -&gt; {</span>
             try {
                 URI uri = new URI(urlString);
                 HttpURLConnection conn = getHttpURLConnection(uri);
@@ -244,18 +246,18 @@ import java.util.stream.Stream;
         });
     }
     private YTResponse parseChannelDetails(String jsonResponse) {
-<span class="nc" id="L247">        JSONObject jsonObject = new JSONObject(jsonResponse);</span>
-<span class="nc" id="L248">        JSONObject snippet = jsonObject.getJSONArray(&quot;items&quot;).getJSONObject(0).getJSONObject(&quot;snippet&quot;);</span>
-<span class="nc" id="L249">        JSONObject statistics = jsonObject.getJSONArray(&quot;items&quot;).getJSONObject(0).getJSONObject(&quot;statistics&quot;);</span>
+<span class="nc" id="L249">        JSONObject jsonObject = new JSONObject(jsonResponse);</span>
+<span class="nc" id="L250">        JSONObject snippet = jsonObject.getJSONArray(&quot;items&quot;).getJSONObject(0).getJSONObject(&quot;snippet&quot;);</span>
+<span class="nc" id="L251">        JSONObject statistics = jsonObject.getJSONArray(&quot;items&quot;).getJSONObject(0).getJSONObject(&quot;statistics&quot;);</span>
 
-<span class="nc" id="L251">        YTResponse ytResponse = new YTResponse();</span>
-<span class="nc" id="L252">        ytResponse.setChannelTitle(snippet.getString(&quot;title&quot;));</span>
-<span class="nc" id="L253">        ytResponse.setDescription(snippet.getString(&quot;description&quot;));</span>
-<span class="nc" id="L254">        ytResponse.setThumbnailUrl(snippet.getJSONObject(&quot;thumbnails&quot;).getJSONObject(&quot;default&quot;).getString(&quot;url&quot;));</span>
+<span class="nc" id="L253">        YTResponse ytResponse = new YTResponse();</span>
+<span class="nc" id="L254">        ytResponse.setChannelTitle(snippet.getString(&quot;title&quot;));</span>
+<span class="nc" id="L255">        ytResponse.setDescription(snippet.getString(&quot;description&quot;));</span>
+<span class="nc" id="L256">        ytResponse.setThumbnailUrl(snippet.getJSONObject(&quot;thumbnails&quot;).getJSONObject(&quot;default&quot;).getString(&quot;url&quot;));</span>
 
-<span class="nc" id="L256">        ytResponse.setChannelProfileLink(&quot;https://www.youtube.com/channel/&quot; + jsonObject.getJSONArray(&quot;items&quot;).getJSONObject(0).getString(&quot;id&quot;));</span>
+<span class="nc" id="L258">        ytResponse.setChannelProfileLink(&quot;https://www.youtube.com/channel/&quot; + jsonObject.getJSONArray(&quot;items&quot;).getJSONObject(0).getString(&quot;id&quot;));</span>
 
-<span class="nc" id="L258">        return ytResponse;</span>
+<span class="nc" id="L260">        return ytResponse;</span>
 
     }
 

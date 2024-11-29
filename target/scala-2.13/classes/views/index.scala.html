@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!-- Author Zheyi Zheng-->
+<!-- Created: 2024/11/14-->
+<!-- This is index view, the main view for this project-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YT lytics</title>
+    <script>
+        let socket = new WebSocket("ws://localhost:9000/search");
+        let allKeyword = [];
+        let avgFKGLList = [];
+        let avgFREList = [];
+        let sentiment = [];
+        let searchResultsList = [];
+
+        socket.onopen = function(event) {
+            console.log("Connection established.");
+        };
+
+        socket.onmessage = function(event) {
+            console.log("Received new results: " + event.data);
+
+            // Clear previous results from result div
+            let resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+            avgFKGLList = [];
+            avgFREList = [];
+            searchResultsList = [];
+            allKeyword = [];
+            sentiment = [];
+
+            // Read result from JSON
+            let data = JSON.parse(event.data);
+
+            // Process the data
+            allKeyword.push(...data.searchHistory);
+            avgFKGLList.push(...data.avgFKGL);
+            avgFREList.push(...data.avgFRE);
+            sentiment.push(...data.stm);
+            data.searchResults.forEach(resultList => {
+                resultList.forEach(result => {
+                    // Create an object for each result that contains all information
+                    let resultObj = {
+                        title: result.title,
+                        videoID: result.videoID,
+                        videoLink: result.videoLink,
+                        channelTitle: result.channelTitle,
+                        channelID: result.channelID,
+                        channelProfileLink: result.channelProfileLink,
+                        description: result.description,
+                        thumbnailUrl: result.thumbnailUrl,
+                        fkgl: result.fkgl,
+                        fre: result.fre,
+                    };
+
+                    // Add the result object to the resultsList
+                    searchResultsList.push(resultObj);
+                });
+            });
+
+            // Display all results
+             for (let i = 0; i < allKeyword.length; i++) {
+                // Display the search term, average FKGL and FRE
+                resultsDiv.innerHTML += `<p><strong>Search Term:</strong> ${allKeyword[i]} <a href="/wordstats/${allKeyword[i]}" target="_blank">Word Stats</a>
+ <strong>Sentiment:</strong> ${sentiment[0]},<strong>Flesh-Kincaid Grade Level Avg.:</strong> ${avgFKGLList[i]}, <strong>Flesh Reading Ease Score Avg.:</strong> ${avgFREList[i]}</p>`;
+
+                // Display each search results
+                for(let j = i*10; j<i*10+10; j++){
+                    // Display each video information
+                    resultsDiv.innerHTML += `<p>${j%10+1}. <strong>Title</strong>: <a href="${searchResultsList[j].videoLink}">${searchResultsList[j].title}</a>, `
+                    resultsDiv.innerHTML += `<strong>Channel</strong>: <a href="${searchResultsList[j].channelProfileLink}">${searchResultsList[j].channelTitle}</a>, `
+                    resultsDiv.innerHTML += `<strong>Description</strong>: "${searchResultsList[j].description}", `
+                    resultsDiv.innerHTML += `Flesh-Kincaid Grade Level= "${searchResultsList[j].fkgl}", `
+                    resultsDiv.innerHTML += `Flesh Reading Ease Score= "${searchResultsList[j].fre}", `
+                    resultsDiv.innerHTML += `<a href="">Tags</a></p>`
+                    resultsDiv.innerHTML += `<img src="${searchResultsList[j].thumbnailUrl}" alt="thumbnail">`
+                }
+             }
+        };
+
+        socket.onclose = function(event) {
+            console.log("Connection closed. Code: " + event.code + " Reason: " + event.reason);
+        };
+
+        socket.onerror = function(error) {
+            console.log("Error occurred: " + error.message);
+        };
+
+        function sendKeyword() {
+            let keyword = document.getElementById("keyword").value;
+            allKeyword.unshift(keyword);
+            console.log("Sending keyword: " + keyword);
+            if (socket.readyState === WebSocket.OPEN) {
+                socket.send(keyword);
+            } else {
+                console.log("WebSocket is not open. State: " + socket.readyState);
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Welcome to the YT lytics</h1>
+<input type="text" id="keyword" placeholder="Enter keyword">
+<button onclick="sendKeyword()">Search</button>
+<div id="results"></div>
+</body>
+</html>

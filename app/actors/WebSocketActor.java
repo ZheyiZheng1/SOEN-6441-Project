@@ -281,7 +281,7 @@ public class WebSocketActor extends AbstractActor {
 
                     // Convert the response object to a JSON string
                     String jsonResponse = mapper.writeValueAsString(root);
-
+                    System.out.println(jsonResponse);
                     out.tell(jsonResponse, getSelf());
                 })
                 .match(ProjectProtocol.UpdateDataResponse.class, message -> {
