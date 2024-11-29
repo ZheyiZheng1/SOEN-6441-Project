@@ -12,6 +12,13 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
+/**
+ * @author: Praneet Avhad - 40279347
+ * The {@code WordStatsActor} is an Akka actor responsible for processing word statistics
+ * requests. It receives {@link WordStatsRequest} messages, computes word frequencies,
+ * sorts the words by frequency, and sends back the results as {@link WordStatsResults}.
+
+ */
 public class WordStatsActor extends AbstractActor {
 
     public static Map<String, JsonNode> wordStatsMap = new HashMap<>();
@@ -33,6 +40,12 @@ public class WordStatsActor extends AbstractActor {
                 .build();
     }
 
+    /**
+     * @author: Praneet Avhad - 40279347
+     * The {@code WordStatsResults} class encapsulates the results of a word statistics
+     * computation. It includes the video ID and a JSON representation of word frequencies.
+     * This message is sent back to the sender after processing a {@link WordStatsRequest}.
+     */
     public static class WordStatsResults {
         public final String videoId;
         public final JsonNode wordStats;
