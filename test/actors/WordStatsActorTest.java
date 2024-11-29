@@ -16,6 +16,13 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author: Praneet Avhad - 40279347
+ * The {@code WordStatsActorTest} class contains unit tests for the {@link WordStatsActor}.
+ * These tests ensure that the actor processes word statistics requests correctly
+ * and returns accurate results.
+ * This test uses Akka's {@link TestKit} for testing actor-based systems.
+ */
 public class WordStatsActorTest {
 
     private ActorSystem actorSystem;
@@ -31,6 +38,20 @@ public class WordStatsActorTest {
         actorSystem = null;
     }
 
+    /**
+     * Tests the {@link WordStatsActor} to ensure it correctly processes word statistics
+     * and returns expected results.
+     *
+     * <p>This test:
+     * <ul>
+     * <li>Creates a {@link WordStatsActor} instance.</li>
+     * <li>Sends a {@link ProjectProtocol.WordStatsRequest} message with mock data.</li>
+     * <li>Verifies the {@link WordStatsActor.WordStatsResults} response.</li>
+     * </ul>
+     * </p>
+     *
+     * @throws AssertionError if the test expectations are not met.
+     */
     @Test
     public void testWordStatsActor() {
         new TestKit(actorSystem) {{
