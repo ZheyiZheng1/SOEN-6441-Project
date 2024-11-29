@@ -268,29 +268,75 @@ public class ProjectProtocol {
         }
     }
 
-
+    /**
+     * @author Praneet Avhad - 40279347
+     * The {@code WordStatsRequest} class is used to encapsulate a request for word statistics
+     * based on a video's description. It contains the video ID and a list of video descriptions.
+     * This message can be passed between actors to request word frequency statistics.
+     */
     public static class WordStatsRequest {
+        /**
+         * The ID of the video for which word statistics are requested.
+         */
         public final String videoId;
+
+        /**
+         * A list of video descriptions used to calculate word statistics.
+         */
         private final List<YTResponse> descriptions;
 
+        
+        /**
+         * Constructs a {@code WordStatsRequest} with the specified video ID and descriptions.
+         *
+         * @param videoId The ID of the video.
+         * @param descriptions A list of video descriptions used to calculate word statistics.
+         */
         public WordStatsRequest(String videoId, List<YTResponse> descriptions) {
             this.videoId = videoId;
             this.descriptions = descriptions;
             System.out.println("desc:" + this.descriptions.size());
         }
-
+        
+        /**
+         * Gets the list of video descriptions used for the word statistics request.
+         *
+         * @return A list of {@link YTResponse} objects representing video descriptions.
+         */
         public List<YTResponse> getDescriptions() {
             return descriptions;
         }
     }
 
+
+    /**
+     * @author Praneet Avhad - 40279347
+     * The {@code WordStatsResponse} class is used to encapsulate the response of word statistics
+     * for a given video description. It contains a list of word-frequency mappings.
+     *
+     * This message can be passed between actors to return the results of the word statistics request.
+     *
+     */
     public static class WordStatsResponse {
+        /**
+         * A list of word-frequency mappings, where each entry represents a word and its frequency.
+         */
         private final List<Map.Entry<String, Long>> wordStats;
 
+        /**
+         * Constructs a {@code WordStatsResponse} with the specified word statistics.
+         *
+         * @param wordStats A list of word-frequency mappings represented as {@code Map.Entry<String, Long>}.
+         */
         public WordStatsResponse(List<Map.Entry<String, Long>> wordStats) {
             this.wordStats = wordStats;
         }
 
+        /**
+         * Gets the word statistics as a list of word-frequency mappings.
+         *
+         * @return A list of {@code Map.Entry<String, Long>} representing word statistics.
+         */
         public List<Map.Entry<String, Long>> getWordStats() {
             return wordStats;
         }
