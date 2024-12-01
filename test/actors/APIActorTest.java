@@ -1,5 +1,7 @@
 package actors;
 
+import Model.FetchTags;
+import Model.TextSegment;
 import akka.actor.*;
 import actors.ProjectProtocol.*;
 import akka.testkit.javadsl.TestKit;
@@ -13,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
@@ -152,5 +155,45 @@ public class APIActorTest {
             });
         }};
     }
+
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Created: 2024/11/25
+     * This test provides a keyword and verifies the asynchronous search behavior of the APIActor.
+     */
+    @Test
+    public void testSearchVideosAsynch() throws InterruptedException, ExecutionException {
+        new TestKit(system) {{
+            // Create APIActor
+            ActorRef apiActor = system.actorOf(APIActor.getProps());
+
+            // Define a sample keyword for the search
+            String keyword = "java";
+
+            // Send KeyWordSearch message to the APIActor
+            apiActor.tell(new KeyWordSearch(keyword, null, null), getRef());
+
+            // Expect a CompletableFuture<List<YTResponse>> as a response.
+            @SuppressWarnings("unchecked")
+            CompletableFuture<List<YTResponse>> response = (CompletableFuture<List<YTResponse>>) expectMsgClass(CompletableFuture.class);
+
+            // Verify that the CompletableFuture is not null
+            assertNotNull("Response should not be null", response);
+
+            // Block to retrieve the results
+            List<YTResponse> results = response.get();
+
+            // Verify that results are not empty
+            assertNotNull("Results list should not be null", results);
+            assertFalse("Results list should not be empty", results.isEmpty());
+
+            // Verify that all results contain the keyword
+            for (YTResponse result : results) {
+                assertTrue("Each result should contain the keyword", result.toString().toLowerCase().contains("java"));
+            }
+        }};
+    }
+
 
 }

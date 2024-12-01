@@ -104,7 +104,7 @@ public class YTResponseTest {
         html += ", Description: \"This is a sample video description.\".";
         html += "Flesch-Kincaid Grade Level= "+ 50.0 + ", ";
         html += "Flesch Reading Ease Score= "+ 50.0 + ".";
-        html += "<a href=\"TODO\">Tags</a>";
+        html += "<a href=\"/tagDetails?videoId=12345\">Tags</a>";
         html += "<img src=\"https://i.ytimg.com/vi/12345/default.jpg\" alt=\"Thumbnail Image\">";
         assertEquals(html, ytResponse.toHTMLString());
     }

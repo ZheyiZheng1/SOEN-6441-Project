@@ -1,5 +1,7 @@
 package actors;
 
+import Model.FetchTags;
+import Model.TextSegment;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -117,5 +119,4 @@ public class WebSocketActorTest {
             assertTrue(actualResponse.contains("test2"));
         }};
     }
-
 }

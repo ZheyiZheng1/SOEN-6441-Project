@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -91,7 +92,7 @@ public class YTRestDirTest {
     @Test
     public void testGetVideoDetailsWithValidResponse() throws Exception {
         String videoId = "test123";
-        String mockJsonResponse = "{ \"items\": [{ \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\", \"tags\": [\"tag1\", \"tag2\"] } }] }";
+        String mockJsonResponse = "{ \"items\": [ { \"id\": \"test123\", \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\", \"tags\": [\"tag1\", \"tag2\"] } } ] }";
         String mockUrl = "https://mocked_url_for_testing";
 
         // Mock the getHttpURLConnection method to return mockConnection
@@ -140,16 +141,114 @@ public class YTRestDirTest {
      */
     @Test
     public void testParseVideoDetails() {
-        String mockJsonResponse = "{ \"items\": [{ \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\", \"tags\": [\"tag1\", \"tag2\"] } }] }";
+        String mockJsonResponse = "{ \"items\": [ { \"id\": \"id\", \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\", \"tags\": [\"tag1\", \"tag2\"] } } ] }";
         YTResponse response = ytRestDir.parseVideoDetails(mockJsonResponse);
 
         assertNotNull(response);
+        assertEquals("id", response.getVideoId());
         assertEquals("Test Video", response.getTitle());
         assertEquals("Test Channel", response.getChannelTitle());
         assertEquals("12345", response.getChannelId());
         assertEquals("Test Description", response.getDescription());
         assertEquals(List.of("tag1", "tag2"), response.getTags());
     }
+
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Test for searchVideos with valid response.
+     */
+    @Test
+    public void testSearchVideosWithValidResponse() throws Exception {
+        String keyword = "test";
+        String mockJsonResponse = "{ \"items\": [{ \"id\": { \"videoId\": \"test123\" }, \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\" } }] }";
+
+        doReturn(mockConnection).when(ytRestDir).getHttpURLConnection(any(URI.class));
+        when(mockConnection.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
+        InputStream stream = new ByteArrayInputStream(mockJsonResponse.getBytes());
+        when(mockConnection.getInputStream()).thenReturn(stream);
+
+        CompletableFuture<List<YTResponse>> response = ytRestDir.searchVideos(keyword);
+        List<YTResponse> videos = response.toCompletableFuture().join();
+
+        // Assertions
+        assertNotNull("Search results should not be null", videos);
+        assertEquals(1, videos.size());
+        YTResponse video = videos.get(0);
+        assertEquals("Test Video", video.getTitle());
+        assertEquals("Test Channel", video.getChannelTitle());
+        assertEquals("12345", video.getChannelId());
+    }
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Test for searchVideos with invalid response (empty items).
+     */
+    @Test
+    public void testSearchVideosWithInvalidResponse() throws Exception {
+        String keyword = "nonexistent";
+        String mockJsonResponse = "{ \"items\": [] }"; // Empty items array
+
+        doReturn(mockConnection).when(ytRestDir).getHttpURLConnection(any(URI.class));
+        when(mockConnection.getResponseCode()).thenReturn(HttpURLConnection.HTTP_OK);
+        InputStream stream = new ByteArrayInputStream(mockJsonResponse.getBytes());
+        when(mockConnection.getInputStream()).thenReturn(stream);
+
+        CompletableFuture<List<YTResponse>> response = ytRestDir.searchVideos(keyword);
+        List<YTResponse> videos = response.toCompletableFuture().join();
+
+        assertNotNull("Search results should not be null", videos);
+        assertTrue(videos.isEmpty()); // Expect empty list for no search results
+    }
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Test for parseSearchResults with valid response.
+     */
+    @Test
+    public void testParseSearchResults() {
+        String mockJsonResponse = "{ \"items\": [{ \"id\": { \"videoId\": \"test123\" }, \"snippet\": { \"title\": \"Test Video\", \"channelTitle\": \"Test Channel\", \"channelId\": \"12345\", \"description\": \"Test Description\" } }] }";
+
+        List<YTResponse> results = ytRestDir.parseSearchResults(mockJsonResponse);
+
+        // Assertions
+        assertNotNull("Parsed results should not be null", results);
+        assertEquals(1, results.size());
+        YTResponse video = results.get(0);
+        assertEquals("Test Video", video.getTitle());
+        assertEquals("Test Channel", video.getChannelTitle());
+        assertEquals("12345", video.getChannelId());
+    }
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Test for parseSearchResults with empty response.
+     */
+    @Test
+    public void testParseSearchResultsWithEmptyResponse() {
+        String mockJsonResponse = "{ \"items\": [] }";
+
+        List<YTResponse> results = ytRestDir.parseSearchResults(mockJsonResponse);
+
+        // Assertions
+        assertNotNull("Parsed results should not be null", results);
+        assertTrue("Expected an empty result list", results.isEmpty());
+    }
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Test for parseVideoDetails with empty response.
+     */
+    @Test
+    public void testParseVideoDetailsWithEmptyResponse() {
+        String mockJsonResponse = "{ \"items\": [] }";
+
+        YTResponse videoDetails = ytRestDir.parseVideoDetails(mockJsonResponse);
+
+        assertNull("Expected null for empty response", videoDetails);
+    }
+
+
 
     @Test
     public void testIOException_HTTPErrorCode() throws Exception {
