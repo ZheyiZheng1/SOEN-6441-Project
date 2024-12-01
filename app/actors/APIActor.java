@@ -139,7 +139,7 @@ public class APIActor extends AbstractActor{
     public List<YTResponse> searchVideos(String keyword, String url, String maxResult) throws IOException, URISyntaxException {
         String API_KEY = "AIzaSyDCVMGmEoe4TviZVUHA4awhwqGMtgcR1wY";
         String BASE_URL = "https://www.googleapis.com/youtube/v3/search";
-        String MAX_RESULTS = (maxResult != null) ? maxResult : "10";
+        String MAX_RESULTS = (maxResult != null) ? maxResult : "50";
         String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString());
         String urlString = (url != null) ? url : BASE_URL + "?part=snippet&q=" + encodedKeyword + "&key=" + API_KEY + "&maxResults=" + MAX_RESULTS;
 
