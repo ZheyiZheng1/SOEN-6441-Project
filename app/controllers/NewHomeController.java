@@ -13,9 +13,13 @@ import javax.inject.Inject;
 import akka.actor.Props;
 import play.libs.F.Either;
 import play.libs.streams.ActorFlow;
+
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import actors.APIActor;
 import actors.WebSocketActor;
+import services.YTResponse;
+import services.YTRestDir;
 
 /**
  * @author: Zheyi Zheng - 40266266
@@ -70,5 +74,56 @@ public class NewHomeController extends Controller {
     public Result GetWordStats(String query){
         JsonNode wordStat = WordStatsActor.wordStatsMap.get(query);
         return ok(views.html.wordstats.render(wordStat, query));
+    }
+
+    /**
+     * @author: Pulkit Bansal - 40321488
+     * Created: 2024/11/17
+     * Handles the redirection to the tag details page.
+     * Fetches video details based on the given video ID.
+     *
+     * @param videoId The selected video ID.
+     * @return A rendered page with video details.
+     */
+    public Result tagDetails(String videoId) {
+        try {
+            // Use YTRestDir to fetch video details for the given video ID
+            YTRestDir ytRestDir = new YTRestDir();
+            YTResponse videoDetails = ytRestDir.getVideoDetails(videoId).get();
+
+            if (videoDetails == null) {
+                // Handle case when no video is found
+                return notFound("Video not found.");
+            }
+
+            // Render the tag details view with fetched video details
+            return ok(views.html.tagDetails.render(videoDetails));
+        } catch (Exception e) {
+            // Handle any exceptions during the API call
+            e.printStackTrace();
+            return internalServerError("An error occurred while fetching video details.");
+        }
+    }
+
+    public Result tagSearch(String keyword) {
+        if (keyword == null || keyword.isEmpty()) {
+            return badRequest("Keyword is required.");
+        }
+
+        try {
+            // Fetch search results based on the tag keyword
+            YTRestDir ytRestDir = new YTRestDir();
+            List<YTResponse> searchResults = ytRestDir.searchVideos(keyword).get();
+
+            if (searchResults == null || searchResults.isEmpty()) {
+                return notFound("No results found for the keyword: " + keyword);
+            }
+
+            // Render the tag search results page
+            return ok(views.html.tagSearchResults.render(keyword, searchResults));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return internalServerError("An error occurred while fetching search results.");
+        }
     }
 }

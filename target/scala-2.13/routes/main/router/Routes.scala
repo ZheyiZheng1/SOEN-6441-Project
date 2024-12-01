@@ -43,6 +43,8 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """search""", """controllers.NewHomeController.ws"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """wordstats/""" + "$" + """query<[^/]+>""", """controllers.NewHomeController.GetWordStats(query:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(file:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """tagDetails""", """controllers.NewHomeController.tagDetails(videoId:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """tagSearch""", """controllers.NewHomeController.tagSearch(keyword:String)"""),
     Nil
   ).foldLeft(Seq.empty[(String, String, String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String, String, String)]
@@ -122,6 +124,42 @@ class Routes(
     )
   )
 
+  // @LINE:13
+  private lazy val controllers_NewHomeController_tagDetails4_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("tagDetails")))
+  )
+  private lazy val controllers_NewHomeController_tagDetails4_invoker = createInvoker(
+    NewHomeController_0.tagDetails(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NewHomeController",
+      "tagDetails",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """tagDetails""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:14
+  private lazy val controllers_NewHomeController_tagSearch5_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("tagSearch")))
+  )
+  private lazy val controllers_NewHomeController_tagSearch5_invoker = createInvoker(
+    NewHomeController_0.tagSearch(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NewHomeController",
+      "tagSearch",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """tagSearch""",
+      """""",
+      Seq()
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -147,6 +185,18 @@ class Routes(
     case controllers_Assets_versioned3_route(params@_) =>
       call(params.fromPath[String]("file", None)) { (file) =>
         controllers_Assets_versioned3_invoker.call(Assets_1.versioned(file))
+      }
+  
+    // @LINE:13
+    case controllers_NewHomeController_tagDetails4_route(params@_) =>
+      call(params.fromQuery[String]("videoId", None)) { (videoId) =>
+        controllers_NewHomeController_tagDetails4_invoker.call(NewHomeController_0.tagDetails(videoId))
+      }
+  
+    // @LINE:14
+    case controllers_NewHomeController_tagSearch5_route(params@_) =>
+      call(params.fromQuery[String]("keyword", None)) { (keyword) =>
+        controllers_NewHomeController_tagSearch5_invoker.call(NewHomeController_0.tagSearch(keyword))
       }
   }
 }

@@ -1,5 +1,7 @@
 package actors;
 
+import Model.FetchTags;
+import Model.TextSegment;
 import akka.actor.*;
 import actors.ProjectProtocol.*;
 import org.json.JSONArray;
@@ -80,6 +82,23 @@ public class APIActor extends AbstractActor{
                         sender().tell(new ErrorMessage("An error occurred"), self());
                     }
                 })
+                //FetchTags logic handling
+                .match(FetchTags.class, message -> {
+                    //Fetching Tags
+                    try{
+                        CompletableFuture<List<TextSegment>> tags = searchVideosAsynch(message.keyword, null, null)
+                                .thenApply(videos -> videos.stream()
+                                        .flatMap(video -> video.getTags().stream())
+                                        .distinct()
+                                        .map(tag -> new TextSegment(tag, "/tagDetails?videoId=" + tag))
+                                        .collect(Collectors.toList())
+                                );
+                        //sending these tags back as response
+                        sender().tell(tags, self());
+                    } catch (Exception e) {
+                        sender().tell(new ErrorMessage("An error occurred while handling tags"), self());
+                    }
+                })
                 .build();
     }
     /**
@@ -118,7 +137,7 @@ public class APIActor extends AbstractActor{
      * @return a list of YTResponse (processed by mapResponse).
      */
     public List<YTResponse> searchVideos(String keyword, String url, String maxResult) throws IOException, URISyntaxException {
-        String API_KEY = "AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w";
+        String API_KEY = "AIzaSyDCVMGmEoe4TviZVUHA4awhwqGMtgcR1wY";
         String BASE_URL = "https://www.googleapis.com/youtube/v3/search";
         String MAX_RESULTS = (maxResult != null) ? maxResult : "10";
         String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString());

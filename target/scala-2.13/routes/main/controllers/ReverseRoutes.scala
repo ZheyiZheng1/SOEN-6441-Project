@@ -17,10 +17,10 @@ package controllers {
     }
 
   
-    // @LINE:6
-    def index: Call = {
+    // @LINE:8
+    def GetWordStats(query:String): Call = {
       
-      Call("GET", _prefix)
+      Call("GET", _prefix + { _defaultPrefix } + "wordstats/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("query", query)))
     }
   
     // @LINE:7
@@ -29,10 +29,22 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "search")
     }
   
-    // @LINE:8
-    def GetWordStats(query:String): Call = {
+    // @LINE:14
+    def tagSearch(keyword:String): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "wordstats/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("query", query)))
+      Call("GET", _prefix + { _defaultPrefix } + "tagSearch" + play.core.routing.queryString(List(Some(implicitly[play.api.mvc.QueryStringBindable[String]].unbind("keyword", keyword)))))
+    }
+  
+    // @LINE:13
+    def tagDetails(videoId:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "tagDetails" + play.core.routing.queryString(List(Some(implicitly[play.api.mvc.QueryStringBindable[String]].unbind("videoId", videoId)))))
+    }
+  
+    // @LINE:6
+    def index: Call = {
+      
+      Call("GET", _prefix)
     }
   
   }

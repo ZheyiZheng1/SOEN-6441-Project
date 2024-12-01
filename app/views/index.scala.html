@@ -3,10 +3,10 @@
 <!-- Created: 2024/11/14-->
 <!-- This is index view, the main view for this project-->
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>YT lytics</title>
-    <script>
+    <head>
+        <meta charset="UTF-8">
+        <title>YT lytics</title>
+        <script>
         let socket = new WebSocket("ws://localhost:9000/search");
         let allKeyword = [];
         let avgFKGLList = [];
@@ -21,62 +21,72 @@
         socket.onmessage = function(event) {
             console.log("Received new results: " + event.data);
 
-            // Clear previous results from result div
-            let resultsDiv = document.getElementById("results");
-            resultsDiv.innerHTML = "";
-            avgFKGLList = [];
-            avgFREList = [];
-            searchResultsList = [];
-            allKeyword = [];
-            sentiment = [];
+            if (event.data.startsWith("Tags:")) {
+                let tagData = event.data.substring(5);
+                displayTags(tagData);
+            } else {
 
-            // Read result from JSON
-            let data = JSON.parse(event.data);
+                // Clear previous results from result div
+                let resultsDiv = document.getElementById("results");
+                resultsDiv.innerHTML = "";
+                avgFKGLList = [];
+                avgFREList = [];
+                searchResultsList = [];
+                allKeyword = [];
+                sentiment = [];
 
-            // Process the data
-            allKeyword.push(...data.searchHistory);
-            avgFKGLList.push(...data.avgFKGL);
-            avgFREList.push(...data.avgFRE);
-            sentiment.push(...data.stm);
-            data.searchResults.forEach(resultList => {
-                resultList.forEach(result => {
-                    // Create an object for each result that contains all information
-                    let resultObj = {
-                        title: result.title,
-                        videoID: result.videoID,
-                        videoLink: result.videoLink,
-                        channelTitle: result.channelTitle,
-                        channelID: result.channelID,
-                        channelProfileLink: result.channelProfileLink,
-                        description: result.description,
-                        thumbnailUrl: result.thumbnailUrl,
-                        fkgl: result.fkgl,
-                        fre: result.fre,
-                    };
+                // Read result from JSON
+                let data = JSON.parse(event.data);
 
-                    // Add the result object to the resultsList
-                    searchResultsList.push(resultObj);
+                // Process the data
+                allKeyword.push(...data.searchHistory);
+                avgFKGLList.push(...data.avgFKGL);
+                avgFREList.push(...data.avgFRE);
+                sentiment.push(...data.stm);
+                data.searchResults.forEach(resultList => {
+                    resultList.forEach(result => {
+                        // Create an object for each result that contains all information
+                        let resultObj = {
+                            title: result.title,
+                            videoID: result.videoID,
+                            videoLink: result.videoLink,
+                            channelTitle: result.channelTitle,
+                            channelID: result.channelID,
+                            channelProfileLink: result.channelProfileLink,
+                            description: result.description,
+                            thumbnailUrl: result.thumbnailUrl,
+                            fkgl: result.fkgl,
+                            fre: result.fre,
+                            // tags: result.tags || [],
+                        };
+
+                        // Add the result object to the resultsList
+                        searchResultsList.push(resultObj);
+                    });
                 });
-            });
 
-            // Display all results
-             for (let i = 0; i < allKeyword.length; i++) {
-                // Display the search term, average FKGL and FRE
-                resultsDiv.innerHTML += `<p><strong>Search Term:</strong> ${allKeyword[i]} <a href="/wordstats/${allKeyword[i]}" target="_blank">Word Stats</a>
+                // Display all results
+                for (let i = 0; i < allKeyword.length; i++) {
+                    // Display the search term, average FKGL and FRE
+                    resultsDiv.innerHTML += `<p><strong>Search Term:</strong> ${allKeyword[i]} <a href="/wordstats/${allKeyword[i]}" target="_blank">Word Stats</a>
  <strong>Sentiment:</strong> ${sentiment[0]},<strong>Flesh-Kincaid Grade Level Avg.:</strong> ${avgFKGLList[i]}, <strong>Flesh Reading Ease Score Avg.:</strong> ${avgFREList[i]}</p>`;
 
-                // Display each search results
-                for(let j = i*10; j<i*10+10; j++){
-                    // Display each video information
-                    resultsDiv.innerHTML += `<p>${j%10+1}. <strong>Title</strong>: <a href="${searchResultsList[j].videoLink}">${searchResultsList[j].title}</a>, `
-                    resultsDiv.innerHTML += `<strong>Channel</strong>: <a href="${searchResultsList[j].channelProfileLink}">${searchResultsList[j].channelTitle}</a>, `
-                    resultsDiv.innerHTML += `<strong>Description</strong>: "${searchResultsList[j].description}", `
-                    resultsDiv.innerHTML += `Flesh-Kincaid Grade Level= "${searchResultsList[j].fkgl}", `
-                    resultsDiv.innerHTML += `Flesh Reading Ease Score= "${searchResultsList[j].fre}", `
-                    resultsDiv.innerHTML += `<a href="">Tags</a></p>`
-                    resultsDiv.innerHTML += `<img src="${searchResultsList[j].thumbnailUrl}" alt="thumbnail">`
+                    // Display each search result
+                    for (let j = i * 10; j < i * 10 + 10; j++) {
+                        if (searchResultsList[j]) { // Check if result exists
+                            resultsDiv.innerHTML += `<p>${j % 10 + 1}. <strong>Title</strong>: <a href="${searchResultsList[j].videoLink}" target="_blank">${searchResultsList[j].title}</a>, `;
+                            resultsDiv.innerHTML += `<strong>Channel</strong>: <a href="${searchResultsList[j].channelProfileLink}" target="_blank">${searchResultsList[j].channelTitle}</a>, `;
+                            resultsDiv.innerHTML += `<strong>Description</strong>: "${searchResultsList[j].description}", `;
+                            resultsDiv.innerHTML += `Flesh-Kincaid Grade Level= "${searchResultsList[j].fkgl}", `;
+                            resultsDiv.innerHTML += `Flesh Reading Ease Score= "${searchResultsList[j].fre}", `;
+
+                            resultsDiv.innerHTML += `<a href="/tagDetails?videoId=${searchResultsList[j].videoID}"> Tags </a>`;
+
+                            resultsDiv.innerHTML += `</p><img src="${searchResultsList[j].thumbnailUrl}" alt="thumbnail">`;
+                        }
+                    }
                 }
-             }
+            }
         };
 
         socket.onclose = function(event) {
@@ -97,12 +107,26 @@
                 console.log("WebSocket is not open. State: " + socket.readyState);
             }
         }
+
+        /**
+         * Displays the tags in the dedicated tags section.
+         * tagData - The HTML-formatted tags received from the WebSocket.
+         */
+        function displayTags(tagData) {
+            let tagsDiv = document.getElementById("tags");
+            let tagsHTML = tagData.split(',').map(tag =>
+                    `<a href="/tagdetails?tag=${encodeURIComponent(tag.trim())}">${tag.trim()}</a>`
+            ).join(", ");
+            tagsDiv.innerHTML = `<p><strong>Tags:</strong> ${tagsHTML}</p>`;
+        }
+
     </script>
-</head>
-<body>
-<h1>Welcome to the YT lytics</h1>
-<input type="text" id="keyword" placeholder="Enter keyword">
-<button onclick="sendKeyword()">Search</button>
-<div id="results"></div>
-</body>
+    </head>
+    <body>
+        <h1>Welcome to the YT lytics</h1>
+        <input type="text" id="keyword" placeholder="Enter keyword">
+        <button onclick="sendKeyword()">Search</button>
+        <div id="results"></div>
+        <div id="tags"></div>
+    </body>
 </html>

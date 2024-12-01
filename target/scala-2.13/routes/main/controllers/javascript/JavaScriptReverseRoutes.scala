@@ -18,12 +18,12 @@ package controllers.javascript {
     }
 
   
-    // @LINE:6
-    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.NewHomeController.index",
+    // @LINE:8
+    def GetWordStats: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.NewHomeController.GetWordStats",
       """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + """"})
+        function(query0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "wordstats/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("query", query0))})
         }
       """
     )
@@ -38,12 +38,32 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:8
-    def GetWordStats: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.NewHomeController.GetWordStats",
+    // @LINE:14
+    def tagSearch: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.NewHomeController.tagSearch",
       """
-        function(query0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "wordstats/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("query", query0))})
+        function(keyword0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "tagSearch" + _qS([(""" + implicitly[play.api.mvc.QueryStringBindable[String]].javascriptUnbind + """)("keyword", keyword0)])})
+        }
+      """
+    )
+  
+    // @LINE:13
+    def tagDetails: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.NewHomeController.tagDetails",
+      """
+        function(videoId0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "tagDetails" + _qS([(""" + implicitly[play.api.mvc.QueryStringBindable[String]].javascriptUnbind + """)("videoId", videoId0)])})
+        }
+      """
+    )
+  
+    // @LINE:6
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.NewHomeController.index",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + """"})
         }
       """
     )

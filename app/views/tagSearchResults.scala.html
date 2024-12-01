@@ -1,0 +1,108 @@
+@(keyword: String, searchResults: java.util.List[services.YTResponse])
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Search Results for "@keyword"</title>
+        <style>
+                /* General Page Styling */
+                body {
+                    font-family: Arial, sans-serif;
+                    line-height: 1.6;
+                    color: #333;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f9f9f9;
+                }
+                h1 {
+                    text-align: center;
+                    margin: 20px 0;
+                    color: #2c3e50;
+                }
+
+                /* Content Wrapper */
+                div {
+                    max-width: 800px;
+                    margin: 20px auto;
+                    padding: 20px;
+                    background: #fff;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    border-radius: 8px;
+                }
+
+                /* List Styling */
+                ul {
+                    list-style: none;
+                    padding: 0;
+                }
+                ul li {
+                    margin-bottom: 20px;
+                    padding: 15px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    background-color: #fcfcfc;
+                    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                }
+
+                /* Paragraph Styling */
+                p {
+                    margin: 10px 0;
+                    font-size: 16px;
+                }
+
+                /* Highlighted Text */
+                strong {
+                    color: #2c3e50;
+                    font-weight: bold;
+                }
+
+                /* Hyperlink Styling */
+                a {
+                    color: #2980b9;
+                    text-decoration: none;
+                    font-weight: bold;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+
+                /* Footer Styling */
+                footer {
+                    text-align: center;
+                    margin-top: 20px;
+                    font-size: 14px;
+                    color: #7f8c8d;
+                }
+        </style>
+    </head>
+    <body>
+        <h1>Search Results for "@keyword"</h1>
+        <div>
+        @if(searchResults != null && !searchResults.isEmpty) {
+            <ul>
+            @for(result <- searchResults) {
+                <li>
+                    <p><strong>Title:</strong>
+                        <a href="https://www.youtube.com/watch?v=@result.getVideoId()" target="_blank">
+                        @result.getTitle()
+                        </a>
+                    </p>
+                    <p><strong>Channel:</strong>
+                        <a href="https://www.youtube.com/channel/@result.getChannelId()" target="_blank">
+                        @result.getChannelTitle()
+                        </a>
+                    </p>
+                    <p><strong>Description:</strong> @result.getDescription()</p>
+                </li>
+            }
+            </ul>
+        } else {
+            <p>No results found for "@keyword".</p>
+        }
+        </div>
+        <footer>
+                    &copy; 2024 YT lytics. All Rights Reserved.
+        </footer>
+    </body>
+</html>

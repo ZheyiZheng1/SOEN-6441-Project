@@ -1,15 +1,15 @@
-2024-11-29 00:07:35,078 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-5 - ApplicationTimer demo: Starting application at 2024-11-29T05:07:35.078879500Z
-2024-11-29 00:07:35,093 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-5 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+2024-12-01 15:06:03,731 [INFO] from application in play-dev-mode-akka.actor.default-dispatcher-4 - ApplicationTimer demo: Starting application at 2024-12-01T20:06:03.730386300Z
+2024-12-01 15:06:03,763 [INFO] from play.api.http.EnabledFilters in play-dev-mode-akka.actor.default-dispatcher-4 - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
 
     play.filters.csrf.CSRFFilter
     play.filters.headers.SecurityHeadersFilter
     play.filters.hosts.AllowedHostsFilter
     filters.ExampleFilter
 
-2024-11-29 00:07:35,192 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-5 - Application started (Dev) (no global state)
-2024-11-29 00:07:48,639 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-5-thread-7 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 40000 milliseconds timeout
-2024-11-29 00:07:48,640 [INFO] from play.core.server.AkkaHttpServer in pool-5-thread-7 - Stopping Akka HTTP server...
-2024-11-29 00:07:48,643 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-2 - Unbinding /0:0:0:0:0:0:0:0:9000
-2024-11-29 00:07:48,647 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-2 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
-2024-11-29 00:07:48,659 [INFO] from application in application-akka.actor.internal-dispatcher-4 - ApplicationTimer demo: Stopping application at 2024-11-29T05:07:48.659469100Z after 13s.
-2024-11-29 00:07:48,688 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-2 - Running provided shutdown stop hooks
+2024-12-01 15:06:03,878 [INFO] from play.api.Play in play-dev-mode-akka.actor.default-dispatcher-4 - Application started (Dev) (no global state)
+2024-12-01 15:06:39,445 [INFO] from play.api.internal.libs.concurrent.CoordinatedShutdownSupport in pool-5-thread-9 - Starting synchronous coordinated shutdown with ServerStoppedReason reason and 40000 milliseconds timeout
+2024-12-01 15:06:39,447 [INFO] from play.core.server.AkkaHttpServer in pool-5-thread-9 - Stopping Akka HTTP server...
+2024-12-01 15:06:39,456 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-2 - Unbinding /0:0:0:0:0:0:0:0:9000
+2024-12-01 15:06:39,462 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-2 - Terminating server binding for /0:0:0:0:0:0:0:0:9000
+2024-12-01 15:06:39,484 [INFO] from application in application-akka.actor.internal-dispatcher-6 - ApplicationTimer demo: Stopping application at 2024-12-01T20:06:39.484936Z after 36s.
+2024-12-01 15:06:39,507 [INFO] from play.core.server.AkkaHttpServer in play-dev-mode-akka.actor.internal-dispatcher-17 - Running provided shutdown stop hooks

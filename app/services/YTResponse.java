@@ -58,7 +58,7 @@ public class YTResponse {
         html += ", Description: \""+ description + "\".";
         html += "Flesch-Kincaid Grade Level= "+ fkgl + ", ";
         html += "Flesch Reading Ease Score= "+ fre + ".";
-        html += "<a href=\"TODO\">Tags</a>";
+        html += "<a href=\"/tagDetails?videoId=" + videoId + "\">Tags</a>";
         html += "<img src=\""+thumbnailUrl+"\" alt=\"Thumbnail Image\">";
         return html;
     }

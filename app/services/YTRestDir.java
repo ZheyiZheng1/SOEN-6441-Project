@@ -14,6 +14,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class YTRestDir {
      * @return a list of YTResponse (processed by mapResponse).
      */
     public List<YTResponse> searchVideos(String keyword, String url, String maxResult) throws IOException {
-        String API_KEY = "AIzaSyDOyqiNvLkq9N-VivWzNg2FeGoE8a_IENI";
+        String API_KEY = "AIzaSyDCVMGmEoe4TviZVUHA4awhwqGMtgcR1wY";
         String BASE_URL = "https://www.googleapis.com/youtube/v3/search";
         String MAX_RESULTS = (maxResult != null) ? maxResult : "50";
         String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString());
@@ -104,7 +105,7 @@ public class YTRestDir {
      */
 
     public CompletableFuture<YTResponse> getVideoDetails(String videoId) {
-        String API_KEY = "AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w";
+        String API_KEY = "AIzaSyDCVMGmEoe4TviZVUHA4awhwqGMtgcR1wY";
         String urlString = "https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + videoId + "&key=" + API_KEY;
 
         return CompletableFuture.supplyAsync(() -> {
@@ -132,6 +133,61 @@ public class YTRestDir {
         });
     }
 
+    public CompletableFuture<List<YTResponse>> searchVideos(String keyword) {
+        String API_KEY = "AIzaSyDCVMGmEoe4TviZVUHA4awhwqGMtgcR1wY";
+        String urlString = "https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=" + keyword + "&key=" + API_KEY;
+
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                URI uri = new URI(urlString);
+                HttpURLConnection conn = getHttpURLConnection(uri);
+                conn.setRequestMethod("GET");
+
+                int responseCode = conn.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    throw new IOException("HTTP error code: " + responseCode);
+                }
+
+                try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    StringBuilder response = new StringBuilder();
+                    String inputLine;
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+                    return parseSearchResults(response.toString());
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Error fetching search results: " + e.getMessage(), e);
+            }
+        });
+    }
+
+    public List<YTResponse> parseSearchResults(String jsonResponse) {
+        List<YTResponse> results = new ArrayList<>();
+
+        JSONObject jsonObject = new JSONObject(jsonResponse);
+        JSONArray items = jsonObject.getJSONArray("items");
+
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject videoObject = items.getJSONObject(i);
+            JSONObject snippet = videoObject.getJSONObject("snippet");
+
+            YTResponse ytResponse = new YTResponse();
+            ytResponse.setVideoId(videoObject.getJSONObject("id").getString("videoId"));
+            ytResponse.setTitle(snippet.optString("title", "No Title Available"));
+            ytResponse.setDescription(snippet.optString("description", "No Description Available"));
+            ytResponse.setChannelTitle(snippet.optString("channelTitle", "Unknown Channel"));
+            ytResponse.setChannelId(snippet.optString("channelId", null));
+            ytResponse.setChannelProfileLink("https://www.youtube.com/channel/" + ytResponse.getChannelId());
+
+            results.add(ytResponse);
+        }
+
+        return results;
+    }
+
+
+
     /**
      * Helper method to parse JSON response and create a YTResponse object
      */
@@ -145,6 +201,8 @@ public class YTRestDir {
 
         JSONObject snippet = items.getJSONObject(0).getJSONObject("snippet");
         YTResponse ytResponse = new YTResponse();
+
+        ytResponse.setVideoId(items.getJSONObject(0).getString("id"));
         ytResponse.setTitle(snippet.getString("title"));
         ytResponse.setDescription(snippet.getString("description"));
         ytResponse.setChannelTitle(snippet.getString("channelTitle"));
@@ -218,7 +276,7 @@ public class YTRestDir {
      * get channel profile
      */
     public CompletableFuture<YTResponse> getChannelProfile(String channelId) {
-        String API_KEY = "AIzaSyALS-NQwYqhQ0OmY5nTb88Jg0vpqEdoI-w";
+        String API_KEY = "AIzaSyDCVMGmEoe4TviZVUHA4awhwqGMtgcR1wY";
         String urlString = "https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=" + channelId + "&key=" + API_KEY;
 
 

@@ -1,5 +1,7 @@
 package actors;
 
+import Model.FetchTags;
+import Model.TextSegment;
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.OneForOneStrategy;
@@ -329,6 +331,38 @@ public class WebSocketActor extends AbstractActor {
                     JsonNode wordStats = message.wordStats;
                     wordStatsMap.put(message.videoId, wordStats);
                 })
+
+                /**
+                 * Tags Method Implementation
+                 *
+                 * @author: Pulkit Bansal - 40321488
+                 * Created: 2024/11/22
+                 */
+                //FetchTags Logic
+                .match(FetchTags.class, message -> {
+                    apiActor.tell(message, getSelf());
+                })
+                .match(List.class, tags -> {
+                    String tagsHTML = ((List<TextSegment>) tags).stream()
+                            .map(tag -> "<a href=\"/tagDetails?videoId=" + tag.getVideoId() + "\">" + tag.getText() + "</a>")
+                            .collect(Collectors.joining(", "));
+                    out.tell("Tags: " + tagsHTML, getSelf());
+                })
+
+
+                .match(String.class, keyword -> {
+                    System.out.println("Received keyword: " + keyword);
+
+                    if (keyword.startsWith("tag:")) {
+                        String tagKeyword = keyword.substring(4); // Extract the tag
+                        System.out.println("Processing tag-based search for: " + tagKeyword);
+                        apiActor.tell(new ProjectProtocol.KeyWordSearch(tagKeyword, null, null), getSelf());
+                    } else {
+                        apiActor.tell(new ProjectProtocol.KeyWordSearch(keyword, null, null), getSelf());
+                    }
+                })
+
+
                 .build();
     }
 
