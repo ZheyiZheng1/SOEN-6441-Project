@@ -1,12 +1,15 @@
 package actors;
 
 import Model.FetchTags;
+import Model.ChannelProfile;
 import Model.TextSegment;
 import akka.actor.*;
 import actors.ProjectProtocol.*;
+import ch.qos.logback.classic.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import services.YTResponse;
+import services.YTRestDir;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,9 +27,13 @@ import java.util.stream.Stream;
 /**
  * @author: Zheyi Zheng - 40266266
  * Created: 2024/11/14
- * This is the APIAcotr class. This class is responsible to make API call to YouTube.
+ * This is the APIActor class. This class is responsible for making API calls to YouTube
+ *  * and processing requests such as video search and channel profile retrieval.
  */
 public class APIActor extends AbstractActor{
+    private static final String CHANNEL_URL ="https://www.googleapis.com/youtube/v3/search" ;
+    private static final String API_KEY ="AIzaSyDCVMGmEoe4TviZVUHA4awhwqGMtgcR1wY" ;
+    public static APIActor.ChannelProfileRequest ChannelProfileRequest;
 
     /**
      * @author: Zheyi Zheng - 40266266
@@ -98,6 +105,25 @@ public class APIActor extends AbstractActor{
                     } catch (Exception e) {
                         sender().tell(new ErrorMessage("An error occurred while handling tags"), self());
                     }
+                })
+                .match(ChannelProfileRequest.class, request -> {
+                    // Log the request for debugging
+                    Logger log = (Logger) org.slf4j.LoggerFactory.getLogger(APIActor.class);
+                    log.info("Received ChannelProfileRequest for channelId: {}", request.getChannelId());
+
+                    // Fetch the channel profile asynchronously using YTRestDir
+                    YTRestDir.getChannelProfile(request.getChannelId()).thenAccept(channelProfile -> {
+                        // Log the fetched channel profile
+                        log.info("Fetched Channel Profile: {}", channelProfile);
+
+                        // Send the fetched channel profile back to the sender (likely WebSocketActor)
+                        sender().tell(new ChannelProfileResponse(request.getChannelId(), channelProfile), self());
+                    }).exceptionally(ex -> {
+                        // Handle any exception during fetching
+                        log.error("Error fetching channel profile: {}", ex.getMessage());
+                        sender().tell(new ErrorMessage("An error occurred while fetching the channel profile"), self());
+                        return null;
+                    });
                 })
                 .build();
     }
@@ -213,6 +239,114 @@ public class APIActor extends AbstractActor{
                 })
                 // collect all ytResponse into list
                 .collect(Collectors.toList());
+    }
+    /**
+     * @author: Sakshi Mulik - 40295793
+     * Created: 2024/12/01
+     * Requests the channel profile asynchronously for a given channel ID.
+     *
+     */
+
+    private void ChannelProfileRequest(ChannelProfileRequest message) {
+        String channelId = message.getChannelId();
+        try {
+            CompletableFuture<Object> profile = fetchChannelProfile(channelId);
+            sender().tell(profile, self());
+        } catch (Exception e) {
+            sender().tell(new ErrorMessage("An error occurred while fetching the channel profile"), self());
+        }
+    }
+    /**
+     * @author: Sakshi Mulik - 40295793
+     * Created: 2024/12/01
+     * Fetches the channel profile asynchronously for a given channel ID.
+     * @param channelId the YouTube channel ID to fetch the profile.
+     * @return CompletableFuture<ChannelProfile> the future with the channel profile.
+     */
+
+    public CompletableFuture<Object> fetchChannelProfile(String channelId) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                String urlString = CHANNEL_URL + "?part=snippet,statistics&id=" + channelId + "&key=" + API_KEY;
+                URI uri = new URI(urlString);
+                HttpURLConnection conn = (HttpURLConnection) uri.toURL().openConnection();
+                conn.setRequestMethod("GET");
+
+                // Log the request URL and response code for debugging
+                System.out.println("Request URL: " + urlString);
+                int responseCode = conn.getResponseCode();
+                System.out.println("Response Code: " + responseCode);
+
+                if (responseCode != 200) {
+                    throw new IOException("Failed to fetch channel profile: " + responseCode);
+                }
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                // Log the response for debugging purposes
+                System.out.println("Response Body: " + response.toString());
+
+                return mapChannelProfileResponse(response.toString());
+            } catch (Exception e) {
+                System.err.println("Error fetching channel profile: " + e.getMessage());
+                throw new RuntimeException("Error fetching channel profile: " + e.getMessage(), e);
+            }
+        });
+    }
+
+    /**
+     * @author: Sakshi Mulik - 40295793
+     * Created: 2024/12/01
+     * Maps the API response to a ChannelProfile object.
+     * @param jsonResponse raw JSON response from YouTube API.
+     * @return ChannelProfile the channel profile object.
+     */
+    private ChannelProfile mapChannelProfileResponse(String jsonResponse) {
+        JSONObject jsonObject = new JSONObject(jsonResponse);
+        JSONArray items = jsonObject.getJSONArray("items");
+
+        if (items.length() == 0) {
+            throw new RuntimeException("Channel not found");
+        }
+
+        JSONObject channel = items.getJSONObject(0);
+        JSONObject snippet = channel.optJSONObject("snippet");
+        JSONObject statistics = channel.optJSONObject("statistics");
+
+        if (snippet == null || statistics == null) {
+            throw new RuntimeException("Malformed response, missing snippet or statistics data");
+        }
+
+        ChannelProfile profile = new ChannelProfile();
+        profile.setTitle(snippet.optString("title", "Unknown Title"));
+        profile.setDescription(snippet.optString("description", "No description available"));
+        profile.setThumbnailUrl(snippet.getJSONObject("thumbnails").optJSONObject("default").optString("url", "default_thumbnail_url"));
+        profile.setViewCount(Integer.parseInt(statistics.optString("viewCount", "0")));
+        profile.setSubscriberCount(Integer.parseInt(statistics.optString("subscriberCount", "0")));
+        profile.setVideoCount(statistics.optString("videoCount", "0"));
+
+        return profile;
+    }
+
+    public static class ChannelProfileRequest {
+        private final String channelId;
+
+        public ChannelProfileRequest(String channelId) {
+            this.channelId = channelId;
+        }
+
+        public String getChannelId() {
+            return channelId;
+        }
+
+        public String ChannelId() {
+            return channelId;
+        }
     }
 
 

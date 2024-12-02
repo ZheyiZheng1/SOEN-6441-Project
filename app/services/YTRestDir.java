@@ -34,7 +34,7 @@ public class YTRestDir {
      * @param uri a target URI
      * @return an HttpURLConnection instance connect to target uri.
      */
-    protected HttpURLConnection getHttpURLConnection(URI uri) throws IOException {
+    protected static HttpURLConnection getHttpURLConnection(URI uri) throws IOException {
         return (HttpURLConnection) uri.toURL().openConnection();
     }
 
@@ -275,7 +275,7 @@ public class YTRestDir {
      *  Sakshi Mulik -40295793
      * get channel profile
      */
-    public CompletableFuture<YTResponse> getChannelProfile(String channelId) {
+    public static CompletableFuture<YTResponse> getChannelProfile(String channelId) {
         String API_KEY = "AIzaSyDCVMGmEoe4TviZVUHA4awhwqGMtgcR1wY";
         String urlString = "https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=" + channelId + "&key=" + API_KEY;
 
@@ -303,7 +303,7 @@ public class YTRestDir {
             }
         });
     }
-    private YTResponse parseChannelDetails(String jsonResponse) {
+    private static YTResponse parseChannelDetails(String jsonResponse) {
         JSONObject jsonObject = new JSONObject(jsonResponse);
         JSONObject snippet = jsonObject.getJSONArray("items").getJSONObject(0).getJSONObject("snippet");
         JSONObject statistics = jsonObject.getJSONArray("items").getJSONObject(0).getJSONObject("statistics");

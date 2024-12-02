@@ -8,7 +8,10 @@ import akka.actor.OneForOneStrategy;
 import akka.actor.Props;
 import akka.actor.SupervisorStrategy;
 import akka.actor.Cancellable;
+import akka.event.Logging;
+import akka.event.LoggingAdapter;
 import akka.japi.pf.DeciderBuilder;
+import Model.ChannelProfile;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import scala.concurrent.duration.Duration;
@@ -39,11 +42,14 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 public class WebSocketActor extends AbstractActor {
 
     private final ActorRef out;
+    private final ActorRef ChannelProfileActor;
     private String keyword;
     private ActorRef apiActor;
     private ActorRef readabilityActor;
     private ActorRef sentimentActor;
     private ActorRef wordStatsActor;
+    private final LoggingAdapter log = Logging.getLogger(getContext().getSystem(), this);
+
     // keep searched keywords
     private List<String> searchHistory;
     // Keep search results
@@ -89,6 +95,7 @@ public class WebSocketActor extends AbstractActor {
     @Inject
     public WebSocketActor(ActorRef out) {
         this.out = out;
+        this.ChannelProfileActor = getContext().actorOf(WordStatsActor.getProps());
         this.apiActor = getContext().actorOf(APIActor.getProps());
         this.readabilityActor = getContext().actorOf(ReadabilityActor.getProps());
         this.sentimentActor = getContext().actorOf(SentimentActor.props());
@@ -361,9 +368,63 @@ public class WebSocketActor extends AbstractActor {
                         apiActor.tell(new ProjectProtocol.KeyWordSearch(keyword, null, null), getSelf());
                     }
                 })
+                // Section related to handling Channel Profile requests and responses
+                // @author: Sakshi Mulik-40295793
 
+                // This block handles messages that contain "channelId", which indicates a request to fetch a channel profile.
+                // The message is forwarded to the APIActor to fetch channel profile data based on the provided channelId.
+                .match(String.class, message -> {
+                    log.info("Received message in WebSocketActor: {}", message);
 
+                    // Check if this is channel profile data and forward it to the WebSocket client
+                    if (message.contains("channelId")) {
+                        // Extract channelId from the message
+                        String channelId = extractChannelIdFromMessage(message);
+                        if (channelId != null && !channelId.isEmpty()) {
+                            // Forward to APIActor to fetch channel profile
+                            apiActor.tell(new ProjectProtocol.ChannelProfileRequest(channelId), getSelf());
+                        }
+                    }
+                })
+                // This section processes the response from the APIActor containing the ChannelProfile data.
+                // The channel profile data is then converted to JSON format and sent back to the WebSocket client.
+                .match(ChannelProfile.class, profile -> {
+                    // Convert the ChannelProfile object to JSON or a suitable format for the WebSocket response
+                    ObjectMapper mapper = new ObjectMapper();
+                    ObjectNode profileNode = mapper.createObjectNode();
+                    profileNode.put("channelId", profile.getChannelId());
+                    profileNode.put("channelTitle", profile.getChannelTitle());
+                    profileNode.put("subscriberCount", profile.getSubscriberCount());
+                    profileNode.put("videoCount", profile.getVideoCount());
+                    profileNode.put("viewCount", profile.getViewCount());
+                    profileNode.put("channelDescription", profile.getDescription());
+
+                    // Send the profile data back to the WebSocket client
+                    out.tell(profileNode.toString(), getSelf());
+                })
                 .build();
+
+
+    }
+    /**
+     * @author: Sakshi Mulik :40295793
+     * This method extracts the channelId from the incoming message.
+     * It parses the message as a JSON string, retrieves the "channelId" field,
+     * and returns it as a string. If there is any error during this process,
+     * an error is logged and the method returns null.
+     * @param message The incoming message containing the channelId in JSON format.
+     * @return The extracted channelId as a string, or null if an error occurs.
+     */
+
+    private String extractChannelIdFromMessage(String message) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode rootNode = mapper.readTree(message);
+            return rootNode.path("channelId").asText();
+        } catch (Exception e) {
+            log.error("Error extracting channelId from message", e);
+            return null;
+        }
     }
 
     /**

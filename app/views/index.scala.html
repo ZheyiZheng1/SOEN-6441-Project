@@ -52,7 +52,7 @@
                             videoLink: result.videoLink,
                             channelTitle: result.channelTitle,
                             channelID: result.channelID,
-                            channelProfileLink: result.channelProfileLink,
+                            channelProfileLink: result.channelID,
                             description: result.description,
                             thumbnailUrl: result.thumbnailUrl,
                             fkgl: result.fkgl,
@@ -75,7 +75,7 @@
                     for (let j = i * 10; j < i * 10 + 10; j++) {
                         if (searchResultsList[j]) { // Check if result exists
                             resultsDiv.innerHTML += `<p>${j % 10 + 1}. <strong>Title</strong>: <a href="${searchResultsList[j].videoLink}" target="_blank">${searchResultsList[j].title}</a>, `;
-                            resultsDiv.innerHTML += `<strong>Channel</strong>: <a href="${searchResultsList[j].channelProfileLink}" target="_blank">${searchResultsList[j].channelTitle}</a>, `;
+                            resultsDiv.innerHTML += `<strong>Channel</strong>: <a href="/ChannelProfile/${searchResultsList[j].channelProfileLink}" target="_blank">${searchResultsList[j].channelTitle}</a>, `;
                             resultsDiv.innerHTML += `<strong>Description</strong>: "${searchResultsList[j].description}", `;
                             resultsDiv.innerHTML += `Flesh-Kincaid Grade Level= "${searchResultsList[j].fkgl}", `;
                             resultsDiv.innerHTML += `Flesh Reading Ease Score= "${searchResultsList[j].fre}", `;
@@ -118,6 +118,34 @@
                     `<a href="/tagdetails?tag=${encodeURIComponent(tag.trim())}">${tag.trim()}</a>`
             ).join(", ");
             tagsDiv.innerHTML = `<p><strong>Tags:</strong> ${tagsHTML}</p>`;
+        }
+
+        /**
+         * Displays the Channelprofile
+         * connectChannelprofile
+         */
+        function connectChannelProfile(channelID) {
+            let socket = new WebSocket(`ws://localhost:9000/ChannelProfile/${channelID}/ws`);
+
+            socket.onopen = function (event) {
+                console.log(`WebSocket connection established for channel: ${channelID}`);
+            };
+
+            socket.onmessage = function (event) {
+                console.log("Received channel profile data: " + event.data);
+
+                // Display channel profile data
+                let profileDiv = document.getElementById("channelProfile");
+                profileDiv.innerHTML = `<h2>Channel Profile for ${channelID}</h2><pre>${event.data}</pre>`;
+            };
+
+            socket.onclose = function (event) {
+                console.log(`WebSocket connection closed for channel: ${channelID}. Code: ${event.code}`);
+            };
+
+            socket.onerror = function (error) {
+                console.error(`WebSocket error for channel ${channelID}: `, error);
+            };
         }
 
     </script>
