@@ -1,7 +1,6 @@
 package controllers;
 
-import actors.ReadabilityActor;
-import actors.WordStatsActor;
+import actors.*;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.stream.Materializer;
@@ -16,8 +15,7 @@ import play.libs.streams.ActorFlow;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import actors.APIActor;
-import actors.WebSocketActor;
+
 import services.YTResponse;
 import services.YTRestDir;
 
@@ -126,4 +124,41 @@ public class NewHomeController extends Controller {
             return internalServerError("An error occurred while fetching search results.");
         }
     }
+    /**
+     * @author: Sakshi Mulik - 40295793
+     * Created: 2024/12/01
+     * This method renders the Channel Profile page for a specific YouTube channel using the given channel ID.
+     * @param channelID the ID of the YouTube channel to fetch the profile for.
+     * @return Result returns the rendered ChannelProfile page.
+     */
+    public Result ChannelProfile(String channelID) {
+        System.out.println("Channel Profile Requested for: " + channelID); // Debug log
+        return ok(views.html.ChannelProfile.render(channelID));  // Use the correct template name
+    }
+
+    /**
+     * @author: Sakshi Mulik - 40295793
+     * Created: 2024/12/01
+     * This WebSocket method handles the WebSocket connection to fetch the YouTube channel profile.
+     * When the WebSocket is opened, it communicates with the `ChannelProfileActor` to fetch the profile details
+     * for the specified channel ID.
+     * @param channelId the ID of the YouTube channel to fetch the profile for.
+     * @return WebSocket returns a WebSocket that communicates with the `ChannelProfileActor` to fetch and send the channel profile data.
+     */
+    public WebSocket ChannelProfileWebSocket(String channelId) {
+        return WebSocket.Text.accept(request -> {
+            // Logging for debugging
+            System.out.println("Creating WebSocket connection for channelId: " + channelId);
+
+            // Create the APIActor to manage API calls (you can pass the necessary data here)
+            ActorRef apiActor = actorSystem.actorOf(APIActor.getProps());  // Ensure you have APIActor set up properly
+
+            // Create and return the ChannelProfileActor
+            return ActorFlow.actorRef(out -> {
+                // Pass the channelId and APIActor to the ChannelProfileActor
+                return ChannelProfileActor.props(channelId, out, apiActor);
+            }, actorSystem, materializer);
+        });
+    }
+
 }

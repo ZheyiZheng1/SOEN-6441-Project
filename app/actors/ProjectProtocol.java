@@ -342,4 +342,126 @@ public class ProjectProtocol {
         }
 
     }
+    /**
+     * @author: Sakshi Mulik - 40295793
+     * Created: 2024/11/27
+     * This is the ChannelProfileRequest class. This class is used to request the profile details of a YouTube channel.
+     * The class contains the channel ID which is required for fetching the profile data.
+     */
+    public static class GetChannelProfileRequest {
+        private String channelId;
+
+        /**
+         * Constructor method.
+         * @param channelId The channel ID to request the profile details.
+         */
+        public GetChannelProfileRequest(String channelId) {
+            this.channelId = channelId;
+        }
+
+        public String getChannelID() {
+            return channelId;
+        }
+
+        public String getChannelId() {
+            return channelId;
+        }
+
+        public void setChannelId(String channelId) {
+            this.channelId = channelId;
+        }
+    }
+
+    /**
+     * @author: Sakshi Mulik - 40295793
+     * Created: 2024/11/27
+     * This is the ChannelProfileRequest class. This is a message class used to request the profile details of a YouTube channel.
+     * The class contains the channel ID which is required for fetching the profile data.
+     */
+
+    public static class ChannelProfileResponse {
+        public Model.ChannelProfile ChannelProfile;
+        private final String channelId;
+        private String title;
+        private String profileLink;
+        private String description;
+        private ChannelProfileResponse profile;
+
+        /**
+         * @author: Sakshi Mulik : 40295793
+         * Created: 2024/11/27
+         * Constructor to initialize the profile with a ChannelProfile object.
+         * @param channelId The channel ID.
+         * @param profileLink The channel profile object containing detailed information.
+         */
+        // Constructor to initialize the channel profile data
+        public ChannelProfileResponse(String channelId, String title, String profileLink, String description, String thumbnailUrl) {
+            this.channelId = channelId;
+            this.title = title;
+            this.profileLink = profileLink;
+            this.description = description;
+        }
+
+        public ChannelProfileResponse(String channelId, Model.ChannelProfile profile) {
+            this.channelId = channelId;
+        }
+
+        /**
+         * @author: Sakshi Mulik :40295793
+         * Created: 2024/11/27
+         * Constructor to initialize the profile using a YTResponse object.
+         * @param channelId The channel ID.
+         * @param profile The YTResponse object that contains channel profile details.
+         */
+
+        public ChannelProfileResponse(String channelId, YTResponse profile) {
+
+            this.channelId = channelId;
+        }
+
+        // Getters for the data fields
+        public String getChannelId() {
+            return channelId;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getProfileLink() {
+            return profileLink;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public ChannelProfileResponse getProfile() {
+            return profile;
+        }
+        /**
+         * Getter for the ChannelProfile object.
+         * @return The ChannelProfile object containing detailed information.
+         */
+        public Model.ChannelProfile getChannelProfile() {
+            return ChannelProfile;
+        }
+    }
+    private List<String> Results; // Replace with actual data type
+
+    public List<String> getResults() {
+        return Results;
+    }
+
+    public static class ChannelProfileRequest {
+        private final String channelId;
+
+        public ChannelProfileRequest(String channelId) {
+            this.channelId = channelId;
+        }
+
+        public String getChannelId() {
+            return channelId;
+        }
+    }
 }

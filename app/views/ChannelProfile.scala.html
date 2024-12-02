@@ -1,0 +1,224 @@
+@(channelID: String)
+<!--Sakshi Mulik -40295793-->
+<!--Channelprofile Html file-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Profile: @channelID</title>
+    <style>
+            body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 0;
+              background-color: #f9f9f9;
+              color: #333;
+            }
+            .container {
+              max-width: 800px;
+              margin: 20px auto;
+              background: #fff;
+              padding: 20px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              border-radius: 8px;
+            }
+            h1 {
+              font-size: 2.5em;
+              color: #080909;
+              margin-bottom: 10px;
+            }
+            .thumbnail {
+              display: flex;
+              justify-content: center;
+              margin: 20px 0;
+            }
+            img {
+              max-width: 150px;
+              border-radius: 50%;
+              border: 3px solid #ddd;
+            }
+            .details {
+              font-size: 1.1em;
+              line-height: 1.6em;
+            }
+            .details p {
+              margin: 10px 0;
+            }
+            .video-count, .subscriber-count {
+              font-weight: bold;
+            }
+            footer {
+              text-align: center;
+              margin-top: 20px;
+              font-size: 0.9em;
+              color: #777;
+            }
+            #loading-indicator {
+              text-align: center;
+              font-size: 18px;
+              color: #888;
+              display: none; /* Initially hidden */
+            }
+            #video-list {
+              margin-top: 20px;
+            }
+            #video-list li {
+              list-style-type: none;
+              margin: 5px 0;
+            }
+            #video-list a {
+              color: #2a5d84;
+              text-decoration: none;
+            }
+            .latest-video {
+              margin-top: 20px;
+            }
+            .latest-video h3 {
+              margin-bottom: 10px;
+            }
+            .latest-video a {
+              font-size: 1.2em;
+              color: #0066cc;
+              text-decoration: none;
+            }
+    </style>
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const channelID = "@channelID";
+              const youtubeLink = `https://www.youtube.com/channel/${channelID}`;
+
+              document.getElementById("channel-link").href = youtubeLink;
+              document.getElementById("channel-link").innerText = "Go to YouTube Channel";
+
+              // You can still proceed with the WebSocket connection and message handling if you need to update other details later
+              const socket = new WebSocket(`ws://localhost:9000/ChannelProfile/${channelID}/ws`);
+
+              // Show loading indicator when WebSocket connection is being established
+              document.getElementById("loading-indicator").style.display = "block";
+
+              socket.onopen = function () {
+                console.log("WebSocket connection established.");
+                socket.send(JSON.stringify({ type: "ChannelProfileRequest", channelId: channelID }));
+              };
+
+              socket.onmessage = function (event) {
+                console.log("Received WebSocket message:", event.data);
+                try {
+                  const data = JSON.parse(event.data);
+                  console.log("Profile Data:", data);
+
+                  // Update channel title and thumbnail
+                  document.getElementById("channel-title").innerText = data.title || "Unknown Channel";
+                  document.getElementById("channel-thumbnail").src = data.thumbnailUrl || 'placeholder.png';
+                  document.getElementById("channel-thumbnail").alt = data.title || "Channel";
+
+                  // Update channel description, video count, and subscriber count
+                  document.getElementById("channel-description").innerText = data.description || "No description available.";
+                  document.getElementById("video-count").innerText = data.videoCount || "N/A";
+                  document.getElementById("subscriber-count").innerText = data.subscriberCount || "N/A";
+                  document.getElementById("view-count").innerText = data.viewCount || "N/A";
+
+                  // Display last 10 videos
+                  const videoListElement = document.getElementById("video-list");
+                  videoListElement.innerHTML = ""; // Clear existing videos
+                  const videos = data.last10Videos || [];
+                  if (videos.length > 0) {
+                    videos.forEach(video => {
+                      const listItem = document.createElement("li");
+                      listItem.innerHTML = `<a href="https://www.youtube.com/watch?v=${video.videoId}" target="_blank">${video.title}</a>`;
+                      videoListElement.appendChild(listItem);
+                    });
+                  } else {
+                    videoListElement.innerHTML = "<li>No videos available</li>";
+                  }
+
+                  // Fetch and display the latest video
+                  fetchLatestVideo(channelID);
+
+                } catch (error) {
+                  console.error("Error parsing profile data:", error);
+                  showDefaultChannelDetails();
+                }
+              };
+
+              socket.onclose = function () {
+                console.log("WebSocket connection closed.");
+                document.getElementById("loading-indicator").style.display = "none";
+                showDefaultChannelDetails();
+              };
+
+              socket.onerror = function (error) {
+                console.error("WebSocket error:", error);
+                document.getElementById("loading-indicator").style.display = "none";
+                showDefaultChannelDetails();
+              };
+
+              // Fetch the latest video from YouTube API
+              function fetchLatestVideo(channelId) {
+                const apiKey = 'AIzaSyDCVMGmEoe4TviZVUHA4awhwqGMtgcR1wY';
+                const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&order=date&part=snippet&type=video`;
+
+                fetch(apiUrl)
+                        .then(response => response.json())
+                        .then(data => {
+                          if (data.items && data.items.length > 0) {
+                            const latestVideo = data.items[0];
+                            const videoId = latestVideo.id.videoId;
+                            const videoTitle = latestVideo.snippet.title;
+                            const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+                            const thumbnailUrl = latestVideo.snippet.thumbnails.high.url;
+
+                            const latestVideoElement = document.getElementById("latest-video");
+                            latestVideoElement.innerHTML = `
+                                        <h3>Latest Video:</h3>
+                                        <a href="${videoUrl}" target="_blank">
+                                            <img src="${thumbnailUrl}" alt="${videoTitle}" style="max-width: 200px; border-radius: 8px;">
+                                            <p>${videoTitle}</p>
+                                        </a>
+                                    `;
+                          } else {
+                            document.getElementById("latest-video").innerHTML = "<p>No videos found for this channel.</p>";
+                          }
+                        })
+                        .catch(error => {
+                          console.error("Error fetching latest video:", error);
+                          document.getElementById("latest-video").innerHTML = "<p>Error fetching latest video.</p>";
+                        });
+              }
+
+              function showDefaultChannelDetails() {
+                // Set default channel details if WebSocket fails or closes
+                document.getElementById("channel-title").innerText = "Channel Name (Fallback)";
+                document.getElementById("channel-description").innerText = "No description available.";
+                document.getElementById("video-count").innerText = "N/A";
+                document.getElementById("subscriber-count").innerText = "N/A";
+                document.getElementById("view-count").innerText = "N/A";
+                document.getElementById("video-list").innerHTML = "<li>No videos available</li>";
+              }
+            });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="channel-title">Loading Channel...</h1>
+
+      <div class="details">
+        <p id="channel-description">Description :</p>
+        <p class="video-count">Video Count: <span id="video-count"></span></p>
+        <p class="subscriber-count">Subscriber Count: <span id="subscriber-count"></span></p>
+        <p class="view-count">View Count: <span id="view-count"> </span></p>
+        <p>Go to the <a id="channel-link" href="#" target="_blank">YouTube Channel</a></p>
+      </div>
+      <div id="video-list">
+        <h3>Last 10 Videos:</h3>
+        <ul id="video-list"></ul>
+      </div>
+
+        <!-- Latest video section -->
+      <div id="latest-video" class="latest-video"></div>
+
+    </div>
+    <div id="loading-indicator">Loading...</div>
+  </body>
+</html>
