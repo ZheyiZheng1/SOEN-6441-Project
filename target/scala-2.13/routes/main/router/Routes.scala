@@ -45,6 +45,8 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(file:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """tagDetails""", """controllers.NewHomeController.tagDetails(videoId:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """tagSearch""", """controllers.NewHomeController.tagSearch(keyword:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """ChannelProfile/""" + "$" + """channelID<[^/]+>""", """controllers.NewHomeController.ChannelProfile(channelID:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """ChannelProfile/""" + "$" + """channelId<[^/]+>/ws""", """controllers.NewHomeController.ChannelProfileWebSocket(channelId:String)"""),
     Nil
   ).foldLeft(Seq.empty[(String, String, String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String, String, String)]
@@ -160,6 +162,42 @@ class Routes(
     )
   )
 
+  // @LINE:18
+  private lazy val controllers_NewHomeController_ChannelProfile6_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("ChannelProfile/"), DynamicPart("channelID", """[^/]+""", encodeable=false)))
+  )
+  private lazy val controllers_NewHomeController_ChannelProfile6_invoker = createInvoker(
+    NewHomeController_0.ChannelProfile(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NewHomeController",
+      "ChannelProfile",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """ChannelProfile/""" + "$" + """channelID<[^/]+>""",
+      """ Route for serving the channel profile page""",
+      Seq()
+    )
+  )
+
+  // @LINE:19
+  private lazy val controllers_NewHomeController_ChannelProfileWebSocket7_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("ChannelProfile/"), DynamicPart("channelId", """[^/]+""", encodeable=false), StaticPart("/ws")))
+  )
+  private lazy val controllers_NewHomeController_ChannelProfileWebSocket7_invoker = createInvoker(
+    NewHomeController_0.ChannelProfileWebSocket(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NewHomeController",
+      "ChannelProfileWebSocket",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """ChannelProfile/""" + "$" + """channelId<[^/]+>/ws""",
+      """""",
+      Seq()
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -197,6 +235,18 @@ class Routes(
     case controllers_NewHomeController_tagSearch5_route(params@_) =>
       call(params.fromQuery[String]("keyword", None)) { (keyword) =>
         controllers_NewHomeController_tagSearch5_invoker.call(NewHomeController_0.tagSearch(keyword))
+      }
+  
+    // @LINE:18
+    case controllers_NewHomeController_ChannelProfile6_route(params@_) =>
+      call(params.fromPath[String]("channelID", None)) { (channelID) =>
+        controllers_NewHomeController_ChannelProfile6_invoker.call(NewHomeController_0.ChannelProfile(channelID))
+      }
+  
+    // @LINE:19
+    case controllers_NewHomeController_ChannelProfileWebSocket7_route(params@_) =>
+      call(params.fromPath[String]("channelId", None)) { (channelId) =>
+        controllers_NewHomeController_ChannelProfileWebSocket7_invoker.call(NewHomeController_0.ChannelProfileWebSocket(channelId))
       }
   }
 }

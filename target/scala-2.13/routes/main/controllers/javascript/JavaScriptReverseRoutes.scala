@@ -18,6 +18,26 @@ package controllers.javascript {
     }
 
   
+    // @LINE:19
+    def ChannelProfileWebSocket: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.NewHomeController.ChannelProfileWebSocket",
+      """
+        function(channelId0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "ChannelProfile/" + (""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("channelId", channelId0) + "/ws"})
+        }
+      """
+    )
+  
+    // @LINE:18
+    def ChannelProfile: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.NewHomeController.ChannelProfile",
+      """
+        function(channelID0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "ChannelProfile/" + (""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("channelID", channelID0)})
+        }
+      """
+    )
+  
     // @LINE:8
     def GetWordStats: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.NewHomeController.GetWordStats",

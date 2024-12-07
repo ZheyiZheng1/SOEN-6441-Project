@@ -17,6 +17,18 @@ package controllers {
     }
 
   
+    // @LINE:19
+    def ChannelProfileWebSocket(channelId:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "ChannelProfile/" + implicitly[play.api.mvc.PathBindable[String]].unbind("channelId", channelId) + "/ws")
+    }
+  
+    // @LINE:18
+    def ChannelProfile(channelID:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "ChannelProfile/" + implicitly[play.api.mvc.PathBindable[String]].unbind("channelID", channelID))
+    }
+  
     // @LINE:8
     def GetWordStats(query:String): Call = {
       

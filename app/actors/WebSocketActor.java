@@ -193,7 +193,12 @@ public class WebSocketActor extends AbstractActor {
                         if (searchResults.size() >= 10) {
                             searchResults.remove(0);
                         }
-                        searchResults.add((List<YTResponse>) results);
+                        //searchResults.add((List<YTResponse>) results);
+                        List<YTResponse> ytResults = (List<YTResponse>) results;
+
+                        List<YTResponse> firstTenResults = ytResults.subList(0, Math.min(ytResults.size(), 10));
+
+                        searchResults.add((List<YTResponse>) firstTenResults);
                     });
                 })
                 .match(ProjectProtocol.ReadabilityResponse.class, message -> {
@@ -311,7 +316,12 @@ public class WebSocketActor extends AbstractActor {
                         }
                         if(change){
                             // There is actual update in data, store the data
-                            searchResults.set(index, (List<YTResponse>) results);
+                            //searchResults.set(index, (List<YTResponse>) results);
+                            List<YTResponse> ytResults = (List<YTResponse>) results;
+
+                            List<YTResponse> firstTenResults = ytResults.subList(0, Math.min(ytResults.size(), 10));
+                            searchResults.set(index, (List<YTResponse>) firstTenResults);
+
                             // Call the readability actor
                             readabilityActor.tell(new ProjectProtocol.ReadabilityUpdate(message.updatedData, keyword), getSelf());
                         }

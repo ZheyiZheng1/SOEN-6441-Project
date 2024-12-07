@@ -32,7 +32,7 @@ import java.util.stream.Stream;
  */
 public class APIActor extends AbstractActor{
     private static final String CHANNEL_URL ="https://www.googleapis.com/youtube/v3/search" ;
-    private static final String API_KEY ="AIzaSyDCVMGmEoe4TviZVUHA4awhwqGMtgcR1wY" ;
+    private static final String API_KEY ="AIzaSyDOyqiNvLkq9N-VivWzNg2FeGoE8a_IENI" ;
     public static APIActor.ChannelProfileRequest ChannelProfileRequest;
 
     /**
@@ -163,7 +163,7 @@ public class APIActor extends AbstractActor{
      * @return a list of YTResponse (processed by mapResponse).
      */
     public List<YTResponse> searchVideos(String keyword, String url, String maxResult) throws IOException, URISyntaxException {
-        String API_KEY = "AIzaSyDCVMGmEoe4TviZVUHA4awhwqGMtgcR1wY";
+        String API_KEY = "AIzaSyDOyqiNvLkq9N-VivWzNg2FeGoE8a_IENI";
         String BASE_URL = "https://www.googleapis.com/youtube/v3/search";
         String MAX_RESULTS = (maxResult != null) ? maxResult : "50";
         String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString());

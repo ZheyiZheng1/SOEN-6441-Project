@@ -12,3 +12,8 @@ GET     /assets/*file               controllers.Assets.versioned(file)
 
 GET     /tagDetails                 controllers.NewHomeController.tagDetails(videoId: String)
 GET     /tagSearch                 controllers.NewHomeController.tagSearch(keyword: String)
+
+
+# Route for serving the channel profile page
+GET     /ChannelProfile/$channelID<[^/]+>          controllers.NewHomeController.ChannelProfile(channelID:String)
+GET     /ChannelProfile/$channelId<[^/]+>/ws       controllers.NewHomeController.ChannelProfileWebSocket(channelId:String)
